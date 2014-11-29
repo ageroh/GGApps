@@ -39,17 +39,24 @@ namespace GGApps
         public static DataTable FillDeptDropdownList()
         {
             System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
-
-            if (rootWebConfig1.AppSettings.Settings["ContentAbilityGG"] != null)
+            try
             {
-                SqlConnection con = new SqlConnection(rootWebConfig1.AppSettings.Settings["ContentAbilityGG"].Value.ToString());
-                SqlCommand cmd = new SqlCommand("select catCategoryId as id , catName as appName from category  where catParentID = 2", con);
-                SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adp.Fill(dt);
+                if (rootWebConfig1.AppSettings.Settings["ContentAbilityGG"] != null)
+                {
+                    SqlConnection con = new SqlConnection(rootWebConfig1.AppSettings.Settings["ContentAbilityGG"].Value.ToString());
+                    SqlCommand cmd = new SqlCommand("select catCategoryId as id , catName as appName from category  where catParentID = 2", con);
+                    SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adp.Fill(dt);
 
-                return dt;
+                    return dt;
 
+                }
+            }
+            catch (Exception e)
+            {
+                ;
+                // log this exception.
             }
             return null;
 
@@ -71,7 +78,7 @@ namespace GGApps
             sb.AppendLine("</br>" + e.Message);
         }
 
-
+        /* This is step 1 of batch process */
         public void Refresh_DB(int id, string name)
         {
             sb.Clear();
