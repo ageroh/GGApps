@@ -12,8 +12,44 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <body>
+    <script type="text/javascript">
+        function ShowProgress() {
+            setTimeout(function () {
+                var modal = $('<div />');
+                modal.addClass("modal");
+                $('body').append(modal);
+                //var loading = $(".loading");
+                //loading.show();
+                //loading.css({ top: top, left: left });
+            }, 200);
+        }
+        $('form').live("submit", function () {
+            ShowProgress();
+        });
+    </script>
+    <style type="text/css">
+        .modal
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: black;
+            z-index: 99;
+            opacity: 0.6;
+            filter: alpha(opacity=80);
+            background-image:url("Content/img/720.GIF");
+            background-repeat: no-repeat;
+            background-position: center; 
+            -moz-opacity: 0.6;
+            min-height: 100%;
+            width: 100%;
+        }
+
+    </style>
+
     <form runat="server">
     <asp:ScriptManager runat="server">
         <Scripts>

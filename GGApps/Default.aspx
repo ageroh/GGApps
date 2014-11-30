@@ -36,6 +36,7 @@
             <h3>Please first login!</h3>
         </AnonymousTemplate>
         <LoggedInTemplate>
+            
             <h3>Select application to update (one at a time)</h3>
             <ol class="round">
                 <li class="one">
@@ -46,9 +47,12 @@
                    Continue...
                 </li>
             </ol>
-            <asp:ListView ID="MainResultScreen" runat="server">
-
-            </asp:ListView>
+            
+         
+            <textarea readonly id="MainTextArea" rows="400" cols="80"  style="height:200px;">
+                <asp:Literal runat="server" id="txtEditor1" />
+            </textarea>
+         
         </LoggedInTemplate>
     </asp:LoginView>
 </asp:Content>

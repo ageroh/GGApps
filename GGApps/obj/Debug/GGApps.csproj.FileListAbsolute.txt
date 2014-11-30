@@ -61,6 +61,6 @@ C:\Users\Administrator\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\D
 C:\Users\Administrator\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\DotNetOpenAuth.AspNet.xml
 C:\Users\Administrator\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Microsoft.AspNet.Membership.OpenAuth.xml
 C:\Users\Administrator\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Microsoft.AspNet.FriendlyUrls.xml
-C:\Users\Administrator\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Debug\GGApps.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Debug\GGApps.dll
 C:\Users\Administrator\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Debug\GGApps.pdb
+C:\Users\Administrator\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Debug\GGApps.csprojResolveAssemblyReference.cache
