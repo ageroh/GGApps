@@ -52,6 +52,9 @@
             <textarea readonly id="MainTextArea" rows="400" cols="80"  style="height:200px;">
                 <asp:Literal runat="server" id="txtEditor1" />
             </textarea>
+
+            <div runat="server" id="reportDiv">
+            </div>
          
         </LoggedInTemplate>
     </asp:LoginView>

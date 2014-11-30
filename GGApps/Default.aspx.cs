@@ -15,6 +15,7 @@ namespace GGApps
 {
     public partial class _Default : Page
     {
+        #region Variables - Properties
         public static StringBuilder sb = new StringBuilder();
         public static String mapPathError = "";
         public static String[] otherLangApps;
@@ -36,7 +37,8 @@ namespace GGApps
             }
                 
         }
-        
+        #endregion
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -60,28 +62,7 @@ namespace GGApps
             }
         }
 
-        private bool CheckThreeLanguages(int id)
-        {
-            System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
-            String threelang = rootWebConfig1.AppSettings.Settings["ThreeLanguages"].Value;
-            if (threelang != null)
-            {
-               otherLangApps = threelang.Split('|');
-               if (otherLangApps != null)
-               {
-                   foreach (string x in otherLangApps)
-                   {
-                       if (x.Trim() == id.ToString() )
-                       {
-                           return true;
-                       }
-                   }
-               }
-            }
 
-            return false;
-        
-        }
 
         
         public static DataTable FillDeptDropdownList()
@@ -114,27 +95,40 @@ namespace GGApps
         {
             DropDownList ddStart = (DropDownList)LoginViewImportant.FindControl("ddStart");
             sb.Clear();
+            String strRet = "";
 
             if (!String.IsNullOrEmpty(ddStart.SelectedValue))
             {
                 Refresh_DB(Int32.Parse(ddStart.SelectedValue), ddStart.SelectedItem.ToString());
 
                 // if no error continue.. ??
+                strRet = RunReportTestsForProducedDBs(Int32.Parse(ddStart.SelectedValue), ddStart.SelectedItem.ToString());
 
+                // Initialize StringWriter instance.
+                StringWriter stringWriter = new StringWriter();
 
-                RunReportTestsForProducedDBs(Int32.Parse(ddStart.SelectedValue), ddStart.SelectedItem.ToString());
+                // Put HtmlTextWriter in using block because it needs to call Dispose.
+                using (HtmlTextWriter writer = new HtmlTextWriter(stringWriter))
+                {
+                    // The important part:
+                    writer.RenderBeginTag(HtmlTextWriterTag.Div); // Begin #1
+                    writer.Write(strRet);
+                    writer.RenderEndTag();
+                    Control reportDiv = LoginViewImportant.FindControl("reportDiv");
+                    if (reportDiv != null)
+                    {
+                        LiteralControl ltCtrl = new LiteralControl();
+                        ltCtrl.Text = writer.InnerWriter.ToString();
+                        reportDiv.Controls.Add(ltCtrl);
+
+                    }
+                        
+                }
 
             }
         }
 
 
-
-        void myConnection_InfoMessage(object sender, SqlInfoMessageEventArgs e)
-        {
-            sb.AppendLine(e.Message);
-            Log.InfoLog(mapPathError, e.Message);
-            
-        }
 
 
         /// <summary>
@@ -220,71 +214,63 @@ namespace GGApps
         /// </summary>
         /// <param name="id">The ID of the App</param>
         /// <param name="name">The name of the App</param>
-        public void RunReportTestsForProducedDBs(int id,  string name)
+        public String RunReportTestsForProducedDBs(int id,  string name)
         { 
             string path = MapPath("SQLScripts/");
-            Literal txtEditor = (Literal)LoginViewImportant.FindControl("txtEditor1");
+            //Literal txtEditor = (Literal)LoginViewImportant.FindControl("txtEditor1");
+            sb.Length = 0;
+            sb.Clear();
 
-            sb.AppendLine("Real Report:\n\n");
             // Test 1 - entities without location 
             //ContentDB_165 db_test_2_1_entities_without_location.sql 
-            sb.AppendLine(executeSQLScript(id, name, 0, path + "db_test_2_1_entities_without_location.sql", "ContentDB_165").ToString());
+            sb.AppendLine("<h2>Test 1 - entities without location</h2>\n");
+            sb.AppendLine(executeSQLScript(id, name, 0, path + "db_test_2_1_entities_without_location.sql", "ContentDB_165"));
     
             //Test 1a - entities in multiple locations 
             //ContentDB_165_Lan_2_Cat_%1  db_test_2_1a_entities_in_multiple_locations.sql  
-            sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_1a_entities_in_multiple_locations.sql").ToString()) ;
+            sb.AppendLine("<h2>Test 1a - entities in multiple locations</h2>\n");
+            sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_1a_entities_in_multiple_locations.sql")) ;
 
             // DONT FORGET CHECK FOR RUSSIAN !
 
             // Test 2 - entities connected to non leaves 
             //ContentDB_165_Lan_2_Cat_%1  db_test_2_2_entities_connected_to_non_leaves.sql 
-            sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_2_entities_connected_to_non_leaves.sql").ToString());
+            sb.AppendLine("<h2>Test 2 - entities connected to non leaves</h2>\n");
+            sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_2_entities_connected_to_non_leaves.sql"));
 
             //Test 3 - entities without category 
             //ContentDB_165_Lan_2_Cat_%1  db_test_2_3_entities_without_category.sql 
-            sb.AppendLine(executeSQLScript( id, name, 2, path + "db_test_2_3_entities_without_category.sql").ToString());
+            sb.AppendLine("<h2>Test 3 - entities without category</h2>\n");
+            sb.AppendLine(executeSQLScript( id, name, 2, path + "db_test_2_3_entities_without_category.sql"));
 
             // Test 4a - entities with invalid characters (GR) 
             //ContentDB_165_Lan_1_Cat_%1  db_test_2_4_entities_with_invalid_characters_OK.sql 
-            sb.AppendLine(executeSQLScript( id, name, 1, path + "db_test_2_4_entities_with_invalid_characters.sql").ToString());
+            sb.AppendLine("<h2>Test 4a - entities with invalid characters (GR)</h2>\n");
+            sb.AppendLine(executeSQLScript( id, name, 1, path + "db_test_2_4_entities_with_invalid_characters.sql"));
 
             // Test 4b - entities with invalid characters (EN) 
             // ContentDB_165_Lan_2_Cat_%1  db_test_2_4_entities_with_invalid_characters_OK.sql 
-            sb.AppendLine(executeSQLScript( id, name, 2, path + "db_test_2_4_entities_with_invalid_characters.sql").ToString());
+            sb.AppendLine("<h2>Test 4b - entities with invalid characters (EN)</h2>\n");
+            sb.AppendLine(executeSQLScript( id, name, 2, path + "db_test_2_4_entities_with_invalid_characters.sql"));
             
             // Test 5 - entities with greek characters in english 
             //ContentDB_165_Lan_2_Cat_%1  db_test_2_5_entities_with_greek_characters_in_english_OK.sql
-            sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_5_entities_with_greek_characters_in_english.sql").ToString());
+            sb.AppendLine("<h2>Test 5 - entities with greek characters in english</h2>\n");
+            sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_5_entities_with_greek_characters_in_english.sql"));
 
-            txtEditor.Text = sb.ToString();
-            // show messages after execution on screen
+
             // log report
             // sent mail ?
+
+            return sb.ToString();
+            // show messages after execution on screen
+            
         }
 
 
 
-        private string BuildDynamicConnectionStringForDB(int id, string name, int lang, string DBNameOver = null)
-        {
-             System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
-             if (rootWebConfig1.AppSettings.Settings["DynamicConnectionString"] != null)
-             {
-                string dbName = "ContentDB_165_Lan_"+lang.ToString()+"_Cat_"+id.ToString();
-                string ConStr = rootWebConfig1.AppSettings.Settings["DynamicConnectionString"].Value;
 
-                if (!String.IsNullOrEmpty(DBNameOver))
-                    dbName = DBNameOver;
-
-                ConStr = ConStr.Replace("DBNAME", dbName);
-                return ConStr;
-             }
-
-            return null;
-
-        }
-
-
-        private StringBuilder executeSQLScript(int id, string name, int langID, string sqlFile, string dbName = null)
+        private String executeSQLScript(int id, string name, int langID, string sqlFile, string dbName = null)
         {
             FileInfo fileInfo = new FileInfo(sqlFile);
             string script = fileInfo.OpenText().ReadToEnd();
@@ -302,23 +288,96 @@ namespace GGApps
                     command.CommandTimeout = 1000;
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        while (reader.Read())
+                        if( reader.HasRows)
                         {
-                            for (int i = 0; i < reader.FieldCount; i++)
-                            {
-                                sb.Append(Convert.ToString(reader.GetValue(i)));     
-                            
-                            }
-                            sb.AppendLine();
+                            var dataTable = new DataTable();
+                            dataTable.Load(reader);
+
+                            // sure there are better ways..
+                            return ConvertDataTableToHTML(dataTable);
                         }
 
                     }
                 }
             }
 
-            return sb;
+            return sb.ToString();
             
         }
+
+
+
+        #region Helpers
+
+        void myConnection_InfoMessage(object sender, SqlInfoMessageEventArgs e)
+        {
+            sb.AppendLine(e.Message);
+            Log.InfoLog(mapPathError, e.Message);
+
+        }
+
+        public static string ConvertDataTableToHTML(DataTable dt)
+        {
+            string html = "<table>";
+            //add header row
+            html += "<tr>";
+            for (int i = 0; i < dt.Columns.Count; i++)
+                html += "<td>" + dt.Columns[i].ColumnName + "</td>";
+            html += "</tr>";
+            //add rows
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                html += "<tr>";
+                for (int j = 0; j < dt.Columns.Count; j++)
+                    html += "<td>" + dt.Rows[i][j].ToString() + "</td>";
+                html += "</tr>";
+            }
+            html += "</table>";
+            return html;
+        }
+
+        private bool CheckThreeLanguages(int id)
+        {
+            System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+            String threelang = rootWebConfig1.AppSettings.Settings["ThreeLanguages"].Value;
+            if (threelang != null)
+            {
+                otherLangApps = threelang.Split('|');
+                if (otherLangApps != null)
+                {
+                    foreach (string x in otherLangApps)
+                    {
+                        if (x.Trim() == id.ToString())
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+
+        }
+
+        private string BuildDynamicConnectionStringForDB(int id, string name, int lang, string DBNameOver = null)
+        {
+            System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+            if (rootWebConfig1.AppSettings.Settings["DynamicConnectionString"] != null)
+            {
+                string dbName = "ContentDB_165_Lan_" + lang.ToString() + "_Cat_" + id.ToString();
+                string ConStr = rootWebConfig1.AppSettings.Settings["DynamicConnectionString"].Value;
+
+                if (!String.IsNullOrEmpty(DBNameOver))
+                    dbName = DBNameOver;
+
+                ConStr = ConStr.Replace("DBNAME", dbName);
+                return ConStr;
+            }
+
+            return null;
+
+        }
+        #endregion
 
 
     }
