@@ -9,7 +9,7 @@ using System.Data;
 using System.Configuration;
 using System.Text;
 using System.IO;
-
+using Microsoft.AspNet.Membership.OpenAuth;
 
 namespace GGApps
 {
@@ -91,18 +91,47 @@ namespace GGApps
         }
 
 
+        public void ContinueBtn_Click(object sender, EventArgs e)
+        {
+
+            if (Session["appID"] != null && Session["appName"] != null)
+            {
+                Response.Redirect("~/BuildApp.aspx?appID="+Session["appID"] + "&appName=" + Session["appName"]);
+            }
+            else
+            {
+                ClientScriptManager cs = Page.ClientScript;
+
+                // Check to see if the startup script is already registered.
+                if (!cs.IsStartupScriptRegistered(this.GetType(), "myalert"))
+                {
+                    String cstext1 = "alert('Πρέπει να τρέξετε το report ξανά για το App.');";
+                    cs.RegisterStartupScript(this.GetType(), "myalert", cstext1, true);
+                }
+            }
+        
+        }
+
+
         public void GoFirst_Click(object sender, EventArgs e)
         {
             DropDownList ddStart = (DropDownList)LoginViewImportant.FindControl("ddStart");
             sb.Clear();
             String strRet = "";
 
+
+
             if (!String.IsNullOrEmpty(ddStart.SelectedValue))
             {
-                Refresh_DB(Int32.Parse(ddStart.SelectedValue), ddStart.SelectedItem.ToString());
+                Int32 appID = Int32.Parse(ddStart.SelectedValue);
+                String appName = ddStart.SelectedItem.ToString();
 
+#if !DEBUG                
+                Refresh_DB(appID, appName);
+#endif
                 // if no error continue.. ??
-                strRet = RunReportTestsForProducedDBs(Int32.Parse(ddStart.SelectedValue), ddStart.SelectedItem.ToString());
+                strRet = RunReportTestsForProducedDBs(appID, appName);
+
 
                 // Initialize StringWriter instance.
                 StringWriter stringWriter = new StringWriter();
@@ -124,6 +153,14 @@ namespace GGApps
                     }
                         
                 }
+
+                // Make Continue button visible and clickable in order to continue 
+                Button btn = (Button)LoginViewImportant.FindControl("ContinueBtn");
+                btn.Enabled = true;
+                btn.Visible = true;
+                btn.Text = "Produce App for "+ ddStart.SelectedItem.ToString();
+                Session["appID"] = appID;
+                Session["appName"] = appName;
 
             }
         }
@@ -147,17 +184,17 @@ namespace GGApps
 
                 sb.AppendLine("\nRefresing DB for " + name);
                 // do for greek
-                Log.InfoLog(mapPathError, "Refresing Greek DB for " + name);
+                Log.InfoLog(mapPathError, "Refresing Greek DB for " + name, User.Identity.Name);
                 Refresh_DB_inner(id, name, 1).ToString();
 
                 // do for english
-                Log.InfoLog(mapPathError, "Refresing English DB for " + name);
+                Log.InfoLog(mapPathError, "Refresing English DB for " + name, User.Identity.Name);
                 Refresh_DB_inner(id, name, 2).ToString();
 
                 // Do for Russian if needed.
                 if (CheckThreeLanguages(id))
                 {
-                    Log.InfoLog(mapPathError, "Refresing Russian DB for " + name);
+                    Log.InfoLog(mapPathError, "Refresing Russian DB for " + name, User.Identity.Name);
                     Refresh_DB_inner(id, name, 4).ToString();
                 }
 
@@ -167,7 +204,7 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                Log.ErrorLog(mapPathError, e.Message + e.StackTrace);
+                Log.ErrorLog(mapPathError, e.Message + e.StackTrace, User.Identity.Name);
 
             }
         }
@@ -195,7 +232,7 @@ namespace GGApps
                             // Log this information 
                             //Response.Write("</br>" + Convert.ToString(reader.GetValue(0)) + " = " + Convert.ToString(reader.GetValue(1)));
                             string str = Convert.ToString(reader.GetValue(0)) + " = " + Convert.ToString(reader.GetValue(1));
-                            Log.InfoLog(mapPathError, str);
+                            Log.InfoLog(mapPathError, str, User.Identity.Name);
                             sb.AppendLine(str);
                         }
 
@@ -222,44 +259,45 @@ namespace GGApps
             sb.Clear();
 
             // Test 1 - entities without location 
-            //ContentDB_165 db_test_2_1_entities_without_location.sql 
-            sb.AppendLine("<h2>Test 1 - entities without location</h2>\n");
+            sb.AppendLine("<h3>Test 1 - entities without location</h3>\n");
+            //Log.InfoLog(mapPathError, "Exporting Report stage 1", User.Identity.Name);
             sb.AppendLine(executeSQLScript(id, name, 0, path + "db_test_2_1_entities_without_location.sql", "ContentDB_165"));
     
             //Test 1a - entities in multiple locations 
-            //ContentDB_165_Lan_2_Cat_%1  db_test_2_1a_entities_in_multiple_locations.sql  
-            sb.AppendLine("<h2>Test 1a - entities in multiple locations</h2>\n");
+            sb.AppendLine("<h3>Test 1a - entities in multiple locations</h3>\n");
+            //Log.InfoLog(mapPathError, "Exporting Report stage 2_1a", User.Identity.Name);
             sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_1a_entities_in_multiple_locations.sql")) ;
 
             // DONT FORGET CHECK FOR RUSSIAN !
 
             // Test 2 - entities connected to non leaves 
-            //ContentDB_165_Lan_2_Cat_%1  db_test_2_2_entities_connected_to_non_leaves.sql 
-            sb.AppendLine("<h2>Test 2 - entities connected to non leaves</h2>\n");
+            sb.AppendLine("<h3>Test 2 - entities connected to non leaves</h3>\n");
+            //Log.InfoLog(mapPathError, "Exporting Report stage 2", User.Identity.Name);
             sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_2_entities_connected_to_non_leaves.sql"));
 
             //Test 3 - entities without category 
-            //ContentDB_165_Lan_2_Cat_%1  db_test_2_3_entities_without_category.sql 
-            sb.AppendLine("<h2>Test 3 - entities without category</h2>\n");
+            sb.AppendLine("<h3>Test 3 - entities without category</h3>\n");
+            //Log.InfoLog(mapPathError, "Exporting Report stage 3", User.Identity.Name);
             sb.AppendLine(executeSQLScript( id, name, 2, path + "db_test_2_3_entities_without_category.sql"));
 
             // Test 4a - entities with invalid characters (GR) 
-            //ContentDB_165_Lan_1_Cat_%1  db_test_2_4_entities_with_invalid_characters_OK.sql 
-            sb.AppendLine("<h2>Test 4a - entities with invalid characters (GR)</h2>\n");
+            sb.AppendLine("<h3>Test 4a - entities with invalid characters (GR)</h3>\n");
+            //Log.InfoLog(mapPathError, "Exporting Report stage 4a", User.Identity.Name);
             sb.AppendLine(executeSQLScript( id, name, 1, path + "db_test_2_4_entities_with_invalid_characters.sql"));
 
             // Test 4b - entities with invalid characters (EN) 
-            // ContentDB_165_Lan_2_Cat_%1  db_test_2_4_entities_with_invalid_characters_OK.sql 
-            sb.AppendLine("<h2>Test 4b - entities with invalid characters (EN)</h2>\n");
+            sb.AppendLine("<h3>Test 4b - entities with invalid characters (EN)</h3>\n");
+            Log.InfoLog(mapPathError, "Exporting Report stage 4b", User.Identity.Name);
             sb.AppendLine(executeSQLScript( id, name, 2, path + "db_test_2_4_entities_with_invalid_characters.sql"));
             
             // Test 5 - entities with greek characters in english 
-            //ContentDB_165_Lan_2_Cat_%1  db_test_2_5_entities_with_greek_characters_in_english_OK.sql
-            sb.AppendLine("<h2>Test 5 - entities with greek characters in english</h2>\n");
+            sb.AppendLine("<h3>Test 5 - entities with greek characters in english</h3>\n");
+            //Log.InfoLog(mapPathError, "Exporting Report stage 5", User.Identity.Name);
             sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_5_entities_with_greek_characters_in_english.sql"));
 
 
             // log report
+            Log.InfoLog(mapPathError, "App Report for: " + name + "\n\n" + sb.ToString(), User.Identity.Name);
             // sent mail ?
 
             return sb.ToString();
@@ -280,7 +318,7 @@ namespace GGApps
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                con.InfoMessage += new SqlInfoMessageEventHandler(myConnection_InfoMessage);
+                //con.InfoMessage += new SqlInfoMessageEventHandler(myConnection_InfoMessage);
                 con.Open();
                 using (SqlCommand command = new SqlCommand(script, con))
                 {
@@ -301,7 +339,7 @@ namespace GGApps
                 }
             }
 
-            return sb.ToString();
+            return "";
             
         }
 
@@ -312,9 +350,12 @@ namespace GGApps
         void myConnection_InfoMessage(object sender, SqlInfoMessageEventArgs e)
         {
             sb.AppendLine(e.Message);
-            Log.InfoLog(mapPathError, e.Message);
+            Log.InfoLog(mapPathError, e.Message, User.Identity.Name);
 
         }
+
+
+
 
         public static string ConvertDataTableToHTML(DataTable dt)
         {
@@ -322,20 +363,60 @@ namespace GGApps
             //add header row
             html += "<tr>";
             for (int i = 0; i < dt.Columns.Count; i++)
-                html += "<td>" + dt.Columns[i].ColumnName + "</td>";
+                html += "<th>" + dt.Columns[i].ColumnName + "</th>";
             html += "</tr>";
             //add rows
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 html += "<tr>";
                 for (int j = 0; j < dt.Columns.Count; j++)
-                    html += "<td>" + dt.Rows[i][j].ToString() + "</td>";
+                {
+                    if (dt.Columns[j].ColumnName.ToLower() == "ententityid")
+                        html += "<td><a href='#' class='popAdm'>" + dt.Rows[i][j].ToString() + "</a></td>";
+                    else
+                    {
+                        // truncate text if too long!
+                        // {?}
+                        string strText = dt.Rows[i][j].ToString();
+
+                        if (strText.Length > 300)
+                        {
+                            // find {?} if exists
+                            if (strText.Contains("{?}"))
+                            {
+                                int pos = strText.IndexOf("{?}");
+                                int nPos = (pos - 150 < 0) ? 0 : pos - 150;
+                                
+                                strText = String.Concat("...", strText.Substring(nPos));
+                                pos = strText.IndexOf("{?}");
+
+                                // Not really an exception, try to remove all last chars , leave only 100.
+                                try{ strText = strText.Remove(pos+100); }
+                                catch(Exception)
+                                { strText = strText.Remove(pos + 2);}
+
+                                strText = String.Concat(strText, "...");
+                            }
+
+                            html += "<td>" + strText + "</td>";
+
+                        }
+                        else
+                            html += "<td>" + strText + "</td>";
+                    }
+                }
                 html += "</tr>";
             }
             html += "</table>";
             return html;
         }
 
+
+        /// <summary>
+        /// Check if the app is using 3 languages. This can be found on Web.Config
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private bool CheckThreeLanguages(int id)
         {
             System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");

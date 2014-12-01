@@ -43,19 +43,17 @@
                     <asp:DropDownList ID="ddStart" BackColor="GreenYellow" runat="server"></asp:DropDownList>
                     <asp:Button id="GoFirst" runat="server" Text="Build Report" OnClick="GoFirst_Click"/>
                 </li>
-                <li class="two">
-                   Continue...
-                </li>
             </ol>
             
-         
-            <textarea readonly id="MainTextArea" rows="400" cols="80"  style="height:200px;">
+            <textarea readonly id="MainTextArea" rows="400" cols="80"  style="height:200px; display:none;" >
                 <asp:Literal runat="server" id="txtEditor1" />
             </textarea>
 
             <div runat="server" id="reportDiv">
             </div>
          
+            <asp:Button id="ContinueBtn" runat="server" Text="Continue" Visible="false" Enabled="false" OnClick="ContinueBtn_Click"/>                   
+
         </LoggedInTemplate>
     </asp:LoginView>
 </asp:Content>

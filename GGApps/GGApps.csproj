@@ -130,6 +130,38 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\AspNet.ScriptManager.jQuery.dll" />
+    <Content Include="bin\AspNet.ScriptManager.jQuery.UI.Combined.dll" />
+    <Content Include="bin\DotNetOpenAuth.AspNet.dll" />
+    <Content Include="bin\DotNetOpenAuth.AspNet.xml" />
+    <Content Include="bin\DotNetOpenAuth.Core.dll" />
+    <Content Include="bin\DotNetOpenAuth.Core.xml" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.Consumer.dll" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.Consumer.xml" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.dll" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.xml" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.dll" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.RelyingParty.dll" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.RelyingParty.xml" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.xml" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\GGApps.dll" />
+    <Content Include="bin\GGApps.pdb" />
+    <Content Include="bin\Microsoft.AspNet.FriendlyUrls.dll" />
+    <Content Include="bin\Microsoft.AspNet.FriendlyUrls.xml" />
+    <Content Include="bin\Microsoft.AspNet.Membership.OpenAuth.dll" />
+    <Content Include="bin\Microsoft.AspNet.Membership.OpenAuth.xml" />
+    <Content Include="bin\Microsoft.AspNet.Web.Optimization.WebForms.dll" />
+    <Content Include="bin\Microsoft.ScriptManager.MSAjax.dll" />
+    <Content Include="bin\Microsoft.ScriptManager.WebForms.dll" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Providers.dll" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="BuildApp.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\img\720.GIF" />
     <Content Include="Content\Site.css" />
@@ -295,6 +327,13 @@
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BuildApp.aspx.cs">
+      <DependentUpon>BuildApp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BuildApp.aspx.designer.cs">
+      <DependentUpon>BuildApp.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -338,6 +377,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />

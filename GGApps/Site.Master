@@ -29,6 +29,70 @@
         $('form').live("submit", function () {
             ShowProgress();
         });
+
+        $(document).ready(function() {
+            /* Open Entity Page from ADM.GREEKGUIDE ! */
+            $("#MainContent_LoginViewImportant_reportDiv").find(".popAdm").on('click', function () {
+                DoOpenEntity(parseInt($(this).text().trim()));
+            });
+        });
+
+
+        // For GREEK GUIDE ADMIN
+        function DoOpenEntity(iEntityID) {
+            if (iEntityID > 0) {
+                //frmMain.openEnt.value = iEntityID;
+                wndOpenPopUp('http://adm.greekguide.com/ent/ent_open.asp?entEntityID=' + iEntityID, 'entity_' + iEntityID, 'L');
+            }
+            else {
+                //frmMain.openEnt.value = '';
+                alert('Please type a valid number.');
+                //frmMain.openEnt.focus();
+            }
+        }
+
+        function wndOpenPopUp(sURL, sName, sWidth) {
+            var iWidth = 1010;
+            var iHeight = window.screen.availHeight - 70;
+            if (sWidth != 'L') {
+                if (sWidth == 'XL') {
+                    iWidth = 1040;
+                    iHeight = 760;
+                } else if (sWidth == 'R') {
+                    iWidth = 1000;
+                    iHeight = 560;
+                } else if (sWidth == 'M') {
+                    iWidth = 700;
+                    iHeight = 550;
+                } else if (sWidth == 'F') {
+                    iWidth = 700;
+                    iHeight = 300;
+                } else if (sWidth == 'P') {
+                    iWidth = 700;
+                    iHeight = 680;
+                } else if (sWidth == 'XS') {
+                    iWidth = 450;
+                    iHeight = 280;
+                } else if (sWidth == 'C') {
+                    iWidth = 800;
+                    iHeight = 500;
+                } else {
+                    iWidth = 500;
+                    iHeight = 380;
+                }
+            }
+            var iLeft = (((window.screen.availWidth - iWidth) / 2));
+            var iTop = 1;
+            if (iTop < 5) {
+                iTop = 1;
+            }
+            if (iLeft < 30) {
+                iLeft = 1;
+            }
+            window.open(sURL, "", 'top=' + iTop + ', left=' + iLeft + ', width=' + iWidth + ', height=' + iHeight + ', location=no, address=no, scrollbars=yes, resizable=yes, status=no');
+        }
+
+
     </script>
     <style type="text/css">
         .modal
@@ -47,6 +111,34 @@
             min-height: 100%;
             width: 100%;
         }
+
+
+
+        #MainContent_LoginViewImportant_reportDiv table {
+	        font-family: verdana,arial,sans-serif;
+	        font-size:11px;
+	        color:#333333;
+	        border-width: 1px;
+	        border-color: #999999;
+	        border-collapse: collapse;
+        }
+        #MainContent_LoginViewImportant_reportDiv table th {
+	        background-color:#c3dde0;
+	        border-width: 1px;
+	        padding: 8px;
+	        border-style: solid;
+	        border-color: #a9c6c9;
+        }
+        #MainContent_LoginViewImportant_reportDiv table tr {
+	        background-color:#d4e3e5;
+        }
+        #MainContent_LoginViewImportant_reportDiv table td {
+	        border-width: 1px;
+	        padding: 8px;
+	        border-style: solid;
+	        border-color: #a9c6c9;
+        }
+
 
     </style>
 

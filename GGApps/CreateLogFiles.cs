@@ -28,19 +28,19 @@ namespace GGApps
 			sErrorTime = sYear+sMonth+sDay;
 		}
 
-		public void ErrorLog(string sPathName, string sErrMsg)
+		public void ErrorLog(string sPathName, string sErrMsg, string user = null)
 		{
 			StreamWriter sw = new StreamWriter(sPathName+sErrorTime + ".txt",true);
-			sw.WriteLine(sLogFormat + "Error: " + sErrMsg);
+            sw.WriteLine(sLogFormat + "'" + user + "'> Error: " + sErrMsg);
 			sw.Flush();
 			sw.Close();
            //?  throw new Exception(sErrMsg);
 		}
 
-        public void InfoLog(string sPathName, string sInfoMsg)
+        public void InfoLog(string sPathName, string sInfoMsg, string user = null)
         {
             StreamWriter sw = new StreamWriter(sPathName + sErrorTime + ".txt", true);
-            sw.WriteLine(sLogFormat + "Info: " + sInfoMsg);
+            sw.WriteLine(sLogFormat + "'"+user +"'> Info: " + sInfoMsg);
             sw.Flush();
             sw.Close();
         }
