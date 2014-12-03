@@ -1,0 +1,15 @@
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\GGApps.dll
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\GGApps.pdb
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Microsoft.Web.Infrastructure.xml
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\EntityFramework.xml
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\DotNetOpenAuth.Core.xml
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.dll
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.pdb
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.csprojResolveAssemblyReference.cache

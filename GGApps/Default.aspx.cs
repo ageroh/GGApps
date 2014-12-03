@@ -42,7 +42,8 @@ namespace GGApps
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            mapPathError = MapPath("Logs/log_");
+            Session["mapPathError"] = MapPath("Logs/log_");
+            mapPathError = Session["mapPathError"].ToString();
 
             if (!Page.IsPostBack)
             {
@@ -417,7 +418,7 @@ namespace GGApps
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        private bool CheckThreeLanguages(int id)
+        public static bool CheckThreeLanguages(int id)
         {
             System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
             String threelang = rootWebConfig1.AppSettings.Settings["ThreeLanguages"].Value;
