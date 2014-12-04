@@ -37,7 +37,8 @@
         </AnonymousTemplate>
         <LoggedInTemplate>
             
-            <h3>Select application to update (one at a time)</h3>
+            <h3>Select application to update</h3>
+            <span>*All previous updates must have finished!</span>
             <ol class="round">
                 <li class="one">
                     <asp:DropDownList ID="ddStart" BackColor="GreenYellow" runat="server"></asp:DropDownList>

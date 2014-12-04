@@ -566,6 +566,19 @@ tr.pager td {
 
 
 
+#MainContent_BuildAppListID label{
+    display: inline-block;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-left: 0.3em;
+	}
+
+#MainContent_BuildAppListID input {
+    width: auto;
+
+}
+
+
 
 
 /********************
@@ -737,4 +750,52 @@ tr.pager td {
         }
 }
 /* END: Mobile Styles */
+
+
+
+
+
+        .modal
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: black;
+            z-index: 99;
+            opacity: 0.6;
+            filter: alpha(opacity=80);
+            background-image:url("img/720.GIF");
+            background-repeat: no-repeat;
+            background-position: center; 
+            -moz-opacity: 0.6;
+            min-height: 100%;
+            width: 100%;
+        }
+
+
+
+        #MainContent_LoginViewImportant_reportDiv table {
+	        font-family: verdana,arial,sans-serif;
+	        font-size:11px;
+	        color:#333333;
+	        border-width: 1px;
+	        border-color: #999999;
+	        border-collapse: collapse;
+        }
+        #MainContent_LoginViewImportant_reportDiv table th {
+	        background-color:#c3dde0;
+	        border-width: 1px;
+	        padding: 8px;
+	        border-style: solid;
+	        border-color: #a9c6c9;
+        }
+        #MainContent_LoginViewImportant_reportDiv table tr {
+	        background-color:#d4e3e5;
+        }
+        #MainContent_LoginViewImportant_reportDiv table td {
+	        border-width: 1px;
+	        padding: 8px;
+	        border-style: solid;
+	        border-color: #a9c6c9;
+        }
 

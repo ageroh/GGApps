@@ -97,7 +97,7 @@ namespace GGApps
 
             if (Session["appID"] != null && Session["appName"] != null)
             {
-                Response.Redirect("~/BuildApp.aspx?appID="+Session["appID"] + "&appName=" + Session["appName"]);
+                Response.Redirect("~/BuildApp");
             }
             else
             {
@@ -106,7 +106,7 @@ namespace GGApps
                 // Check to see if the startup script is already registered.
                 if (!cs.IsStartupScriptRegistered(this.GetType(), "myalert"))
                 {
-                    String cstext1 = "alert('Πρέπει να τρέξετε το report ξανά για το App.');";
+                    String cstext1 = "alert('Please re-run the Report generation for the App.');";
                     cs.RegisterStartupScript(this.GetType(), "myalert", cstext1, true);
                 }
             }
@@ -142,7 +142,7 @@ namespace GGApps
                 {
                     // The important part:
                     writer.RenderBeginTag(HtmlTextWriterTag.Div); // Begin #1
-                    writer.Write(strRet);
+                    writer.Write("<h1>Report for " + appName + "</h1><hr>" + strRet);
                     writer.RenderEndTag();
                     Control reportDiv = LoginViewImportant.FindControl("reportDiv");
                     if (reportDiv != null)

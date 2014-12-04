@@ -13,6 +13,11 @@ using System.Xml;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Hosting;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Net;
+using SendGrid.SmtpApi;
+using SendGrid;
 
 namespace GGApps
 {
@@ -60,19 +65,6 @@ namespace GGApps
             if (!Page.IsPostBack)
             {
 
-                
-                // LET USER DECIDE IF NEEDS TO RUN A SEPARATE STEP - OR EXECUTE THE FULL BATCH
-
-
-
-
-
-#if DEBUG
-                 Session["appName"] = "Pelion";
-                 Session["appID"] = 405;
-                 Session["mapPathError"] = MapPath("Logs/log_");
-#endif
-
                 CreateLogFiles Log = new CreateLogFiles();
 
                 if (Session["appName"] != null && Session["appID"] != null)
@@ -81,87 +73,285 @@ namespace GGApps
                     if (!Init_BuildApp(Convert.ToInt32(Session["appID"].ToString()), Session["appName"].ToString()))
                     {
                         Log.ErrorLog(_Default.mapPathError, "Failed to Initialize In-App update for " + Session["appName"].ToString());
-                        Response.Write("<h2>ERROR, please Contact GG Admin!!!</h2>");
+                        AddMessageToScreen("ExecutionMessages",
+                                            @"<h2>Failed to Initialize In-App update, <strong>please contact Admin!</strong></h2>", this.Page);
+
                     }
                     else
-                    {
-
-                        int appID = (int)Session["appID"];
-                        string appName = Session["appName"].ToString();
-
-
-                        // run batch step 3
-                        //Func<CancellationToken, Task> workItem = RunAsyncExtractDBtoSQLLite;
-                        HostingEnvironment.QueueBackgroundWorkItem(async ct =>
-                            {
-                                var result = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", Session["mapPathError"].ToString(), Log);
-
-                                if (!result.IsCancellationRequested)
-                                {
-
-                                    
-                                    
-                                    // CALL 3A IF NEEDED AND THEN THE REST.
-
-
-
-
-
-                                    // do this SYNCRONOUS FOR IN FILE
-                                    var result2 = await RunAsyncCommandBatch(ct, appID, appName, "4_db_stats.bat " + appID.ToString(), actualWorkDir, "Export Database Statistics", Session["mapPathError"].ToString(), Log);
-
-                                    if (!result2.IsCancellationRequested)
-                                    {
-
-                                        var result3 = await RunAsyncCommandBatch(ct, appID, appName, "5_get_images.bat " + appName, actualWorkDir, "Transform All Images running Python", Session["mapPathError"].ToString(), Log);
-
-                                        if (!result3.IsCancellationRequested)
-                                        {
-                                            // do this SYNCRONOUS FOR IN FILE
-                                            var result5 = await RunAsyncCommandBatch(ct, appID, appName, "6_image_stats.bat " + appName + " " + appID.ToString(), actualWorkDir, "Export Image Statistics", Session["mapPathError"].ToString(), Log);
-
-                                            if (!result3.IsCancellationRequested)
-                                            {
-
-                                                var result6 = await RunAsyncCommandBatch(ct, appID, appName, "7_ftp_fb_img.bat " + Char.ToLowerInvariant(appName[0]) + appName.Substring(1), actualWorkDir, "Upload Imaged to FTP", Session["mapPathError"].ToString(), Log);
-
-                                                if (!result6.IsCancellationRequested)
-                                                {
-
-                                                    var result7 = await RunAsyncCommandBatch(ct, appID, appName, "8_ftp_entity_text.bat " + Char.ToLowerInvariant(appName[0]) + appName.Substring(1) + " " + appID.ToString(), actualWorkDir, "Export Image Statistics", Session["mapPathError"].ToString(), Log);
-
-                                                    if (!result7.IsCancellationRequested)
-                                                    {
-                                                        var result8 = await RunAsyncCommandBatch(ct, appID, appName, "9_copy_img_databases.bat " + appName + " " + DateTime.Now.ToString("yyyyMMdd"), actualWorkDir, "Export Image Statistics", Session["mapPathError"].ToString(), Log);
-
-                                                        // IF ALL DONE for this step.. 
-                                                        // LOG THIS
-                                                        // Send email to QA - Nadia - Galufos Team (for versions file)
-
-
-                                                        // when this is finished..
-                                                        // APP FINALY PRODUCED!
-
-                                                    }
-
-                                                }
-                                            }
-                                        }
-
-                                    }
-
-                                }
-                                // DOES NOT WORK !
-                                //Response.Redirect("completed.html", true); 
-                            }
-
-                        );
-
+                    { 
+                        // ready to upDate!
+                        lbl1.Text = "Ready to perform update for <i>" + Session["appName"].ToString() + "</i>, please select what to do from the below list.";
                     }
+                    
                 }
+                else
+                    Response.Redirect("~/");
             }
         }
 
+
+
+        private void BatchExecuteDBExport(int appID, string appName)
+        {
+            CreateLogFiles Log = new CreateLogFiles();
+
+            HostingEnvironment.QueueBackgroundWorkItem(async ct =>
+                  {
+
+                      var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", Session["mapPathError"].ToString(), Log);
+
+                      if (!result3.IsCancellationRequested)
+                      {
+
+                          if (_Default.CheckThreeLanguages(appID))
+                          {
+                              var result3a = await RunAsyncCommandBatch(ct, appID, appName, "3a_fix_html_entities.bat " + appName, actualWorkDir, "convert HTML ENTITIES", Session["mapPathError"].ToString(), Log);
+
+                              if (!result3a.IsCancellationRequested)
+                              {
+
+                                  // do the copy-paste of DBs to server.
+                                  var result9b = await RunAsyncCommandBatch(ct, appID, appName, "9b_copy_databases.bat " + appName, actualWorkDir, "COPY DATABASES Files", Session["mapPathError"].ToString(), Log);
+
+                                  if (!result9b.IsCancellationRequested)
+                                  {
+                                      
+                                      Log.InfoLog(Session["mapPathError"].ToString(), appName + " Produced successfully over Test Content.");
+
+                                      // Send email to QA, GG tema, and Mobile team.
+                                      // ........
+
+                                      //SendMail TEST TEAM
+                                      await SendMailToUsers(appName, GetEmailList("Test"), null
+                                            , "<html><body><h1>TEST EMAIL BODY FOR DB</h1></body></html>", "GG DB produced for :" + appName
+                                            , Session["mapPathError"].ToString(), Log);
+                                  }
+
+                              }
+                          }
+                          else
+                          {
+
+                              // do the copy-paste of DBs to server.
+                              var result9b = await RunAsyncCommandBatch(ct, appID, appName, "9b_copy_databases.bat " + appName, actualWorkDir, "COPY DATABASES Files", Session["mapPathError"].ToString(), Log);
+
+                              if (!result9b.IsCancellationRequested)
+                              {
+
+                                  Log.InfoLog(Session["mapPathError"].ToString(), appName + " Produced successfully over Test Content.");
+
+                                  // Send email to QA, GG tema, and Mobile team.
+                                  // ........
+
+                                  //SendMail TEST TEAM
+                                  await SendMailToUsers(appName, GetEmailList("Test"), null, "<html><body><h1>TEST EMAIL BODY FOR DB</h1></body></html>", "GG DB produced for :" + appName, Session["mapPathError"].ToString(), Log );
+
+                              }
+                          
+                          }
+                      }
+                  }
+          );
+
+        }
+
+
+        /// <summary>
+        /// Run all Steps from 3 to 9 of Batch Build asyncronously.
+        /// </summary>
+        /// <param name="appID"></param>
+        /// <param name="appName"></param>
+        public void BatchExecuteAllSteps(int appID, string appName)
+        {
+            CreateLogFiles Log = new CreateLogFiles();
+
+            HostingEnvironment.QueueBackgroundWorkItem(async ct =>
+                {
+
+                    var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", Session["mapPathError"].ToString(), Log);
+
+                    if (!result3.IsCancellationRequested)
+                    {
+
+                        if (_Default.CheckThreeLanguages(appID))
+                        {
+                            var result3a = await RunAsyncCommandBatch(ct, appID, appName, "3a_fix_html_entities.bat " + appName, actualWorkDir, "convert HTML ENTITIES", Session["mapPathError"].ToString(), Log);
+                        }
+
+                        // Redirect result to temp file for APP with dateFormat
+                        var result4 = await RunAsyncCommandBatch(ct, appID
+                                                                    , appName
+                                                                    , "4_db_stats.bat " + appID.ToString() + " >  reports/" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt"
+                                                                    , actualWorkDir, "Export Database Statistics", Session["mapPathError"].ToString(), Log);
+
+                        if (!result4.IsCancellationRequested)
+                        {
+
+                            var result5 = await RunAsyncCommandBatch(ct, appID, appName, "5_get_images.bat " + appName, actualWorkDir, "Transform All Images running Python", Session["mapPathError"].ToString(), Log);
+
+                            if (!result5.IsCancellationRequested)
+                            {
+                                // Redirect results to file
+                                var result6 = await RunAsyncCommandBatch(ct
+                                                                        , appID
+                                                                        , appName
+                                                                        , "6_image_stats.bat " + appName + " " + appID.ToString() + " >  reports/" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt"
+                                                                        , actualWorkDir
+                                                                        , "Export Image Statistics", Session["mapPathError"].ToString(), Log);
+
+                                if (!result6.IsCancellationRequested)
+                                {
+
+                                    var result7 = await RunAsyncCommandBatch(ct, appID, appName, "7_ftp_fb_img.bat " + Char.ToLowerInvariant(appName[0]) + appName.Substring(1), actualWorkDir, "Upload Imaged to FTP", Session["mapPathError"].ToString(), Log);
+
+                                    if (!result7.IsCancellationRequested)
+                                    {
+
+                                        var result8 = await RunAsyncCommandBatch(ct, appID, appName, "8_ftp_entity_text.bat " + Char.ToLowerInvariant(appName[0]) + appName.Substring(1) + " " + appID.ToString(), actualWorkDir, "Export Image Statistics", Session["mapPathError"].ToString(), Log);
+
+                                        if (!result8.IsCancellationRequested)
+                                        {
+                                            var result9 = await RunAsyncCommandBatch(ct, appID, appName, "9_copy_img_databases.bat " + appName + " " + DateTime.Now.ToString("yyyyMMdd"), actualWorkDir, "Export Image Statistics", Session["mapPathError"].ToString(), Log);
+
+                                            // LOG THIS
+                                            // Send email to QA - Nadia - Galufos Team (for versions file)
+                                            if (!result9.IsCancellationRequested)
+                                            {
+                                                // Suncronous export Files for QA.
+                                                
+
+                                                List<string> _listAttachments = new List<string>();
+                                                _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
+                                                _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
+
+                                                Log.InfoLog(Session["mapPathError"].ToString(), appName + " Produced successfully over Test Content.");
+
+                                                
+                                                //SendMail TEST TEAM
+                                                await SendMailToUsers(appName, GetEmailList("Test"), _listAttachments, "<html><body><h1>TEST EMAIL BODY</h1></body></html>", "GG Completed update for :" + appName , Session["mapPathError"].ToString(), Log );
+
+                                                Log.InfoLog(Session["mapPathError"].ToString(), appName + " e-Mails with attachments sent.");
+                                            }
+
+                                        }
+
+                                    }
+                                }
+                            }
+
+                        }
+
+                    }
+
+
+                }
+
+            );
+
+    
+        }
+
+
+        private void AddMessageToScreen(string divID, string msg, Control baseCtrl)
+        {
+            // Add to Div message for execution // Don't close window !!
+            StringWriter stringWriter = new StringWriter();
+
+            // Put HtmlTextWriter in using block because it needs to call Dispose.
+            using (HtmlTextWriter writer = new HtmlTextWriter(stringWriter))
+            {
+                // The important part:
+                writer.RenderBeginTag(HtmlTextWriterTag.Div); // Begin #1
+                writer.Write(msg);
+                writer.RenderEndTag();
+                Control ExecutionMessages = baseCtrl.FindControl(divID);
+                if (ExecutionMessages != null)
+                {
+                    LiteralControl ltCtrl = new LiteralControl();
+                    ltCtrl.Text = writer.InnerWriter.ToString();
+                    ExecutionMessages.Controls.Add(ltCtrl);
+
+                }
+
+            }
+        
+        }
+
+
+        protected void OnCheckBox_Click(object sender, EventArgs e)
+        {
+            RadioButtonList chkList = (RadioButtonList)((Control)sender).FindControl("BuildAppListID");
+            List<string> chkListActions = new List<string>();
+
+            if (Session["appName"] == null || Session["appID"] == null)
+                Response.Redirect("~/");
+
+            if (chkList != null)
+            {
+                foreach (ListItem item in chkList.Items)
+                {
+                    if (item.Selected)
+                    {
+                        // If the item is selected, add the value to the list.
+                        chkListActions.Add(item.Value);
+                    }
+                }
+
+                // Perform nessacary actions
+                if (chkListActions != null)
+                {
+                    foreach (String cmdStr in chkListActions)
+                    {
+                        if (cmdStr == "FullBatch")
+                        {
+                            BatchExecuteAllSteps((int)Session["appID"], Session["appName"].ToString());
+                            ((Control)sender).Parent.FindControl("mainSubPanel").Visible = false;
+                            AddMessageToScreen("ExecutionMessages"
+                                               , "<h2>Batch process execution has begun for " + Session["appName"].ToString() + ". </h2>"
+                                                  + "<h3>Teams will be notified by e-mail when execution is finished.</h3>"
+                                                  + "<strong>Thank You!</strong>", ((Control)sender).Parent);
+                        }
+                        else if (cmdStr == "DBOnly")
+                        {
+                            BatchExecuteDBExport((int)Session["appID"], Session["appName"].ToString());
+                            ((Control)sender).Parent.FindControl("mainSubPanel").Visible = false;
+                            AddMessageToScreen("ExecutionMessages"
+                                               , "<h2>Batch process execution has begun for " + Session["appName"].ToString() + ". </h2>"
+                                                  + "<h3>Teams will be notified by e-mail when execution is finished.</h3>"
+                                                  + "<strong>Thank You!</strong>", ((Control)sender).Parent);
+                        }
+                        //else if (cmdStr == "ImagesOnly")
+                        //{
+                        //    BatchExecuteAllSteps((int)Session["appID"], Session["appName"].ToString());
+                        //    AddMessageToScreen("ExecutionMessages"
+                        //                       , "<h2>Batch process execution has begun for " + appName.ToString() + ". </h2>"
+                        //                          + "<h3>Teams will be notified when execution is finished.</h3>"
+                        //                          + "<strong>Thank You!</strong>");
+                        //}
+                        else
+                        {
+
+                            AddMessageToScreen("ExecutionMessages"
+                                       , "<h2>Please select what to process from above radio button.</h2>"
+                                          + "<strong>Thank You!</strong>", ((Control)sender).Parent);
+
+                        }
+
+                    }
+
+                    if (chkListActions.Count == 0)
+                    {
+                        AddMessageToScreen("ExecutionMessages"
+                                          , "<h2>Please select what to process from above radio button.</h2>"
+                                             + "<strong>Thank You!</strong>", ((Control)sender).Parent);
+                    }
+                }
+            }
+
+            
+         }
+
+         
 
 
         private async Task<CancellationToken> RunAsyncCommandBatch(CancellationToken ct, int appID, string appName, string command, string actualWorkDir, string ExplainCmd, string mapPath, CreateLogFiles log)
@@ -172,17 +362,15 @@ namespace GGApps
             procStartInfo.RedirectStandardOutput = true;
             procStartInfo.UseShellExecute = false;
             procStartInfo.CreateNoWindow = false;
+            
 
             // Now we create a process, assign its ProcessStartInfo and start it
             Process proc = new Process();
-            //proc.OutputDataReceived += proc_OutputDataReceived;
-            
             proc.StartInfo = procStartInfo;
+            
 
             log.InfoLog(mapPath, "Started:> " + ExplainCmd + " for APP: " + appName);
             proc.Start();
-
-//            await addLogAsync(ct, msg);
 
             // instead of p.WaitForExit(), do
             StringBuilder q = new StringBuilder();
@@ -196,10 +384,7 @@ namespace GGApps
             }
             log.InfoLog(mapPath, "Finished:> " + ExplainCmd + " for APP: " + appName);
 
-
-            //await addLogAsync(ct, currentLogCount);
             return ct;//q.ToString();
-
         }
 
 
@@ -256,38 +441,106 @@ namespace GGApps
         }
 
 
-        //private async Task SendMailAsync(string email)
-        //{
-        //    var myMessage = new SendGridMessage();
+        /// <summary>
+        /// Get the email list from web.config file
+        /// </summary>
+        /// <param name="team"></param>
+        /// <returns></returns>
+        private List<string> GetEmailList(string team)
+        {
+            List<string> mailList = new List<string>();
 
-        //    myMessage.From = new MailAddress("Rick@Contoso.com");
-        //    myMessage.AddTo(email);
-        //    myMessage.Subject = "Using QueueBackgroundWorkItem";
+            System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+            if (rootWebConfig1.AppSettings.Settings[team] != null)
+            {
+                string teamMembers = rootWebConfig1.AppSettings.Settings[team].Value;
+                mailList = teamMembers.Split('|').ToList<string>();
 
-        //    //Add the HTML and Text bodies
-        //    myMessage.Html = "<p>Check out my new blog at "
-        //          + "<a href=\"http://blogs.msdn.com/b/webdev/\">"
-        //          + "http://blogs.msdn.com/b/webdev/</a></p>";
-        //    myMessage.Text = "Check out my new blog at http://blogs.msdn.com/b/webdev/";
+                return mailList;
+            }
 
-        //    using (var attachmentFS = new FileStream(GH.FilePath, FileMode.Open))
-        //    {
-        //        myMessage.AddAttachment(attachmentFS, "My Cool File.jpg");
-        //    }
+            return null;
 
-        //    var credentials = new NetworkCredential(
-        //       ConfigurationManager.AppSettings["mailAccount"],
-        //       ConfigurationManager.AppSettings["mailPassword"]
-        //       );
-
-        //    // Create a Web transport for sending email.
-        //    var transportWeb = new Web(credentials);
-
-        //    if (transportWeb != null)
-        //        await transportWeb.DeliverAsync(myMessage);
-        //}
+        }
 
 
+
+
+        /// <summary>
+        /// Send Email to Users
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="team"></param>
+        /// <param name="attachmentFilenames"></param>
+        /// <param name="emailBody"></param>
+        /// <param name="emailSubject"></param>
+        /// <returns></returns>
+        private async Task SendMailToUsers(string appName, List<string> team, List<string> attachmentFilenames, string emailBody, string emailSubject, string mapPath, CreateLogFiles log)
+        {
+
+
+            var message = new MailMessage();
+            message.From = new MailAddress("noreply@greekguide.com");
+            message.Subject = emailSubject;
+            message.Body = emailBody;
+            message.IsBodyHtml = true;
+
+            // Build Receipents List
+            foreach (String recStr in team)
+            {
+                message.To.Add(new MailAddress(recStr));
+            }
+
+            try
+            {
+                // ADD FILE ATTACHEMENTS IF THEY EXIST
+                foreach (string attachmentFilename in attachmentFilenames)
+                {
+                    if (attachmentFilename != null)
+                    {
+                        Attachment attachment = new Attachment(attachmentFilename, MediaTypeNames.Application.Octet);
+                        ContentDisposition disposition = attachment.ContentDisposition;
+                        disposition.CreationDate = File.GetCreationTime(attachmentFilename);
+                        disposition.ModificationDate = File.GetLastWriteTime(attachmentFilename);
+                        disposition.ReadDate = File.GetLastAccessTime(attachmentFilename);
+                        disposition.FileName = Path.GetFileName(attachmentFilename);
+                        disposition.Size = new FileInfo(attachmentFilename).Length;
+                        disposition.DispositionType = DispositionTypeNames.Attachment;
+                        message.Attachments.Add(attachment);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // FileAttachements not found for App! for this date.
+                log.InfoLog(mapPath, "Exception thrown while trying to collect attachment files: " + ex.Message);
+            }
+
+            try
+            {
+                // Finaly send email ..
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 25,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new System.Net.NetworkCredential("admin@primemedia.gr", "ferrari35#71")
+                };
+
+                await smtp.SendMailAsync(message);
+
+            }
+            catch (SmtpException sE)
+            {
+                log.InfoLog(mapPath, "Exception while sending notification email! " + sE.Message);
+            }
+        }
+
+
+        
 
         //private async Task<CancellationToken> addLogAsync(CancellationToken ct, int currentLogCount, string msg)
         //{
@@ -408,6 +661,8 @@ namespace GGApps
         }
 
         #endregion
+
+
 
     }
 }
