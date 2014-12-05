@@ -799,3 +799,11 @@ tr.pager td {
 	        border-color: #a9c6c9;
         }
 
+
+    span.appName {
+         font-style: italic;
+         color:brown;
+    }
+
+
+

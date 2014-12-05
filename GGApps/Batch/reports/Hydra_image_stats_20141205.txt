@@ -1,0 +1,16 @@
+﻿<h2>*** images in db <h2>
+<br/>* 
+<table><tr><th>What</th><th>Total</th></tr><tr><td>* fb images</td><td>147</td></tr><tr><td>* images</td><td>343</td></tr><tr><td>* max id</td><td>7663</td></tr></table>
+<br/>* 
+<br/>*** fb images in local dir (c:\Temp\Images\Hydra-fb)
+<br/>* 
+<br/>* 147
+<br/>* 
+<br/>*** fb images in local dir (c:\Temp\Images\Hydra)
+<br/>* 
+<br/>* 343
+<br/>* 
+<br/>*** fb images in remote dir (M:\GreekGuide\Images\Hydra)
+<br/>* 
+<br/>* 343
+<br/>* 

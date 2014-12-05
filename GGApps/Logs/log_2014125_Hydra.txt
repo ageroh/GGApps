@@ -1,0 +1,1834 @@
+5/12/2014 7:32:46 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: Started : Building Report for Hydra
+5/12/2014 7:32:46 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: Refresing Greek DB for Hydra
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: TRUNCATE TABLES ###########################
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: FILTER (CATEGORY - CONTENT:1) ###########################
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: FILTER (CATEGORY - GEO:2 (ATHENS - MYKONOS - ...) ###########################
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: FILTER (LOOKUP CATEGORIES) ###########################
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: FILTER (COLLECTION - PREMIUM:101+) ###########################
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: RELATION DATA ###########################
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: ARTICLE DATA ###########################
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: ACCOMMODATION DATA ###########################
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: ENTERTAINMENT DATA ###########################
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: ATHENS 1-2-3 DATA ###########################
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: IMAGE DATA ###########################
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: VIDEO DATA ###########################
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: number of entities = 150
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: number of image paths - should be > 0 = 196
+5/12/2014 7:32:53 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: Refresing English DB for Hydra
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: TRUNCATE TABLES ###########################
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: FILTER (CATEGORY - CONTENT:1) ###########################
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: FILTER (CATEGORY - GEO:2 (ATHENS - MYKONOS - ...) ###########################
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: FILTER (LOOKUP CATEGORIES) ###########################
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: FILTER (COLLECTION - PREMIUM:101+) ###########################
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: RELATION DATA ###########################
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: ARTICLE DATA ###########################
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: ACCOMMODATION DATA ###########################
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: ENTERTAINMENT DATA ###########################
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: ATHENS 1-2-3 DATA ###########################
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: IMAGE DATA ###########################
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: VIDEO DATA ###########################
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: number of entities = 150
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: number of image paths - should be > 0 = 196
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: Exporting Report stage 1
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: Exporting Report stage 2_1a
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: Exporting Report stage 2
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: Exporting Report stage 3
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: Exporting Report stage 4a
+5/12/2014 7:32:57 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: Exporting Report stage 4b
+5/12/2014 7:32:58 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: Exporting Report stage 5
+5/12/2014 7:32:58 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: Report for App: Hydra Succesfully Generated and saved to:C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\Batch\reports\Hydra_report_20141205_0.html
+5/12/2014 7:32:58 μμ ==> 'argiris.gerogiannis@primemedia.gr'> Info: Finished : Building Report for Hydra
+5/12/2014 7:33:16 μμ ==> ''> Info: Started:> convert SQL Db to SQLLite for APP: Hydra
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 6% - Parsed table Entity_Relation
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 18% - Parsed table Filter_Entity
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 31% - Parsed table Relation
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 43% - Parsed table category_stats
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 100% - Parsed view entity_text_vw
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 12% - Added table Filter to the SQLite database
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 25% - Added table location_stats to the SQLite database
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 37% - Added table Setting to the SQLite database
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 50% - Added table Entity to the SQLite database
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 0% - Finished inserting rows for table Entity_Relation
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 25% - Finished inserting rows for table Filter_Entity
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 50% - Finished inserting rows for table Relation
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 75% - Finished inserting rows for table category_stats
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 100% - Finished converting database
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> /****************************/
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 6% - Parsed table Entity_Relation
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 18% - Parsed table Filter_Entity
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 31% - Parsed table Relation
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 43% - Parsed table category_stats
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 100% - Parsed view entity_text_vw
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 12% - Added table Filter to the SQLite database
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 25% - Added table location_stats to the SQLite database
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 37% - Added table Setting to the SQLite database
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 50% - Added table Entity to the SQLite database
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 0% - Finished inserting rows for table Entity_Relation
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 25% - Finished inserting rows for table Filter_Entity
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 50% - Finished inserting rows for table Relation
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 75% - Finished inserting rows for table category_stats
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> Progress: 100% - Finished converting database
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> /****************************/
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> dbfiles\GreekGuide_Hydra_EN_20141205.db
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:7940> 
+5/12/2014 7:33:16 μμ ==> ''> Info: Finished:> convert SQL Db to SQLLite for APP: Hydra
+5/12/2014 7:33:16 μμ ==> ''> Info: Started:> Export Database Statistics for APP: Hydra
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12668> -
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12668>  
+5/12/2014 7:33:16 μμ ==> ''> Info: Finished:> Export Database Statistics for APP: Hydra
+5/12/2014 7:33:16 μμ ==> ''> Info: Started:> Transform All Images running Python for APP: Hydra
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_1076_shut5ed_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:1077 http://air.greekguide.com/cov/sh/shutterstock_52038637_electricity_2_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_1077_shutterstock_52038637_electricity_2_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_1078_shut4ed_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:1079 http://air.greekguide.com/cov/sh/shut8ed_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_1079_shut8ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_1089_shutterstock_115866226_ote_new_edited_2014_11_12_12_42_37_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:1436 http://air.greekguide.com/cov/sh/shut3ed_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_1436_shut3ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_1438_shut7ed_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:1832 http://air.greekguide.com/cov/sh/shut6ed_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_1832_shut6ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_3762_shutterstock_154986185_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:3789 http://air.greekguide.com/cov/No/No-Smoking_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_3789_no_smoking_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_3796_tips_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:3940 http://air.greekguide.com/cov/to/touristiki-astynomia_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_3940_touristiki_astynomia_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_3945_shutterstock_75608560_edited_b_purosvestikh_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4201 http://air.greekguide.com/cov/or/orloff_edited_2014_2_6_18_44_3_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4201_orloff_edited_2014_2_6_18_44_3_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4202_angelica_edited_2014_2_6_18_44_45_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4203 http://air.greekguide.com/cov/hy/hydra-icons_edited_2014_2_6_18_45_21_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4203_hydra_icons_edited_2014_2_6_18_45_21_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4204_four_season_hydra_edited_2014_2_6_18_45_52_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4205 http://air.greekguide.com/cov/xe/xenonas-niriides_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4205_xenonas_niriides_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4206_cotommatae_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4207 http://air.greekguide.com/cov/le/leto_edited_2014_2_6_18_48_20_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4207_leto_edited_2014_2_6_18_48_20_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4208_hydroussa_edited_2014_2_6_18_48_49_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4209 http://air.greekguide.com/cov/pi/piteoussa_edited_2014_2_6_18_49_33_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4209_piteoussa_edited_2014_2_6_18_49_33_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4210_mistral_edited_2014_2_6_18_50_19_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4211 http://air.greekguide.com/cov/br/bratsera_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4211_bratsera_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4212_hydra_hotel_edited_2014_2_6_18_51_9_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4213 http://air.greekguide.com/cov/mi/miranda_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4213_miranda_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4214_ippocampos_new_hydra_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4215 http://air.greekguide.com/cov/po/porta-del-mar_5_edited_2014_4_7_14_20_44_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4215_porta_del_mar_5_edited_2014_4_7_14_20_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4216_phaidra_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4217 http://air.greekguide.com/cov/vi/villa-mandraki_edited_2014_2_11_11_12_10_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4217_villa_mandraki_edited_2014_2_11_11_12_10_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4218_pension_erofilli_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4219 http://air.greekguide.com/cov/th/theassis_edited_2014_2_11_10_48_55_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4219_theassis_edited_2014_2_11_10_48_55_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4220_miramare_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4221 http://air.greekguide.com/cov/al/alkionides_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4221_alkionides_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4222_sophia_edited_2014_2_11_10_50_49_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4223 http://air.greekguide.com/cov/er/erato-villas_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4223_erato_villas_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4224_hotel_nefeli_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4225 http://air.greekguide.com/cov/ki/kiafa_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4225_kiafa_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4226_stone_house_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4227 http://air.greekguide.com/cov/ma/mandraki_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4227_mandraki_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4228_spilia_edited_2014_2_12_15_12_29_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4229 http://air.greekguide.com/cov/yd/ydroneta_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4229_ydroneta_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4230_avlaki_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4231 http://air.greekguide.com/cov/pa/palamidas_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4231_palamidas_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4232_vlyxos_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4233 http://air.greekguide.com/cov/mp/mpisti_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4233_mpisti_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4234_cimg2909_edited_2014_4_8_16_15_22_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4235 http://air.greekguide.com/cov/ag/agios-georgios_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4235_agios_georgios_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4236_molos_edited_2014_2_12_15_19_21_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4237 http://air.greekguide.com/cov/li/limnioniza_edited_2014_2_25_12_50_52_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4237_limnioniza_edited_2014_2_25_12_50_52_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4238_nisiza_edited_2014_2_12_15_20_19_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4239 http://air.greekguide.com/cov/me/megalo-kamini_edited_2014_2_12_15_20_50_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4239_megalo_kamini_edited_2014_2_12_15_20_50_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4240_mikro_kamini_edited_2014_2_12_15_21_16_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4241 http://air.greekguide.com/cov/kl/klimaki_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4241_klimaki_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4242_kaoumithi_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4243 http://air.greekguide.com/cov/pl/plakes_vluxou_edited_2014_2_12_15_22_57_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4243_plakes_vluxou_edited_2014_2_12_15_22_57_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4244_miaouleia_edited_2014_2_14_10_31_42_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4245 http://air.greekguide.com/cov/ko/kountourioteia_edited_2014_2_14_10_33_43_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4245_kountourioteia_edited_2014_2_14_10_33_43_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4247_istioploikoi_agwnes_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4248 http://air.greekguide.com/cov/ka/karnavali_edited_2014_2_14_10_27_7_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4248_karnavali_edited_2014_2_14_10_27_7_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4249_pasxa_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4250 http://air.greekguide.com/cov/pe/pezoporia_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4250_pezoporia_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4251_diving_4_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4252 http://air.greekguide.com/cov/sh/shutterstock_115589812_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4252_shutterstock_115589812_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4253_shutterstock_52157260_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4254 http://air.greekguide.com/cov/sh/shutterstock_90395161_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4254_shutterstock_90395161_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4255_shutterstock98351456_2013_8_1_12_5_22_b_xrisima_edited_2014_2_13_17_58_29_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4256 http://air.greekguide.com/cov/dh/dhmos_edited_2014_2_14_13_52_27_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4256_dhmos_edited_2014_2_14_13_52_27_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4257_kentro_ugeias_edited_2013_11_15_16_55_0_b_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4258 http://air.greekguide.com/cov/ge/geniko nosokomeio_edited_b_2014_2_14_11_7_28_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4258_geniko_nosokomeio_edited_b_2014_2_14_11_7_28_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4259_shutterstock_152142200_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4260 http://air.greekguide.com/cov/li/limenarxeio_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4260_limenarxeio_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4261_kep_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4262 http://air.greekguide.com/cov/fa/farmakeia_edited_b_b_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4262_farmakeia_edited_b_b_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4263_emergency_new_hutterstock_145330252_edited_2014_11_12_10_40_41_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4264 http://air.greekguide.com/cov/di/dimotiki-epixeirisi_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4264_dimotiki_epixeirisi_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4265_metafora_genika_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4266 http://air.greekguide.com/cov/ga/gaidourakia_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4266_gaidourakia_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4267_thalassia_taxi_edited_2014_2_14_15_0_36_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4268 http://air.greekguide.com/cov/he/hellenicseaways_edited_2014_2_14_14_56_36_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4268_hellenicseaways_edited_2014_2_14_14_56_36_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4270_mandraki_edited_2014_2_18_12_48_54_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4271 http://air.greekguide.com/cov/ge/geitoniko_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4271_geitoniko_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4272_sunset_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4273 http://air.greekguide.com/cov/ks/kseri-elia_dikes-tou_1_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4273_kseri_elia_dikes_tou_1_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4274_img_0499_edited_2014_4_9_11_12_25_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4275 http://air.greekguide.com/cov/ko/kondulenia_edited_2014_2_18_12_51_57_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4275_kondulenia_edited_2014_2_18_12_51_57_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4276_paradosiakon_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4277 http://air.greekguide.com/cov/en/enalion_edited_2014_2_18_12_52_58_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4277_enalion_edited_2014_2_18_12_52_58_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4288_shutterstock_88727218_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4289 http://air.greekguide.com/cov/ge/gefuria_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4289_gefuria_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4290_taverna_marina_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4291 http://air.greekguide.com/cov/ze/zefuros_edited_2014_2_25_12_42_26_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4291_zefuros_edited_2014_2_25_12_42_26_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4292_veranda_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4293 http://air.greekguide.com/cov/br/bratsera_edited_2014_2_18_17_38_44_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4293_bratsera_edited_2014_2_18_17_38_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4294_omilos_edited_2014_2_18_17_42_7_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4295 http://air.greekguide.com/cov/za/zaxaroplasteio-tsagkari_edited_2014_2_18_17_42_50_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4295_zaxaroplasteio_tsagkari_edited_2014_2_18_17_42_50_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4296_tesseris_epoxes_edited_2014_2_18_17_42_30_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4298 http://air.greekguide.com/cov/am/amalour_edited_2014_2_19_17_8_44_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4298_amalour_edited_2014_2_19_17_8_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4299_pirate_edited_b_2014_2_20_10_9_17_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4300 http://air.greekguide.com/cov/ca/castello_edited_2014_2_19_17_9_14_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4300_castello_edited_2014_2_19_17_9_14_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4301_spilia_edited_2014_2_19_17_9_35_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4302 http://air.greekguide.com/cov/mi/mikrocafe-_2_edited_2014_2_20_10_27_36_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4302_mikrocafe__2_edited_2014_2_20_10_27_36_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4303_kipos_tis_gefis_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4304 http://air.greekguide.com/cov/pa/papagalos_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4304_papagalos_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4305_ydroneta_edited_2014_2_20_10_1_52_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4306 http://air.greekguide.com/cov/sk/skipper_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4306_skipper_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4307_elena_votsi_edited_2014_2_20_10_53_16_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4308 http://air.greekguide.com/cov/ar/arraides_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4308_arraides_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4309_speakout_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4310 http://air.greekguide.com/cov/sp/spoiled_edited_b.jpg - IOERROR ( [Errno socket error] timed out ) (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4310_spoiled_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4313_commo_gusto_2_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4314 http://air.greekguide.com/cov/am/amygdalwta_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4314_amygdalwta_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4315_exchange_edited_2013_12_12_16_6_56_b_b_2014_2_20_19_6_41_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4316 http://air.greekguide.com/cov/tr/trapezes_edited_b_2014_2_20_19_2_46_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4316_trapezes_edited_b_2014_2_20_19_2_46_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4317_shutterstock_151589309_edited_b_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4318 http://air.greekguide.com/cov/ke/kentro ugeias_edited__2014_2_20_19_0_32_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4318_kentro_ugeias_edited__2014_2_20_19_0_32_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4319_shutterstock_121961872_edited_2014_2_20_18_58_11_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4320 http://air.greekguide.com/cov/pa/paralies-hydra_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4320_paralies_hydra_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4321_shutterstock_137811062_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4323 http://air.greekguide.com/cov/sh/shutterstock_115889992_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4323_shutterstock_115889992_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4324_nightlife_spetses_edited_2014_2_21_15_27_1_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4325 http://air.greekguide.com/cov/sh/shutterstock_165958469_edited_2014_2_21_15_30_41_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4325_shutterstock_165958469_edited_2014_2_21_15_30_41_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4326_art_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4327 http://air.greekguide.com/cov/pa/parking-metoxi_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4327_parking_metoxi_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4328_20131104_195707_resized_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4329 http://air.greekguide.com/cov/sh/shutterstock_126437963_edited_2014_2_24_12_16_44_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4329_shutterstock_126437963_edited_2014_2_24_12_16_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4331_farmakeio_2_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4332 http://air.greekguide.com/cov/sh/shutterstock_137811062_edited_2014_2_24_12_24_10_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4332_shutterstock_137811062_edited_2014_2_24_12_24_10_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4333_dhmos_edited_2014_2_24_12_28_28_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4334 http://air.greekguide.com/cov/in/inininini_2014_4_15_16_50_21_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4334_inininini_2014_4_15_16_50_21_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4335_shutterstock_115889992_edited_2014_2_24_12_18_50_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4336 http://air.greekguide.com/cov/sx/sxoli_emporoploiarxon_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4336_sxoli_emporoploiarxon_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4337_faros_zourva_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4343 http://air.greekguide.com/cov/fa/faros_dokou_edited_2014_2_25_13_15_22_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4343_faros_dokou_edited_2014_2_25_13_15_22_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4344_shutterstock_120657706_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4345 http://air.greekguide.com/cov/sh/shutterstock_158947394_edited_2014_2_25_13_12_26_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4345_shutterstock_158947394_edited_2014_2_25_13_12_26_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4346_shutterstock_86523529_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:4348 http://air.greekguide.com/cov/la/lazarou-kountourioti_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_4348_lazarou_kountourioti_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4369_shutterstock_137811062_edited_2014_2_25_13_13_37_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_4370_farmakeio_rafalia_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_5051_giname_pita_edited_2014_4_7_15_31_19_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5117 http://air.greekguide.com/cov/po/porta-del-mar_2_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5118 http://air.greekguide.com/cov/po/porta-del-mar_3_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5119 http://air.greekguide.com/cov/po/porta-del-mar_4_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5121 http://air.greekguide.com/cov/po/porta-del-mare_edited_b_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5123 http://air.greekguide.com/cov/DS/DSC00896_edited_2014_4_15_9_54_22_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_5123_dsc00896_edited_2014_4_15_9_54_22_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_5124_kseri_elia_dikes_tou_2_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_5127_pita_giname_2_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_5128_psinesai_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5133 http://air.greekguide.com/cov/ps/psinesai_2_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5134 http://air.greekguide.com/cov/ce/century_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_5134_century_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_5136_gardenia_edited_2014_4_10_14_26_52_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5138 http://air.greekguide.com/cov/40/401_edited_2014_4_8_15_50_13_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5140 http://air.greekguide.com/cov/en/enalion_afti_edited_2014_4_8_15_51_53_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5141 http://air.greekguide.com/cov/di/diving2_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5142 http://air.greekguide.com/cov/mi/mistral_2_edited_2014_4_8_15_58_14_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5143 http://air.greekguide.com/cov/ip/ippokampos_2_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5144 http://air.greekguide.com/cov/co/commogusto_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5145 http://air.greekguide.com/cov/20/20131212_232423_resized_edited_2014_4_8_16_11_7_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5146 http://air.greekguide.com/cov/ki/kipos_gefsis_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5147 http://air.greekguide.com/cov/CI/CIMG2177_edited_2014_4_8_16_15_40_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5148 http://air.greekguide.com/cov/le/leto_2_edited_2014_4_8_16_17_39_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5149 http://air.greekguide.com/cov/le/leto_3_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5150 http://air.greekguide.com/cov/le/leto_4_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5151 http://air.greekguide.com/cov/le/leto_5_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5154 http://air.greekguide.com/cov/co/cotommatae_2_edited_2014_4_8_16_31_22_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5155 http://air.greekguide.com/cov/co/cotommatae_3_kentriki_edited_2014_4_8_16_32_12_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5156 http://air.greekguide.com/cov/co/cotommatae_4_edited_2014_4_8_16_32_48_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5157 http://air.greekguide.com/cov/co/cotommatae_5_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5160 http://air.greekguide.com/cov/_D/_DSC0015_edited_2014_4_8_17_1_59_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5161 http://air.greekguide.com/cov/Yd/Ydra-(38)_edited_2014_4_8_17_2_45_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5162 http://air.greekguide.com/cov/IM/IMG_2374_edited_2014_4_8_17_3_31_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5163 http://air.greekguide.com/cov/an/antonis-sunset-052_edited_2014_4_8_17_4_3_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5164 http://air.greekguide.com/cov/1_/1_edited_2014_4_8_17_10_59_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5165 http://air.greekguide.com/cov/so/sofia-222_edited_2014_4_8_17_12_50_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5166 http://air.greekguide.com/cov/pa/paralia_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5167 http://air.greekguide.com/cov/00/001_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5179 http://air.greekguide.com/cov/In/Information-Point_edited_b_b_2014_4_8_18_44_8_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_5179_information_point_edited_b_b_2014_4_8_18_44_8_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_5180_img_0622_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_5181_psaropoula2_188_edited_2014_4_9_11_13_51_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_5182_psaropoula2_259_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_5183_psaropoula2_167_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_5218_hydraiki_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5263 http://air.greekguide.com/cov/hy/hydraiki2_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5299 http://air.greekguide.com/cov/sk/skipper2_edited_2014_4_14_9_43_7_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5300 http://air.greekguide.com/cov/sk/skipper_edited_2014_4_14_9_43_38_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5301 http://air.greekguide.com/cov/sh/shutterstock_120657706_edited_2014_4_14_9_45_2_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5302 http://air.greekguide.com/cov/21/21_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5332 http://air.greekguide.com/cov/DS/DSC00902_edited_2014_4_15_9_54_33_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:5777 http://air.greekguide.com/cov/IM/IMG_20140517_163414_edited_2014_5_23_10_39_26_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Fitted using (331, 220)- c:/temp/Images/Hydra/entity_5777_img_20140517_163414_edited_2014_5_23_10_39_26_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_5945_10173523_517742124998804_4530397657946929219_n_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Resized - c:/temp/Images/Hydra/entity_7642_rodi_1_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:7660 http://air.greekguide.com/cov/ro/rodi_2_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:7661 http://air.greekguide.com/cov/ro/rodi_3_edited_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:7662 http://air.greekguide.com/cov/ro/rodi_4_edited_2014_7_28_10_1_25_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> Retrieving id:7663 http://air.greekguide.com/cov/ro/rodi_5_edited_2014_7_28_10_2_38_b.jpg (1024, 682) - 1.5015
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_1076_shut5ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_1077_shutterstock_52038637_electricity_2_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_1078_shut4ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_1079_shut8ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_1089_shutterstock_115866226_ote_new_edited_2014_11_12_12_42_37_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_1436_shut3ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_1438_shut7ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_1832_shut6ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_3762_shutterstock_154986185_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_3789_no_smoking_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_3796_tips_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_3940_touristiki_astynomia_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_3945_shutterstock_75608560_edited_b_purosvestikh_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4201_orloff_edited_2014_2_6_18_44_3_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4202_angelica_edited_2014_2_6_18_44_45_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4203_hydra_icons_edited_2014_2_6_18_45_21_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4204_four_season_hydra_edited_2014_2_6_18_45_52_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4205_xenonas_niriides_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4206_cotommatae_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4207_leto_edited_2014_2_6_18_48_20_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4208_hydroussa_edited_2014_2_6_18_48_49_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4209_piteoussa_edited_2014_2_6_18_49_33_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4210_mistral_edited_2014_2_6_18_50_19_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4211_bratsera_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4212_hydra_hotel_edited_2014_2_6_18_51_9_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4213_miranda_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4214_ippocampos_new_hydra_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4215_porta_del_mar_5_edited_2014_4_7_14_20_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4216_phaidra_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4217_villa_mandraki_edited_2014_2_11_11_12_10_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4218_pension_erofilli_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4219_theassis_edited_2014_2_11_10_48_55_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4220_miramare_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4221_alkionides_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4222_sophia_edited_2014_2_11_10_50_49_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4223_erato_villas_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4224_hotel_nefeli_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4225_kiafa_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4226_stone_house_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4227_mandraki_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4228_spilia_edited_2014_2_12_15_12_29_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4229_ydroneta_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4230_avlaki_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4231_palamidas_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4232_vlyxos_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4233_mpisti_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4234_cimg2909_edited_2014_4_8_16_15_22_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4235_agios_georgios_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4236_molos_edited_2014_2_12_15_19_21_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4237_limnioniza_edited_2014_2_25_12_50_52_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4238_nisiza_edited_2014_2_12_15_20_19_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4239_megalo_kamini_edited_2014_2_12_15_20_50_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4240_mikro_kamini_edited_2014_2_12_15_21_16_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4241_klimaki_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4242_kaoumithi_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4243_plakes_vluxou_edited_2014_2_12_15_22_57_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4244_miaouleia_edited_2014_2_14_10_31_42_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4245_kountourioteia_edited_2014_2_14_10_33_43_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4247_istioploikoi_agwnes_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4248_karnavali_edited_2014_2_14_10_27_7_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4249_pasxa_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4250_pezoporia_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4251_diving_4_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4252_shutterstock_115589812_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4253_shutterstock_52157260_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4254_shutterstock_90395161_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4255_shutterstock98351456_2013_8_1_12_5_22_b_xrisima_edited_2014_2_13_17_58_29_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4256_dhmos_edited_2014_2_14_13_52_27_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4257_kentro_ugeias_edited_2013_11_15_16_55_0_b_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4258_geniko_nosokomeio_edited_b_2014_2_14_11_7_28_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4259_shutterstock_152142200_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4260_limenarxeio_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4261_kep_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4262_farmakeia_edited_b_b_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4263_emergency_new_hutterstock_145330252_edited_2014_11_12_10_40_41_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4264_dimotiki_epixeirisi_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4265_metafora_genika_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4266_gaidourakia_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4267_thalassia_taxi_edited_2014_2_14_15_0_36_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4268_hellenicseaways_edited_2014_2_14_14_56_36_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4270_mandraki_edited_2014_2_18_12_48_54_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4271_geitoniko_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4272_sunset_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4273_kseri_elia_dikes_tou_1_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4274_img_0499_edited_2014_4_9_11_12_25_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4275_kondulenia_edited_2014_2_18_12_51_57_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4276_paradosiakon_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4277_enalion_edited_2014_2_18_12_52_58_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4288_shutterstock_88727218_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4289_gefuria_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4290_taverna_marina_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4291_zefuros_edited_2014_2_25_12_42_26_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4292_veranda_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4293_bratsera_edited_2014_2_18_17_38_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4294_omilos_edited_2014_2_18_17_42_7_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4295_zaxaroplasteio_tsagkari_edited_2014_2_18_17_42_50_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4296_tesseris_epoxes_edited_2014_2_18_17_42_30_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4298_amalour_edited_2014_2_19_17_8_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4299_pirate_edited_b_2014_2_20_10_9_17_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4300_castello_edited_2014_2_19_17_9_14_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4301_spilia_edited_2014_2_19_17_9_35_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4302_mikrocafe__2_edited_2014_2_20_10_27_36_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4303_kipos_tis_gefis_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4304_papagalos_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4305_ydroneta_edited_2014_2_20_10_1_52_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4306_skipper_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4307_elena_votsi_edited_2014_2_20_10_53_16_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4308_arraides_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4309_speakout_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4310_spoiled_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4313_commo_gusto_2_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4314_amygdalwta_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4315_exchange_edited_2013_12_12_16_6_56_b_b_2014_2_20_19_6_41_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4316_trapezes_edited_b_2014_2_20_19_2_46_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4317_shutterstock_151589309_edited_b_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4318_kentro_ugeias_edited__2014_2_20_19_0_32_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4319_shutterstock_121961872_edited_2014_2_20_18_58_11_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4320_paralies_hydra_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4321_shutterstock_137811062_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4323_shutterstock_115889992_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4324_nightlife_spetses_edited_2014_2_21_15_27_1_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4325_shutterstock_165958469_edited_2014_2_21_15_30_41_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4326_art_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4327_parking_metoxi_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4328_20131104_195707_resized_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4329_shutterstock_126437963_edited_2014_2_24_12_16_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4331_farmakeio_2_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4332_shutterstock_137811062_edited_2014_2_24_12_24_10_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4333_dhmos_edited_2014_2_24_12_28_28_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4334_inininini_2014_4_15_16_50_21_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4335_shutterstock_115889992_edited_2014_2_24_12_18_50_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4336_sxoli_emporoploiarxon_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4337_faros_zourva_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4343_faros_dokou_edited_2014_2_25_13_15_22_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4344_shutterstock_120657706_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4345_shutterstock_158947394_edited_2014_2_25_13_12_26_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4346_shutterstock_86523529_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4348_lazarou_kountourioti_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_4369_shutterstock_137811062_edited_2014_2_25_13_13_37_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5051_giname_pita_edited_2014_4_7_15_31_19_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5117_porta_del_mar_2_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5119_porta_del_mar_4_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5123_dsc00896_edited_2014_4_15_9_54_22_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5124_kseri_elia_dikes_tou_2_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5128_psinesai_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5133_psinesai_2_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5134_century_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5136_gardenia_edited_2014_4_10_14_26_52_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5140_enalion_afti_edited_2014_4_8_15_51_53_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5142_mistral_2_edited_2014_4_8_15_58_14_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5144_commogusto_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5146_kipos_gefsis_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5148_leto_2_edited_2014_4_8_16_17_39_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5150_leto_4_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5154_cotommatae_2_edited_2014_4_8_16_31_22_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5156_cotommatae_4_edited_2014_4_8_16_32_48_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5160__dsc0015_edited_2014_4_8_17_1_59_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5162_img_2374_edited_2014_4_8_17_3_31_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5164_1_edited_2014_4_8_17_10_59_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5166_paralia_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5179_information_point_edited_b_b_2014_4_8_18_44_8_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5180_img_0622_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5182_psaropoula2_259_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5218_hydraiki_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5263_hydraiki2_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5300_skipper_edited_2014_4_14_9_43_38_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5302_21_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5777_img_20140517_163414_edited_2014_5_23_10_39_26_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_5945_10173523_517742124998804_4530397657946929219_n_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_7642_rodi_1_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_7661_rodi_3_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> C:\Temp\Images\Hydra\entity_7663_rodi_5_edited_2014_7_28_10_2_38_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:11688> 
+5/12/2014 7:33:16 μμ ==> ''> Info: Finished:> Transform All Images running Python for APP: Hydra
+5/12/2014 7:33:16 μμ ==> ''> Info: Hydra> Started Execution of Image Statics for App 
+5/12/2014 7:33:16 μμ ==> ''> Info: Hydra> Finished Execution of Image Statics for App 
+5/12/2014 7:33:16 μμ ==> ''> Info: Started:> Upload Images to FTP for APP: Hydra
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> Searching for host...
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> Authenticating...
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> Authenticating with pre-entered password.
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> Starting the session...
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> Session started.
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> /var/www/greekguide/hydra/fb-assets
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> Local 'C:\Temp\Images\hydra-fb' => Remote '/var/www/greekguide/hydra/fb-assets'
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> Local 'C:\Temp\Images\hydra-fb' => Remote '/var/www/greekguide/hydra/fb-assets'
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_1077_220_220.jpg |          4 KiB |   12,0 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_1079_220_220.jpg |          5 KiB |   17,3 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_1436_220_220.jpg |          6 KiB |   19,9 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_1832_220_220.jpg |          7 KiB |   25,7 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_3789_220_220.jpg |          7 KiB |   26,9 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_3940_220_220.jpg |          6 KiB |   26,8 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4201_220_220.jpg |          5 KiB |   27,7 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4203_220_220.jpg |          5 KiB |   28,0 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4205_220_220.jpg |          8 KiB |   28,8 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4207_220_220.jpg |          6 KiB |   29,5 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4209_220_220.jpg |          7 KiB |   30,5 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4211_220_220.jpg |          8 KiB |   31,0 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4213_220_220.jpg |          7 KiB |   30,9 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4215_220_220.jpg |         11 KiB |   32,5 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4217_220_220.jpg |          8 KiB |   32,8 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4219_220_220.jpg |          7 KiB |   33,3 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4221_220_220.jpg |         10 KiB |   33,5 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4223_220_220.jpg |          7 KiB |   33,5 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4225_220_220.jpg |          5 KiB |   33,8 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4227_220_220.jpg |          9 KiB |   35,0 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4229_220_220.jpg |         11 KiB |   35,7 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4231_220_220.jpg |         10 KiB |   36,8 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4233_220_220.jpg |         10 KiB |   36,9 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4235_220_220.jpg |         10 KiB |   37,4 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4237_220_220.jpg |         11 KiB |   37,8 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4239_220_220.jpg |          9 KiB |   39,8 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4241_220_220.jpg |         10 KiB |   40,0 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4243_220_220.jpg |          7 KiB |   40,4 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4245_220_220.jpg |         10 KiB |   40,2 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4248_220_220.jpg |         10 KiB |   42,0 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4250_220_220.jpg |          7 KiB |   42,0 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4252_220_220.jpg |          9 KiB |   41,7 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4254_220_220.jpg |          6 KiB |   41,9 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4256_220_220.jpg |          9 KiB |   41,4 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4258_220_220.jpg |          5 KiB |   41,8 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4260_220_220.jpg |          4 KiB |   41,3 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4262_220_220.jpg |          8 KiB |   40,9 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4264_220_220.jpg |          4 KiB |   39,4 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4266_220_220.jpg |         11 KiB |   39,2 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4268_220_220.jpg |          5 KiB |   39,7 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4271_220_220.jpg |          9 KiB |   39,8 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4273_220_220.jpg |          7 KiB |   39,5 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4275_220_220.jpg |          9 KiB |   38,3 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4277_220_220.jpg |          8 KiB |   38,5 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4289_220_220.jpg |         10 KiB |   37,5 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4291_220_220.jpg |          9 KiB |   37,9 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4293_220_220.jpg |          8 KiB |   38,1 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4295_220_220.jpg |          9 KiB |   37,5 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4298_220_220.jpg |          7 KiB |   37,6 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4300_220_220.jpg |         10 KiB |   37,6 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4302_220_220.jpg |          9 KiB |   36,8 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4304_220_220.jpg |          5 KiB |   36,6 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4306_220_220.jpg |          9 KiB |   35,9 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4308_220_220.jpg |          9 KiB |   36,0 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4310_220_220.jpg |         10 KiB |   36,1 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4314_220_220.jpg |          6 KiB |   35,7 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4316_220_220.jpg |          7 KiB |   35,6 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4318_220_220.jpg |          5 KiB |   36,2 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4320_220_220.jpg |          9 KiB |   36,5 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4323_220_220.jpg |         12 KiB |   37,5 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4325_220_220.jpg |         10 KiB |   37,5 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4327_220_220.jpg |          6 KiB |   37,0 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4329_220_220.jpg |         10 KiB |   37,0 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4332_220_220.jpg |         11 KiB |   37,4 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4334_220_220.jpg |          6 KiB |   36,9 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4336_220_220.jpg |          4 KiB |   36,5 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4343_220_220.jpg |         12 KiB |   37,1 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4345_220_220.jpg |         11 KiB |   37,3 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_4348_220_220.jpg |         12 KiB |   36,9 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_5123_220_220.jpg |          7 KiB |   37,1 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_5134_220_220.jpg |          7 KiB |   35,2 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_5179_220_220.jpg |          5 KiB |   34,8 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> C:\Temp\Images\hydra-fb\entity_5777_220_220.jpg |          5 KiB |   35,1 KiB/s | binary | 100%
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12644> 
+5/12/2014 7:33:16 μμ ==> ''> Info: Finished:> Upload Images to FTP for APP: Hydra
+5/12/2014 7:33:16 μμ ==> ''> Info: Started:> Upload Entity to FTP for APP: Hydra
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:8116> Searching for host...
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:8116> Authenticating...
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:8116> Authenticating with pre-entered password.
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:8116> Starting the session...
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:8116> Session started.
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:8116> /var/www/greekguide/hydra/config
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:8116> confirm         off       
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:8116> 
+5/12/2014 7:33:16 μμ ==> ''> Info: Finished:> Upload Entity to FTP for APP: Hydra
+5/12/2014 7:33:16 μμ ==> ''> Info: Started:> Copy files from Local to Server for APP: Hydra
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> -------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> -------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Έναρξη : Fri Dec 05 19:38:56 2014
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>    Προέλευση : C:\temp\images\Hydra\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	  *ΕΞΤΡΑ αρχείο 		    3481	entity_1077_shut2ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	  *ΕΞΤΡΑ αρχείο 		    6184	entity_1089_shutterstock1364238_2013_6_24_12_51_16_b_2013_7_3_11_2_55_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	  *ΕΞΤΡΑ αρχείο 		    7741	entity_4263_emergency_geniko_b_edited_b_2014_2_14_10_59_30_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	  *ΕΞΤΡΑ αρχείο 		    8373	entity_5327_shutterstock_169878686_krouaziera_ston_argosarwniko_edited_2014_5_12_10_53_8_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5820	entity_1076_shut5ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    4813	entity_1077_shutterstock_52038637_electricity_2_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6443	entity_1078_shut4ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6136	entity_1079_shut8ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6462	entity_1089_shutterstock_115866226_ote_new_edited_2014_11_12_12_42_37_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7109	entity_1436_shut3ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12563	entity_1438_shut7ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7670	entity_1832_shut6ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6588	entity_3762_shutterstock_154986185_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7553	entity_3789_no_smoking_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5231	entity_3796_tips_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6150	entity_3940_touristiki_astynomia_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8301	entity_3945_shutterstock_75608560_edited_b_purosvestikh_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5389	entity_4201_orloff_edited_2014_2_6_18_44_3_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6965	entity_4202_angelica_edited_2014_2_6_18_44_45_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5713	entity_4203_hydra_icons_edited_2014_2_6_18_45_21_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5990	entity_4204_four_season_hydra_edited_2014_2_6_18_45_52_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8845	entity_4205_xenonas_niriides_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8148	entity_4206_cotommatae_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6593	entity_4207_leto_edited_2014_2_6_18_48_20_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10490	entity_4208_hydroussa_edited_2014_2_6_18_48_49_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7221	entity_4209_piteoussa_edited_2014_2_6_18_49_33_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6355	entity_4210_mistral_edited_2014_2_6_18_50_19_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8801	entity_4211_bratsera_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6229	entity_4212_hydra_hotel_edited_2014_2_6_18_51_9_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7271	entity_4213_miranda_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11963	entity_4214_ippocampos_new_hydra_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12248	entity_4215_porta_del_mar_5_edited_2014_4_7_14_20_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9871	entity_4216_phaidra_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8343	entity_4217_villa_mandraki_edited_2014_2_11_11_12_10_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   13537	entity_4218_pension_erofilli_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7839	entity_4219_theassis_edited_2014_2_11_10_48_55_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5474	entity_4220_miramare_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10387	entity_4221_alkionides_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6766	entity_4222_sophia_edited_2014_2_11_10_50_49_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7761	entity_4223_erato_villas_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10667	entity_4224_hotel_nefeli_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6117	entity_4225_kiafa_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   15969	entity_4226_stone_house_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9437	entity_4227_mandraki_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9715	entity_4228_spilia_edited_2014_2_12_15_12_29_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12277	entity_4229_ydroneta_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   13407	entity_4230_avlaki_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10962	entity_4231_palamidas_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5561	entity_4232_vlyxos_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10760	entity_4233_mpisti_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10849	entity_4234_cimg2909_edited_2014_4_8_16_15_22_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10390	entity_4235_agios_georgios_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8194	entity_4236_molos_edited_2014_2_12_15_19_21_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11915	entity_4237_limnioniza_edited_2014_2_25_12_50_52_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7423	entity_4238_nisiza_edited_2014_2_12_15_20_19_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10115	entity_4239_megalo_kamini_edited_2014_2_12_15_20_50_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9261	entity_4240_mikro_kamini_edited_2014_2_12_15_21_16_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10386	entity_4241_klimaki_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12627	entity_4242_kaoumithi_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7189	entity_4243_plakes_vluxou_edited_2014_2_12_15_22_57_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9294	entity_4244_miaouleia_edited_2014_2_14_10_31_42_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10635	entity_4245_kountourioteia_edited_2014_2_14_10_33_43_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   15207	entity_4247_istioploikoi_agwnes_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10792	entity_4248_karnavali_edited_2014_2_14_10_27_7_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10351	entity_4249_pasxa_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7706	entity_4250_pezoporia_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    4552	entity_4251_diving_4_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9551	entity_4252_shutterstock_115589812_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7760	entity_4253_shutterstock_52157260_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7010	entity_4254_shutterstock_90395161_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    3687	entity_4255_shutterstock98351456_2013_8_1_12_5_22_b_xrisima_edited_2014_2_13_17_58_29_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9815	entity_4256_dhmos_edited_2014_2_14_13_52_27_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5945	entity_4257_kentro_ugeias_edited_2013_11_15_16_55_0_b_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5781	entity_4258_geniko_nosokomeio_edited_b_2014_2_14_11_7_28_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7283	entity_4259_shutterstock_152142200_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5119	entity_4260_limenarxeio_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    4795	entity_4261_kep_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8752	entity_4262_farmakeia_edited_b_b_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5369	entity_4263_emergency_new_hutterstock_145330252_edited_2014_11_12_10_40_41_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    4747	entity_4264_dimotiki_epixeirisi_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    4907	entity_4265_metafora_genika_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11983	entity_4266_gaidourakia_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11421	entity_4267_thalassia_taxi_edited_2014_2_14_15_0_36_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5718	entity_4268_hellenicseaways_edited_2014_2_14_14_56_36_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12474	entity_4270_mandraki_edited_2014_2_18_12_48_54_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9767	entity_4271_geitoniko_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7231	entity_4272_sunset_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7481	entity_4273_kseri_elia_dikes_tou_1_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9572	entity_4274_img_0499_edited_2014_4_9_11_12_25_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10080	entity_4275_kondulenia_edited_2014_2_18_12_51_57_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9697	entity_4276_paradosiakon_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8464	entity_4277_enalion_edited_2014_2_18_12_52_58_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8419	entity_4288_shutterstock_88727218_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10385	entity_4289_gefuria_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9891	entity_4290_taverna_marina_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9873	entity_4291_zefuros_edited_2014_2_25_12_42_26_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10123	entity_4292_veranda_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8347	entity_4293_bratsera_edited_2014_2_18_17_38_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8852	entity_4294_omilos_edited_2014_2_18_17_42_7_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9432	entity_4295_zaxaroplasteio_tsagkari_edited_2014_2_18_17_42_50_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9673	entity_4296_tesseris_epoxes_edited_2014_2_18_17_42_30_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7568	entity_4298_amalour_edited_2014_2_19_17_8_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7059	entity_4299_pirate_edited_b_2014_2_20_10_9_17_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10289	entity_4300_castello_edited_2014_2_19_17_9_14_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8843	entity_4301_spilia_edited_2014_2_19_17_9_35_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10086	entity_4302_mikrocafe__2_edited_2014_2_20_10_27_36_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12392	entity_4303_kipos_tis_gefis_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6108	entity_4304_papagalos_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7700	entity_4305_ydroneta_edited_2014_2_20_10_1_52_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10150	entity_4306_skipper_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7407	entity_4307_elena_votsi_edited_2014_2_20_10_53_16_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9533	entity_4308_arraides_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7892	entity_4309_speakout_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10603	entity_4310_spoiled_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5325	entity_4313_commo_gusto_2_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6185	entity_4314_amygdalwta_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6753	entity_4315_exchange_edited_2013_12_12_16_6_56_b_b_2014_2_20_19_6_41_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7427	entity_4316_trapezes_edited_b_2014_2_20_19_2_46_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9040	entity_4317_shutterstock_151589309_edited_b_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5945	entity_4318_kentro_ugeias_edited__2014_2_20_19_0_32_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7996	entity_4319_shutterstock_121961872_edited_2014_2_20_18_58_11_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10114	entity_4320_paralies_hydra_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11786	entity_4321_shutterstock_137811062_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12627	entity_4323_shutterstock_115889992_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6795	entity_4324_nightlife_spetses_edited_2014_2_21_15_27_1_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10829	entity_4325_shutterstock_165958469_edited_2014_2_21_15_30_41_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7496	entity_4326_art_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6615	entity_4327_parking_metoxi_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5399	entity_4328_20131104_195707_resized_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10665	entity_4329_shutterstock_126437963_edited_2014_2_24_12_16_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   13079	entity_4331_farmakeio_2_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11786	entity_4332_shutterstock_137811062_edited_2014_2_24_12_24_10_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9815	entity_4333_dhmos_edited_2014_2_24_12_28_28_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6982	entity_4334_inininini_2014_4_15_16_50_21_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12627	entity_4335_shutterstock_115889992_edited_2014_2_24_12_18_50_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5039	entity_4336_sxoli_emporoploiarxon_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10744	entity_4337_faros_zourva_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12564	entity_4343_faros_dokou_edited_2014_2_25_13_15_22_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6583	entity_4344_shutterstock_120657706_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11575	entity_4345_shutterstock_158947394_edited_2014_2_25_13_12_26_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9761	entity_4346_shutterstock_86523529_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12821	entity_4348_lazarou_kountourioti_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   37864	entity_4369_shutterstock_137811062_edited_2014_2_25_13_13_37_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10116	entity_5051_giname_pita_edited_2014_4_7_15_31_19_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   27402	entity_5117_porta_del_mar_2_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   17598	entity_5119_porta_del_mar_4_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7239	entity_5123_dsc00896_edited_2014_4_15_9_54_22_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   31727	entity_5124_kseri_elia_dikes_tou_2_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7165	entity_5128_psinesai_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   16611	entity_5133_psinesai_2_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   23722	entity_5134_century_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   14569	entity_5136_gardenia_edited_2014_4_10_14_26_52_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   25028	entity_5140_enalion_afti_edited_2014_4_8_15_51_53_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   40600	entity_5142_mistral_2_edited_2014_4_8_15_58_14_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   19331	entity_5144_commogusto_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   24479	entity_5146_kipos_gefsis_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   19212	entity_5148_leto_2_edited_2014_4_8_16_17_39_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   34002	entity_5150_leto_4_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   25699	entity_5154_cotommatae_2_edited_2014_4_8_16_31_22_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   28679	entity_5156_cotommatae_4_edited_2014_4_8_16_32_48_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   22494	entity_5160__dsc0015_edited_2014_4_8_17_1_59_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   14150	entity_5162_img_2374_edited_2014_4_8_17_3_31_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   37640	entity_5164_1_edited_2014_4_8_17_10_59_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   44586	entity_5166_paralia_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5839	entity_5179_information_point_edited_b_b_2014_4_8_18_44_8_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   24221	entity_5180_img_0622_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   28660	entity_5182_psaropoula2_259_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11058	entity_5218_hydraiki_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   26602	entity_5263_hydraiki2_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   26991	entity_5300_skipper_edited_2014_4_14_9_43_38_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   22750	entity_5302_21_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5856	entity_5777_img_20140517_163414_edited_2014_5_23_10_39_26_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   24658	entity_5945_10173523_517742124998804_4530397657946929219_n_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   19086	entity_7642_rodi_1_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   21203	entity_7661_rodi_3_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9574	entity_7663_rodi_5_edited_2014_7_28_10_2_38_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> ------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>               ΣύνολοΑντιγράφηκεΠαραλείφθηκε Ασυμφωνία   ΑΠΕΤΥΧΕ     Έξτρα
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Αρχεία :       343       343         0         0         0         8
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Χρόνοι :   0:00:09   0:00:09                       0:00:00   0:00:00
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Ταχύτητα :              36.052 Megabyte/λεπτό
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Ολοκληρώθηκε : Fri Dec 05 19:39:06 2014
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> -------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> -------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Έναρξη : Fri Dec 05 19:39:06 2014
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>    Προέλευση : C:\temp\images\Hydra\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	  *ΕΞΤΡΑ αρχείο 		    3481	entity_1077_shut2ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	  *ΕΞΤΡΑ αρχείο 		    6184	entity_1089_shutterstock1364238_2013_6_24_12_51_16_b_2013_7_3_11_2_55_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	  *ΕΞΤΡΑ αρχείο 		    7741	entity_4263_emergency_geniko_b_edited_b_2014_2_14_10_59_30_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	  *ΕΞΤΡΑ αρχείο 		    8373	entity_5327_shutterstock_169878686_krouaziera_ston_argosarwniko_edited_2014_5_12_10_53_8_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5820	entity_1076_shut5ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    4813	entity_1077_shutterstock_52038637_electricity_2_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6443	entity_1078_shut4ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6136	entity_1079_shut8ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6462	entity_1089_shutterstock_115866226_ote_new_edited_2014_11_12_12_42_37_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7109	entity_1436_shut3ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12563	entity_1438_shut7ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7670	entity_1832_shut6ed_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6588	entity_3762_shutterstock_154986185_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7553	entity_3789_no_smoking_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5231	entity_3796_tips_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6150	entity_3940_touristiki_astynomia_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8301	entity_3945_shutterstock_75608560_edited_b_purosvestikh_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5389	entity_4201_orloff_edited_2014_2_6_18_44_3_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6965	entity_4202_angelica_edited_2014_2_6_18_44_45_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5713	entity_4203_hydra_icons_edited_2014_2_6_18_45_21_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5990	entity_4204_four_season_hydra_edited_2014_2_6_18_45_52_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8845	entity_4205_xenonas_niriides_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8148	entity_4206_cotommatae_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6593	entity_4207_leto_edited_2014_2_6_18_48_20_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10490	entity_4208_hydroussa_edited_2014_2_6_18_48_49_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7221	entity_4209_piteoussa_edited_2014_2_6_18_49_33_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6355	entity_4210_mistral_edited_2014_2_6_18_50_19_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8801	entity_4211_bratsera_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6229	entity_4212_hydra_hotel_edited_2014_2_6_18_51_9_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7271	entity_4213_miranda_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11963	entity_4214_ippocampos_new_hydra_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12248	entity_4215_porta_del_mar_5_edited_2014_4_7_14_20_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9871	entity_4216_phaidra_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8343	entity_4217_villa_mandraki_edited_2014_2_11_11_12_10_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   13537	entity_4218_pension_erofilli_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7839	entity_4219_theassis_edited_2014_2_11_10_48_55_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5474	entity_4220_miramare_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10387	entity_4221_alkionides_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6766	entity_4222_sophia_edited_2014_2_11_10_50_49_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7761	entity_4223_erato_villas_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10667	entity_4224_hotel_nefeli_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6117	entity_4225_kiafa_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   15969	entity_4226_stone_house_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9437	entity_4227_mandraki_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9715	entity_4228_spilia_edited_2014_2_12_15_12_29_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12277	entity_4229_ydroneta_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   13407	entity_4230_avlaki_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10962	entity_4231_palamidas_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5561	entity_4232_vlyxos_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10760	entity_4233_mpisti_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10849	entity_4234_cimg2909_edited_2014_4_8_16_15_22_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10390	entity_4235_agios_georgios_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8194	entity_4236_molos_edited_2014_2_12_15_19_21_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11915	entity_4237_limnioniza_edited_2014_2_25_12_50_52_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7423	entity_4238_nisiza_edited_2014_2_12_15_20_19_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10115	entity_4239_megalo_kamini_edited_2014_2_12_15_20_50_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9261	entity_4240_mikro_kamini_edited_2014_2_12_15_21_16_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10386	entity_4241_klimaki_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12627	entity_4242_kaoumithi_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7189	entity_4243_plakes_vluxou_edited_2014_2_12_15_22_57_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9294	entity_4244_miaouleia_edited_2014_2_14_10_31_42_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10635	entity_4245_kountourioteia_edited_2014_2_14_10_33_43_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   15207	entity_4247_istioploikoi_agwnes_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10792	entity_4248_karnavali_edited_2014_2_14_10_27_7_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10351	entity_4249_pasxa_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7706	entity_4250_pezoporia_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    4552	entity_4251_diving_4_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9551	entity_4252_shutterstock_115589812_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7760	entity_4253_shutterstock_52157260_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7010	entity_4254_shutterstock_90395161_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    3687	entity_4255_shutterstock98351456_2013_8_1_12_5_22_b_xrisima_edited_2014_2_13_17_58_29_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9815	entity_4256_dhmos_edited_2014_2_14_13_52_27_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5945	entity_4257_kentro_ugeias_edited_2013_11_15_16_55_0_b_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5781	entity_4258_geniko_nosokomeio_edited_b_2014_2_14_11_7_28_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7283	entity_4259_shutterstock_152142200_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5119	entity_4260_limenarxeio_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    4795	entity_4261_kep_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8752	entity_4262_farmakeia_edited_b_b_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5369	entity_4263_emergency_new_hutterstock_145330252_edited_2014_11_12_10_40_41_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    4747	entity_4264_dimotiki_epixeirisi_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    4907	entity_4265_metafora_genika_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11983	entity_4266_gaidourakia_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11421	entity_4267_thalassia_taxi_edited_2014_2_14_15_0_36_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5718	entity_4268_hellenicseaways_edited_2014_2_14_14_56_36_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12474	entity_4270_mandraki_edited_2014_2_18_12_48_54_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9767	entity_4271_geitoniko_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7231	entity_4272_sunset_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7481	entity_4273_kseri_elia_dikes_tou_1_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9572	entity_4274_img_0499_edited_2014_4_9_11_12_25_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10080	entity_4275_kondulenia_edited_2014_2_18_12_51_57_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9697	entity_4276_paradosiakon_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8464	entity_4277_enalion_edited_2014_2_18_12_52_58_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8419	entity_4288_shutterstock_88727218_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10385	entity_4289_gefuria_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9891	entity_4290_taverna_marina_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9873	entity_4291_zefuros_edited_2014_2_25_12_42_26_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10123	entity_4292_veranda_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8347	entity_4293_bratsera_edited_2014_2_18_17_38_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8852	entity_4294_omilos_edited_2014_2_18_17_42_7_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9432	entity_4295_zaxaroplasteio_tsagkari_edited_2014_2_18_17_42_50_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9673	entity_4296_tesseris_epoxes_edited_2014_2_18_17_42_30_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7568	entity_4298_amalour_edited_2014_2_19_17_8_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7059	entity_4299_pirate_edited_b_2014_2_20_10_9_17_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10289	entity_4300_castello_edited_2014_2_19_17_9_14_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    8843	entity_4301_spilia_edited_2014_2_19_17_9_35_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10086	entity_4302_mikrocafe__2_edited_2014_2_20_10_27_36_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12392	entity_4303_kipos_tis_gefis_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6108	entity_4304_papagalos_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7700	entity_4305_ydroneta_edited_2014_2_20_10_1_52_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10150	entity_4306_skipper_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7407	entity_4307_elena_votsi_edited_2014_2_20_10_53_16_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9533	entity_4308_arraides_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7892	entity_4309_speakout_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10603	entity_4310_spoiled_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5325	entity_4313_commo_gusto_2_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6185	entity_4314_amygdalwta_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6753	entity_4315_exchange_edited_2013_12_12_16_6_56_b_b_2014_2_20_19_6_41_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7427	entity_4316_trapezes_edited_b_2014_2_20_19_2_46_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9040	entity_4317_shutterstock_151589309_edited_b_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5945	entity_4318_kentro_ugeias_edited__2014_2_20_19_0_32_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7996	entity_4319_shutterstock_121961872_edited_2014_2_20_18_58_11_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10114	entity_4320_paralies_hydra_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11786	entity_4321_shutterstock_137811062_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12627	entity_4323_shutterstock_115889992_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6795	entity_4324_nightlife_spetses_edited_2014_2_21_15_27_1_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10829	entity_4325_shutterstock_165958469_edited_2014_2_21_15_30_41_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7496	entity_4326_art_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6615	entity_4327_parking_metoxi_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5399	entity_4328_20131104_195707_resized_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10665	entity_4329_shutterstock_126437963_edited_2014_2_24_12_16_44_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   13079	entity_4331_farmakeio_2_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11786	entity_4332_shutterstock_137811062_edited_2014_2_24_12_24_10_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9815	entity_4333_dhmos_edited_2014_2_24_12_28_28_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6982	entity_4334_inininini_2014_4_15_16_50_21_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12627	entity_4335_shutterstock_115889992_edited_2014_2_24_12_18_50_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5039	entity_4336_sxoli_emporoploiarxon_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10744	entity_4337_faros_zourva_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12564	entity_4343_faros_dokou_edited_2014_2_25_13_15_22_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    6583	entity_4344_shutterstock_120657706_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11575	entity_4345_shutterstock_158947394_edited_2014_2_25_13_12_26_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9761	entity_4346_shutterstock_86523529_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   12821	entity_4348_lazarou_kountourioti_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   37864	entity_4369_shutterstock_137811062_edited_2014_2_25_13_13_37_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   10116	entity_5051_giname_pita_edited_2014_4_7_15_31_19_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   27402	entity_5117_porta_del_mar_2_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   17598	entity_5119_porta_del_mar_4_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7239	entity_5123_dsc00896_edited_2014_4_15_9_54_22_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   31727	entity_5124_kseri_elia_dikes_tou_2_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    7165	entity_5128_psinesai_edited_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   16611	entity_5133_psinesai_2_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   23722	entity_5134_century_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   14569	entity_5136_gardenia_edited_2014_4_10_14_26_52_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   25028	entity_5140_enalion_afti_edited_2014_4_8_15_51_53_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   40600	entity_5142_mistral_2_edited_2014_4_8_15_58_14_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   19331	entity_5144_commogusto_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   24479	entity_5146_kipos_gefsis_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   19212	entity_5148_leto_2_edited_2014_4_8_16_17_39_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   34002	entity_5150_leto_4_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   25699	entity_5154_cotommatae_2_edited_2014_4_8_16_31_22_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   28679	entity_5156_cotommatae_4_edited_2014_4_8_16_32_48_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   22494	entity_5160__dsc0015_edited_2014_4_8_17_1_59_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   14150	entity_5162_img_2374_edited_2014_4_8_17_3_31_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   37640	entity_5164_1_edited_2014_4_8_17_10_59_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   44586	entity_5166_paralia_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5839	entity_5179_information_point_edited_b_b_2014_4_8_18_44_8_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   24221	entity_5180_img_0622_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   28660	entity_5182_psaropoula2_259_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   11058	entity_5218_hydraiki_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   26602	entity_5263_hydraiki2_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   26991	entity_5300_skipper_edited_2014_4_14_9_43_38_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   22750	entity_5302_21_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    5856	entity_5777_img_20140517_163414_edited_2014_5_23_10_39_26_220_220.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   24658	entity_5945_10173523_517742124998804_4530397657946929219_n_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   19086	entity_7642_rodi_1_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		   21203	entity_7661_rodi_3_edited_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		    9574	entity_7663_rodi_5_edited_2014_7_28_10_2_38_640_426.jpg
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> ------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>               ΣύνολοΑντιγράφηκεΠαραλείφθηκε Ασυμφωνία   ΑΠΕΤΥΧΕ     Έξτρα
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Αρχεία :       343       343         0         0         0         8
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Χρόνοι :   0:00:10   0:00:10                       0:00:00   0:00:00
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Ταχύτητα :              34.866 Megabyte/λεπτό
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Ολοκληρώθηκε : Fri Dec 05 19:39:16 2014
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>         1 αρχεία αντιγράφηκαν.
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Scanning
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Creating archive C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\Batch\dbfiles\update.zip
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Compressing  ContentEN.db
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>    ROBOCOPY         ::     Ισχυρό πρόγραμμα αντιγραφής αρχείων για Windows                              
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>      Προορισμός : \\10.168.200.5\QWETestContent\Hydra\update\ios\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>     Αρχεία : update.zip
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Επιλογές : /COPY:DAT /IS /R:1000000 /W:30 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> ------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	                   1	C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\Batch\dbfiles\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>  96%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Κατάλογοι :         1         0         1         0         0         0
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>     Byte :   264.1 k   264.1 k         0         0         0         0
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Ταχύτητα :             5755851 Byte/δευτερόλεπτο
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>    ROBOCOPY         ::     Ισχυρό πρόγραμμα αντιγραφής αρχείων για Windows                              
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>      Προορισμός : \\10.168.200.5\QWETestContent\Hydra\update\android\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>     Αρχεία : update.zip
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Επιλογές : /COPY:DAT /IS /R:1000000 /W:30 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> ------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	                   1	C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\Batch\dbfiles\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>  96%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Κατάλογοι :         1         0         1         0         0         0
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>     Byte :   264.1 k   264.1 k         0         0         0         0
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Ταχύτητα :             5410500 Byte/δευτερόλεπτο
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>    ROBOCOPY         ::     Ισχυρό πρόγραμμα αντιγραφής αρχείων για Windows                              
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>      Προορισμός : \\10.168.200.5\QWETestContent\Hydra\update\ios\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>     Αρχεία : ContentEN.db
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Επιλογές : /COPY:DAT /IS /R:1000000 /W:30 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> ------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	                   1	C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\Batch\dbfiles\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>  54%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> ------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>               ΣύνολοΑντιγράφηκεΠαραλείφθηκε Ασυμφωνία   ΑΠΕΤΥΧΕ     Έξτρα
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Αρχεία :         1         1         0         0         0         0
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Χρόνοι :   0:00:00   0:00:00                       0:00:00   0:00:00
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Ταχύτητα :             491.976 Megabyte/λεπτό
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Ολοκληρώθηκε : Fri Dec 05 19:39:17 2014
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> -------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> -------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Έναρξη : Fri Dec 05 19:39:17 2014
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>    Προέλευση : C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\Batch\dbfiles\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		 1007616	ContentGR.db
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>  26%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>  78%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Κατάλογοι :         1         0         1         0         0         0
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>     Byte :   984.0 k   984.0 k         0         0         0         0
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Ταχύτητα :             8612102 Byte/δευτερόλεπτο
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>    ROBOCOPY         ::     Ισχυρό πρόγραμμα αντιγραφής αρχείων για Windows                              
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>      Προορισμός : \\10.168.200.5\QWETestContent\Hydra\update\ios\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>     Αρχεία : ContentRU.db
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Επιλογές : /COPY:DAT /IS /R:1000000 /W:30 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> ------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	                   0	C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\Batch\dbfiles\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> ------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>               ΣύνολοΑντιγράφηκεΠαραλείφθηκε Ασυμφωνία   ΑΠΕΤΥΧΕ     Έξτρα
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Αρχεία :         0         0         0         0         0         0
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Χρόνοι :   0:00:00   0:00:00                       0:00:00   0:00:00
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Ολοκληρώθηκε : Fri Dec 05 19:39:17 2014
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> -------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> -------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Έναρξη : Fri Dec 05 19:39:17 2014
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>    Προέλευση : C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\Batch\dbfiles\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    Νεότερο     		  954368	ContentEN.db
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>  27%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>  82%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Κατάλογοι :         1         0         1         0         0         0
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>     Byte :   932.0 k   932.0 k         0         0         0         0
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Ταχύτητα :             8445734 Byte/δευτερόλεπτο
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>    ROBOCOPY         ::     Ισχυρό πρόγραμμα αντιγραφής αρχείων για Windows                              
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>      Προορισμός : \\10.168.200.5\QWETestContent\Hydra\update\android\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>     Αρχεία : ContentGR.db
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Επιλογές : /COPY:DAT /IS /R:1000000 /W:30 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> ------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	                   1	C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\Batch\dbfiles\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   0%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>  52%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 100%  
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> ------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>               ΣύνολοΑντιγράφηκεΠαραλείφθηκε Ασυμφωνία   ΑΠΕΤΥΧΕ     Έξτρα
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Αρχεία :         1         1         0         0         0         0
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Χρόνοι :   0:00:00   0:00:00                       0:00:00   0:00:00
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Ταχύτητα :             461.250 Megabyte/λεπτό
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Ολοκληρώθηκε : Fri Dec 05 19:39:17 2014
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> -------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> -------------------------------------------------------------------------------
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>   Έναρξη : Fri Dec 05 19:39:17 2014
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816>    Προέλευση : C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\Batch\dbfiles\
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 	    
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> 
+5/12/2014 7:33:16 μμ ==> ''> Info:  PID:12816> Κατάλογοι :         1         0         1         0         0         0
+5/12/2014 7:33:16 μμ ==> ''> Info: Finished:> Copy files from Local to Server for APP: Hydra
+5/12/2014 7:33:16 μμ ==> ''> Info: Hydra Produced successfully over Test Content.
+5/12/2014 7:33:16 μμ ==> ''> Info: Exception thrown while trying to collect attachment files: Could not find file 'C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\Batch\reports\Hydra_db_stats_20141205.txt'.
+5/12/2014 7:39:22 μμ ==> ''> Info: e-Mails sent completed.
+5/12/2014 7:33:16 μμ ==> ''> Info: Hydra e-Mails with attachments sent.

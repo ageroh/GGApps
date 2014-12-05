@@ -1,0 +1,150 @@
+1076@@Official holidays@@-@@-@@-
+1077@@Electricity@@-@@-@@-
+1078@@Currency@@-@@-@@-
+1079@@Time Zone@@-@@-@@-
+1089@@Telephone Information (OTE)@@-@@11888@@11888.ote.gr
+1436@@Currency Exchange@@-@@-@@-
+1438@@Language - Dictionary@@-@@-@@-
+1820@@More Apps@@-@@-@@-
+1829@@Help@@-@@-@@-
+1832@@Weather@@-@@-@@-
+3762@@Passport-Visa@@-@@-@@-
+3789@@Smoking@@-@@-@@-
+3796@@Tipping@@-@@-@@-
+3940@@Tourist Police@@-@@+30 22980 73100@@-
+3945@@Fire Department@@-@@199@@-
+4201@@Orloff Hotel Hydra@@Hydra@@+30 22980 52564@@www.orloff.gr
+4202@@Hotel Angelica@@43, Andrea Miaouli Street, Hydra@@+30 22980 53202@@www.angelica.gr, www.facebook.com/pages/Angelica-VIP-Boutique-Hotel/264512786922796
+4203@@Hydra Icons@@Town, Hydra@@+30 2298 400010@@www.hydraicons.gr, www.facebook.com/HydraIcons
+4204@@Fourseasonshydra@@Plakes Vlihou, Hydra@@+30 22980 53698@@www.fourseasonshydra.gr, www.facebook.com/Fourseasonshydra
+4205@@Nireids Traditional Guesthouse@@Town, Hydra@@+30 22980 52875@@www.nereids-hydra.com
+4206@@Cotommatae Hydra 1810@@Town, Hydra@@+30 22980 53873@@www.cotommatae.gr, www.facebook.com/cotommatae
+4207@@Leto Hydra Hotel@@Town, Hydra@@+30 22980 53385@@www.letohydra.gr
+4208@@Hydroussa Hotel Hydra@@Votsi Square, Hydra@@+30 22980 53580@@www.hydroussa-hydra.gr
+4209@@Piteoussa Guesthouse@@Town, Hydra@@+30 22980 52810@@www.piteoussa.com, www.facebook.com/pages/Piteoussa-Guest-House/38445074924
+4210@@Mistral Hotel@@Town, Hydra@@+30 22980 52509@@www.hotelmistral.gr
+4211@@Bratsera Hotel@@Town, Hydra@@+30 22980 53971@@www.bratserahotel.com
+4212@@Hydra Hotel@@8, Petrou Voulgari Street, Hydra@@+30 22980 53420 @@www.hydra-hotel.gr
+4213@@Hotel Miranda@@Port, Hydra@@+30 22980 52230@@www.mirandahotel.gr
+4214@@Ippokampos@@Town, Hydra@@+30 22980 53453@@www.ippokampos.com
+4215@@Porta del Mare@@Town, Hydra@@+30 22980 54105, +30 6977 777951@@www.portadelmare.gr
+4216@@Phaedra Hotel@@Town, Hydra@@+30 22980 53330 @@www.phaedrahotel.com, www.facebook.com/phaedra.hilda
+4217@@Villa Mandraki@@Mandraki, Hydra@@+30 22980 53072@@www.hydra.com.gr/mandraki-villa
+4218@@Pension Erofili@@Town, Hydra@@+30 22980 54049@@www.pensionerofili.gr
+4219@@Theassis Guesthouse@@Town, Hydra@@+30 22980 52411@@www.theassis.gr
+4220@@Mira Mare@@Mandraki, Hydra@@+30 22980 52300@@www.miramare.gr, www.facebook.com/miramare.hydra
+4221@@Alkionides Pension@@Town, Hydra@@+30 22980 54055@@www.alkionidespension.com
+4222@@Hotel Sophia@@1, Miaouli Street & Paralias, Hydra@@+30 22980 52313@@www.hotelsophia.gr, www.facebook.com/pages/Hotel-Sophia-boutique-hotel/145622042161145
+4223@@Erato Villas@@Vlihos, Hydra@@-@@www.hydraerato.com
+4224@@Hotel Nefeli@@Town, Hydra@@+30 22980 53297@@www.hotelnefeli.eu
+4225@@Residence Kiafa@@Town, Hydra@@+30 210 3640441@@yadeshotels.gr/hotel/residence-kiafa
+4226@@The Stone House@@Hydra@@+30 6984 522355@@www.oliveandstone.com/stonehouse.html
+4227@@Mandraki@@Mandraki, Hydra@@-@@-
+4228@@Spilia@@Spilia, Hydra@@-@@-
+4229@@Hydronetta@@Hydronetta, Hydra@@-@@-
+4230@@Avlaki@@Avlaki, Hydra@@-@@-
+4231@@Palamidas@@Palamidas, Hydra@@-@@-
+4232@@Vlihos@@Vlihos, Hydra@@-@@-
+4233@@Bisti@@Bisti, Hydra@@-@@-
+4234@@Agios Nikolaos@@Agios Nikolaos, Hydra@@-@@-
+4235@@Agios Georgios@@Agios Georgios, Hydra@@-@@-
+4236@@Molos@@Molos, Hydra@@-@@-
+4237@@Limnioniza@@Limnioniza, Hydra@@-@@-
+4238@@Nisiza@@Nisiza, Hydra@@-@@-
+4239@@Megalo Kamini@@Megalo Kamini, Hydra@@-@@-
+4240@@Mikro Kamini@@Mikro Kamini, Hydra@@-@@-
+4241@@Klimaki@@Klimaki, Hydra@@-@@-
+4242@@Kaoumithi@@Kaoumithi, Hydra@@-@@-
+4243@@Plakes Vlihou@@Plakes Vlihou, Hydra@@-@@-
+4244@@Miaouleia@@-@@-@@-
+4245@@Kountourioteia@@-@@-@@-
+4247@@Sailing Races@@-@@-@@-
+4248@@Carnival@@-@@-@@-
+4249@@Easter on Hydra@@-@@-@@-
+4250@@Hiking@@-@@-@@-
+4251@@Hydra Diving Center@@Vlihos, Hydra@@+30 6977 792403, +30 6982 972084@@www.hydra.com.gr/diving-center/en-index.html
+4252@@Excursion to Spetses@@-@@-@@-
+4253@@Excursion to Poros@@-@@-@@-
+4254@@Excursion to Epidavros@@Epidavros@@-@@-
+4255@@Useful Information-Hydra@@-@@-@@-
+4256@@Hydra Town Hall@@-@@+30 22980 52210@@-
+4257@@Hydra Health Center@@-@@+30 22980 52420, +30 6972 099152 @@-
+4258@@Hospital@@-@@+30 22980 53150@@-
+4259@@Police@@-@@+30 22980 52205@@-
+4260@@Hydra Port Authority@@-@@+30 22980 52279@@-
+4261@@Citizens' Service Centre@@-@@+30 22980 53782@@-
+4262@@Pharmacies@@-@@-@@-
+4263@@Emergency Services@@-@@-@@-
+4264@@Local Information@@-@@+30 22980 53365@@-
+4265@@Transportation@@-@@-@@-
+4266@@Donkeys@@-@@-@@-
+4267@@Water Taxi@@Port, Hydra@@+30 22980 53690@@-
+4268@@Flying Dolphin@@-@@+30 210 4199000@@www.hellenicseaways.gr
+4270@@Mandraki 1800@@Mandraki, Hydra@@+30 22980 52112@@www.facebook.com/Mandraki1800
+4271@@Geitoniko@@Town, Hydra@@+30 22980 53615@@-
+4272@@Sunset@@Canons, Hydra@@+30 22980 52067@@www.sunsethydra.com
+4273@@Xeri Elia@@Xeri Elia Square, Hydra@@+30 22980 52886@@www.facebook.com/xerielia.douskos
+4274@@Psaropoula@@Port, Hydra@@+30 22980 52573@@www.psaropoula.org
+4275@@Kondilenia@@Kaminia, Hydra@@+30 22980 53520@@www.hydra-kodylenia.gr
+4276@@To Paradosiakon@@Town, Hydra@@+30 22980 54155@@www.hydra.com.gr/paradosiako
+4277@@Enalion@@Vlihos, Hydra@@+30 22980 53455@@enalion-hydra.gr
+4288@@Da Barba Dimas@@182, Tobazi Street, Town, Hydra@@+30 22980 52967@@-
+4289@@Ta Gefiria@@Town, Hydra@@+30 22980 29677@@-
+4290@@Marina Tavern@@Vlihos, Hydra@@+30 22980 52496@@-
+4291@@Zefiros@@Town, Hydra@@+30 22980 52008@@-
+4292@@Veranda@@Port, Hydra@@+30 22980 52259@@www.hydra.com.gr/veranda-restaurant
+4293@@Bratsera@@Town, Hydra@@+30 22980 53971@@www.bratserahotel.com, www.facebook.com/pages/Bratsera-Hotel-Hydra/139748242705180
+4294@@Omilos@@Port, Hydra@@+30 22980 53800@@www.omilos-hydra.com
+4295@@Tsangaris Patisserie@@Port, Hydra@@+30 22980 52314@@www.tsangaris-ydra.gr
+4296@@4 Seasons@@Plakes Vlihou, Hydra@@+30 22980 53698@@www.fourseasonshydra.gr, www.facebook.com/Fourseasonshydra
+4298@@Amalour@@Tobazi Street, Town, Hydra@@+30 22980 29680@@www.amalour.com
+4299@@Pirate Bar@@Town, Hydra@@+30 22980 52711@@-
+4300@@Castello Beach Bar & Restaurant@@Kamini, Hydra@@+30 22980 54101@@www.castellohydra.gr
+4301@@Beach Club Spilia@@Spilia, Hydra@@+30 22980 54166@@-
+4302@@Creperie Mikro Cafe@@Town, Hydra@@+30 22680 52335@@-
+4303@@O Kipos tis Gefsis@@Town, Hydra@@+30 22980 53705@@-
+4304@@Papagalos@@Port, Hydra@@+30 22980 52626 @@-
+4305@@Hydronetta@@Hydronetta, Hydra@@+30 22980 54166@@-
+4306@@Skipper@@Port, Hydra@@+30 22980 52483@@www.facebook.com/pages/Skipper-Cafe/185649574841590
+4307@@Elena Votsi@@Port, Hydra@@+30 22980 52637@@www.elenavotsi.com, www.facebook.com/ElenaVotsiOfficial
+4308@@Arrraides@@Town, Hydra@@+30 22980 54006@@www.arrraides.com, www.facebook.com/pages/arrraides/186842488085705
+4309@@Speak Out@@Port, Hydra@@+30 22980 52099@@speakouthydra.blogspot.gr
+4310@@Spoiled@@180, Tobazi Street, Hydra@@+30 22980 52363@@www.spoiled.gr
+4313@@Commo Gusto@@Town, Hydra@@+30 22980 54076@@-
+4314@@Macaroons@@-@@-@@-
+4315@@Foreign Exchange@@-@@-@@-
+4316@@Banks@@-@@-@@-
+4317@@Travel Agents@@Town, Hydra@@+30 22980 54007@@www.hydreoniki.gr
+4318@@Medical Care@@-@@-@@-
+4319@@Did you Know...@@-@@-@@-
+4320@@Beaches@@-@@-@@-
+4321@@Best View@@-@@-@@-
+4323@@Donkey Ride@@-@@-@@-
+4324@@Entertainment@@-@@-@@-
+4325@@When to Visit@@-@@-@@-
+4326@@Art on Hydra@@-@@-@@-
+4327@@Parking Metohi@@-@@-@@-
+4328@@Nostimomania@@Port, Hydra@@+30 22980 53005@@www.nostimomania.com, www.facebook.com/pages/Nostimomania/180246045495173?ref=stream
+4329@@Town@@Old Town, Hydra@@-@@-
+4331@@Rafalias Pharmacy@@D. Rafalia Street, Hydra@@+30 22980 52059@@www.facebook.com/rafaliaspharmacy
+4332@@Tobazi Mansion (School of Fine Art)@@Port, Hydra@@+30 22980 52291@@-
+4333@@Post Byzantine Art and History Museum (Georgios Kountouriotis Mansion)@@Port, Hydra@@+30 22980 52245@@-
+4334@@"Melina Merkouri" Exhibition and Concert Hall@@Port, Hydra@@-@@-
+4335@@Port@@Port, Hydra@@-@@-
+4336@@Merchant Marine Academy@@Port, Hydra@@-@@-
+4337@@Zourva Lighthouse@@Hydra@@-@@-
+4343@@Dokos Island & Dokos Lighthouse@@-@@-@@-
+4344@@Mansions@@Town, Hydra@@-@@-
+4345@@Churches & Monasteries@@Town, Hydra@@-@@-
+4346@@Historical Archive Museum@@Port, Hydra@@+30 22890 52355, +30 22890 54142@@www.iamy.gr
+4348@@Lazaros Kountouriotis Mansion@@Port, Hydra@@+30 22980 52421@@-
+4349@@About us@@-@@-@@-
+5051@@Giname Pita@@Port, Hydra@@+30 22980 52593@@www.facebook.com/GinamePita
+5123@@Zoe's@@Port, Hydra@@+30 22980 52143, +30 6972 258041@@-
+5128@@Psinese@@Port, Hydra@@+30 22980 52467@@www.facebook.com/pages/%CE%A8%CE%AE%CE%BD%CE%B5%CF%83%CE%B1%CE%B9/333704040102764?fref=ts
+5134@@21st Century@@Port, Hydra@@+30 22980 53105, +30 22980 53621@@-
+5136@@"Gardenia" Summer Cinema@@Hora, Hydra@@+30 22980 53105@@cineclubhydras.blogspot.gr
+5179@@Travel Information@@-@@-@@-
+5218@@Idraiki Gonia@@Port, Hydra@@+30 22980 53813@@-
+5777@@Hydra Style@@Hora, Hydra@@+30 22980 54168@@www.facebook.com/pages/%CE%97ydra-Style/433363410103343
+7642@@Rodi@@Avlaki, Hydra@@+30 22980 29751@@www.facebook.com/pages/%CE%A1%CE%9F%CE%94%CE%99/579362682163028

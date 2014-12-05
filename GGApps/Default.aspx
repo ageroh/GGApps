@@ -39,12 +39,12 @@
             
             <h3>Select application to update</h3>
             <span>*All previous updates must have finished!</span>
-            <ol class="round">
-                <li class="one">
-                    <asp:DropDownList ID="ddStart" BackColor="GreenYellow" runat="server"></asp:DropDownList>
-                    <asp:Button id="GoFirst" runat="server" Text="Build Report" OnClick="GoFirst_Click"/>
-                </li>
-            </ol>
+            
+            <br />
+            <asp:DropDownList ID="ddStart" Width="200" runat="server"></asp:DropDownList>
+            <asp:Button id="GoFirst" runat="server" Text="Build Report" OnClick="GoFirst_Click"/>
+
+
             
             <textarea readonly id="MainTextArea" rows="400" cols="80"  style="height:200px; display:none;" >
                 <asp:Literal runat="server" id="txtEditor1" />

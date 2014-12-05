@@ -9,12 +9,12 @@
             Enabled="true" Text="Export Database only" Value="DBOnly"
             />
         <asp:ListItem 
-            Enabled="true" Text="Genearate and Copy images only" Value="ImagesOnly"
+            Enabled="false" Text="Genearate and Copy images only" Value="ImagesOnly"
             />
         <asp:ListItem
                 Enabled="True"
-                Selected="false"
-                Text="Export App for Selected DB"
+                Selected="true"
+                Text="Execute All"
                 Value="FullBatch"
             />
     </asp:RadioButtonList>

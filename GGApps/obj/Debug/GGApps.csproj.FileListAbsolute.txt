@@ -46,5 +46,3 @@ C:\Users\Administrator\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\D
 C:\Users\Administrator\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Debug\GGApps.pdb
 C:\Users\Administrator\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Debug\GGApps.csprojResolveAssemblyReference.cache
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Microsoft.Web.Infrastructure.xml
-C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\SendGrid.SmtpApi.dll
-C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\SendGridMail.dll

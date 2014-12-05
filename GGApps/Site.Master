@@ -120,7 +120,7 @@
         <div class="content-wrapper">
             <div class="float-left">
                 <p class="site-title">
-                    <a runat="server" href="~/">GG In-App Update</a>
+                    <a runat="server" href="~/">GreekGuide App Update</a>
                 </p>
             </div>
             <div class="float-right">

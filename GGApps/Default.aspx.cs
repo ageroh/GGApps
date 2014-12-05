@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Text;
 using System.IO;
 using Microsoft.AspNet.Membership.OpenAuth;
+using System.Web.Hosting;
 
 namespace GGApps
 {
@@ -19,6 +20,14 @@ namespace GGApps
         public static StringBuilder sb = new StringBuilder();
         public static String mapPathError = "";
         public static String[] otherLangApps;
+
+
+#if DEBUG
+        public static string actualWorkDir = "C:\\Users\\Argiris\\Desktop\\GG_Batch\\Batch\\";    
+#else
+        public static string actualWorkDir = HostingEnvironment.MapPath("/Batch/");
+#endif
+
 
         public static CreateLogFiles Log
         {
@@ -37,6 +46,29 @@ namespace GGApps
             }
                 
         }
+
+
+
+        public int timesExec
+        {
+            get
+            {
+                if (HttpContext.Current.Session["timesExec"] == null)
+                {
+                    return 0;
+                }
+
+                return ((int)HttpContext.Current.Session["timesExec"]);
+            }
+            set 
+            {
+                HttpContext.Current.Session["timesExec"] = value;
+            }
+                
+        }
+
+        
+
         #endregion
 
 
@@ -85,7 +117,7 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                Log.ErrorLog(mapPathError, e.Message);
+                Log.ErrorLog(mapPathError, e.Message, "generic");
             }
             return null;
 
@@ -127,6 +159,8 @@ namespace GGApps
                 Int32 appID = Int32.Parse(ddStart.SelectedValue);
                 String appName = ddStart.SelectedItem.ToString();
 
+                Log.InfoLog(mapPathError, "Started : Building Report for " + appName, appName, User.Identity.Name);
+
 #if !DEBUG                
                 Refresh_DB(appID, appName);
 #endif
@@ -163,6 +197,7 @@ namespace GGApps
                 Session["appID"] = appID;
                 Session["appName"] = appName;
 
+                Log.InfoLog(mapPathError, "Finished : Building Report for " + appName, appName, User.Identity.Name);
             }
         }
 
@@ -185,17 +220,17 @@ namespace GGApps
 
                 sb.AppendLine("\nRefresing DB for " + name);
                 // do for greek
-                Log.InfoLog(mapPathError, "Refresing Greek DB for " + name, User.Identity.Name);
+                Log.InfoLog(mapPathError, "Refresing Greek DB for " + name, name, User.Identity.Name);
                 Refresh_DB_inner(id, name, 1).ToString();
 
                 // do for english
-                Log.InfoLog(mapPathError, "Refresing English DB for " + name, User.Identity.Name);
+                Log.InfoLog(mapPathError, "Refresing English DB for " + name, name, User.Identity.Name);
                 Refresh_DB_inner(id, name, 2).ToString();
 
                 // Do for Russian if needed.
                 if (CheckThreeLanguages(id))
                 {
-                    Log.InfoLog(mapPathError, "Refresing Russian DB for " + name, User.Identity.Name);
+                    Log.InfoLog(mapPathError, "Refresing Russian DB for " + name, name, User.Identity.Name);
                     Refresh_DB_inner(id, name, 4).ToString();
                 }
 
@@ -205,7 +240,7 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                Log.ErrorLog(mapPathError, e.Message + e.StackTrace, User.Identity.Name);
+                Log.ErrorLog(mapPathError, e.Message + e.StackTrace, name, User.Identity.Name);
 
             }
         }
@@ -233,7 +268,7 @@ namespace GGApps
                             // Log this information 
                             //Response.Write("</br>" + Convert.ToString(reader.GetValue(0)) + " = " + Convert.ToString(reader.GetValue(1)));
                             string str = Convert.ToString(reader.GetValue(0)) + " = " + Convert.ToString(reader.GetValue(1));
-                            Log.InfoLog(mapPathError, str, User.Identity.Name);
+                            Log.InfoLog(mapPathError, str, name, User.Identity.Name);
                             sb.AppendLine(str);
                         }
 
@@ -261,45 +296,62 @@ namespace GGApps
 
             // Test 1 - entities without location 
             sb.AppendLine("<h3>Test 1 - entities without location</h3>\n");
-            //Log.InfoLog(mapPathError, "Exporting Report stage 1", User.Identity.Name);
+            Log.InfoLog(mapPathError, "Exporting Report stage 1", name, User.Identity.Name);
             sb.AppendLine(executeSQLScript(id, name, 0, path + "db_test_2_1_entities_without_location.sql", "ContentDB_165"));
     
             //Test 1a - entities in multiple locations 
             sb.AppendLine("<h3>Test 1a - entities in multiple locations</h3>\n");
-            //Log.InfoLog(mapPathError, "Exporting Report stage 2_1a", User.Identity.Name);
+            Log.InfoLog(mapPathError, "Exporting Report stage 2_1a", name, User.Identity.Name);
             sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_1a_entities_in_multiple_locations.sql")) ;
 
             // DONT FORGET CHECK FOR RUSSIAN !
 
             // Test 2 - entities connected to non leaves 
             sb.AppendLine("<h3>Test 2 - entities connected to non leaves</h3>\n");
-            //Log.InfoLog(mapPathError, "Exporting Report stage 2", User.Identity.Name);
+            Log.InfoLog(mapPathError, "Exporting Report stage 2", name, User.Identity.Name);
             sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_2_entities_connected_to_non_leaves.sql"));
 
             //Test 3 - entities without category 
             sb.AppendLine("<h3>Test 3 - entities without category</h3>\n");
-            //Log.InfoLog(mapPathError, "Exporting Report stage 3", User.Identity.Name);
+            Log.InfoLog(mapPathError, "Exporting Report stage 3", name, User.Identity.Name);
             sb.AppendLine(executeSQLScript( id, name, 2, path + "db_test_2_3_entities_without_category.sql"));
 
             // Test 4a - entities with invalid characters (GR) 
             sb.AppendLine("<h3>Test 4a - entities with invalid characters (GR)</h3>\n");
-            //Log.InfoLog(mapPathError, "Exporting Report stage 4a", User.Identity.Name);
+            Log.InfoLog(mapPathError, "Exporting Report stage 4a", name, User.Identity.Name);
             sb.AppendLine(executeSQLScript( id, name, 1, path + "db_test_2_4_entities_with_invalid_characters.sql"));
 
             // Test 4b - entities with invalid characters (EN) 
             sb.AppendLine("<h3>Test 4b - entities with invalid characters (EN)</h3>\n");
-            Log.InfoLog(mapPathError, "Exporting Report stage 4b", User.Identity.Name);
+            Log.InfoLog(mapPathError, "Exporting Report stage 4b", name, User.Identity.Name);
             sb.AppendLine(executeSQLScript( id, name, 2, path + "db_test_2_4_entities_with_invalid_characters.sql"));
             
             // Test 5 - entities with greek characters in english 
             sb.AppendLine("<h3>Test 5 - entities with greek characters in english</h3>\n");
-            //Log.InfoLog(mapPathError, "Exporting Report stage 5", User.Identity.Name);
+            Log.InfoLog(mapPathError, "Exporting Report stage 5", name, User.Identity.Name);
             sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_5_entities_with_greek_characters_in_english.sql"));
 
 
-            // log report
-            Log.InfoLog(mapPathError, "App Report for: " + name + "\n\n" + sb.ToString(), User.Identity.Name);
+            // Save report to File
+            string filepath;
+            if (!File.Exists(actualWorkDir + "reports\\" + name + "_report_" + DateTime.Now.ToString("yyyyMMdd") + ".html"))
+            {
+                filepath = actualWorkDir + "reports\\" + name + "_report_" + DateTime.Now.ToString("yyyyMMdd") + ".html";
+
+                File.WriteAllText(filepath , sb.ToString(), Encoding.UTF8);
+            }
+            else {
+                filepath = actualWorkDir + "reports\\" + name + "_report_" + DateTime.Now.ToString("yyyyMMdd") + "_" + (timesExec++).ToString() + ".html";
+                File.WriteAllText(filepath, sb.ToString(), Encoding.UTF8);
+            }
+
+
+            //
+            Log.InfoLog(mapPathError, "Report for App: " + name + " Succesfully Generated and saved to:" + filepath, name, User.Identity.Name);
+             
             // sent mail ?
+
+
 
             return sb.ToString();
             // show messages after execution on screen
@@ -309,7 +361,7 @@ namespace GGApps
 
 
 
-        private String executeSQLScript(int id, string name, int langID, string sqlFile, string dbName = null)
+        public static String executeSQLScript(int id, string name, int langID, string sqlFile, string dbName = null)
         {
             FileInfo fileInfo = new FileInfo(sqlFile);
             string script = fileInfo.OpenText().ReadToEnd();
@@ -351,7 +403,7 @@ namespace GGApps
         void myConnection_InfoMessage(object sender, SqlInfoMessageEventArgs e)
         {
             sb.AppendLine(e.Message);
-            Log.InfoLog(mapPathError, e.Message, User.Identity.Name);
+            Log.InfoLog(mapPathError, e.Message, Session["appName"].ToString(), User.Identity.Name);
 
         }
 
@@ -441,7 +493,7 @@ namespace GGApps
 
         }
 
-        private string BuildDynamicConnectionStringForDB(int id, string name, int lang, string DBNameOver = null)
+        private static string BuildDynamicConnectionStringForDB(int id, string name, int lang, string DBNameOver = null)
         {
             System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
             if (rootWebConfig1.AppSettings.Settings["DynamicConnectionString"] != null)

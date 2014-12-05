@@ -40,12 +40,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="SendGrid.SmtpApi">
-      <HintPath>..\packages\SendGrid.SmtpApi.1.1.3\lib\net40\SendGrid.SmtpApi.dll</HintPath>
-    </Reference>
-    <Reference Include="SendGridMail">
-      <HintPath>..\packages\Sendgrid.5.0.0\lib\SendGridMail.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -136,6 +130,21 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Batch\DbAccess.dll" />
+    <Content Include="Batch\db_number_of_images.sql" />
+    <Content Include="Batch\db_stats.sql" />
+    <Content Include="Batch\gg_fix_html_entities.py" />
+    <Content Include="Batch\gg_free_lines.py" />
+    <Content Include="Batch\gg_img.py" />
+    <Content Include="Batch\gg_img.sql" />
+    <Content Include="Batch\log4net.dll" />
+    <Content Include="Batch\SQLiteConverter.exe" />
+    <Content Include="Batch\System.Data.SQLite.dll" />
+    <Content Include="Batch\watermark.png" />
+    <Content Include="Batch\watermark2.png" />
+    <Content Include="Batch\watermark3.png" />
+    <Content Include="Batch\watermark4.png" />
+    <Content Include="Batch\WinSCP.exe" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\AspNet.ScriptManager.jQuery.dll" />
     <Content Include="bin\AspNet.ScriptManager.jQuery.UI.Combined.dll" />
@@ -168,7 +177,6 @@
     <Content Include="bin\System.Web.Providers.dll" />
     <Content Include="bin\WebGrease.dll" />
     <Content Include="BuildApp.aspx" />
-    <Content Include="completed.html" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\img\720.GIF" />
     <Content Include="Content\Site.css" />
@@ -226,7 +234,8 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
-    <Content Include="EmailTemplateSuccess.html" />
+    <Content Include="EmailTemplates\EmailTemplateFailure.html" />
+    <Content Include="EmailTemplates\EmailTemplateSuccess.html" />
     <Content Include="ExternalApp\SQLiteConverter.exe" />
     <Content Include="ExternalApp\System.Data.SQLite.dll" />
     <Content Include="Images\accent.png" />
@@ -249,6 +258,21 @@
     <Content Include="ExternalApp\SQLiteConverter.exe.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Batch\1_refresh_db.bat" />
+    <Content Include="Batch\2_db_tests.bat" />
+    <Content Include="Batch\3a_fix_html_entities.bat" />
+    <Content Include="Batch\3_convert_db.bat" />
+    <Content Include="Batch\4_db_stats.bat" />
+    <Content Include="Batch\5_get_images.bat" />
+    <Content Include="Batch\6_image_stats.bat" />
+    <Content Include="Batch\7_ftp_fb_img.bat" />
+    <Content Include="Batch\8_ftp_entity_text.bat" />
+    <Content Include="Batch\9b_copy_databases.bat" />
+    <Content Include="Batch\9_copy_img_databases.bat" />
+    <Content Include="Batch\ftpcmd.dat" />
+    <Content Include="Batch\SQLiteConverter.exe.config" />
+    <Content Include="Batch\WinSCP.com" />
+    <Content Include="Batch\WinSCP.ini" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -276,6 +300,7 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="SQLScripts\db_number_of_images.sql" />
     <Content Include="SQLScripts\db_test_2_1a_entities_in_multiple_locations.sql" />
     <Content Include="SQLScripts\db_test_2_1_entities_without_location.sql" />
     <Content Include="SQLScripts\db_test_2_2_entities_connected_to_non_leaves.sql" />
@@ -387,6 +412,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Batch\dbfiles\" />
+    <Folder Include="Batch\reports\" />
     <Folder Include="Logs\" />
   </ItemGroup>
   <ItemGroup>

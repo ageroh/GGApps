@@ -12,11 +12,8 @@
         </header>
         <p>
             <span class="label">Main:</span>
-            <span>425.555.0100</span>
-        </p>
-        <p>
-            <span class="label">After Hours:</span>
-            <span>425.555.0199</span>
+            <span>211 105 4500 </span>
+            <span>(int: 1798)</span>
         </p>
     </section>
 
@@ -26,15 +23,7 @@
         </header>
         <p>
             <span class="label">Support:</span>
-            <span><a href="mailto:Support@example.com">Support@example.com</a></span>
-        </p>
-        <p>
-            <span class="label">Marketing:</span>
-            <span><a href="mailto:Marketing@example.com">Marketing@example.com</a></span>
-        </p>
-        <p>
-            <span class="label">General:</span>
-            <span><a href="mailto:General@example.com">General@example.com</a></span>
+            <span><a href="mailto:development@primemedia.gr">development@primemedia.gr</a></span>
         </p>
     </section>
 
@@ -43,8 +32,8 @@
             <h3>Address:</h3>
         </header>
         <p>
-            One Microsoft Way<br />
-            Redmond, WA 98052-6399
+            Kifisias 209<br />
+            PrimeMedia Block, Floor Ground
         </p>
     </section>
 </asp:Content>
