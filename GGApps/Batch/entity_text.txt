@@ -3,148 +3,189 @@
 1078@@Currency@@-@@-@@-
 1079@@Time Zone@@-@@-@@-
 1089@@Telephone Information (OTE)@@-@@11888@@11888.ote.gr
+1090@@Tourist Police (National Tourist Board information)@@-@@171@@-
 1436@@Currency Exchange@@-@@-@@-
 1438@@Language - Dictionary@@-@@-@@-
 1820@@More Apps@@-@@-@@-
 1829@@Help@@-@@-@@-
 1832@@Weather@@-@@-@@-
-3762@@Passport-Visa@@-@@-@@-
-3789@@Smoking@@-@@-@@-
-3796@@Tipping@@-@@-@@-
-3940@@Tourist Police@@-@@+30 22980 73100@@-
-3945@@Fire Department@@-@@199@@-
-4201@@Orloff Hotel Hydra@@Hydra@@+30 22980 52564@@www.orloff.gr
-4202@@Hotel Angelica@@43, Andrea Miaouli Street, Hydra@@+30 22980 53202@@www.angelica.gr, www.facebook.com/pages/Angelica-VIP-Boutique-Hotel/264512786922796
-4203@@Hydra Icons@@Town, Hydra@@+30 2298 400010@@www.hydraicons.gr, www.facebook.com/HydraIcons
-4204@@Fourseasonshydra@@Plakes Vlihou, Hydra@@+30 22980 53698@@www.fourseasonshydra.gr, www.facebook.com/Fourseasonshydra
-4205@@Nireids Traditional Guesthouse@@Town, Hydra@@+30 22980 52875@@www.nereids-hydra.com
-4206@@Cotommatae Hydra 1810@@Town, Hydra@@+30 22980 53873@@www.cotommatae.gr, www.facebook.com/cotommatae
-4207@@Leto Hydra Hotel@@Town, Hydra@@+30 22980 53385@@www.letohydra.gr
-4208@@Hydroussa Hotel Hydra@@Votsi Square, Hydra@@+30 22980 53580@@www.hydroussa-hydra.gr
-4209@@Piteoussa Guesthouse@@Town, Hydra@@+30 22980 52810@@www.piteoussa.com, www.facebook.com/pages/Piteoussa-Guest-House/38445074924
-4210@@Mistral Hotel@@Town, Hydra@@+30 22980 52509@@www.hotelmistral.gr
-4211@@Bratsera Hotel@@Town, Hydra@@+30 22980 53971@@www.bratserahotel.com
-4212@@Hydra Hotel@@8, Petrou Voulgari Street, Hydra@@+30 22980 53420 @@www.hydra-hotel.gr
-4213@@Hotel Miranda@@Port, Hydra@@+30 22980 52230@@www.mirandahotel.gr
-4214@@Ippokampos@@Town, Hydra@@+30 22980 53453@@www.ippokampos.com
-4215@@Porta del Mare@@Town, Hydra@@+30 22980 54105, +30 6977 777951@@www.portadelmare.gr
-4216@@Phaedra Hotel@@Town, Hydra@@+30 22980 53330 @@www.phaedrahotel.com, www.facebook.com/phaedra.hilda
-4217@@Villa Mandraki@@Mandraki, Hydra@@+30 22980 53072@@www.hydra.com.gr/mandraki-villa
-4218@@Pension Erofili@@Town, Hydra@@+30 22980 54049@@www.pensionerofili.gr
-4219@@Theassis Guesthouse@@Town, Hydra@@+30 22980 52411@@www.theassis.gr
-4220@@Mira Mare@@Mandraki, Hydra@@+30 22980 52300@@www.miramare.gr, www.facebook.com/miramare.hydra
-4221@@Alkionides Pension@@Town, Hydra@@+30 22980 54055@@www.alkionidespension.com
-4222@@Hotel Sophia@@1, Miaouli Street & Paralias, Hydra@@+30 22980 52313@@www.hotelsophia.gr, www.facebook.com/pages/Hotel-Sophia-boutique-hotel/145622042161145
-4223@@Erato Villas@@Vlihos, Hydra@@-@@www.hydraerato.com
-4224@@Hotel Nefeli@@Town, Hydra@@+30 22980 53297@@www.hotelnefeli.eu
-4225@@Residence Kiafa@@Town, Hydra@@+30 210 3640441@@yadeshotels.gr/hotel/residence-kiafa
-4226@@The Stone House@@Hydra@@+30 6984 522355@@www.oliveandstone.com/stonehouse.html
-4227@@Mandraki@@Mandraki, Hydra@@-@@-
-4228@@Spilia@@Spilia, Hydra@@-@@-
-4229@@Hydronetta@@Hydronetta, Hydra@@-@@-
-4230@@Avlaki@@Avlaki, Hydra@@-@@-
-4231@@Palamidas@@Palamidas, Hydra@@-@@-
-4232@@Vlihos@@Vlihos, Hydra@@-@@-
-4233@@Bisti@@Bisti, Hydra@@-@@-
-4234@@Agios Nikolaos@@Agios Nikolaos, Hydra@@-@@-
-4235@@Agios Georgios@@Agios Georgios, Hydra@@-@@-
-4236@@Molos@@Molos, Hydra@@-@@-
-4237@@Limnioniza@@Limnioniza, Hydra@@-@@-
-4238@@Nisiza@@Nisiza, Hydra@@-@@-
-4239@@Megalo Kamini@@Megalo Kamini, Hydra@@-@@-
-4240@@Mikro Kamini@@Mikro Kamini, Hydra@@-@@-
-4241@@Klimaki@@Klimaki, Hydra@@-@@-
-4242@@Kaoumithi@@Kaoumithi, Hydra@@-@@-
-4243@@Plakes Vlihou@@Plakes Vlihou, Hydra@@-@@-
-4244@@Miaouleia@@-@@-@@-
-4245@@Kountourioteia@@-@@-@@-
-4247@@Sailing Races@@-@@-@@-
-4248@@Carnival@@-@@-@@-
-4249@@Easter on Hydra@@-@@-@@-
-4250@@Hiking@@-@@-@@-
-4251@@Hydra Diving Center@@Vlihos, Hydra@@+30 6977 792403, +30 6982 972084@@www.hydra.com.gr/diving-center/en-index.html
-4252@@Excursion to Spetses@@-@@-@@-
-4253@@Excursion to Poros@@-@@-@@-
-4254@@Excursion to Epidavros@@Epidavros@@-@@-
-4255@@Useful Information-Hydra@@-@@-@@-
-4256@@Hydra Town Hall@@-@@+30 22980 52210@@-
-4257@@Hydra Health Center@@-@@+30 22980 52420, +30 6972 099152 @@-
-4258@@Hospital@@-@@+30 22980 53150@@-
-4259@@Police@@-@@+30 22980 52205@@-
-4260@@Hydra Port Authority@@-@@+30 22980 52279@@-
-4261@@Citizens' Service Centre@@-@@+30 22980 53782@@-
-4262@@Pharmacies@@-@@-@@-
-4263@@Emergency Services@@-@@-@@-
-4264@@Local Information@@-@@+30 22980 53365@@-
-4265@@Transportation@@-@@-@@-
-4266@@Donkeys@@-@@-@@-
-4267@@Water Taxi@@Port, Hydra@@+30 22980 53690@@-
-4268@@Flying Dolphin@@-@@+30 210 4199000@@www.hellenicseaways.gr
-4270@@Mandraki 1800@@Mandraki, Hydra@@+30 22980 52112@@www.facebook.com/Mandraki1800
-4271@@Geitoniko@@Town, Hydra@@+30 22980 53615@@-
-4272@@Sunset@@Canons, Hydra@@+30 22980 52067@@www.sunsethydra.com
-4273@@Xeri Elia@@Xeri Elia Square, Hydra@@+30 22980 52886@@www.facebook.com/xerielia.douskos
-4274@@Psaropoula@@Port, Hydra@@+30 22980 52573@@www.psaropoula.org
-4275@@Kondilenia@@Kaminia, Hydra@@+30 22980 53520@@www.hydra-kodylenia.gr
-4276@@To Paradosiakon@@Town, Hydra@@+30 22980 54155@@www.hydra.com.gr/paradosiako
-4277@@Enalion@@Vlihos, Hydra@@+30 22980 53455@@enalion-hydra.gr
-4288@@Da Barba Dimas@@182, Tobazi Street, Town, Hydra@@+30 22980 52967@@-
-4289@@Ta Gefiria@@Town, Hydra@@+30 22980 29677@@-
-4290@@Marina Tavern@@Vlihos, Hydra@@+30 22980 52496@@-
-4291@@Zefiros@@Town, Hydra@@+30 22980 52008@@-
-4292@@Veranda@@Port, Hydra@@+30 22980 52259@@www.hydra.com.gr/veranda-restaurant
-4293@@Bratsera@@Town, Hydra@@+30 22980 53971@@www.bratserahotel.com, www.facebook.com/pages/Bratsera-Hotel-Hydra/139748242705180
-4294@@Omilos@@Port, Hydra@@+30 22980 53800@@www.omilos-hydra.com
-4295@@Tsangaris Patisserie@@Port, Hydra@@+30 22980 52314@@www.tsangaris-ydra.gr
-4296@@4 Seasons@@Plakes Vlihou, Hydra@@+30 22980 53698@@www.fourseasonshydra.gr, www.facebook.com/Fourseasonshydra
-4298@@Amalour@@Tobazi Street, Town, Hydra@@+30 22980 29680@@www.amalour.com
-4299@@Pirate Bar@@Town, Hydra@@+30 22980 52711@@-
-4300@@Castello Beach Bar & Restaurant@@Kamini, Hydra@@+30 22980 54101@@www.castellohydra.gr
-4301@@Beach Club Spilia@@Spilia, Hydra@@+30 22980 54166@@-
-4302@@Creperie Mikro Cafe@@Town, Hydra@@+30 22680 52335@@-
-4303@@O Kipos tis Gefsis@@Town, Hydra@@+30 22980 53705@@-
-4304@@Papagalos@@Port, Hydra@@+30 22980 52626 @@-
-4305@@Hydronetta@@Hydronetta, Hydra@@+30 22980 54166@@-
-4306@@Skipper@@Port, Hydra@@+30 22980 52483@@www.facebook.com/pages/Skipper-Cafe/185649574841590
-4307@@Elena Votsi@@Port, Hydra@@+30 22980 52637@@www.elenavotsi.com, www.facebook.com/ElenaVotsiOfficial
-4308@@Arrraides@@Town, Hydra@@+30 22980 54006@@www.arrraides.com, www.facebook.com/pages/arrraides/186842488085705
-4309@@Speak Out@@Port, Hydra@@+30 22980 52099@@speakouthydra.blogspot.gr
-4310@@Spoiled@@180, Tobazi Street, Hydra@@+30 22980 52363@@www.spoiled.gr
-4313@@Commo Gusto@@Town, Hydra@@+30 22980 54076@@-
-4314@@Macaroons@@-@@-@@-
-4315@@Foreign Exchange@@-@@-@@-
-4316@@Banks@@-@@-@@-
-4317@@Travel Agents@@Town, Hydra@@+30 22980 54007@@www.hydreoniki.gr
-4318@@Medical Care@@-@@-@@-
-4319@@Did you Know...@@-@@-@@-
-4320@@Beaches@@-@@-@@-
-4321@@Best View@@-@@-@@-
-4323@@Donkey Ride@@-@@-@@-
-4324@@Entertainment@@-@@-@@-
-4325@@When to Visit@@-@@-@@-
-4326@@Art on Hydra@@-@@-@@-
-4327@@Parking Metohi@@-@@-@@-
-4328@@Nostimomania@@Port, Hydra@@+30 22980 53005@@www.nostimomania.com, www.facebook.com/pages/Nostimomania/180246045495173?ref=stream
-4329@@Town@@Old Town, Hydra@@-@@-
-4331@@Rafalias Pharmacy@@D. Rafalia Street, Hydra@@+30 22980 52059@@www.facebook.com/rafaliaspharmacy
-4332@@Tobazi Mansion (School of Fine Art)@@Port, Hydra@@+30 22980 52291@@-
-4333@@Post Byzantine Art and History Museum (Georgios Kountouriotis Mansion)@@Port, Hydra@@+30 22980 52245@@-
-4334@@"Melina Merkouri" Exhibition and Concert Hall@@Port, Hydra@@-@@-
-4335@@Port@@Port, Hydra@@-@@-
-4336@@Merchant Marine Academy@@Port, Hydra@@-@@-
-4337@@Zourva Lighthouse@@Hydra@@-@@-
-4343@@Dokos Island & Dokos Lighthouse@@-@@-@@-
-4344@@Mansions@@Town, Hydra@@-@@-
-4345@@Churches & Monasteries@@Town, Hydra@@-@@-
-4346@@Historical Archive Museum@@Port, Hydra@@+30 22890 52355, +30 22890 54142@@www.iamy.gr
-4348@@Lazaros Kountouriotis Mansion@@Port, Hydra@@+30 22980 52421@@-
-4349@@About us@@-@@-@@-
-5051@@Giname Pita@@Port, Hydra@@+30 22980 52593@@www.facebook.com/GinamePita
-5123@@Zoe's@@Port, Hydra@@+30 22980 52143, +30 6972 258041@@-
-5128@@Psinese@@Port, Hydra@@+30 22980 52467@@www.facebook.com/pages/%CE%A8%CE%AE%CE%BD%CE%B5%CF%83%CE%B1%CE%B9/333704040102764?fref=ts
-5134@@21st Century@@Port, Hydra@@+30 22980 53105, +30 22980 53621@@-
-5136@@"Gardenia" Summer Cinema@@Hora, Hydra@@+30 22980 53105@@cineclubhydras.blogspot.gr
-5179@@Travel Information@@-@@-@@-
-5218@@Idraiki Gonia@@Port, Hydra@@+30 22980 53813@@-
-5777@@Hydra Style@@Hora, Hydra@@+30 22980 54168@@www.facebook.com/pages/%CE%97ydra-Style/433363410103343
-7642@@Rodi@@Avlaki, Hydra@@+30 22980 29751@@www.facebook.com/pages/%CE%A1%CE%9F%CE%94%CE%99/579362682163028
+2258@@Rocabella Santorini Deluxe Suites & Spa@@Imerovigli, Santorini@@+30 22860 23711, +30 22860 24111, +30 22860 28991@@www.rocabella-hotel-santorini.com
+2259@@Katikies The Hotel@@Oia, Santorini@@+30 22860 71401@@www.katikieshotelsantorini.com
+2260@@Fira@@Fira, Santorini@@-@@-
+2261@@Firostefani@@Firostefani, Santorini@@-@@-
+2262@@Imerovigli@@Imerovigli, Santorini@@-@@-
+2263@@Athinios@@Athinios, Santorini@@-@@-
+2264@@Oia@@Oia, Santorini@@-@@-
+2265@@Ammoudi@@Ammoudi, Santorini@@-@@-
+2266@@Artemis Suites@@Megalohori, Santorini@@+30 22860 81922, +30 22860 83421@@www.artemissuites.com
+2267@@Kirini Suites & Spa@@Oia, Santorini@@+30 22860 71236@@www.kirini.com
+2268@@Chromata Hotel@@Imerovigli, Santorini@@+30 22860 23227, +30 22860 25288@@www.chromata-santorini.com
+2269@@Sun Rocks Hotel@@Firostefani, Santorini@@+30 22860 71236@@www.sunrocks.gr
+2270@@Suites of the Gods Spa Hotel@@Megalochori, Santorini@@+30 22860 28856, +30 6977 079338@@suitesofthegods.com/index.html
+2271@@Mystique Hotel@@Oia, Santorini@@+30 22860 71114@@www.mystique.gr
+2291@@San Antonio Suites@@Imerovigli, Santorini@@+30 22860 24388@@www.sanantonio-santorini.com/
+2292@@Enigma Apartments & Suites@@Fira, Santorini@@+30 22860 24024@@www.enigmasantorini.com
+2293@@Aressana Spa Hotel & Suites@@Fira, Santorini@@+30 22860 23900@@www.aressana.gr
+2301@@La Maltese Hotel@@Imerovigli, Santorini@@+30 22860 24701@@www.lamaltese.com
+2317@@Astra Suites@@Imerovigli, Santorini@@+30 22860 23641@@www.astrasuites.com
+2318@@Voreina Gallery Suites@@Pyrgos, Santorini@@+30 22860 30700, +30 22860 30164@@www.voreinasuites.gr
+2319@@Kapari Hotel@@Imerovigli, Santorini@@+30 22860 21120@@www.kaparisantorini.gr/
+2321@@Villa Evgenia Hotel@@Fira, Santorini@@+30 22860 22575, +30 6945 023889@@www.evgeniavillas.com
+2326@@Donkeys@@Fira, Santorini@@+30 22860 25468@@www.santorini-donkeyunion.com/
+2328@@Donkey Rides@@Fira, Santorini@@+30 22860 25468@@www.santorini-donkeyunion.com/
+2329@@Akrotiri@@Akrotiri, Santorini@@+30 22860 81939@@odysseus.culture.gr/h/3/gh351.jsp?obj_id=2410
+2330@@Megalochori@@Megalochori, Santorini@@-@@-
+2331@@Emporio@@Emporio, Santorini@@-@@-
+2332@@Foinikia@@Foinikia, Santorini@@-@@-
+2333@@Pyrgos@@Pyrgos, Santorini@@-@@-
+2334@@Vothonas@@Vothonas, Santorini@@-@@-
+2335@@Grace Santorini@@Imerovigli, Santorini@@+30 22860 21300@@www.santorinigrace.com
+2336@@Ancient Thera@@Episkopi Gonias, Kamari, Santorini@@+30 22860 23217@@odysseus.culture.gr/h/3/gh355.jsp?obj_id=2454
+2337@@Aegean Divers@@Fira-Pyrgos Road, Santorini@@+30 22860 32201@@www.aegeandivers.com/
+2338@@Canaves Oia Hotel@@Oia, Santorini@@+30 22860 71453, +30 22860 71427 @@www.canaves.com
+2339@@Carpe Diem Hotel@@Pyrgos, Santorini@@+30 22860 34090@@www.carpediemsantorini.com
+2340@@Cosmopolitan Suites@@Fira, Santorini@@+30 22860 25632@@www.cosmopolitan-santorini.com/
+2341@@Gold Suites@@Imerovigli, Santorini@@+30 22860 23107@@www.andromedagoldsuites.com
+2342@@Vedema Resort@@Megalochori, Santorini@@+30 22860 81796@@www.vedema.gr/
+2343@@Santorini Princess Spa Hotel@@Imerovigli, Santorini@@+30 22860 25870@@www.santoriniprincess.com
+2344@@Zannos Melathron Hotel@@Pyrgos, Santorini@@+30 22860 28220@@www.zannos.gr
+2345@@Lilium Villas@@Fira, Santorini@@+30 22860 25333@@www.lilium-v.gr
+2346@@Nea Kameni@@Nea Kameni, Santorini@@-@@-
+2347@@Tour of Old and New Kameni@@Nea Kameni, Santorini@@-@@-
+2348@@Local Products@@-@@-@@-
+2349@@Museum of Prehistoric Thera@@Fira, Santorini@@+30 22860 23217@@odysseus.culture.gr/h/1/gh151.jsp?obj_id=3325
+2350@@Naval Museum of Oia@@Oia, Santorini@@+30 22860 71156@@-
+2351@@Archaeological Museum of Thera@@Fira, Santorini@@+30 22860 22217@@odysseus.culture.gr/h/1/gh151.jsp?obj_id=3400
+2352@@Koutsoyannopoulos Wine Museum@@Vothonas, Santorini@@+30 22860 31322@@www.wine-museum-koutsoyannopoulos.gr
+2353@@Perivolos - Agios Georgios@@Perivolos, Santorini@@-@@-
+2354@@Perissa@@Perissa, Santorini@@-@@-
+2355@@Vlychada@@Vlychada, Santorini@@-@@-
+2356@@Kamari@@Kamari, Santorini@@-@@-
+2357@@Monolithos@@Monolithos, Santorini@@-@@-
+2358@@Exo Gialos@@Exo Gialos, Santorini@@-@@-
+2359@@Mesa Pigadia@@Mesa Pigadia, Santorini@@-@@-
+2360@@Avis@@Avis, Santorini@@-@@-
+2361@@White Beach@@White Beach, Santorini@@-@@-
+2362@@Red Beach@@Red Beach, Santorini@@-@@-
+2363@@Pori@@Pori, Santorini@@-@@-
+2414@@Koloumpos@@Koloumpos, Santorini@@-@@-
+2418@@Baxedes@@Baxedes, Santorini@@-@@-
+2419@@Katharos@@Katharos, Santorini@@-@@-
+2420@@Plaka@@Plaka, Santorini@@-@@-
+2421@@Aegialos@@Exo Gialos, Santorini@@+30 22860 25816@@www.aegialos-beach.com, www.facebook.com/Aegialos?fref=ts
+2422@@Vassilikos@@Kamari Beach, Santorini@@+30 22860 34203@@www.facebook.com/vassilikosrestaurant?fref=ts
+2423@@Vassilikos@@Kamari Beach, Santorini@@+30 22860 34203@@www.facebook.com/vassilikosrestaurant?fref=ts
+2424@@Sea Side by Notos@@Perivolos, Agios Georgios, Santorini@@+30 22860 82801@@www.seaside-restaurant.gr/
+2425@@L' Opera di Costa@@Perivolos, Agios Georgios, Santorini@@+30 2286 083439@@www.facebook.com/pages/La-Opera-di-Costa/623809114325669?sk=timeline
+2426@@Cafe del Mar e Sol@@Perivolos, Agios Georgios, Santorini@@+30 6932 376707@@www.facebook.com/CafeDelMarEsol
+2427@@Nichteri@@Kamari, Santorini@@+30 22860 33480@@www.nichteri.gr/
+2428@@Wet Stories@@Perivolos, Agios Georgios, Santorini@@+30 22860 82990@@santoriniwetstories.wordpress.com/
+2429@@Anemos@@Perivolos, Agios Georgios, Santorini@@+30 22860 82711@@www.anemosbeachhotel.com/gr/santorini-lounge-bar-restaurant.php
+2430@@Demilmar@@Perissa, Santorini@@+30 22860 85070@@www.demilmar.com
+2431@@Red Bicycle@@Oia, Santorini@@+30 22860 71918 @@www.facebook.com/pages/Red-bicycle-Restaurant/512974112098868?fref=ts
+2432@@Kastro@@Oia, Santorini@@+30 22860 71045  @@www.kastro-ia.gr, www.facebook.com/pages/Kastro-Restaurant-Oia-Santorini/493001127428625?fref=ts
+2433@@Melenio@@Oia, Santorini@@+30 22860 71149@@-
+2434@@Dimitris@@Ammoudi, Santorini@@ +30 22860 71606  @@-
+2435@@Ammoudi@@Ammoudi, Santorini@@+30 22860 72298, +30 6937 123161 @@www.ammoudi-santorini.com
+2436@@39 steps@@Oia, Santorini@@+30 22860 71856   @@www.facebook.com/pages/39-STEPS/588876041136037?fref=ts
+2437@@Useful Information@@-@@-@@-
+2438@@Emergency@@-@@-@@-
+2439@@Port Authority@@Athinios, Santorini@@+30 22860 22239@@-
+2440@@Central Clinic of Santorini@@Fira, Santorini@@+30 22860 21728 @@www.santorinicentralclinic.gr
+2441@@Tourist Police@@-@@+30 22860 22649@@-
+2442@@Fire Department@@Fira, Santorini@@+30 22860 33199@@-
+2443@@Police@@Karterados, Santorini@@+30 22860 22649@@-
+2444@@First Aid@@Fira, Santorini@@+30 22863 60300, +30 22863 60301, +30 22863 60302, +30 22863 60303@@-
+2445@@Transportation@@-@@-@@-
+2446@@Thera's Public Bus Service (KTEL)@@Fira, Santorini@@+30 22860 25404@@www.ktel-santorini.gr
+2447@@Taxi@@Fira, Santorini@@+30 22860 22555, +30 22860 23951@@-
+2448@@Funicular@@Fira, Santorini@@+30 22860 22977, +30 22860 23045@@www.nomikos.org.gr
+2449@@Donkeys@@Fira, Santorini@@+30 22860 25468@@www.santorini-donkeyunion.com/
+2450@@Banks@@-@@-@@-
+2451@@Rent a Car@@-@@-@@-
+2452@@Kosmos Rent a Car@@Fira, Santorini@@+30 22860 25225, +30 6971891704 @@www.kosmos-carrental.com, www.santorini.com/rental/kosmos
+2453@@Koukoumavlos@@Fira, Santorini@@+30 22860 23807@@www.koukoumavlos.eu/
+2454@@Finikia@@Oia, Santorini@@+30 22860 71373@@www.finikiaplace.com
+2455@@Anogi@@Imerovigli Square, Santorini@@+30 22860 21285@@www.facebook.com/pages/%CE%95%CE%A3%CE%A4%CE%99%CE%91%CE%A4%CE%9F%CE%A1%CE%99%CE%9F-%CE%91%CE%9D%CE%A9%CE%93%CE%99/126693284070638
+2456@@Asyrtiko@@Fira, Santorini@@+30 22860 22463, +30 22860 34255@@www.facebook.com/AssyrticoRestaurant
+2457@@Raki@@Megalochori Square, Santorini@@+30 22860 81724@@www.facebook.com/RAKISantorini?fref=ts
+2458@@Spiti@@Megalochori, Santorini@@+30 22860 81724@@-
+2459@@Metaxi mas@@Exo Gonia, Santorini@@+30 22860 31323@@www.santorini-metaximas.gr/en/
+2460@@Selene@@Pyrgos, Santorini@@+30 22860 22249@@www.selene.gr/
+2461@@Ferendini@@Oia, Santorini@@+30 22860 71485@@www.feredini.gr/
+2463@@Skala@@Oia, Santorini@@+30 22860 71362@@www.facebook.com/pages/Skala-Restaurant/397904573577881?fref=ts
+2464@@Cooking & Degustation Sessions@@Megalohori, Santorini@@+30 22860 81724@@-
+2465@@Bagiatiko Food Bar@@Fira, Santorini@@+30 22860 22092@@www.bagiatiko.gr/
+2475@@Ash@@Fira, Santorini@@+30 22860 25313@@www.ashsantorini.com/
+2476@@Atlantis Books@@Oia, Santorini@@+30 22860 72346@@www.atlantisbooks.org/
+2477@@Suites of the Gods Spa@@Megalohori, Santorini@@+30 22860 28856, +30 6977 079338@@www.facebook.com/pages/Suites-of-the-Gods-Spa-Hotel/390768858432?sk=photos_albums
+2478@@Spa Nails Del Mar e Sol@@Fira, Santorini@@+30 22860 34144, +30 6936 661959@@www.facebook.com/pages/Spa-Nails-Del-Mar-e-Sol-Santorini/170796093034683?fref=ts
+2479@@Loulaki@@Oia, Santorini@@+30 22860 71856@@-
+2480@@Tango@@Fira, Santorini@@+30 6974 498206@@www.tangosantorini.gr
+2481@@Enigma Cafe@@Fira, Santorini@@+30 22860 24024@@-
+2482@@Enigma Club@@Fira, Santorini@@+30 22860 22466@@www.facebook.com/EnigmaClubSantorini
+2483@@Skiza@@Oia, Santorini@@+30 22860 71569@@www.facebook.com/SkizaCafe?fref=ts
+2484@@Casablanca@@Fira, Santorini@@+30 22860 27188@@casablancasoul.com/
+2485@@Weddings@@Santorini@@-@@-
+2486@@Cherry Tomato@@-@@-@@-
+2488@@White Eggplant@@Santorini@@-@@-
+2489@@Caper & Caper Leaves@@-@@-@@-
+2490@@Split Peas@@-@@-@@-
+2491@@Koufeto@@-@@-@@-
+2492@@Melitinia@@-@@-@@-
+2493@@Yellow Donkey Beer@@Mesa Gonia, Santorini@@+30 22860 30268@@www.santorinibrewingcompany.gr/products_en.html
+2494@@Volkan Beer@@Fira, Santorini@@+30 6909 903810, +30 211 4111081, +30 211 4111072@@www.volkanbeer.com
+2495@@General@@-@@-@@-
+2496@@Wineries@@-@@-@@-
+2501@@About us@@-@@-@@-
+2608@@Aegialos@@Exo Gialos, Santorini@@+30 22860 25816@@www.aegialos-beach.com, www.facebook.com/Aegialos?fref=ts
+4450@@Brama Yachts & Catamarans@@Fira, Santorini@@+30 211 0150973, +30 6977 977578@@www.boatsingreece.com
+4510@@VIP Services@@-@@-@@-
+4513@@Brama Yachts & Catamarans@@Fira, Santorini@@+30 211 0150973, +30 6977 977578@@www.boatsingreece.com
+4514@@Travel Agencies@@-@@-@@-
+4516@@Santorini Cruises@@Fira, Santorini@@+30 211 0150973, +30 6977 977578@@www.boatsingreece.com
+6266@@Pergeri Apartments@@Imerovigli, Santorini@@+30 22860 24166, +30 6989 666487 @@www.pergeri.gr, www.facebook.com/pages/Pergeri-apartments/629478450434800
+6269@@Kamini Exclusive Luxury Villas@@Pyrgos, Santorini@@+30 6974 829102@@www.kaminisantorinivillas.com
+6569@@Mezzo Restaurant@@Oia, Santorini@@+30 22860 21874@@www.facebook.com/MezzoHotelRestaurant
+6575@@MATI Art Gallery@@Fira, Santorini@@+30 2286023814@@matiartgallery.com, www.facebook.com/MatiArtGallery?fref=ts
+6577@@Ellinikon@@Fira, Santorini@@+30 22860 21161@@www.ellinikonrestaurant.com
+6579@@Fanari@@Fira, Santorini@@+30 22860 25107@@www.fanari-restaurant.gr
+6589@@Sabbia Nera@@Kamari, Santorini@@+30 22860 33007@@www.facebook.com/SabbiaNeraTrattoria?fref=ts
+6597@@Kastro Oia Houses@@Oia, Santorini@@+30 22860 71045@@www.kastrooiahouses.gr, www.facebook.com/pages/Kastro-oia-houses/1418407778441990?fref=ts
+6604@@Fanari Villas@@Oia, Santorini@@+30 22860 71008, +30 22860 71007, +30 22860 71147@@www.fanarivillas.gr, www.facebook.com/FanariVillas
+6605@@Costa Marina Villas@@Fira, Santorini@@+30 22860 28923@@www.costamarina.gr
+6606@@Finikia Place@@Foinikia, Oia, Santorini@@+30 22860 71373@@www.finikiaplace.com, www.facebook.com/Finikiaplace
+6613@@Terpsi en Oia@@Oia, Santorini@@+30 22860 71919@@www.terpsienoia.com/, www.facebook.com/pages/Terpsi-en-Oia/243840852306617
+6614@@Terpsi@@Fira, Santorini@@+30 22860 22842@@-
+6616@@Idol@@Fira, Santorini@@+30 22860 23292@@www.idol-santorini.com, www.facebook.com/IDOLRESTAURANT
+6634@@Agora@@Oia, Santorini@@+30 22860 28086@@www.facebook.com/pages/Agora-in-oia/160150914169348
+6642@@Convivium@@Fira, Santorini@@+30 22860 28111@@-
+6644@@KissingFish (Fira)@@Fira, Santorini@@+30 22860 22321@@www.kissingfishsantorini.com, www.facebook.com/pages/Kissingfish-Santorini/197709310348333?fref=ts
+6645@@KissingFish (Oia)@@Oia, Santorini@@+30 22860 72351@@ www.kissingfishsantorini.com, www.facebook.com/pages/Kissingfish-Santorini/197709310348333?fref=ts
+6646@@Kalderimi@@Oia, Santorini@@+30 22860 71621@@-
+6647@@Vazeos Car Moto Rental@@Oia, Santorini@@+30 6974 829102, +30 22860 71200, +30 22860 71006@@www.vazeos.gr
+6648@@Spiridakos Rent a Car@@Fira, Santorini@@+30 6944 350513, +30 22860 23755, +30 22860 24240@@www.rentacar-santorini.com
+6650@@Spiridakos Sailing Cruises@@Fira, Santorini@@+30 22860 23755, +30 22860 24240, +30 6944 350513, +30 6978 482222@@www.santorini-yachts.com/
+6651@@Caldera's Boats@@Santorini@@+30 22860 24355@@www.santorini-sea-excursions.com, www.facebook.com/KoinopraksiaPloionSantorinis
+6658@@Aegle@@Ipapantis, Fira, Santorini@@+30 22860 34100@@www.facebook.com/pages/%CE%91%CE%AF%CE%B3%CE%BB%CE%B7Aegle-Cafe-Stage/587741054604190
+6659@@Nick the Greek Jewellery@@Ipapantis, Fira, Santorini@@+30 22860 23907, +30 22860 23015@@www.facebook.com/NickTheGreekJewellerySantorini
+6660@@Murphy's@@Fira, Santorini@@+30 22860 22248@@www.facebook.com/pages/Murphys-bar-fira-Santorini/195870477117710?sk=timeline
+6661@@Murphy's Saloon@@Fira, Santorini@@+30 22860 23447@@-
+6662@@McDaniel's@@Fira, Santorini@@+30 22860 22315@@-
+6664@@Papasotiriou@@Fira, Santorini@@+30 22860 23138@@www.papasotiriou.gr
+6665@@Paradox@@Oia, Santorini@@+30 22860 71675@@www.facebook.com/pages/Paradox-Thai-food-and-bar/386756241463747?fref=ts
+6666@@AK Art Foundation@@Firon Street, Pyrgos, Santorini@@+30 22860 21506@@www.ak-galleries.com, www.facebook.com/AkAsimisKolaitouArtGalleries
+6706@@AK Art Gallery@@Fira, Santorini@@+30 22860 23041@@www.ak-galleries.com, www.facebook.com/AkAsimisKolaitouArtGalleries
+6708@@Pelican Kipos@@Fira, Santorini@@+30 22860 23433@@www.pelican.gr/cafe-winerestaurant/, www.facebook.com/pages/Pelican-kipos-Cafe-and-Wine-Restaurant/154770081264391?fref=ts
+6711@@Rocabella Restaurant@@Imerovigli, Santorini@@+30 22860 23711, +30 22860 24111, +30 22860 28991@@www.rocabella-hotel-santorini.com
+6714@@Pelican Hotel@@Fira, Santorini@@+30 22860 23114@@www.pelicanhotel.gr
+6717@@Istion Yachting@@Port, Santorini@@+30 2109811515@@www.istion.com
+6720@@-@@-@@+30 22860 22220@@www.pelican.gr
+6762@@Kiwi@@Kamari, Santorini@@+30 22860 34145@@www.kiwi-restaurant.gr
+6764@@Asia Club@@Fira, Santorini@@+30 22860 23457@@asia-club.gr
+6852@@Hondos Center@@Fira, Santorini@@+30 22860 25555@@www.hondos.gr
+6855@@Loucas Hotel@@Fira, Santorini@@+30 22860 22480, +30 22860 22680, +30 22860 22880@@www.loucashotel.gr, www.facebook.com/LoucaSantorini
+7040@@Crystal Bar@@Fira, Santorini@@+30 22860 22480, +30 22860 22680, +30 22680 22880@@www.loucashotel.gr
+7051@@Aris Restaurant@@Fira, Santorini@@+30 22860 22480, +30 22860 22680, +30 22680 22880@@www.loucashotel.gr
+7156@@Blue Monday Rockabilly Bar@@Fira, Santorini@@+30 22860 27052, +30 6984 374743@@www.facebook.com/bluemondaysantorini, www.bluemonday.gr/
+7234@@-@@-@@-@@-

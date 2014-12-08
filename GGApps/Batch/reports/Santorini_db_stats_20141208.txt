@@ -1,0 +1,109 @@
+ 
+-
+*** Database Statistics for Santorini
+ 
+-
+
+number of entities
+------------------
+190
+ 
+-
+
+Category/number_of_entries
+--------/-----------------
+Accommodation/33
+Attractions/20
+Beaches & Beach Bars/24
+Food/38
+Gastronomy/27
+Nightlife/18
+Shopping & Beauty/15
+Things to do/10
+ 
+-
+
+Num/Accomodation - Best/Type
+---/-------------------/----
+1/Astra Suites/4-stars
+2/Costa Marina Villas/Guesthouses
+3/Fanari Villas/4-stars
+4/Loucas Hotel/Other lodging
+5/Rocabella Santorini Deluxe Suites & Spa/4-stars
+6/Voreina Gallery Suites/4-stars
+ 
+-
+
+Num/Shopping (& Beauty) - Best/Type
+---/--------------------------/----
+1/Hondos Center/Cosmetics
+2/Nick the Greek Jewellery/Jewellery
+3/Spa Nails Del Mar e Sol/Beauty
+ 
+-
+
+Num/Beauty - Best/Type
+---/-------------/----
+ 
+-
+
+Num/Food - Best/Type
+---/-----------/----
+1/Aris Restaurant/Greek Modern
+2/Asyrtiko/Greek Modern
+3/Ferendini/Greek Modern
+4/Idol/Greek Modern
+5/Koukoumavlos/Greek Modern
+6/Rocabella Restaurant/Greek Modern
+7/Sabbia Nera/Italian
+8/Sea Side by Notos/Greek Modern
+9/Terpsi en Oia/Greek Modern
+10/Vassilikos/Mediterranean
+ 
+-
+
+Num/Nightlife - Best/Type
+---/----------------/----
+1/Casablanca/Bars
+2/Crystal Bar/Cafe - Bars
+3/Enigma Cafe/Cafe - Bars
+4/Idol/Cafe - Bars
+5/Murphy's/Bars
+6/Tango/Bars
+7/Terpsi/Cafe - Bars
+8/Terpsi en Oia/Cafe - Bars
+ 
+-
+
+Num/Beaches & Beach Bars - Best/Type
+---/---------------------------/----
+1/Sabbia Nera/Beach Bars - Restaurants
+2/Sea Side by Notos/Beach Bars - Restaurants
+ 
+-
+
+Num/Gastronomy - Best/Type
+---/-----------------/----
+1/Ferendini/Taverns-Restaurants
+2/Idol/Taverns-Restaurants
+3/Koukoumavlos/Taverns-Restaurants
+4/Sabbia Nera/Taverns-Restaurants
+5/Terpsi en Oia/Taverns-Restaurants
+ 
+-
+
+Num/Smart Tips - Best/Type
+---/-----------------/----
+ 
+-
+
+Num/Gay Life - Best/Type
+---/---------------/----
+ 
+-
+
+Num/Attraction - Best/Type
+---/-----------------/----
+ 
+-
+

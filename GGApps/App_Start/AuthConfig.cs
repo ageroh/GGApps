@@ -26,7 +26,7 @@ namespace GGApps
             //    clientSecret: "your Microsoft account client secret");
 
             OpenAuth.AuthenticationClients.AddGoogle();
-            
+
         }
     }
 }

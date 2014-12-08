@@ -13,6 +13,7 @@ namespace GGApps
 	{
 		private string sLogFormat;
 		private string sErrorTime;
+        public bool HasErrors = false;
 
 		public CreateLogFiles()
 		{
@@ -26,6 +27,7 @@ namespace GGApps
 			string sMonth	= DateTime.Now.Month.ToString();
 			string sDay	= DateTime.Now.Day.ToString();
 			sErrorTime = sYear+sMonth+sDay;
+            HasErrors = false;
 		}
 
 		public void ErrorLog(string sPathName, string sErrMsg, string appName, string user = null)
@@ -34,6 +36,7 @@ namespace GGApps
             sw.WriteLine(sLogFormat + "'" + user + "'> Error: " + sErrMsg);
 			sw.Flush();
 			sw.Close();
+            HasErrors = true;
            //?  throw new Exception(sErrMsg);
 		}
 

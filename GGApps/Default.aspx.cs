@@ -20,7 +20,7 @@ namespace GGApps
         public static StringBuilder sb = new StringBuilder();
         public static String mapPathError = "";
         public static String[] otherLangApps;
-
+        public static bool HasErrors = false;
 
 #if DEBUG
         public static string actualWorkDir = "C:\\Users\\Argiris\\Desktop\\GG_Batch\\Batch\\";    
@@ -46,7 +46,6 @@ namespace GGApps
             }
                 
         }
-
 
 
         public int timesExec
@@ -79,8 +78,8 @@ namespace GGApps
 
             if (!Page.IsPostBack)
             {
-                if (User.Identity.IsAuthenticated)
-                {
+                //if (User.Identity.IsAuthenticated)
+                //{
                     DropDownList ddStart = (DropDownList)LoginViewImportant.FindControl("ddStart");
 
                     ddStart.DataSource = FillDeptDropdownList();
@@ -90,7 +89,7 @@ namespace GGApps
 
                     ddStart.DataBind();
                     
-                }
+               // }
             
             }
         }
@@ -117,7 +116,8 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                Log.ErrorLog(mapPathError, e.Message, "generic");
+                HasErrors = true;
+                Log.ErrorLog(mapPathError, e.Message, "generic", "");
             }
             return null;
 
@@ -126,15 +126,32 @@ namespace GGApps
 
         public void ContinueBtn_Click(object sender, EventArgs e)
         {
+            ClientScriptManager cs = Page.ClientScript;
 
             if (Session["appID"] != null && Session["appName"] != null)
             {
-                Response.Redirect("~/BuildApp");
+                Session["HasErrors"] = HasErrors;
+
+                if (Session["FinishedProcessing"] == null)
+                { 
+                    Session["FinishedProcessing"] = true;
+                    Response.Redirect("~/BuildApp");
+                }
+                else if ((bool)Session["FinishedProcessing"] == false)
+                {
+                    // Processing must finish first!
+                    ContinueBtn.Visible = false;
+                    ContinueBtn.Enabled = false;
+                    Response.Write("<h1 class='parallel'>Wait for the Previous Processing to be finished, in order to continue!</h1>");
+                }
+                else
+                {
+
+                    Response.Redirect("~/BuildApp");
+                }
             }
             else
             {
-                ClientScriptManager cs = Page.ClientScript;
-
                 // Check to see if the startup script is already registered.
                 if (!cs.IsStartupScriptRegistered(this.GetType(), "myalert"))
                 {
@@ -159,7 +176,7 @@ namespace GGApps
                 Int32 appID = Int32.Parse(ddStart.SelectedValue);
                 String appName = ddStart.SelectedItem.ToString();
 
-                Log.InfoLog(mapPathError, "Started : Building Report for " + appName, appName, User.Identity.Name);
+                Log.InfoLog(mapPathError, "Started : Building Report for " + appName, appName, "");
 
 #if !DEBUG                
                 Refresh_DB(appID, appName);
@@ -197,7 +214,7 @@ namespace GGApps
                 Session["appID"] = appID;
                 Session["appName"] = appName;
 
-                Log.InfoLog(mapPathError, "Finished : Building Report for " + appName, appName, User.Identity.Name);
+                Log.InfoLog(mapPathError, "Finished : Building Report for " + appName, appName, "");
             }
         }
 
@@ -220,17 +237,17 @@ namespace GGApps
 
                 sb.AppendLine("\nRefresing DB for " + name);
                 // do for greek
-                Log.InfoLog(mapPathError, "Refresing Greek DB for " + name, name, User.Identity.Name);
+                Log.InfoLog(mapPathError, "Refresing Greek DB for " + name, name, "");
                 Refresh_DB_inner(id, name, 1).ToString();
 
                 // do for english
-                Log.InfoLog(mapPathError, "Refresing English DB for " + name, name, User.Identity.Name);
+                Log.InfoLog(mapPathError, "Refresing English DB for " + name, name, "");
                 Refresh_DB_inner(id, name, 2).ToString();
 
                 // Do for Russian if needed.
                 if (CheckThreeLanguages(id))
                 {
-                    Log.InfoLog(mapPathError, "Refresing Russian DB for " + name, name, User.Identity.Name);
+                    Log.InfoLog(mapPathError, "Refresing Russian DB for " + name, name, "");
                     Refresh_DB_inner(id, name, 4).ToString();
                 }
 
@@ -240,7 +257,8 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                Log.ErrorLog(mapPathError, e.Message + e.StackTrace, name, User.Identity.Name);
+                HasErrors = true;
+                Log.ErrorLog(mapPathError, e.Message +" Stack Trace:"  + e.StackTrace, name, "");
 
             }
         }
@@ -249,33 +267,44 @@ namespace GGApps
 
         private StringBuilder Refresh_DB_inner(int id, string name, int langID)
         {
-            sb.AppendLine("\nRefresing for Lang: " + langID);
-
-            string connectionString = BuildDynamicConnectionStringForDB(id, name, langID);
-
-            using (SqlConnection con = new SqlConnection(connectionString))
+            try
             {
-                con.InfoMessage += new SqlInfoMessageEventHandler(myConnection_InfoMessage);
-                con.Open();
-                using (SqlCommand command = new SqlCommand("_pr_refresh_db", con))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandTimeout = 1000;
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            // Log this information 
-                            //Response.Write("</br>" + Convert.ToString(reader.GetValue(0)) + " = " + Convert.ToString(reader.GetValue(1)));
-                            string str = Convert.ToString(reader.GetValue(0)) + " = " + Convert.ToString(reader.GetValue(1));
-                            Log.InfoLog(mapPathError, str, name, User.Identity.Name);
-                            sb.AppendLine(str);
-                        }
+                sb.AppendLine("\nRefresing for Lang: " + langID);
 
+                string connectionString = BuildDynamicConnectionStringForDB(id, name, langID);
+
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+
+                    con.InfoMessage += new SqlInfoMessageEventHandler(myConnection_InfoMessage);
+                    con.Open();
+                    using (SqlCommand command = new SqlCommand("_pr_refresh_db", con))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandTimeout = 2000;
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                // Log this information 
+                                //Response.Write("</br>" + Convert.ToString(reader.GetValue(0)) + " = " + Convert.ToString(reader.GetValue(1)));
+                                string str = Convert.ToString(reader.GetValue(0)) + " = " + Convert.ToString(reader.GetValue(1));
+                                Log.InfoLog(mapPathError, str, name, "");
+                                sb.AppendLine(str);
+                            }
+
+                        }
                     }
+
+                    con.Close();
                 }
             }
-
+            catch (SqlException ex)
+            {
+                HasErrors = true;
+                Log.ErrorLog(mapPathError, "Refresh_DB_inner for " + name + " lang:" + langID + " Exception:" + ex.Message, name);
+            }
+            
             return sb;
         
         }
@@ -296,29 +325,29 @@ namespace GGApps
 
             // Test 1 - entities without location 
             sb.AppendLine("<h3>Test 1 - entities without location</h3>\n");
-            Log.InfoLog(mapPathError, "Exporting Report stage 1", name, User.Identity.Name);
+            Log.InfoLog(mapPathError, "Exporting Report stage 1", name, "");
             sb.AppendLine(executeSQLScript(id, name, 0, path + "db_test_2_1_entities_without_location.sql", "ContentDB_165"));
     
             //Test 1a - entities in multiple locations 
             sb.AppendLine("<h3>Test 1a - entities in multiple locations</h3>\n");
-            Log.InfoLog(mapPathError, "Exporting Report stage 2_1a", name, User.Identity.Name);
+            Log.InfoLog(mapPathError, "Exporting Report stage 2_1a", name, "");
             sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_1a_entities_in_multiple_locations.sql")) ;
 
             // DONT FORGET CHECK FOR RUSSIAN !
 
             // Test 2 - entities connected to non leaves 
             sb.AppendLine("<h3>Test 2 - entities connected to non leaves</h3>\n");
-            Log.InfoLog(mapPathError, "Exporting Report stage 2", name, User.Identity.Name);
+            Log.InfoLog(mapPathError, "Exporting Report stage 2", name, "");
             sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_2_entities_connected_to_non_leaves.sql"));
 
             //Test 3 - entities without category 
             sb.AppendLine("<h3>Test 3 - entities without category</h3>\n");
-            Log.InfoLog(mapPathError, "Exporting Report stage 3", name, User.Identity.Name);
+            Log.InfoLog(mapPathError, "Exporting Report stage 3", name, "");
             sb.AppendLine(executeSQLScript( id, name, 2, path + "db_test_2_3_entities_without_category.sql"));
 
             // Test 4a - entities with invalid characters (GR) 
             sb.AppendLine("<h3>Test 4a - entities with invalid characters (GR)</h3>\n");
-            Log.InfoLog(mapPathError, "Exporting Report stage 4a", name, User.Identity.Name);
+            Log.InfoLog(mapPathError, "Exporting Report stage 4a", name, "");
             sb.AppendLine(executeSQLScript( id, name, 1, path + "db_test_2_4_entities_with_invalid_characters.sql"));
 
             // Test 4b - entities with invalid characters (EN) 
@@ -363,37 +392,45 @@ namespace GGApps
 
         public static String executeSQLScript(int id, string name, int langID, string sqlFile, string dbName = null)
         {
-            FileInfo fileInfo = new FileInfo(sqlFile);
-            string script = fileInfo.OpenText().ReadToEnd();
-            StringBuilder sbSql = new StringBuilder();
-
-            string connectionString = BuildDynamicConnectionStringForDB(id, name, langID, dbName);
-
-            using (SqlConnection con = new SqlConnection(connectionString))
+            try
             {
-                //con.InfoMessage += new SqlInfoMessageEventHandler(myConnection_InfoMessage);
-                con.Open();
-                using (SqlCommand command = new SqlCommand(script, con))
+                FileInfo fileInfo = new FileInfo(sqlFile);
+                string script = fileInfo.OpenText().ReadToEnd();
+                StringBuilder sbSql = new StringBuilder();
+
+                string connectionString = BuildDynamicConnectionStringForDB(id, name, langID, dbName);
+
+                using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    command.CommandType = CommandType.Text;
-                    command.CommandTimeout = 1000;
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    //con.InfoMessage += new SqlInfoMessageEventHandler(myConnection_InfoMessage);
+                    con.Open();
+                    using (SqlCommand command = new SqlCommand(script, con))
                     {
-                        if( reader.HasRows)
+                        command.CommandType = CommandType.Text;
+                        command.CommandTimeout = 2000;
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            var dataTable = new DataTable();
-                            dataTable.Load(reader);
+                            if (reader.HasRows)
+                            {
+                                var dataTable = new DataTable();
+                                dataTable.Load(reader);
 
-                            // sure there are better ways..
-                            return ConvertDataTableToHTML(dataTable);
+                                // sure there are better ways..
+                                return ConvertDataTableToHTML(dataTable);
+                            }
+
                         }
-
                     }
                 }
+
+            }
+            catch (Exception e)
+            {
+                HasErrors = true;
+                Log.ErrorLog(mapPathError, "executeSQLScript for " + name + " lang:" + langID + " Exception:" + e.Message, name);
             }
 
             return "";
-            
         }
 
 
@@ -402,8 +439,16 @@ namespace GGApps
 
         void myConnection_InfoMessage(object sender, SqlInfoMessageEventArgs e)
         {
-            sb.AppendLine(e.Message);
-            Log.InfoLog(mapPathError, e.Message, Session["appName"].ToString(), User.Identity.Name);
+            try
+            {
+                sb.AppendLine(e.Message);
+                //Log.InfoLog(mapPathError, e.Message, Session["appName"].ToString(), "");
+            }
+            catch (Exception ex)
+            {
+                HasErrors = true;
+                //Log.ErrorLog(mapPathError, "myConnection_InfoMessage: " + ex.Message, Session["appName"].ToString(), "");
+            }
 
         }
 
@@ -412,6 +457,7 @@ namespace GGApps
 
         public static string ConvertDataTableToHTML(DataTable dt)
         {
+            
             string html = "<table>";
             //add header row
             html += "<tr>";
@@ -439,14 +485,14 @@ namespace GGApps
                             {
                                 int pos = strText.IndexOf("{?}");
                                 int nPos = (pos - 150 < 0) ? 0 : pos - 150;
-                                
+
                                 strText = String.Concat("...", strText.Substring(nPos));
                                 pos = strText.IndexOf("{?}");
 
                                 // Not really an exception, try to remove all last chars , leave only 100.
-                                try{ strText = strText.Remove(pos+100); }
-                                catch(Exception)
-                                { strText = strText.Remove(pos + 2);}
+                                try { strText = strText.Remove(pos + 100); }
+                                catch (Exception)
+                                { strText = strText.Remove(pos + 2); }
 
                                 strText = String.Concat(strText, "...");
                             }
@@ -461,7 +507,10 @@ namespace GGApps
                 html += "</tr>";
             }
             html += "</table>";
+
+
             return html;
+
         }
 
 

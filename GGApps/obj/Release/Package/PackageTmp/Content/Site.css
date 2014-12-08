@@ -774,7 +774,7 @@ tr.pager td {
 
 
 
-        #MainContent_LoginViewImportant_reportDiv table {
+        #MainContent_reportDiv table {
 	        font-family: verdana,arial,sans-serif;
 	        font-size:11px;
 	        color:#333333;
@@ -782,17 +782,17 @@ tr.pager td {
 	        border-color: #999999;
 	        border-collapse: collapse;
         }
-        #MainContent_LoginViewImportant_reportDiv table th {
+        #MainContent_reportDiv table th {
 	        background-color:#c3dde0;
 	        border-width: 1px;
 	        padding: 8px;
 	        border-style: solid;
 	        border-color: #a9c6c9;
         }
-        #MainContent_LoginViewImportant_reportDiv table tr {
+        #MainContent_reportDiv table tr {
 	        background-color:#d4e3e5;
         }
-        #MainContent_LoginViewImportant_reportDiv table td {
+        #MainContent_reportDiv table td {
 	        border-width: 1px;
 	        padding: 8px;
 	        border-style: solid;
@@ -804,6 +804,19 @@ tr.pager td {
          font-style: italic;
          color:brown;
     }
+
+
+    h1.parallel{
+	    color: #F00;
+	    text-align: center;
+	    padding-bottom: 32px;
+	    padding-top: 24px;
+	    border-bottom-width: thick;
+	    border-bottom-style: solid;
+	    border-bottom-color: #F00;
+    }
+
+
 
 
 

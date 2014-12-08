@@ -41,20 +41,20 @@ namespace GGApps
 
 
 
-        public static CreateLogFiles Log
+        public CreateLogFiles Log
         {
             get
             {
-                if ((CreateLogFiles)HttpContext.Current.Session["Log"] == null)
+                if ((CreateLogFiles)Session["Log"] == null)
                 {
                     return new CreateLogFiles();
                 }
 
-                return (CreateLogFiles)HttpContext.Current.Session["Log"];
+                return (CreateLogFiles)Session["Log"];
             }
             set
             {
-                HttpContext.Current.Session["Log"] = value;
+                Session["Log"] = value;
             }
 
         }
@@ -67,13 +67,15 @@ namespace GGApps
             if (!Page.IsPostBack)
             {
 
-                CreateLogFiles Log = new CreateLogFiles();
-
+                //CreateLogFiles Log = new CreateLogFiles();
+                
                 if (Session["appName"] != null && Session["appID"] != null)
                 {
+                    
 
                     if (!Init_BuildApp(Convert.ToInt32(Session["appID"].ToString()), Session["appName"].ToString()))
                     {
+                       
                         Log.ErrorLog(_Default.mapPathError, "Failed to Initialize In-App update for <span class='appName'>" + Session["appName"].ToString() + "</span>", Session["appName"].ToString() );
                         AddMessageToScreen("ExecutionMessages",
                                             @"<h2>Failed to Initialize In-App update, <strong>please contact Admin!</strong></h2>", this.Page);
@@ -99,9 +101,9 @@ namespace GGApps
         /// <param name="appName"></param>
         private void BatchExecuteDBExport(int appID, string appName)
         {
-            CreateLogFiles Log = new CreateLogFiles();
+           // CreateLogFiles Log = new CreateLogFiles();
             string startProcessing = DateTime.Now.ToString("HH:mm - ddd d MMM yyyy");
-
+            Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
                   {
 
@@ -124,14 +126,41 @@ namespace GGApps
                                   {
                                       
                                       Log.InfoLog(Session["mapPathError"].ToString(), appName + " Produced successfully over Test Content.", appName);
+                                      List<string> _listAttachments = new List<string>();
 
-                                      // Send email to QA, GG tema, and Mobile team.
-                                      // ........
+                                      if ((bool)Session["HasErrors"] == false) 
+                                      {
+                                          //SendMail To All Teams
+                                          await SendMailToUsers(appName
+                                                                  , GetEmailList("AllTeams")
+                                                                  , null
+                                                                  , EmailTemplate("Success", appName, startProcessing), "GG DB produced for " + appName
+                                                                  , Session["mapPathError"].ToString(), Log);
 
-                                      //SendMail TEST TEAM
-                                      await SendMailToUsers(appName, GetEmailList("Test"), null
-                                            , EmailTemplate("Success", appName, startProcessing), "GG DB produced for " + appName
-                                            , Session["mapPathError"].ToString(), Log);
+                                      }
+                                      else// Send Failure Message!
+                                      {
+                                          //SendMail To All Teams
+                                          await SendMailToUsers(appName
+                                                                  , GetEmailList("AllTeams")
+                                                                  , null
+                                                                  , EmailTemplate("Failure", appName, startProcessing), "GG DB produced for " + appName
+                                                                  , Session["mapPathError"].ToString(), Log);
+
+                                          //Send Always email with Log info for currnet execution to ME.
+                                          _listAttachments.Add(Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                                          await SendMailToUsers(appName
+                                                                  , GetEmailList("ErrorTeam")
+                                                                  , _listAttachments
+                                                                  , EmailTemplate("Failure", appName, startProcessing), "GG DB produced for " + appName
+                                                                  , Session["mapPathError"].ToString(), Log);
+
+                                      }
+
+
+                                      Session["HasErrors"] = false;
+                                      Session["FinishedProcessing"] = true;
+                                      return;
                                   }
 
                               }
@@ -146,20 +175,48 @@ namespace GGApps
                               {
 
                                   Log.InfoLog(Session["mapPathError"].ToString(), appName + " Produced successfully over Test Content.", appName);
+                                  List<string> _listAttachments = new List<string>();
 
-                                  // Send email to QA, GG tema, and Mobile team.
-                                  // ........
 
-                                  //SendMail TEST TEAM
-                                  await SendMailToUsers(appName, GetEmailList("Test")
-                                            , null
-                                            , EmailTemplate("Success", appName, startProcessing), "GG DB produced for " + appName
-                                            , Session["mapPathError"].ToString(), Log );
+                                  if ((bool)Session["HasErrors"] == false)
+                                  {  
+                                      //SendMail To All Teams
+                                      await SendMailToUsers(appName
+                                                              , GetEmailList("AllTeams")
+                                                              , null
+                                                              , EmailTemplate("Success", appName, startProcessing), "GG DB produced for " + appName
+                                                              , Session["mapPathError"].ToString(), Log);
 
+                                  }
+                                  else// Send Failure Message!
+                                  {
+                                      //SendMail To All Teams
+                                      await SendMailToUsers(appName
+                                                              , GetEmailList("AllTeams")
+                                                              , null
+                                                              , EmailTemplate("Failure", appName, startProcessing), "GG DB produced for " + appName
+                                                              , Session["mapPathError"].ToString(), Log);
+
+                                      //Send Always email with Log info for currnet execution to ME.
+                                      _listAttachments.Add(Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                                      await SendMailToUsers(appName
+                                                              , GetEmailList("ErrorTeam")
+                                                              , _listAttachments
+                                                              , EmailTemplate("Failure", appName, startProcessing), "GG DB produced for " + appName
+                                                              , Session["mapPathError"].ToString(), Log);
+                                    
+                                  }
+
+                                  Session["HasErrors"] = false;
+                                  Session["FinishedProcessing"] = true;
+                                  return;
                               }
                           
                           }
                       }
+
+                      // send error mail for failure !
+
                   }
           );
 
@@ -173,9 +230,10 @@ namespace GGApps
         /// <param name="appName"></param>
         public void BatchExecuteAllSteps(int appID, string appName)
         {
-            CreateLogFiles Log = new CreateLogFiles();
+           // CreateLogFiles Log = new CreateLogFiles();
             string startProcessing = DateTime.Now.ToString("HH:mm - ddd d MMM yyyy");
 
+            Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
                 {
 
@@ -195,7 +253,7 @@ namespace GGApps
                         // Redirect result to temp file for APP with dateFormat
                         var result4 = await RunAsyncCommandBatch(ct, appID
                                                                     , appName
-                                                                    , "4_db_stats.bat " + appID.ToString() + "  reports/" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt"
+                                                                    , "4_db_stats.bat " + appID.ToString() + "  >  reports/" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt"
                                                                     , actualWorkDir
                                                                     , "Export Database Statistics", Session["mapPathError"].ToString(), Log);
 
@@ -214,7 +272,7 @@ namespace GGApps
                                                 , Server.MapPath("~/")
                                                 , Log
                                                 , Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt"
-                                                , "Batch/reports/" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
+                                                , "Batch/reports/" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
                                 Log.InfoLog(Session["mapPathError"].ToString(), appName + "> Finished Execution of Image Statics for App ", appName);
                                 // Do this suncrounsly
 
@@ -243,26 +301,56 @@ namespace GGApps
                                             // Send email to QA - Nadia - Galufos Team (for versions file)
                                             if (!result9.IsCancellationRequested)
                                             {
-                                                // Suncronous export Files for QA.
-                                        
 #endif
-
                                                 List<string> _listAttachments = new List<string>();
                                                 _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
-                                                _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
-
+                                                _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
                                                 Log.InfoLog(Session["mapPathError"].ToString(), appName + " Produced successfully over Test Content.", appName);
 
-                                                
-                                                //SendMail TEST TEAM
-                                                await SendMailToUsers(appName
-                                                                        , GetEmailList("Test")
-                                                                        , _listAttachments
-                                                                        , EmailTemplate("Success", appName, startProcessing), "GG DB produced for " + appName
-                                                                        , Session["mapPathError"].ToString(), Log );
+                                                if ((bool)Session["HasErrors"] == false)
+                                                {
+                                                    //SendMail To All Teams
+                                                    await SendMailToUsers(appName
+                                                                            , GetEmailList("AllTeams")
+                                                                            , _listAttachments
+                                                                            , EmailTemplate("Success", appName, startProcessing), "GG App produced for " + appName
+                                                                            , Session["mapPathError"].ToString(), Log);
 
-                                                Log.InfoLog(Session["mapPathError"].ToString(), appName + " e-Mails with attachments sent.", appName);
+                                                    //Send Always email with Log info for currnet execution to ME.
+                                                    _listAttachments.Add(Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                                                    await SendMailToUsers(appName
+                                                                            , GetEmailList("ErrorTeam")
+                                                                            , _listAttachments
+                                                                            , EmailTemplate("Info", appName, startProcessing), "GG App produced for " + appName
+                                                                            , Session["mapPathError"].ToString(), Log);
 
+
+                                                }
+                                                else// Send Failure Message!
+                                                {
+                                                    //SendMail To All Teams
+                                                    await SendMailToUsers(appName
+                                                                            , GetEmailList("AllTeams")
+                                                                            , _listAttachments
+                                                                            , EmailTemplate("Failure", appName, startProcessing), "GG App produced for " + appName
+                                                                            , Session["mapPathError"].ToString(), Log);
+
+                                                    //Send Always email with Log info for currnet execution to ME.
+                                                    _listAttachments.Add(Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                                                    await SendMailToUsers(appName
+                                                                            , GetEmailList("ErrorTeam")
+                                                                            , _listAttachments
+                                                                            , EmailTemplate("Failure", appName, startProcessing), "GG App produced for " + appName
+                                                                            , Session["mapPathError"].ToString(), Log);
+
+                                                    
+                                                    
+                                                }
+
+
+                                                Session["HasErrors"] = false;
+                                                Session["FinishedProcessing"] = true;
+                                                return;
 
                                             }
 #if !DEBUG
@@ -275,6 +363,10 @@ namespace GGApps
                         }
 
                     }
+
+
+                    // Send failure email if execution was interupted / or other error occured!!
+                    // ?
 
 #endif
                 }
@@ -304,7 +396,8 @@ namespace GGApps
             }
             catch (Exception ex)
             {
-                Log.ErrorLog(logPath, ex.Message, appName);
+                Session["HasErrors"] = true;
+                Log.ErrorLog(logPath, "ExecuteStep6 a." + ex.Message, appName);
                 return null;
             }
 
@@ -345,7 +438,8 @@ namespace GGApps
             }
             catch (IOException ex)
             {
-                Log.ErrorLog(logPath, "Some IO exception occured on Step 6! " + ex.Message, appName);
+                Session["HasErrors"] = true;
+                Log.ErrorLog(logPath, "Some IO exception occured on ExecuteStep6 b. " + ex.Message, appName);
                 return null;
             }
 
@@ -401,6 +495,9 @@ namespace GGApps
 
             if (chkList != null)
             {
+                if (Session["HasErrors"] == null)
+                    Session["HasErrors"] = false;
+
                 foreach (ListItem item in chkList.Items)
                 {
                     if (item.Selected)
@@ -493,6 +590,7 @@ namespace GGApps
 
             // Now we create a process, assign its ProcessStartInfo and start it
             Process proc = new Process();
+            proc.PriorityClass = ProcessPriorityClass.RealTime;
             proc.StartInfo = procStartInfo;
 
 
@@ -562,8 +660,8 @@ namespace GGApps
 
             }
             catch (IOException e)
-            { 
-                //Log this execption
+            {
+                Session["HasErrors"] = true;
                 Log.ErrorLog(_Default.mapPathError, "Initialize of App-Update failed! " + e.Message, appName);
                 return false;
             }

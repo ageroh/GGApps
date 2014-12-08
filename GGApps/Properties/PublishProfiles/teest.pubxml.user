@@ -6,14 +6,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\published\GGApps</_PublishTargetUrl>
+    <_PublishTargetUrl>T:\inetpub\wwwroot\test.pos.gr\GGApps</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Account/Login.aspx">
       <publishTime>01/12/2014 10:02:21</publishTime>
     </File>
     <File Include="Account/Manage.aspx">
-      <publishTime>01/12/2014 10:02:21</publishTime>
+      <publishTime>12/01/2014 10:02:21</publishTime>
     </File>
     <File Include="Account/OpenAuthProviders.ascx">
       <publishTime>01/12/2014 10:02:21</publishTime>
@@ -67,7 +67,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/23/2014 14:09:35</publishTime>
     </File>
     <File Include="Batch/ftpcmd.dat">
-      <publishTime>05/12/2014 19:38:53</publishTime>
+      <publishTime>08/12/2014 16:46:30</publishTime>
     </File>
     <File Include="Batch/gg_fix_html_entities.py">
       <publishTime>08/25/2014 18:24:36</publishTime>
@@ -112,76 +112,82 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/06/2014 12:41:56</publishTime>
     </File>
     <File Include="Batch/WinSCP.ini">
-      <publishTime>05/12/2014 19:38:56</publishTime>
+      <publishTime>08/12/2014 16:46:33</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>04/09/2014 10:02:17</publishTime>
+      <publishTime>03/12/2014 14:41:00</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.jQuery.dll">
-      <publishTime>04/09/2014 10:02:18</publishTime>
+      <publishTime>03/12/2014 14:40:56</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.jQuery.UI.Combined.dll">
-      <publishTime>04/09/2014 10:02:19</publishTime>
+      <publishTime>03/12/2014 14:40:56</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.AspNet.dll">
-      <publishTime>04/09/2014 10:02:23</publishTime>
+      <publishTime>05/12/2014 20:24:37</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.Core.dll">
-      <publishTime>04/09/2014 10:02:21</publishTime>
+      <publishTime>05/12/2014 20:24:13</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.OAuth.Consumer.dll">
-      <publishTime>04/09/2014 10:02:22</publishTime>
+      <publishTime>05/12/2014 20:24:36</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.OAuth.dll">
-      <publishTime>04/09/2014 10:02:22</publishTime>
+      <publishTime>05/12/2014 20:24:36</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.OAuth2.dll">
-      <publishTime>12/05/2014 20:24:13</publishTime>
+      <publishTime>05/12/2014 20:24:13</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.OpenId.dll">
-      <publishTime>04/09/2014 10:02:22</publishTime>
+      <publishTime>05/12/2014 20:24:37</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.OpenId.RelyingParty.dll">
-      <publishTime>04/09/2014 10:02:23</publishTime>
+      <publishTime>05/12/2014 20:24:37</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>04/09/2014 10:02:23</publishTime>
+      <publishTime>03/12/2014 14:40:57</publishTime>
     </File>
     <File Include="bin/GGApps.dll">
-      <publishTime>12/05/2014 20:27:28</publishTime>
+      <publishTime>12/08/2014 16:59:00</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.FriendlyUrls.dll">
-      <publishTime>04/09/2014 10:02:25</publishTime>
+      <publishTime>03/12/2014 14:40:59</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Membership.OpenAuth.dll">
-      <publishTime>04/09/2014 10:02:25</publishTime>
+      <publishTime>03/12/2014 14:40:59</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Web.Optimization.WebForms.dll">
-      <publishTime>04/09/2014 10:02:25</publishTime>
+      <publishTime>03/12/2014 14:41:00</publishTime>
     </File>
     <File Include="bin/Microsoft.ScriptManager.MSAjax.dll">
-      <publishTime>04/09/2014 10:02:20</publishTime>
+      <publishTime>03/12/2014 14:41:00</publishTime>
     </File>
     <File Include="bin/Microsoft.ScriptManager.WebForms.dll">
-      <publishTime>04/09/2014 10:02:20</publishTime>
+      <publishTime>03/12/2014 14:41:00</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
-      <publishTime>07/19/2012 11:59:52</publishTime>
+      <publishTime>03/12/2014 14:41:00</publishTime>
+    </File>
+    <File Include="bin/Mono.Math.dll">
+      <publishTime>05/12/2014 20:24:37</publishTime>
+    </File>
+    <File Include="bin/Org.Mentalis.Security.Cryptography.dll">
+      <publishTime>05/12/2014 20:24:37</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Extensions.dll">
-      <publishTime>12/05/2014 20:24:13</publishTime>
+      <publishTime>05/12/2014 20:24:13</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Primitives.dll">
-      <publishTime>12/05/2014 20:24:13</publishTime>
+      <publishTime>05/12/2014 20:24:13</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>04/09/2014 10:02:18</publishTime>
+      <publishTime>03/12/2014 14:41:00</publishTime>
     </File>
     <File Include="bin/System.Web.Providers.dll">
-      <publishTime>04/09/2014 10:02:17</publishTime>
+      <publishTime>03/12/2014 14:40:59</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
-      <publishTime>04/09/2014 10:02:17</publishTime>
+      <publishTime>03/12/2014 14:41:00</publishTime>
     </File>
     <File Include="BuildApp.aspx">
       <publishTime>05/12/2014 12:58:15</publishTime>
@@ -196,7 +202,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/12/2014 10:02:21</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>05/12/2014 13:21:38</publishTime>
+      <publishTime>08/12/2014 16:34:37</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>01/12/2014 10:02:21</publishTime>
@@ -361,10 +367,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/12/2014 10:02:21</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>05/12/2014 11:57:53</publishTime>
+      <publishTime>08/12/2014 10:11:54</publishTime>
     </File>
     <File Include="EmailTemplates/EmailTemplateFailure.html">
       <publishTime>05/12/2014 10:49:05</publishTime>
+    </File>
+    <File Include="EmailTemplates/EmailTemplateInfo.html">
+      <publishTime>08/12/2014 10:34:27</publishTime>
     </File>
     <File Include="EmailTemplates/EmailTemplateSuccess.html">
       <publishTime>05/12/2014 16:05:18</publishTime>
@@ -424,7 +433,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/12/2014 10:02:21</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>12/05/2014 20:24:43</publishTime>
+      <publishTime>08/12/2014 09:29:23</publishTime>
     </File>
     <File Include="Scripts/jquery-1.8.2.js">
       <publishTime>01/12/2014 10:02:21</publishTime>
@@ -505,7 +514,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/12/2014 10:02:21</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>05/12/2014 12:00:10</publishTime>
+      <publishTime>08/12/2014 10:16:46</publishTime>
     </File>
     <File Include="Site.Mobile.Master">
       <publishTime>01/12/2014 10:02:21</publishTime>
@@ -535,7 +544,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/12/2014 10:02:21</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/05/2014 20:28:45</publishTime>
+      <publishTime>12/08/2014 16:59:05</publishTime>
     </File>
   </ItemGroup>
 </Project>
