@@ -1,4 +1,3 @@
-1076@@Official holidays@@-@@-@@-
 1077@@Electricity@@-@@-@@-
 1078@@Currency@@-@@-@@-
 1079@@Time Zone@@-@@-@@-
@@ -8,184 +7,164 @@
 1438@@Language - Dictionary@@-@@-@@-
 1820@@More Apps@@-@@-@@-
 1829@@Help@@-@@-@@-
-1832@@Weather@@-@@-@@-
-2258@@Rocabella Santorini Deluxe Suites & Spa@@Imerovigli, Santorini@@+30 22860 23711, +30 22860 24111, +30 22860 28991@@www.rocabella-hotel-santorini.com
-2259@@Katikies The Hotel@@Oia, Santorini@@+30 22860 71401@@www.katikieshotelsantorini.com
-2260@@Fira@@Fira, Santorini@@-@@-
-2261@@Firostefani@@Firostefani, Santorini@@-@@-
-2262@@Imerovigli@@Imerovigli, Santorini@@-@@-
-2263@@Athinios@@Athinios, Santorini@@-@@-
-2264@@Oia@@Oia, Santorini@@-@@-
-2265@@Ammoudi@@Ammoudi, Santorini@@-@@-
-2266@@Artemis Suites@@Megalohori, Santorini@@+30 22860 81922, +30 22860 83421@@www.artemissuites.com
-2267@@Kirini Suites & Spa@@Oia, Santorini@@+30 22860 71236@@www.kirini.com
-2268@@Chromata Hotel@@Imerovigli, Santorini@@+30 22860 23227, +30 22860 25288@@www.chromata-santorini.com
-2269@@Sun Rocks Hotel@@Firostefani, Santorini@@+30 22860 71236@@www.sunrocks.gr
-2270@@Suites of the Gods Spa Hotel@@Megalochori, Santorini@@+30 22860 28856, +30 6977 079338@@suitesofthegods.com/index.html
-2271@@Mystique Hotel@@Oia, Santorini@@+30 22860 71114@@www.mystique.gr
-2291@@San Antonio Suites@@Imerovigli, Santorini@@+30 22860 24388@@www.sanantonio-santorini.com/
-2292@@Enigma Apartments & Suites@@Fira, Santorini@@+30 22860 24024@@www.enigmasantorini.com
-2293@@Aressana Spa Hotel & Suites@@Fira, Santorini@@+30 22860 23900@@www.aressana.gr
-2301@@La Maltese Hotel@@Imerovigli, Santorini@@+30 22860 24701@@www.lamaltese.com
-2317@@Astra Suites@@Imerovigli, Santorini@@+30 22860 23641@@www.astrasuites.com
-2318@@Voreina Gallery Suites@@Pyrgos, Santorini@@+30 22860 30700, +30 22860 30164@@www.voreinasuites.gr
-2319@@Kapari Hotel@@Imerovigli, Santorini@@+30 22860 21120@@www.kaparisantorini.gr/
-2321@@Villa Evgenia Hotel@@Fira, Santorini@@+30 22860 22575, +30 6945 023889@@www.evgeniavillas.com
-2326@@Donkeys@@Fira, Santorini@@+30 22860 25468@@www.santorini-donkeyunion.com/
-2328@@Donkey Rides@@Fira, Santorini@@+30 22860 25468@@www.santorini-donkeyunion.com/
-2329@@Akrotiri@@Akrotiri, Santorini@@+30 22860 81939@@odysseus.culture.gr/h/3/gh351.jsp?obj_id=2410
-2330@@Megalochori@@Megalochori, Santorini@@-@@-
-2331@@Emporio@@Emporio, Santorini@@-@@-
-2332@@Foinikia@@Foinikia, Santorini@@-@@-
-2333@@Pyrgos@@Pyrgos, Santorini@@-@@-
-2334@@Vothonas@@Vothonas, Santorini@@-@@-
-2335@@Grace Santorini@@Imerovigli, Santorini@@+30 22860 21300@@www.santorinigrace.com
-2336@@Ancient Thera@@Episkopi Gonias, Kamari, Santorini@@+30 22860 23217@@odysseus.culture.gr/h/3/gh355.jsp?obj_id=2454
-2337@@Aegean Divers@@Fira-Pyrgos Road, Santorini@@+30 22860 32201@@www.aegeandivers.com/
-2338@@Canaves Oia Hotel@@Oia, Santorini@@+30 22860 71453, +30 22860 71427 @@www.canaves.com
-2339@@Carpe Diem Hotel@@Pyrgos, Santorini@@+30 22860 34090@@www.carpediemsantorini.com
-2340@@Cosmopolitan Suites@@Fira, Santorini@@+30 22860 25632@@www.cosmopolitan-santorini.com/
-2341@@Gold Suites@@Imerovigli, Santorini@@+30 22860 23107@@www.andromedagoldsuites.com
-2342@@Vedema Resort@@Megalochori, Santorini@@+30 22860 81796@@www.vedema.gr/
-2343@@Santorini Princess Spa Hotel@@Imerovigli, Santorini@@+30 22860 25870@@www.santoriniprincess.com
-2344@@Zannos Melathron Hotel@@Pyrgos, Santorini@@+30 22860 28220@@www.zannos.gr
-2345@@Lilium Villas@@Fira, Santorini@@+30 22860 25333@@www.lilium-v.gr
-2346@@Nea Kameni@@Nea Kameni, Santorini@@-@@-
-2347@@Tour of Old and New Kameni@@Nea Kameni, Santorini@@-@@-
-2348@@Local Products@@-@@-@@-
-2349@@Museum of Prehistoric Thera@@Fira, Santorini@@+30 22860 23217@@odysseus.culture.gr/h/1/gh151.jsp?obj_id=3325
-2350@@Naval Museum of Oia@@Oia, Santorini@@+30 22860 71156@@-
-2351@@Archaeological Museum of Thera@@Fira, Santorini@@+30 22860 22217@@odysseus.culture.gr/h/1/gh151.jsp?obj_id=3400
-2352@@Koutsoyannopoulos Wine Museum@@Vothonas, Santorini@@+30 22860 31322@@www.wine-museum-koutsoyannopoulos.gr
-2353@@Perivolos - Agios Georgios@@Perivolos, Santorini@@-@@-
-2354@@Perissa@@Perissa, Santorini@@-@@-
-2355@@Vlychada@@Vlychada, Santorini@@-@@-
-2356@@Kamari@@Kamari, Santorini@@-@@-
-2357@@Monolithos@@Monolithos, Santorini@@-@@-
-2358@@Exo Gialos@@Exo Gialos, Santorini@@-@@-
-2359@@Mesa Pigadia@@Mesa Pigadia, Santorini@@-@@-
-2360@@Avis@@Avis, Santorini@@-@@-
-2361@@White Beach@@White Beach, Santorini@@-@@-
-2362@@Red Beach@@Red Beach, Santorini@@-@@-
-2363@@Pori@@Pori, Santorini@@-@@-
-2414@@Koloumpos@@Koloumpos, Santorini@@-@@-
-2418@@Baxedes@@Baxedes, Santorini@@-@@-
-2419@@Katharos@@Katharos, Santorini@@-@@-
-2420@@Plaka@@Plaka, Santorini@@-@@-
-2421@@Aegialos@@Exo Gialos, Santorini@@+30 22860 25816@@www.aegialos-beach.com, www.facebook.com/Aegialos?fref=ts
-2422@@Vassilikos@@Kamari Beach, Santorini@@+30 22860 34203@@www.facebook.com/vassilikosrestaurant?fref=ts
-2423@@Vassilikos@@Kamari Beach, Santorini@@+30 22860 34203@@www.facebook.com/vassilikosrestaurant?fref=ts
-2424@@Sea Side by Notos@@Perivolos, Agios Georgios, Santorini@@+30 22860 82801@@www.seaside-restaurant.gr/
-2425@@L' Opera di Costa@@Perivolos, Agios Georgios, Santorini@@+30 2286 083439@@www.facebook.com/pages/La-Opera-di-Costa/623809114325669?sk=timeline
-2426@@Cafe del Mar e Sol@@Perivolos, Agios Georgios, Santorini@@+30 6932 376707@@www.facebook.com/CafeDelMarEsol
-2427@@Nichteri@@Kamari, Santorini@@+30 22860 33480@@www.nichteri.gr/
-2428@@Wet Stories@@Perivolos, Agios Georgios, Santorini@@+30 22860 82990@@santoriniwetstories.wordpress.com/
-2429@@Anemos@@Perivolos, Agios Georgios, Santorini@@+30 22860 82711@@www.anemosbeachhotel.com/gr/santorini-lounge-bar-restaurant.php
-2430@@Demilmar@@Perissa, Santorini@@+30 22860 85070@@www.demilmar.com
-2431@@Red Bicycle@@Oia, Santorini@@+30 22860 71918 @@www.facebook.com/pages/Red-bicycle-Restaurant/512974112098868?fref=ts
-2432@@Kastro@@Oia, Santorini@@+30 22860 71045  @@www.kastro-ia.gr, www.facebook.com/pages/Kastro-Restaurant-Oia-Santorini/493001127428625?fref=ts
-2433@@Melenio@@Oia, Santorini@@+30 22860 71149@@-
-2434@@Dimitris@@Ammoudi, Santorini@@ +30 22860 71606  @@-
-2435@@Ammoudi@@Ammoudi, Santorini@@+30 22860 72298, +30 6937 123161 @@www.ammoudi-santorini.com
-2436@@39 steps@@Oia, Santorini@@+30 22860 71856   @@www.facebook.com/pages/39-STEPS/588876041136037?fref=ts
-2437@@Useful Information@@-@@-@@-
-2438@@Emergency@@-@@-@@-
-2439@@Port Authority@@Athinios, Santorini@@+30 22860 22239@@-
-2440@@Central Clinic of Santorini@@Fira, Santorini@@+30 22860 21728 @@www.santorinicentralclinic.gr
-2441@@Tourist Police@@-@@+30 22860 22649@@-
-2442@@Fire Department@@Fira, Santorini@@+30 22860 33199@@-
-2443@@Police@@Karterados, Santorini@@+30 22860 22649@@-
-2444@@First Aid@@Fira, Santorini@@+30 22863 60300, +30 22863 60301, +30 22863 60302, +30 22863 60303@@-
-2445@@Transportation@@-@@-@@-
-2446@@Thera's Public Bus Service (KTEL)@@Fira, Santorini@@+30 22860 25404@@www.ktel-santorini.gr
-2447@@Taxi@@Fira, Santorini@@+30 22860 22555, +30 22860 23951@@-
-2448@@Funicular@@Fira, Santorini@@+30 22860 22977, +30 22860 23045@@www.nomikos.org.gr
-2449@@Donkeys@@Fira, Santorini@@+30 22860 25468@@www.santorini-donkeyunion.com/
-2450@@Banks@@-@@-@@-
-2451@@Rent a Car@@-@@-@@-
-2452@@Kosmos Rent a Car@@Fira, Santorini@@+30 22860 25225, +30 6971891704 @@www.kosmos-carrental.com, www.santorini.com/rental/kosmos
-2453@@Koukoumavlos@@Fira, Santorini@@+30 22860 23807@@www.koukoumavlos.eu/
-2454@@Finikia@@Oia, Santorini@@+30 22860 71373@@www.finikiaplace.com
-2455@@Anogi@@Imerovigli Square, Santorini@@+30 22860 21285@@www.facebook.com/pages/%CE%95%CE%A3%CE%A4%CE%99%CE%91%CE%A4%CE%9F%CE%A1%CE%99%CE%9F-%CE%91%CE%9D%CE%A9%CE%93%CE%99/126693284070638
-2456@@Asyrtiko@@Fira, Santorini@@+30 22860 22463, +30 22860 34255@@www.facebook.com/AssyrticoRestaurant
-2457@@Raki@@Megalochori Square, Santorini@@+30 22860 81724@@www.facebook.com/RAKISantorini?fref=ts
-2458@@Spiti@@Megalochori, Santorini@@+30 22860 81724@@-
-2459@@Metaxi mas@@Exo Gonia, Santorini@@+30 22860 31323@@www.santorini-metaximas.gr/en/
-2460@@Selene@@Pyrgos, Santorini@@+30 22860 22249@@www.selene.gr/
-2461@@Ferendini@@Oia, Santorini@@+30 22860 71485@@www.feredini.gr/
-2463@@Skala@@Oia, Santorini@@+30 22860 71362@@www.facebook.com/pages/Skala-Restaurant/397904573577881?fref=ts
-2464@@Cooking & Degustation Sessions@@Megalohori, Santorini@@+30 22860 81724@@-
-2465@@Bagiatiko Food Bar@@Fira, Santorini@@+30 22860 22092@@www.bagiatiko.gr/
-2475@@Ash@@Fira, Santorini@@+30 22860 25313@@www.ashsantorini.com/
-2476@@Atlantis Books@@Oia, Santorini@@+30 22860 72346@@www.atlantisbooks.org/
-2477@@Suites of the Gods Spa@@Megalohori, Santorini@@+30 22860 28856, +30 6977 079338@@www.facebook.com/pages/Suites-of-the-Gods-Spa-Hotel/390768858432?sk=photos_albums
-2478@@Spa Nails Del Mar e Sol@@Fira, Santorini@@+30 22860 34144, +30 6936 661959@@www.facebook.com/pages/Spa-Nails-Del-Mar-e-Sol-Santorini/170796093034683?fref=ts
-2479@@Loulaki@@Oia, Santorini@@+30 22860 71856@@-
-2480@@Tango@@Fira, Santorini@@+30 6974 498206@@www.tangosantorini.gr
-2481@@Enigma Cafe@@Fira, Santorini@@+30 22860 24024@@-
-2482@@Enigma Club@@Fira, Santorini@@+30 22860 22466@@www.facebook.com/EnigmaClubSantorini
-2483@@Skiza@@Oia, Santorini@@+30 22860 71569@@www.facebook.com/SkizaCafe?fref=ts
-2484@@Casablanca@@Fira, Santorini@@+30 22860 27188@@casablancasoul.com/
-2485@@Weddings@@Santorini@@-@@-
-2486@@Cherry Tomato@@-@@-@@-
-2488@@White Eggplant@@Santorini@@-@@-
-2489@@Caper & Caper Leaves@@-@@-@@-
-2490@@Split Peas@@-@@-@@-
-2491@@Koufeto@@-@@-@@-
-2492@@Melitinia@@-@@-@@-
-2493@@Yellow Donkey Beer@@Mesa Gonia, Santorini@@+30 22860 30268@@www.santorinibrewingcompany.gr/products_en.html
-2494@@Volkan Beer@@Fira, Santorini@@+30 6909 903810, +30 211 4111081, +30 211 4111072@@www.volkanbeer.com
-2495@@General@@-@@-@@-
-2496@@Wineries@@-@@-@@-
-2501@@About us@@-@@-@@-
-2608@@Aegialos@@Exo Gialos, Santorini@@+30 22860 25816@@www.aegialos-beach.com, www.facebook.com/Aegialos?fref=ts
-4450@@Brama Yachts & Catamarans@@Fira, Santorini@@+30 211 0150973, +30 6977 977578@@www.boatsingreece.com
-4510@@VIP Services@@-@@-@@-
-4513@@Brama Yachts & Catamarans@@Fira, Santorini@@+30 211 0150973, +30 6977 977578@@www.boatsingreece.com
-4514@@Travel Agencies@@-@@-@@-
-4516@@Santorini Cruises@@Fira, Santorini@@+30 211 0150973, +30 6977 977578@@www.boatsingreece.com
-6266@@Pergeri Apartments@@Imerovigli, Santorini@@+30 22860 24166, +30 6989 666487 @@www.pergeri.gr, www.facebook.com/pages/Pergeri-apartments/629478450434800
-6269@@Kamini Exclusive Luxury Villas@@Pyrgos, Santorini@@+30 6974 829102@@www.kaminisantorinivillas.com
-6569@@Mezzo Restaurant@@Oia, Santorini@@+30 22860 21874@@www.facebook.com/MezzoHotelRestaurant
-6575@@MATI Art Gallery@@Fira, Santorini@@+30 2286023814@@matiartgallery.com, www.facebook.com/MatiArtGallery?fref=ts
-6577@@Ellinikon@@Fira, Santorini@@+30 22860 21161@@www.ellinikonrestaurant.com
-6579@@Fanari@@Fira, Santorini@@+30 22860 25107@@www.fanari-restaurant.gr
-6589@@Sabbia Nera@@Kamari, Santorini@@+30 22860 33007@@www.facebook.com/SabbiaNeraTrattoria?fref=ts
-6597@@Kastro Oia Houses@@Oia, Santorini@@+30 22860 71045@@www.kastrooiahouses.gr, www.facebook.com/pages/Kastro-oia-houses/1418407778441990?fref=ts
-6604@@Fanari Villas@@Oia, Santorini@@+30 22860 71008, +30 22860 71007, +30 22860 71147@@www.fanarivillas.gr, www.facebook.com/FanariVillas
-6605@@Costa Marina Villas@@Fira, Santorini@@+30 22860 28923@@www.costamarina.gr
-6606@@Finikia Place@@Foinikia, Oia, Santorini@@+30 22860 71373@@www.finikiaplace.com, www.facebook.com/Finikiaplace
-6613@@Terpsi en Oia@@Oia, Santorini@@+30 22860 71919@@www.terpsienoia.com/, www.facebook.com/pages/Terpsi-en-Oia/243840852306617
-6614@@Terpsi@@Fira, Santorini@@+30 22860 22842@@-
-6616@@Idol@@Fira, Santorini@@+30 22860 23292@@www.idol-santorini.com, www.facebook.com/IDOLRESTAURANT
-6634@@Agora@@Oia, Santorini@@+30 22860 28086@@www.facebook.com/pages/Agora-in-oia/160150914169348
-6642@@Convivium@@Fira, Santorini@@+30 22860 28111@@-
-6644@@KissingFish (Fira)@@Fira, Santorini@@+30 22860 22321@@www.kissingfishsantorini.com, www.facebook.com/pages/Kissingfish-Santorini/197709310348333?fref=ts
-6645@@KissingFish (Oia)@@Oia, Santorini@@+30 22860 72351@@ www.kissingfishsantorini.com, www.facebook.com/pages/Kissingfish-Santorini/197709310348333?fref=ts
-6646@@Kalderimi@@Oia, Santorini@@+30 22860 71621@@-
-6647@@Vazeos Car Moto Rental@@Oia, Santorini@@+30 6974 829102, +30 22860 71200, +30 22860 71006@@www.vazeos.gr
-6648@@Spiridakos Rent a Car@@Fira, Santorini@@+30 6944 350513, +30 22860 23755, +30 22860 24240@@www.rentacar-santorini.com
-6650@@Spiridakos Sailing Cruises@@Fira, Santorini@@+30 22860 23755, +30 22860 24240, +30 6944 350513, +30 6978 482222@@www.santorini-yachts.com/
-6651@@Caldera's Boats@@Santorini@@+30 22860 24355@@www.santorini-sea-excursions.com, www.facebook.com/KoinopraksiaPloionSantorinis
-6658@@Aegle@@Ipapantis, Fira, Santorini@@+30 22860 34100@@www.facebook.com/pages/%CE%91%CE%AF%CE%B3%CE%BB%CE%B7Aegle-Cafe-Stage/587741054604190
-6659@@Nick the Greek Jewellery@@Ipapantis, Fira, Santorini@@+30 22860 23907, +30 22860 23015@@www.facebook.com/NickTheGreekJewellerySantorini
-6660@@Murphy's@@Fira, Santorini@@+30 22860 22248@@www.facebook.com/pages/Murphys-bar-fira-Santorini/195870477117710?sk=timeline
-6661@@Murphy's Saloon@@Fira, Santorini@@+30 22860 23447@@-
-6662@@McDaniel's@@Fira, Santorini@@+30 22860 22315@@-
-6664@@Papasotiriou@@Fira, Santorini@@+30 22860 23138@@www.papasotiriou.gr
-6665@@Paradox@@Oia, Santorini@@+30 22860 71675@@www.facebook.com/pages/Paradox-Thai-food-and-bar/386756241463747?fref=ts
-6666@@AK Art Foundation@@Firon Street, Pyrgos, Santorini@@+30 22860 21506@@www.ak-galleries.com, www.facebook.com/AkAsimisKolaitouArtGalleries
-6706@@AK Art Gallery@@Fira, Santorini@@+30 22860 23041@@www.ak-galleries.com, www.facebook.com/AkAsimisKolaitouArtGalleries
-6708@@Pelican Kipos@@Fira, Santorini@@+30 22860 23433@@www.pelican.gr/cafe-winerestaurant/, www.facebook.com/pages/Pelican-kipos-Cafe-and-Wine-Restaurant/154770081264391?fref=ts
-6711@@Rocabella Restaurant@@Imerovigli, Santorini@@+30 22860 23711, +30 22860 24111, +30 22860 28991@@www.rocabella-hotel-santorini.com
-6714@@Pelican Hotel@@Fira, Santorini@@+30 22860 23114@@www.pelicanhotel.gr
-6717@@Istion Yachting@@Port, Santorini@@+30 2109811515@@www.istion.com
-6720@@-@@-@@+30 22860 22220@@www.pelican.gr
-6762@@Kiwi@@Kamari, Santorini@@+30 22860 34145@@www.kiwi-restaurant.gr
-6764@@Asia Club@@Fira, Santorini@@+30 22860 23457@@asia-club.gr
-6852@@Hondos Center@@Fira, Santorini@@+30 22860 25555@@www.hondos.gr
-6855@@Loucas Hotel@@Fira, Santorini@@+30 22860 22480, +30 22860 22680, +30 22860 22880@@www.loucashotel.gr, www.facebook.com/LoucaSantorini
-7040@@Crystal Bar@@Fira, Santorini@@+30 22860 22480, +30 22860 22680, +30 22680 22880@@www.loucashotel.gr
-7051@@Aris Restaurant@@Fira, Santorini@@+30 22860 22480, +30 22860 22680, +30 22680 22880@@www.loucashotel.gr
-7156@@Blue Monday Rockabilly Bar@@Fira, Santorini@@+30 22860 27052, +30 6984 374743@@www.facebook.com/bluemondaysantorini, www.bluemonday.gr/
-7234@@-@@-@@-@@-
+3247@@Clock & Bridge@@Arachova@@-@@-
+3275@@Afanos@@Afanos Square, Arachova@@+30 22670 31514@@www.afanos.gr, www.facebook.com/pages/%CE%9E%CE%95%CE%9D%CE%A9%CE%9D%CE%91%CE%A3-%CE%91%CE%A6%CE%91%CE%9D%CE%9F%CE%A3/196755313720016
+3277@@Iresioni@@Arachova@@+30 22670 29104, +30 6945 893834, +30 6937 861603@@www.xenonas-iresioni.gr, www.facebook.com/XenonasIresioni?fref=ts
+3283@@Ontas Guesthouse@@Arachova@@+30 22670 31820, +30 6978 367595 @@www.xenonas-ontas.com/
+3285@@Arachova Inn & Conference@@Arachova@@+30 22670 31353, +30 22670 31497@@www.arahova-inn.gr
+3286@@Celena Maisonettes@@Arachova@@+30 22670 31990@@www.celena.gr, www.facebook.com/pages/Cine-Celena-Cafe-Bar/156765371043036?fref=ts
+3290@@Aegli Resort & Spa@@Arachova-Eptalofos Provincial Road, Arachova@@+30 22670 31767@@www.aegli-arachova.gr
+3292@@Alpen House@@Arachova@@+30 22670 31068, +30 22670 31970@@www.alpenhouse.gr, www.facebook.com/pages/Alpen-House-Hotel-Arachova/170420356429920
+3293@@Anemolia Resort & Conference@@Arachova@@+30 22670 31640, +30 22670 31644@@www.anemolia.gr
+3294@@Elafivolia Suites@@Trouvoulos, Arachova@@+30 22673 00591, +30 6941 405280, +30 6948 283989@@www.elafivolia.gr
+3295@@Santa Marina Arachova Resort & Spa@@Kalanaki, Arachova@@+30 22670 31954@@www.santa-marina.gr/arachovaresort/#welcome
+3296@@Boutique Hotel Skamnos@@Livadi, Arachova@@+30 22670 31927, +30 6932 457666@@www.skamnos.com
+3299@@Elatos Resort & Health Club@@Itamos, Eptalofou@@+30 22340 61162, +30 22340 61163, +30 6944 854933@@www.elatos.com/
+3301@@Teresa Country Lodge@@Agoriani@@+30 6946 060381@@www.teresacountrylodge.com
+3312@@Leto Hotel@@15, Apollonos Street, Delphi@@+30 22650 82302@@www.leto-delphi.gr/
+3318@@Nefeles@@Arachova@@+30 22670 32777, +30 6979 357070, +30 6977 421679@@www.nefeles.com/index.php
+3322@@Agiannorema Guesthouse@@Livadi, Arachova@@+30 22670 31485@@www.agiannorema.gr/
+3402@@Lakka Square@@Lakka Square, Arachova@@-@@-
+3407@@Agoriani@@-@@-@@-
+3410@@Polydrosos@@-@@-@@-
+3411@@Distomo@@-@@-@@-
+3412@@Antikira@@-@@-@@-
+3413@@Tithorea@@-@@-@@-
+3414@@Amilkeia@@-@@-@@-
+3415@@Elateia@@-@@-@@-
+3416@@Aspra Spitia@@-@@-@@-
+3417@@Itea-Galaxidi@@-@@-@@-
+3427@@Delphi Ancient Gymnasium@@Delphi@@+30 22650 82312@@-
+3428@@Delphi Ancient Theater@@Delphi@@+30 22650 82312@@-
+3429@@Delphi Ancient Stadium@@Delphi@@+30 22650 82312@@-
+3430@@Treasury of the Athenians@@Delphi@@+30 22650 82312@@-
+3431@@Sanctuary of Athena@@Delphi@@+30 22650 82312@@-
+3432@@Kastalia Spring@@Delphi@@+30 22650 82312@@-
+3433@@Iera Odos@@Delphi@@+30 22650 82312@@-
+3434@@Temple of Apollo@@Delphi@@+30 22650 82312@@-
+3435@@Delphi Archaeological Museum@@Delphi@@+30 22650 82312@@www.facebook.com/delphimuseum, odysseus.culture.gr/h/1/eh151.jsp?obj_id=3404
+3437@@Parnassos Ski Resort@@Parnassos@@+30 22340 22700@@www.parnassos-ski.gr, www.facebook.com/pages/%CE%A7%CE%B9%CE%BF%CE%BD%CE%BF%CE%B4%CF%81%CE%BF%CE%BC%CE%B9%CE%BA%CF%8C-%CE%9A%CE%AD%CE%BD%CF%84%CF%81%CE%BF-%CE%A0%CE%B1%CF%81%CE%BD%CE%B1%CF%83%CF%83%CE
+3438@@Paragliding@@-@@+30 6942 063154@@www.paraglidingfun.gr
+3439@@Fokis Mining Park@@51st km Lamia-Amfissa National Road@@+30 22650 78819@@www.vagonetto.gr
+3440@@Panigiraki@@-@@-@@www.panigiraki.gr, www.facebook.com/panigiraki
+3441@@Skamnos Spa@@Livadi, Arachova@@+30 22670 31927@@www.skamnos.com
+3442@@Aegli Spa@@Arachova-Eptalofos Provincial Road, Arachova@@+30 22670 31767@@www.aegli-arachova.gr
+3443@@Ontas Guesthouse Spa@@Arachova@@+30 22670 31820, +30 6978 367595 @@www.xenonas-ontas.com/
+3444@@Indigo@@Arachova@@+30 22670 32525@@-
+3445@@Minas Kokkoris Fashion Code@@Arachova@@+30 22670 29150@@www.facebook.com/kokkorisfashioncode.arachova
+3446@@Amelie@@Arachova@@+30 22670 32096@@www.facebook.com/pages/Amelie/669103709839755
+3447@@Anemi@@Arachova@@+30 22670 31701@@www.facebook.com/pages/Anemi/430214400370610
+3449@@Lousso@@Arachova@@+30 22670 32955@@www.facebook.com/pages/LOUSSO-Arahova/238698042836546
+3450@@Lousso M & W@@Central Square, Arachova@@+30 22670 32719@@www.facebook.com/LoussoManArahova
+3451@@Formaela (cheese)@@-@@-@@-
+3452@@Tsipouro Vasilias@@Zemeno, Arachova@@+30 6932 601199@@www.facebook.com/pages/%CE%A4%CF%83%CE%AF%CF%80%CE%BF%CF%85%CF%81%CE%BF-B%CE%B1%CF%83%CE%B9%CE%BB%CE%B9%CE%AC/200442733313683
+3453@@Gennima Gis Pasta@@Steiri, Viotia@@+30 22670 22050@@-
+3454@@Wine@@Polydrosos, Parnassos@@+30 22340 29616, +30 6932 652415 @@www.argyriouwinery.eu
+3455@@Textiles@@-@@-@@-
+3456@@Opsimotiri (cheese)@@-@@-@@-
+3460@@Q@@Arachova@@+30 22670 31407@@www.facebook.com/pages/Q/253550998027426
+3461@@Pappos-Baldoumis@@Lakka Square, Arachova@@+30 22670 31552@@www.skischool.gr, www.facebook.com/pages/PAPPOS-BALDOUMIS-SKI-SCHOOL/115376192371
+3463@@Emergency@@-@@-@@-
+3464@@Town Hall@@-@@+30 22670 31318, +30 22670 31250@@-
+3465@@Police@@-@@+30 22670 31333@@-
+3466@@D.E.T.P.A. Development - Information@@-@@+30 22670 31630@@-
+3467@@Community Medical Clinic@@-@@+30 22670 31262, +30 22670 31300@@-
+3468@@Livadia General Hospital@@Agiou Vlasiou, Livadia@@+30 22610 20051@@-
+3469@@Distomo Health Center@@-@@+30 22670 22222, +30 22670 22790-3@@-
+3470@@Fire Emergency Services@@-@@199@@-
+3471@@Transportation@@-@@-@@-
+3472@@KTEL (Intercity Buses)@@Arachova@@+30 210 8317096, +30 22650 28226@@www.ktel-fokidas.gr
+3473@@Taxi@@-@@+30 22670 31566@@-
+3474@@Useful Information - Arachova@@-@@-@@-
+3476@@National Holidays@@-@@-@@-
+3479@@Banks@@-@@-@@-
+3480@@Car Rental@@-@@-@@-
+3481@@Kosmos Rent a Car@@9, Syngrou Street, Athens@@+30 210 9234696@@www.kosmos-carrental.com
+3482@@Pharmacies@@-@@-@@-
+3491@@Paramount@@Livadi, Arachova@@+30 22670 32400@@www.paramountcafe.gr, www.facebook.com/Paramount.Parnassos
+3492@@Ihor@@61, Pavlou & Friderikis Street, Delphi@@+30 22650 83095@@-
+3493@@Kaplanis Tavern@@Tropaiou Square, Arachova@@+30 22670 31891@@-
+3494@@To Patriko Mas@@69, Pavlou & Friderikis Street, Delphi@@+30 22650 82150, +30 6945 902137@@-
+3495@@Karaouli@@Livadi, Arachova@@+30 22670 31001@@-
+3497@@Pappos-Baldoumis Ski School@@Arachova@@+30 22670 31552, +30 22670 31070@@www.skischool.gr, www.facebook.com/pages/PAPPOS-BALDOUMIS-SKI-SCHOOL/115376192371
+3500@@Cine Celena@@Lakka Square, Arachova@@+30 22670 31401@@www.celena.gr, www.facebook.com/pages/Cine-Celena-Cafe-Bar/156765371043036
+3501@@Tavola@@Arachova@@+30 6973 431969@@-
+3503@@Pomodori@@Arachova@@+30 22670 31023, +30 22670 32492@@-
+3507@@Koutras Snow Sports@@Arachova-Eptalofo Provincial Road, Arachova@@+30 22670 31767 @@www.aegli-arachova.gr/ski_shop.htm
+3508@@Koutras Ski School@@Arachova@@+30 22670 31767@@www.koutras.gr
+3509@@Go Wild@@Livadi, Arachova@@+30 22670 32303@@-
+3510@@Ati@@Livadi, Arachova@@+30 22670 31298@@-
+3512@@Dimitriadis Action Stores (Arachova)@@Delphon Street, Arachova@@+30 22670 32728@@www.dimitriadis.gr
+3513@@Poliko@@Livadi, Arachova@@+30 22670 32707@@www.facebook.com/PolikoCafe?pnref=lhc
+3514@@To Fasouli@@Arachova@@+30 22670 29227@@-
+3515@@Folklore Museum@@Arachova@@+30 22670 31630@@www.arachovamuseum.gr, www.facebook.com/Arachovamuseum?ref=profile
+3519@@Traditional Crafts Trades Workshop@@Arachova@@+30 22670 31630@@www.arachovamuseum.gr
+3520@@Traditional Crafts Lessons@@Arachova@@+30 22670 31630 @@www.arachovamuseum.gr
+3524@@Chrisso@@-@@-@@-
+3525@@Sehre@@Lakka Square, Arachova@@+30 22670 31518@@www.facebook.com/pages/Sehre/533548990072571
+3551@@Kalyva@@Livadi, Arachova@@+30 22670 31222@@-
+3557@@E@@Main Street, Arachova@@+30 22670 31158@@www.facebook.com/pages/E-Bar-Restaurant/224631300997835
+3563@@Le Grand Chalet@@Agoriani, Arachova@@+30 22340 61301@@www.facebook.com/pages/LE-GRAND-CHALET/151716620762
+3568@@Weather (Arachova)@@-@@-@@-
+3569@@Weather (Delphi)@@-@@-@@-
+3572@@Delphi@@-@@-@@-
+3576@@Parking@@Arachova@@-@@-
+3588@@To Rakopolio@@Lakka Square, Arachova@@+30 22670 31827@@-
+3590@@Who Are We?@@-@@-@@-
+3599@@To Kalderimi@@Arachova@@+30 22670 31418@@www.tokalderimi.gr
+3600@@Psinete... Psinese?@@Arachova@@+30 22670 32585@@-
+3602@@Honey@@Arachova@@+30 22670 32417, +30 6945 112474@@-
+3603@@Cooperative of Formaela Producers@@Arachova@@+30 22670 29183@@-
+3617@@Isidora Gallery@@Arachova@@+30 6980 195968@@www.facebook.com/IsidoraGallery
+3618@@Arachova Main Street@@Main Street, Arachova@@-@@-
+3638@@Livadi@@Livadi@@-@@-
+3640@@Osios Loukas Monastery@@Steiri, Viotia@@+30 22670 22228@@osiosloukas.gr
+3646@@Picturesque Back Streets@@-@@-@@-
+3652@@Korykeion Andron@@Livadi, Arachova@@-@@-
+3655@@Saint George's Church@@-@@-@@-
+3665@@Oreon Gefsis@@Delphon Street, Arachova@@+30 22670 32007, +30 6937 201150@@www.facebook.com/pages/%CE%9F%CF%81%CE%AD%CF%89%CE%BD-%CE%93%CE%B5%CF%8D%CF%83%CE%B5%CE%B9%CF%82/654541471243657
+3666@@Egarsios@@Arachova@@+30 22670 31810, +30 22670 32007, +30 6932 538008, +30 6937 772479@@www.egarsios.gr
+3675@@Amalia Hotel@@1, Apollonos Street, Delphi@@+30 22650 82101@@www.amaliahoteldelphi.gr
+3676@@Tavola@@Arachova@@+30 6973 431969@@-
+3677@@Press Agency@@-@@-@@-
+3678@@Panayiota@@Arachova@@+30 22670 32735@@-
+3679@@Egarsios@@Arachova@@-@@-
+3686@@Akouarela@@Arachova@@+30 22670 32660, +30 6975 916171@@www.akouarela.com, www.facebook.com/pages/Akouarela-Restaurant-Bar/261740843849335
+3695@@Dimitriadis Action Stores (Livadi)@@Livadi, Arachova@@+30 22670 31179@@www.dimitriadis.gr
+3716@@Weather (Parnassos)@@-@@-@@-
+3751@@Alpha Bank@@Lakka Square, Arachova@@+30 22670 32561@@-
+3752@@Eurobank@@Kotrolou Square, Arachova@@+30 22670 32489@@-
+3753@@National Bank@@Delphon Street, Arachova@@+30 22670 29253@@-
+3754@@Petrol Stations@@-@@-@@-
+3755@@Elin@@Livadi, Arachova@@+30 22670 32310@@-
+3756@@Shell@@Arachova@@+30 22670 32324@@-
+3757@@BP@@4th Km Arachova-Delphi Road@@+30 22670 31181@@-
+4001@@Livadia@@-@@-@@-
+4002@@Orhomenos@@-@@-@@-
+5563@@Excursion to Pavliani@@Pavliani, Fthiotida@@+30 6981 074581@@vasilikia.gr, www.facebook.com/pages/Vasilikia-Mountain-Farm-Retreat/666541320076586?fref=ts
+8483@@Zachos Taverna@@Livadi, Parnassos@@+30 2267032159@@www.facebook.com/pages/%CE%A4%CE%B1%CE%B2%CE%B5%CF%81%CE%BD%CE%B1-%CE%96%CE%B1%CF%87%CE%BF%CF%82-%CE%9B%CE%B9%CE%B2%CE%B1%CE%B4%CE%B9-%CE%A0%CE%B1%CF%81%CE%BD%CE%B1%CF%83%CF%83%CE%BF%CF%85/3445360922
+8758@@O Fournos tou Kefala@@Arachova@@+30 22670 31470@@-
+8761@@To Archontiko@@Arachova@@+30 22670 31631@@www.toarhontiko.gr
+8782@@Boudoir@@Delfon Street & Eleftheriou Venizelou Street, Arachova@@+30 6997 951297, +30 6976 506769@@www.facebook.com/pages/Boudoir-Arachova/183060521799002
+8784@@Nikonostimies@@Arachova@@+30 22673 00417, 30 6978 905126 (delivery)@@-
+8808@@Dasargyris@@Arachova@@+30 22670 31291, +30 6932 713751@@-
+8809@@Vertical SnowSports@@Arachova@@+30 22670 31798@@www.vertical-sports.gr, www.facebook.com/VerticalSnowSports
+8811@@Vertical SnowSports Ski Lessons@@Arachova@@+30 22670 31798@@www.vertical-sports.gr, www.facebook.com/VerticalSnowSports
+8888@@Funky Cherry@@Koukouras Area, Arachova@@+30 22670 31743@@-
+8890@@Emporiko Alt 1200@@Livadi, Parnassos@@+30 6940 777444@@www.facebook.com/EmporikoAlt1200
+8900@@Real Estate@@-@@-@@-
+8902@@Monte Bianco Villas@@3rd km., Arachova-Eptalofos Provincial Road, Livadi, Parnassos@@+30 22670 31704@@www.montebiancovillas.gr, www.facebook.com/montebiancovillas
+8903@@Cafe Monte Bianco@@3rd km., Arachova-Eptalofos Provincial Road, Livadi, Parnassos.@@+30 22670 31704@@www.montebiancovillas.gr, www.facebook.com/montebiancovillas
+8906@@Ta Platania@@Agoriani@@+30 22340 61259@@-
+8908@@Teresa Country Lodge@@Agoriani@@+30 6946 060381@@www.teresacountrylodge.com
+8918@@Niarxos@@Livadi, Parnassos@@+30 6974 549674@@-
+8922@@Energy Land@@Eptalofos, Parnassos@@+30 22340 61247, +30 6932 273598@@www.energy-land.gr
+8923@@O tea pineis@@Main Street, Arachova@@+30 22670 31606@@www.facebook.com/oteapineis
+8925@@Energy Land Villas@@Eptalofos (Agoriani), Parnassos@@+30 22340 61247, +30 6932 273598@@www.energy-land.gr
+8944@@Amigos@@34 Vassileos Pavlou & Friderikis Street, Delphi@@+30 22650 83142@@www.facebook.com/amigosparasempredelphi
+8948@@-@@-@@-@@-
+8949@@-@@-@@-@@-
+8950@@-@@-@@-@@-
+8957@@Aegli Restaurant@@Arachova-Eprtalofos Provincial Road, Arachova@@+30 22670 31767@@www.aegli-arachova.gr
+8958@@Le Sapin@@Papaioannou Square, Arachova@@+30 22670 31108@@-
+8960@@Paraskevas Hair Coif@@Arachova@@+30 22670 32224, +30 6932 647714@@www.facebook.com/paraskevashaircoif?fref=ts

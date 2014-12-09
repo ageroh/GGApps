@@ -33,13 +33,8 @@ namespace GGApps
         public static string[] LangStr = {"", "el", "en","miss", "ru"};
         public static StringBuilder sbExec = new StringBuilder();
 
-#if DEBUG
-        public static string actualWorkDir = "C:\\Users\\Argiris\\Desktop\\GG_Batch\\Batch\\";    
-#else
-    public static string actualWorkDir = HostingEnvironment.MapPath("/Batch/");
-#endif
-
-
+        public static string actualWorkDir =  HostingEnvironment.MapPath("/Batch/");
+        // "C:\\Users\\Argiris\\Desktop\\GG_Batch\\Batch\\";    
 
         public CreateLogFiles Log
         {
@@ -265,7 +260,7 @@ namespace GGApps
 
                             if (!result5.IsCancellationRequested)
                             {
-#endif                                
+
                                 Log.InfoLog(Session["mapPathError"].ToString(), appName + "> Started Execution of Image Statics for App ", appName);
                                 var result6 = ExecuteStep6(appID
                                                 , appName
@@ -280,15 +275,16 @@ namespace GGApps
 
                                 if ( result6 != null)
                                 {
+                             
 
-#if !DEBUG
-                                    var result7 = await RunAsyncCommandBatch(ct, appID, appName, "7_ftp_fb_img.bat " + Char.ToLowerInvariant(appName[0]) + appName.Substring(1), actualWorkDir
+                                    var result7 = await RunAsyncCommandBatch(ct, appID, appName, "7_ftp_fb_img.bat " +  appName.ToLower(), actualWorkDir
                                                                                                 , "Upload Images to FTP", Session["mapPathError"].ToString(), Log);
 
                                     if (!result7.IsCancellationRequested)
                                     {
 
-                                        var result8 = await RunAsyncCommandBatch(ct, appID, appName, "8_ftp_entity_text.bat " + Char.ToLowerInvariant(appName[0]) + appName.Substring(1) + " " + appID.ToString(), actualWorkDir
+
+                                        var result8 = await RunAsyncCommandBatch(ct, appID, appName, "8_ftp_entity_text.bat " + appName.ToLower() + " " + appID.ToString(), actualWorkDir
                                                                                                    , "Upload Entity to FTP", Session["mapPathError"].ToString(), Log);
 
                                         if (!result8.IsCancellationRequested)
@@ -301,7 +297,7 @@ namespace GGApps
                                             // Send email to QA - Nadia - Galufos Team (for versions file)
                                             if (!result9.IsCancellationRequested)
                                             {
-#endif
+#endif   
                                                 List<string> _listAttachments = new List<string>();
                                                 _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
                                                 _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
@@ -317,12 +313,14 @@ namespace GGApps
                                                                             , Session["mapPathError"].ToString(), Log);
 
                                                     //Send Always email with Log info for currnet execution to ME.
-                                                    _listAttachments.Add(Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                                                    //_listAttachments.Add(Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
                                                     await SendMailToUsers(appName
                                                                             , GetEmailList("ErrorTeam")
                                                                             , _listAttachments
-                                                                            , EmailTemplate("Info", appName, startProcessing), "GG App produced for " + appName
-                                                                            , Session["mapPathError"].ToString(), Log);
+                                                                            , EmailTemplate("Info", appName, startProcessing, Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
+                                                                            , "GG App produced for " + appName
+                                                                            , Session["mapPathError"].ToString(), Log
+                                                                            );
 
 
                                                 }
@@ -336,11 +334,12 @@ namespace GGApps
                                                                             , Session["mapPathError"].ToString(), Log);
 
                                                     //Send Always email with Log info for currnet execution to ME.
-                                                    _listAttachments.Add(Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                                                    //_listAttachments.Add(Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
                                                     await SendMailToUsers(appName
                                                                             , GetEmailList("ErrorTeam")
                                                                             , _listAttachments
-                                                                            , EmailTemplate("Failure", appName, startProcessing), "GG App produced for " + appName
+                                                                            , EmailTemplate("Failure", appName, startProcessing, Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
+                                                                            , "GG App produced for " + appName
                                                                             , Session["mapPathError"].ToString(), Log);
 
                                                     
@@ -351,9 +350,9 @@ namespace GGApps
                                                 Session["HasErrors"] = false;
                                                 Session["FinishedProcessing"] = true;
                                                 return;
-
-                                            }
 #if !DEBUG
+                                            }
+
                                         }
 
                                     }
@@ -567,53 +566,63 @@ namespace GGApps
             // perform a long running operation, e.g. network service call, computation, file IO
             ProcessStartInfo procStartInfo;
 
-            if (redirectOut)
+            try
             {
-                procStartInfo = new ProcessStartInfo("cmd.exe", "/c " + command);
-            }
-            else
-                // This is when we have a pipe execution!
-            {
-                procStartInfo = new ProcessStartInfo("cmd.exe");
-                procStartInfo.Arguments = @"/C """ + command.ToString() + "\"";
-            }
-
-            
-            procStartInfo.WorkingDirectory = actualWorkDir;
-            procStartInfo.RedirectStandardOutput = redirectOut;
-            procStartInfo.UseShellExecute = false;
-            procStartInfo.CreateNoWindow = false;
-            procStartInfo.LoadUserProfile = false;
-            procStartInfo.RedirectStandardError = true;
-
-
-
-            // Now we create a process, assign its ProcessStartInfo and start it
-            Process proc = new Process();
-            proc.PriorityClass = ProcessPriorityClass.RealTime;
-            proc.StartInfo = procStartInfo;
-
-
-            log.InfoLog(mapPath, "Started:> " + ExplainCmd + " for APP: " + appName, appName);
-            proc.Start();
-            
-            // instead of p.WaitForExit(), do
-            StringBuilder q = new StringBuilder();
-            while (!proc.HasExited)
-            {
-                if (redirectOut )
+                if (redirectOut)
                 {
-                    q.AppendLine("</br>" + proc.StandardOutput.ReadLine());
-
-                    // Log the process
-                    log.InfoLog(mapPath, " PID:" + proc.Id + "> " + proc.StandardOutput.ReadLine(), appName);
+                    procStartInfo = new ProcessStartInfo("cmd.exe", "/c " + command);
+                }
+                else
+                // This is when we have a pipe execution!
+                {
+                    procStartInfo = new ProcessStartInfo("cmd.exe");
+                    procStartInfo.Arguments = @"/C """ + command.ToString() + "\"";
                 }
 
+
+                procStartInfo.WorkingDirectory = actualWorkDir;
+                procStartInfo.RedirectStandardOutput = redirectOut;
+                procStartInfo.UseShellExecute = false;
+                procStartInfo.CreateNoWindow = false;
+                procStartInfo.LoadUserProfile = false;
+                procStartInfo.RedirectStandardError = true;
+
+
+
+                // Now we create a process, assign its ProcessStartInfo and start it
+                Process proc = new Process();
+
+                proc.StartInfo = procStartInfo;
+
+
+                log.InfoLog(mapPath, "Started:> " + ExplainCmd + " for APP: " + appName, appName);
+                proc.Start();
+
+                // instead of p.WaitForExit(), do
+                StringBuilder q = new StringBuilder();
+                while (!proc.HasExited)
+                {
+                    if (redirectOut)
+                    {
+                        q.AppendLine("</br>" + proc.StandardOutput.ReadLine());
+
+                        // Log the process
+                        log.InfoLog(mapPath, " PID:" + proc.Id + "> " + proc.StandardOutput.ReadLine(), appName);
+                    }
+
+                }
+
+                proc.WaitForExit();
+
+                log.InfoLog(mapPath, "Finished:> " + ExplainCmd + " for APP: " + appName, appName);
+
             }
-            
-            proc.WaitForExit();
-            
-            log.InfoLog(mapPath, "Finished:> " + ExplainCmd + " for APP: " + appName, appName);
+            catch (Exception ex)
+            {
+                log.ErrorLog(mapPath, "Error while creating Process : " + ex.Message, appName);
+                ct.ThrowIfCancellationRequested();
+                return ct;
+            }
 
             return ct;//q.ToString();
         }
@@ -708,66 +717,68 @@ namespace GGApps
         private async Task SendMailToUsers(string appName, List<string> team, List<string> attachmentFilenames, string emailBody, string emailSubject, string mapPath, CreateLogFiles log)
         {
 
-
-            var message = new MailMessage();
-            message.From = new MailAddress("noreply@greekguide.com");
-            message.Subject = emailSubject;
-            message.Body = emailBody;
-            message.IsBodyHtml = true;
-
-            // Build Receipents List
-            foreach (String recStr in team)
+            using (var message = new MailMessage())
             {
-                message.To.Add(new MailAddress(recStr));
-            }
+                message.From = new MailAddress("noreply@greekguide.com");
+                message.Subject = emailSubject;
+                message.Body = emailBody;
+                message.IsBodyHtml = true;
 
-            try
-            {
-                // ADD FILE ATTACHEMENTS IF THEY EXIST
-                foreach (string attachmentFilename in attachmentFilenames)
+                // Build Receipents List
+                foreach (String recStr in team)
                 {
-                    if (attachmentFilename != null)
-                    {
-                        Attachment attachment = new Attachment(attachmentFilename, MediaTypeNames.Application.Octet);
-                        ContentDisposition disposition = attachment.ContentDisposition;
-                        disposition.CreationDate = File.GetCreationTime(attachmentFilename);
-                        disposition.ModificationDate = File.GetLastWriteTime(attachmentFilename);
-                        disposition.ReadDate = File.GetLastAccessTime(attachmentFilename);
-                        disposition.FileName = Path.GetFileName(attachmentFilename);
-                        disposition.Size = new FileInfo(attachmentFilename).Length;
-                        disposition.DispositionType = DispositionTypeNames.Attachment;
-                        message.Attachments.Add(attachment);
-                    }
+                    message.To.Add(new MailAddress(recStr));
                 }
 
-            }
-            catch (Exception ex)
-            {
-                // FileAttachements not found for App! for this date.
-                log.InfoLog(mapPath, "Exception thrown while trying to collect attachment files: " + ex.Message, appName);
-            }
-
-            try
-            {
-                // Finaly send email ..
-                var smtp = new SmtpClient
+                try
                 {
-                    Host = "smtp.gmail.com",
-                    Port = 25,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new System.Net.NetworkCredential("admin@primemedia.gr", "ferrari35#71")
-                };
+                    // ADD FILE ATTACHEMENTS IF THEY EXIST
+                    foreach (string attachmentFilename in attachmentFilenames)
+                    {
+                        if (attachmentFilename != null)
+                        {
+                            Attachment attachment = new Attachment(attachmentFilename, MediaTypeNames.Application.Octet);
+                            ContentDisposition disposition = attachment.ContentDisposition;
+                            disposition.CreationDate = File.GetCreationTime(attachmentFilename);
+                            disposition.ModificationDate = File.GetLastWriteTime(attachmentFilename);
+                            disposition.ReadDate = File.GetLastAccessTime(attachmentFilename);
+                            disposition.FileName = Path.GetFileName(attachmentFilename);
+                            disposition.Size = new FileInfo(attachmentFilename).Length;
+                            disposition.DispositionType = DispositionTypeNames.Attachment;
+                            message.Attachments.Add(attachment);
+                        }
+                    }
 
-                smtp.SendCompleted += smtp_SendCompleted;
-                await smtp.SendMailAsync(message);
-              
+                }
+                catch (Exception ex)
+                {
+                    // FileAttachements not found for App! for this date.
+                    log.InfoLog(mapPath, "Exception thrown while trying to collect attachment files: " + ex.Message, appName);
+                }
+
+                try
+                {
+                    // Finaly send email ..
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 25,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new System.Net.NetworkCredential("admin@primemedia.gr", "ferrari35#71")
+                    };
+
+                    smtp.SendCompleted += smtp_SendCompleted;
+                    await smtp.SendMailAsync(message);
+
+                }
+                catch (SmtpException sE)
+                {
+                    log.InfoLog(mapPath, "Exception while sending notification email! " + sE.Message, appName);
+                }
             }
-            catch (SmtpException sE)
-            {
-                log.InfoLog(mapPath, "Exception while sending notification email! " + sE.Message, appName);
-            }
+            
         }
 
 
@@ -783,7 +794,7 @@ namespace GGApps
 
 
 
-        private string EmailTemplate(string kind, string appName, string startProcessing)
+        private string EmailTemplate(string kind, string appName, string startProcessing, string LogErrorRealPath = null)
         {
             String str = String.Empty;
 
@@ -801,6 +812,12 @@ namespace GGApps
                         str = File.ReadAllText(Server.MapPath("EmailTemplates//EmailTemplateFailure.html"), Encoding.UTF8);
                     }
                     break;
+                case "Info":
+                    if (File.Exists(Server.MapPath("EmailTemplates//EmailTemplateInfo.html")))
+                    {
+                        str = File.ReadAllText(Server.MapPath("EmailTemplates//EmailTemplateInfo.html"), Encoding.UTF8);
+                    }
+                    break;
                 default: break;
             }
 
@@ -808,6 +825,9 @@ namespace GGApps
             {
                 str = str.Replace("{1}", startProcessing);
                 str = str.Replace("{2}", appName);
+                if( LogErrorRealPath != null)
+                    str = str.Replace("{3}", LogErrorRealPath);
+
                 return str;
             }
 

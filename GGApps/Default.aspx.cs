@@ -22,12 +22,8 @@ namespace GGApps
         public static String[] otherLangApps;
         public static bool HasErrors = false;
 
-#if DEBUG
-        public static string actualWorkDir = "C:\\Users\\Argiris\\Desktop\\GG_Batch\\Batch\\";    
-#else
         public static string actualWorkDir = HostingEnvironment.MapPath("/Batch/");
-#endif
-
+        // "C:\\Users\\Argiris\\Desktop\\GG_Batch\\Batch\\";    
 
         public static CreateLogFiles Log
         {

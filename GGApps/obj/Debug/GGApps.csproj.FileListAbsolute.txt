@@ -11,7 +11,6 @@ C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Microso
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Debug\GGApps.dll
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Debug\GGApps.pdb
-C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Debug\GGApps.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\GGApps.dll
 C:\Users\Administrator\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\GGApps.pdb
 C:\Users\Administrator\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Antlr3.Runtime.dll
@@ -76,3 +75,4 @@ C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\System.
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Org.Mentalis.Security.Cryptography.xml
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Mono.Math.xml
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Debug\GGApps.csproj.App.config
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Debug\GGApps.csprojResolveAssemblyReference.cache
