@@ -4,7 +4,7 @@
     <asp:Panel runat="server" ID="mainSubPanel">
     <h2><asp:Label Text="" ID="lbl1" runat="server"></asp:Label></h2>
 
-    <asp:RadioButtonList ID="BuildAppListID" runat="server" >
+    <asp:RadioButtonList ID="BuildAppListID" CssClass="BuildAppList" runat="server" >
         <asp:ListItem 
             Enabled="true" Text="Export Database only" Value="DBOnly"
             />

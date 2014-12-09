@@ -566,19 +566,6 @@ tr.pager td {
 
 
 
-#MainContent_BuildAppListID label{
-    display: inline-block;
-    font-size: 1.2em;
-    font-weight: 600;
-    margin-left: 0.3em;
-	}
-
-#MainContent_BuildAppListID input {
-    width: auto;
-
-}
-
-
 
 
 /********************
@@ -774,7 +761,7 @@ tr.pager td {
 
 
 
-        #MainContent_reportDiv table {
+        .LoginViewImportant table {
 	        font-family: verdana,arial,sans-serif;
 	        font-size:11px;
 	        color:#333333;
@@ -782,23 +769,34 @@ tr.pager td {
 	        border-color: #999999;
 	        border-collapse: collapse;
         }
-        #MainContent_reportDiv table th {
+        .LoginViewImportant  table th {
 	        background-color:#c3dde0;
 	        border-width: 1px;
 	        padding: 8px;
 	        border-style: solid;
 	        border-color: #a9c6c9;
         }
-        #MainContent_reportDiv table tr {
+        .LoginViewImportant  table tr {
 	        background-color:#d4e3e5;
         }
-        #MainContent_reportDiv table td {
+        .LoginViewImportant  table td {
 	        border-width: 1px;
 	        padding: 8px;
 	        border-style: solid;
 	        border-color: #a9c6c9;
         }
 
+
+        .BuildAppList label {
+            display: inline-block;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-left: 0.3em;
+	    }
+
+    .BuildAppList input {
+        width: auto;
+    }
 
     span.appName {
          font-style: italic;
@@ -816,6 +814,8 @@ tr.pager td {
 	    border-bottom-color: #F00;
     }
 
+
+    
 
 
 

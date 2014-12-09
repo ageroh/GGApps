@@ -13,7 +13,7 @@
 </asp:Content>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <asp:Panel ID="LoginViewImportant" runat="server">
+    <asp:Panel ID="LoginViewImportant" CssClass="LoginViewImportant" runat="server">
             <h3>Select application to update</h3>
             <span>*All previous updates must have finished!</span>
             
@@ -27,7 +27,7 @@
                 <asp:Literal runat="server" id="txtEditor1" />
             </textarea>
 
-            <div runat="server" id="reportDiv">
+            <div class="reportDivClass" runat="server" id="reportDiv" >
             </div>
          
             <asp:Button id="ContinueBtn" runat="server" Text="Continue" Visible="false" Enabled="false" OnClick="ContinueBtn_Click"/>                   

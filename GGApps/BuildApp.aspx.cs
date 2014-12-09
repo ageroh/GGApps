@@ -33,7 +33,7 @@ namespace GGApps
         public static string[] LangStr = {"", "el", "en","miss", "ru"};
         public static StringBuilder sbExec = new StringBuilder();
 
-        public static string actualWorkDir =  HostingEnvironment.MapPath("/Batch/");
+        public static string actualWorkDir =  HostingEnvironment.MapPath("~/Batch/");
         // "C:\\Users\\Argiris\\Desktop\\GG_Batch\\Batch\\";    
 
         public CreateLogFiles Log
@@ -403,8 +403,7 @@ namespace GGApps
 
             sb.AppendLine("<br/>* ");
             string path_from = "c:\\Temp\\Images\\" + appName;
-            string path_to = "M:\\GreekGuide\\Images\\" + appName;
-
+            
             try
             {
 
@@ -423,14 +422,15 @@ namespace GGApps
                     int cnt = Directory.GetFiles(path_from).Length;
                     sb.AppendLine("<br/>* " + cnt);
                 }
-                sb.AppendLine("<br/>* ");
-                sb.AppendLine("<br/>*** fb images in remote dir (" + path_to + ")");
-                sb.AppendLine("<br/>* ");
-                if (Directory.Exists(path_to))
-                {
-                    int cnt = Directory.GetFiles(path_to).Length;
-                    sb.AppendLine("<br/>* " + cnt);
-                }
+                
+                //sb.AppendLine("<br/>* ");
+                //sb.AppendLine("<br/>*** fb images in remote dir (" + path_to + ")");
+                //sb.AppendLine("<br/>* ");
+                //if (Directory.Exists(path_to))
+                //{
+                //    int cnt = Directory.GetFiles(path_to).Length;
+                //    sb.AppendLine("<br/>* " + cnt);
+                //}
                 sb.AppendLine("<br/>* ");
                 File.WriteAllText(actualWorkDir + fileName, sb.ToString(), Encoding.UTF8);
 
@@ -516,8 +516,8 @@ namespace GGApps
                             BatchExecuteAllSteps((int)Session["appID"], Session["appName"].ToString());
                             ((Control)sender).Parent.FindControl("mainSubPanel").Visible = false;
                             AddMessageToScreen("ExecutionMessages"
-                                               , "<h2>Batch process execution has begun for <span class='appName'>" + Session["appName"].ToString() + "</span>. </h2>"
-                                                  + "<h3>Teams will be notified via e-mail when execution is finished.</h3>"
+                                               , "<h2>Batch process execution has started for <span class='appName'>" + Session["appName"].ToString() + "</span>. </h2>"
+                                                  + "<h3>You will be notified via e-mail upon completition.</h3>"
                                                   + "<strong>Thank You!</strong>", ((Control)sender).Parent);
                         }
                         else if (cmdStr == "DBOnly")
@@ -525,8 +525,8 @@ namespace GGApps
                             BatchExecuteDBExport((int)Session["appID"], Session["appName"].ToString());
                             ((Control)sender).Parent.FindControl("mainSubPanel").Visible = false;
                             AddMessageToScreen("ExecutionMessages"
-                                               , "<h2>Batch process execution has begun for <span class='appName'>" + Session["appName"].ToString() + "</span>. </h2>"
-                                                  + "<h3>Teams will be notified via e-mail when execution is finished.</h3>"
+                                               , "<h2>Batch process execution has started for <span class='appName'>" + Session["appName"].ToString() + "</span>. </h2>"
+                                                  + "<h3>You will be notified via e-mail upon completition.</h3>"
                                                   + "<strong>Thank You!</strong>", ((Control)sender).Parent);
                         }
                         //else if (cmdStr == "ImagesOnly")
@@ -649,17 +649,6 @@ namespace GGApps
                 if (!Directory.Exists("C:\\temp\\images\\" + appName + "-fb"))
                 {
                     Directory.CreateDirectory("C:\\temp\\images\\" + appName + "-fb");
-                }
-
-                // 10.168.10.70 M:
-                if (!Directory.Exists("M:\\GreekGuide\\Images\\" + appName))
-                {
-                    Directory.CreateDirectory("M:\\GreekGuide\\Images\\" + appName);
-                }
-
-                if (!Directory.Exists("M:\\GreekGuide\\Databases\\" + appName))
-                {
-                    Directory.CreateDirectory("M:\\GreekGuide\\Databases\\" + appName);
                 }
 
 

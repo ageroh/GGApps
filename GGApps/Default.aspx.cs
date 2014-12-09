@@ -22,7 +22,8 @@ namespace GGApps
         public static String[] otherLangApps;
         public static bool HasErrors = false;
 
-        public static string actualWorkDir = HostingEnvironment.MapPath("/Batch/");
+        
+        public static string actualWorkDir = HostingEnvironment.MapPath("~/Batch/");
         // "C:\\Users\\Argiris\\Desktop\\GG_Batch\\Batch\\";    
 
         public static CreateLogFiles Log
@@ -320,39 +321,39 @@ namespace GGApps
             sb.Clear();
 
             // Test 1 - entities without location 
-            sb.AppendLine("<h3>Test 1 - entities without location</h3>\n");
+            sb.AppendLine("<h3>Check 1 - Entities Without Location</h3>\n");
             Log.InfoLog(mapPathError, "Exporting Report stage 1", name, "");
             sb.AppendLine(executeSQLScript(id, name, 0, path + "db_test_2_1_entities_without_location.sql", "ContentDB_165"));
     
             //Test 1a - entities in multiple locations 
-            sb.AppendLine("<h3>Test 1a - entities in multiple locations</h3>\n");
+            sb.AppendLine("<h3>Check 1a - Entities In Multiple Locations</h3>\n");
             Log.InfoLog(mapPathError, "Exporting Report stage 2_1a", name, "");
             sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_1a_entities_in_multiple_locations.sql")) ;
 
             // DONT FORGET CHECK FOR RUSSIAN !
 
             // Test 2 - entities connected to non leaves 
-            sb.AppendLine("<h3>Test 2 - entities connected to non leaves</h3>\n");
+            sb.AppendLine("<h3>Check 2 - Entities Connected To Non Leaves</h3>\n");
             Log.InfoLog(mapPathError, "Exporting Report stage 2", name, "");
             sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_2_entities_connected_to_non_leaves.sql"));
 
             //Test 3 - entities without category 
-            sb.AppendLine("<h3>Test 3 - entities without category</h3>\n");
+            sb.AppendLine("<h3>Check 3 - Entities Without Category</h3>\n");
             Log.InfoLog(mapPathError, "Exporting Report stage 3", name, "");
             sb.AppendLine(executeSQLScript( id, name, 2, path + "db_test_2_3_entities_without_category.sql"));
 
             // Test 4a - entities with invalid characters (GR) 
-            sb.AppendLine("<h3>Test 4a - entities with invalid characters (GR)</h3>\n");
+            sb.AppendLine("<h3>Check 4a - Entities With Invalid Characters (GR)</h3>\n");
             Log.InfoLog(mapPathError, "Exporting Report stage 4a", name, "");
             sb.AppendLine(executeSQLScript( id, name, 1, path + "db_test_2_4_entities_with_invalid_characters.sql"));
 
             // Test 4b - entities with invalid characters (EN) 
-            sb.AppendLine("<h3>Test 4b - entities with invalid characters (EN)</h3>\n");
+            sb.AppendLine("<h3>Check 4b - Entities With Invalid Characters (EN)</h3>\n");
             Log.InfoLog(mapPathError, "Exporting Report stage 4b", name, User.Identity.Name);
             sb.AppendLine(executeSQLScript( id, name, 2, path + "db_test_2_4_entities_with_invalid_characters.sql"));
             
             // Test 5 - entities with greek characters in english 
-            sb.AppendLine("<h3>Test 5 - entities with greek characters in english</h3>\n");
+            sb.AppendLine("<h3>Check 5 - Entities With Greek Characters In English</h3>\n");
             Log.InfoLog(mapPathError, "Exporting Report stage 5", name, User.Identity.Name);
             sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_5_entities_with_greek_characters_in_english.sql"));
 
@@ -426,7 +427,7 @@ namespace GGApps
                 Log.ErrorLog(mapPathError, "executeSQLScript for " + name + " lang:" + langID + " Exception:" + e.Message, name);
             }
 
-            return "";
+            return "</br><span class='emptyTable'>Empty</span>";
         }
 
 
@@ -466,7 +467,7 @@ namespace GGApps
                 html += "<tr>";
                 for (int j = 0; j < dt.Columns.Count; j++)
                 {
-                    if (dt.Columns[j].ColumnName.ToLower() == "ententityid")
+                    if (dt.Columns[j].ColumnName.ToLower() == "id")
                         html += "<td><a href='#' class='popAdm'>" + dt.Rows[i][j].ToString() + "</a></td>";
                     else
                     {

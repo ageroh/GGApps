@@ -32,7 +32,7 @@
 
         $(document).ready(function() {
             /* Open Entity Page from ADM.GREEKGUIDE ! */
-            $("#MainContent_reportDiv").find(".popAdm").on('click', function () {
+            $(".reportDivClass").find(".popAdm").on('click', function () {
                 DoOpenEntity(parseInt($(this).text().trim()));
             });
         });

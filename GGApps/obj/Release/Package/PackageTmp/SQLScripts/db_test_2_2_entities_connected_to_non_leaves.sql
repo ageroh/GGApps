@@ -5,10 +5,10 @@ with nonleaves as
 		on f1.fltFilterID=f2.fltParentID and f1.fltTypeID in (1,2)
 )
 SELECT 
-		e.ententityid 
-	, e.entName 
-	, n.fltFilterID 
-	, n.fltName 
+		e.ententityid as ID
+	, e.entName  as Name
+	, n.fltFilterID  as FilterID
+	, n.fltName  as [Filter Name]
 from nonleaves n 
 	INNER JOIN Filter_Entity FE 
 		ON FE.fieFilterID=n.fltFilterID 

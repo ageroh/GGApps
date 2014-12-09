@@ -1,7 +1,7 @@
 select 
-	  ententityid 
-	, entName
-	, COUNT(*)
+	  ententityid as ID 
+	, entName as Name
+	, COUNT(*) as Total
 FROM entity e 
 inner join filter_entity fe 
 	on e.ententityid=fe.fieentityid

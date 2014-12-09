@@ -1,6 +1,6 @@
 select 
-		ententityid
-	  , entName
+		ententityid as ID
+	  , entName as Name 
 FROM entity e 
 where not exists
 (
