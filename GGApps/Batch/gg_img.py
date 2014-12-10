@@ -84,7 +84,7 @@ else:
     raise SystemExit('No Aguments.')
     
 
-db_path = 'm:/GreekGuide/Databases/%s/GreekGuide_%s_EN_%s.db' % (city,city,date)
+db_path = 'C:\\inetpub\\wwwroot\\test.pos.gr\\GGApps\\Batch\\dbfiles\\GreekGuide_%s_EN_%s.db' % (city,date)
 #db_path = 'm:/GreekGuide/Databases/Athens/GreekGuide_Athens_EN_20130902.db'
 #db_path = 'm:/GreekGuide/Databases/Mykonos/GreekGuide_Mykonos_EN_20130902.db'
 #db_path = 'm:/GreekGuide/Databases/Santorini/GreekGuide_Santorini_EL_20130820.db'

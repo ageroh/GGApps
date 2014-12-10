@@ -42,3 +42,4 @@ C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Mono.Ma
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.csproj.App.config
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.dll
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.pdb
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.csprojResolveAssemblyReference.cache

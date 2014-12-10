@@ -250,13 +250,16 @@
     <Content Include="Batch\9b_copy_databases.bat" />
     <Content Include="Batch\9_copy_img_databases.bat" />
     <Content Include="Batch\ftpcmd.dat" />
-    <Content Include="Batch\SQLiteConverter.exe.config" />
+    <Content Include="Batch\SQLiteConverter.exe.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Batch\WinSCP.com" />
     <Content Include="Batch\WinSCP.ini" />
     <Content Include="Batch\260" />
     <None Include="Properties\PublishProfiles\teest.pubxml" />
     <None Include="Properties\PublishProfiles\Test 2.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="README_PRODUCTION.txt" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />

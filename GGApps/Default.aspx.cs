@@ -427,7 +427,7 @@ namespace GGApps
                 Log.ErrorLog(mapPathError, "executeSQLScript for " + name + " lang:" + langID + " Exception:" + e.Message, name);
             }
 
-            return "</br><span class='emptyTable'>Empty</span>";
+            return "</br><span class='emptyTable'>Passed</span>";
         }
 
 
