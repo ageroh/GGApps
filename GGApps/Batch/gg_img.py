@@ -75,16 +75,19 @@ socket.setdefaulttimeout(5)
 args = sys.argv
 
 if  1 < len(args) < 4:
-    city = args[1]
-    if len(args) == 1:
-        date = args[2]
-    else:
-        date = datetime.now().strftime("%Y%m%d")
+	city = args[1]
+	if len(args) == 1:
+		date = args[2]
+	elif len(args) == 3:
+		date = args[2]
+	else:
+		date = datetime.now().strftime("%Y%m%d")
 else:
-    raise SystemExit('No Aguments.')
+	raise SystemExit('No Aguments.')
     
-
-db_path = 'C:\\inetpub\\wwwroot\\test.pos.gr\\GGApps\\Batch\\dbfiles\\GreekGuide_%s_EN_%s.db' % (city,date)
+import os
+db_path = os.getcwd() 
+db_path = db_path + "\\dbfiles\\GreekGuide_%s_EN_%s.db" % (city,date)
 #db_path = 'm:/GreekGuide/Databases/Athens/GreekGuide_Athens_EN_20130902.db'
 #db_path = 'm:/GreekGuide/Databases/Mykonos/GreekGuide_Mykonos_EN_20130902.db'
 #db_path = 'm:/GreekGuide/Databases/Santorini/GreekGuide_Santorini_EL_20130820.db'
