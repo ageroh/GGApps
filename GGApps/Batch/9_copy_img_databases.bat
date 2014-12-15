@@ -3,8 +3,8 @@
 if [%1]==[] goto usage
 if [%2]==[] goto usage
 
-ROBOCOPY  C:\temp\images\%1  \\10.168.200.5\QWETestContent\%1\update\android\images /IS
-ROBOCOPY  C:\temp\images\%1  \\10.168.200.5\QWETestContent\%1\update\ios\images /IS
+ROBOCOPY  C:\temp\images\%1  C:\GGAppContent\%1\update\android\images /IS
+ROBOCOPY  C:\temp\images\%1  C:\GGAppContent\%1\update\ios\images /IS
 
 
 if exist "%~dp0dbfiles\GreekGuide_%1_EN_%2.db" (
@@ -63,23 +63,23 @@ REM Else..
 
 if exist "%~dp0dbfiles\update.zip" (
 
-  if exist "%~dp0dbfiles\update.zip" ROBOCOPY  "%~dp0dbfiles" \\10.168.200.5\QWETestContent\%1\update\ios update.zip /IS
-  if exist "%~dp0dbfiles\update.zip" ROBOCOPY  "%~dp0dbfiles" \\10.168.200.5\QWETestContent\%1\update\android update.zip /IS
+  if exist "%~dp0dbfiles\update.zip" ROBOCOPY  "%~dp0dbfiles" C:\GGAppContent\%1\update\ios update.zip /IS
+  if exist "%~dp0dbfiles\update.zip" ROBOCOPY  "%~dp0dbfiles" C:\GGAppContent\%1\update\android update.zip /IS
   
   REM also copy the simple DB files
-  ROBOCOPY  "%~dp0dbfiles" \\10.168.200.5\QWETestContent\%1\update\ios ContentEN.db /IS
-  ROBOCOPY  "%~dp0dbfiles" \\10.168.200.5\QWETestContent\%1\update\ios ContentGR.db /IS
-  ROBOCOPY  "%~dp0dbfiles" \\10.168.200.5\QWETestContent\%1\update\ios ContentRU.db /IS
+  ROBOCOPY  "%~dp0dbfiles" C:\GGAppContent\%1\update\ios ContentEN.db /IS
+  ROBOCOPY  "%~dp0dbfiles" C:\GGAppContent\%1\update\ios ContentGR.db /IS
+  ROBOCOPY  "%~dp0dbfiles" C:\GGAppContent\%1\update\ios ContentRU.db /IS
 
-  ROBOCOPY  "%~dp0dbfiles" \\10.168.200.5\QWETestContent\%1\update\android ContentEN.db /IS
-  ROBOCOPY  "%~dp0dbfiles" \\10.168.200.5\QWETestContent\%1\update\android ContentGR.db /IS
-  ROBOCOPY  "%~dp0dbfiles" \\10.168.200.5\QWETestContent\%1\update\android ContentRU.db /IS
+  ROBOCOPY  "%~dp0dbfiles" C:\GGAppContent\%1\update\android ContentEN.db /IS
+  ROBOCOPY  "%~dp0dbfiles" C:\GGAppContent\%1\update\android ContentGR.db /IS
+  ROBOCOPY  "%~dp0dbfiles" C:\GGAppContent\%1\update\android ContentRU.db /IS
 
   
-  if exist  \\10.168.200.5\QWETestContent\%1\update\ios\update.zip goto a1
+  if exist  C:\GGAppContent\%1\update\ios\update.zip goto a1
   goto end
   :a1 
-  if exist  \\10.168.200.5\QWETestContent\%1\update\android\update.zip goto a2
+  if exist  C:\GGAppContent\%1\update\android\update.zip goto a2
   goto end
   :a2
   goto success
