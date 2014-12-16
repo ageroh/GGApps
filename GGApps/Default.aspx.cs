@@ -121,6 +121,37 @@ namespace GGApps
         }
 
 
+        public static DataTable GetAllAppBundles()
+        {
+            System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+            try
+            {
+                if (rootWebConfig1.AppSettings.Settings["GG_Reporting"] != null)
+                {
+                    SqlConnection con = new SqlConnection(rootWebConfig1.AppSettings.Settings["GG_Reporting"].Value.ToString());
+                    SqlCommand cmd = new SqlCommand(@"select *
+                                                        from GGAppsBundleDetails
+                                                        inner join GGAppsBundle
+                                                        on GGAppsBundle.GGAppsBundleID = GGAppsBundleDetails.GGAppsBundleID", con);
+
+                    SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adp.Fill(dt);
+
+                    return dt;
+
+                }
+            }
+            catch (Exception e)
+            {
+                HasErrors = true;
+                Log.ErrorLog(mapPathError, e.Message, "generic", "");
+            }
+            return null;
+
+        }
+
+
         public void ContinueBtn_Click(object sender, EventArgs e)
         {
             ClientScriptManager cs = Page.ClientScript;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,7 @@ using System.Web.Hosting;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Net;
+using System.Data.SQLite;
 
 namespace GGApps
 {
@@ -228,6 +230,13 @@ namespace GGApps
            // CreateLogFiles Log = new CreateLogFiles();
             string startProcessing = DateTime.Now.ToString("HH:mm - ddd d MMM yyyy");
 
+#if DEBUG
+
+            UpdateAllVersions(Server.MapPath("~/")
+                                , Log
+                                , Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+    #endif
+
             Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
                 {
@@ -260,7 +269,7 @@ namespace GGApps
 
                             if (!result5.IsCancellationRequested)
                             {
-
+#endif
                                 Log.InfoLog(Session["mapPathError"].ToString(), appName + "> Started Execution of Image Statics for App ", appName);
                                 var result6 = ExecuteStep6(appID
                                                 , appName
@@ -271,7 +280,7 @@ namespace GGApps
                                 Log.InfoLog(Session["mapPathError"].ToString(), appName + "> Finished Execution of Image Statics for App ", appName);
                                 // Do this suncrounsly
 
-
+#if !DEBUG
 
                                 if ( result6 != null)
                                 {
@@ -297,7 +306,7 @@ namespace GGApps
                                             // Send email to QA - Nadia - Galufos Team (for versions file)
                                             if (!result9.IsCancellationRequested)
                                             {
-#endif   
+                                                
                                                 List<string> _listAttachments = new List<string>();
                                                 _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
                                                 _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
@@ -305,6 +314,22 @@ namespace GGApps
 
                                                 if ((bool)Session["HasErrors"] == false)
                                                 {
+                                                    
+#if !DEBUG                                                     
+                                                    // Read the list of DB versions of production - if no enty was given to DB, then inherit its DB version, if not exists then its the first!
+                                                    UpdateAllVersions();
+
+                                                    // Give DB the correct version number.
+                                                    SetVersionToDB();
+
+                                                    // Fix Versions File
+                                                    UpdateConfigurationFiles();
+
+                                                    // Commit-Push sto GIT SVN the new Version of DB and files produced - with TAG and correct Message.
+                                                    CommitPushLocal();
+
+#endif
+                                                    
                                                     //SendMail To All Teams
                                                     await SendMailToUsers(appName
                                                                             , GetEmailList("AllTeams")
@@ -350,7 +375,7 @@ namespace GGApps
                                                 Session["HasErrors"] = false;
                                                 Session["FinishedProcessing"] = true;
                                                 return;
-#if !DEBUG
+
                                             }
 
                                         }
@@ -373,6 +398,50 @@ namespace GGApps
             );
 
     
+        }
+
+        private void UpdateConfigurationFiles()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SetVersionToDB()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void UpdateAllVersions(string path,  CreateLogFiles log, string filename)
+        {
+            // Get The list of all apps
+            DataTable dt = _Default.GetAllAppBundles();
+
+            // get Version of produced DB
+            SQLiteConnection con = new SQLiteConnection("Data Source="+path+"Batch\\dbfiles\\ContentEN.db; Version=3;");
+            con.Open();
+
+            // run command to get current version
+            SQLiteCommand cmd = new SQLiteCommand("PRAGMA USER_VERSION;", con);
+            int curVersion=0;
+            Int32.TryParse(cmd.ExecuteScalar().ToString(), out curVersion);
+            cmd.Dispose();
+            curVersion++;
+            cmd = new SQLiteCommand("PRAGMA USER_VERSION = "+ curVersion + " ;", con);
+            cmd.ExecuteNonQuery();
+
+
+            // update current version + 1 
+
+            
+            //SQLiteDatabase db = new Helper(context).getWritableDatabase();
+            //db.getVersion(); // what value do you get here?
+
+
+        }
+
+        public void CommitPushLocal()
+        {
+            throw new NotImplementedException();
+
         }
 
         private object ExecuteStep6(int appID, string appName, string actualWorkDir, CreateLogFiles Log, string logPath, string fileName)
