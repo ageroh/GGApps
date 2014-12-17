@@ -229,19 +229,21 @@ namespace GGApps
         {
            // CreateLogFiles Log = new CreateLogFiles();
             string startProcessing = DateTime.Now.ToString("HH:mm - ddd d MMM yyyy");
+            Finalize finalProcessing = new Finalize(Server.MapPath("~/"), appName, appID, Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
 
 #if DEBUG
-
-            UpdateAllVersions(Server.MapPath("~/")
-                                , Log
-                                , Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+            BackOffice bk = new BackOffice();
+            finalProcessing.UpdateDBVersion();
+            
     #endif
 
+
+#if !DEBUG
             Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
                 {
 
-#if !DEBUG
+
                     var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir
                                                                                , "convert SQL Db to SQLLite", Session["mapPathError"].ToString(), Log);
 
@@ -269,7 +271,7 @@ namespace GGApps
 
                             if (!result5.IsCancellationRequested)
                             {
-#endif
+
                                 Log.InfoLog(Session["mapPathError"].ToString(), appName + "> Started Execution of Image Statics for App ", appName);
                                 var result6 = ExecuteStep6(appID
                                                 , appName
@@ -280,7 +282,6 @@ namespace GGApps
                                 Log.InfoLog(Session["mapPathError"].ToString(), appName + "> Finished Execution of Image Statics for App ", appName);
                                 // Do this suncrounsly
 
-#if !DEBUG
 
                                 if ( result6 != null)
                                 {
@@ -315,20 +316,8 @@ namespace GGApps
                                                 if ((bool)Session["HasErrors"] == false)
                                                 {
                                                     
-#if !DEBUG                                                     
-                                                    // Read the list of DB versions of production - if no enty was given to DB, then inherit its DB version, if not exists then its the first!
-                                                    UpdateAllVersions();
+                                               
 
-                                                    // Give DB the correct version number.
-                                                    SetVersionToDB();
-
-                                                    // Fix Versions File
-                                                    UpdateConfigurationFiles();
-
-                                                    // Commit-Push sto GIT SVN the new Version of DB and files produced - with TAG and correct Message.
-                                                    CommitPushLocal();
-
-#endif
                                                     
                                                     //SendMail To All Teams
                                                     await SendMailToUsers(appName
@@ -392,51 +381,16 @@ namespace GGApps
                     // Send failure email if execution was interupted / or other error occured!!
                     // ?
 
-#endif
+
                 }
+
+
 
             );
 
+            #endif
+        }
     
-        }
-
-        private void UpdateConfigurationFiles()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void SetVersionToDB()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void UpdateAllVersions(string path,  CreateLogFiles log, string filename)
-        {
-            // Get The list of all apps
-            DataTable dt = _Default.GetAllAppBundles();
-
-            // get Version of produced DB
-            SQLiteConnection con = new SQLiteConnection("Data Source="+path+"Batch\\dbfiles\\ContentEN.db; Version=3;");
-            con.Open();
-
-            // run command to get current version
-            SQLiteCommand cmd = new SQLiteCommand("PRAGMA USER_VERSION;", con);
-            int curVersion=0;
-            Int32.TryParse(cmd.ExecuteScalar().ToString(), out curVersion);
-            cmd.Dispose();
-            curVersion++;
-            cmd = new SQLiteCommand("PRAGMA USER_VERSION = "+ curVersion + " ;", con);
-            cmd.ExecuteNonQuery();
-
-
-            // update current version + 1 
-
-            
-            //SQLiteDatabase db = new Helper(context).getWritableDatabase();
-            //db.getVersion(); // what value do you get here?
-
-
-        }
 
         public void CommitPushLocal()
         {

@@ -159,7 +159,7 @@ footer {
         text-decoration: none;
     }
 
-    #login a.username {
+    #login a.\ {
         background: none;
         margin-left: 0px;
         text-decoration: underline;

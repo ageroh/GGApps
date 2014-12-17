@@ -79,7 +79,7 @@ namespace GGApps
                 //{
                     DropDownList ddStart = (DropDownList)LoginViewImportant.FindControl("ddStart");
 
-                    ddStart.DataSource = FillDeptDropdownList();
+                    ddStart.DataSource = GetAllAppTable();
                     ddStart.DataTextField = "appName";
                     ddStart.DataValueField = "id";
                     ddStart.Items.Insert(0, " - Select App - ");
@@ -94,7 +94,7 @@ namespace GGApps
 
 
         
-        public static DataTable FillDeptDropdownList()
+        public static DataTable GetAllAppTable()
         {
             System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
             try
@@ -553,7 +553,7 @@ namespace GGApps
             String threelang = rootWebConfig1.AppSettings.Settings["ThreeLanguages"].Value;
             if (threelang != null)
             {
-                otherLangApps = threelang.Split('|');
+                otherLangApps = threelang.Split('#');
                 if (otherLangApps != null)
                 {
                     foreach (string x in otherLangApps)
