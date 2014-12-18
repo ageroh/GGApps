@@ -232,10 +232,10 @@ namespace GGApps
             Finalize finalProcessing = new Finalize(Server.MapPath("~/"), appName, appID, Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
 
 #if DEBUG
-            BackOffice bk = new BackOffice();
+            BackOffice bk = new BackOffice(Server.MapPath("~/"), Session["mapPathError"].ToString());
             finalProcessing.UpdateDBVersion();
             
-    #endif
+#endif
 
 
 #if !DEBUG

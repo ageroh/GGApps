@@ -48,7 +48,7 @@ namespace GGApps
         /// <summary>
         /// Check if configuration file exists in DB
         /// </summary>
-        protected JObject GetConfigurationFile(string mobileDevice, out string configVersion)
+        protected JObject GetConfigurationFile(string mobileDevice, out string configVersion, string appName)
         {
             // open Configuration file if exists
             var fileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\configuration.txt";
@@ -79,7 +79,7 @@ namespace GGApps
 
 
 
-        protected JObject GetVersionsFile(string mobileDevice, out string dbVersion, out string appVersion, out string configVersion)
+        protected JObject GetVersionsFile(string mobileDevice, out string dbVersion, out string appVersion, out string configVersion, string appName)
         {
             // open Configuration file if exists
             var fileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\versions.txt";
@@ -236,60 +236,56 @@ namespace GGApps
             DirectoryInfo di = new DirectoryInfo(producedAppPath);
 
             foreach (DirectoryInfo dirInfo in di.GetDirectories())
-            { 
-                if(!dirInfo.Name.Contains("empty")) // leave out the empty directory
-                {   
+            {
+                if (!dirInfo.Name.Contains("empty")) // leave out the empty directory
+                {
                     // scan based to DataTable of all apps, all folders ...
-                    var query = _Default.GetAllAppTable().AsEnumerable().Where(appName => appName.ToString().ToLower() == dirInfo.Name.ToLower());
+                    DataTable dt = _Default.GetAllAppTable();
 
                     //when found create a record on DB, if its not already craeted.
-                    if (query != null)
+                    string configVersionNumber;
+                    string DBVersionNumber;
+                    string appVersionNumber;
+                    string fileConfigVersionNumber;
+
+                    // get Configuration File and Version
+                    JObject configVerJSON = GetConfigurationFile(mobileDevice, out configVersionNumber, dirInfo.Name.ToLower());
+
+                    // get DB Version File, DB Version, App version, configVersion.
+                    JObject dbVerJSON = GetVersionsFile(mobileDevice, out DBVersionNumber, out appVersionNumber, out fileConfigVersionNumber, dirInfo.Name.ToLower());
+
+
+                    if (fileConfigVersionNumber != configVersionNumber)   // conflict to Configuration files!
                     {
-                        string configVersionNumber;
-                        string DBVersionNumber;
-                        string appVersionNumber;
-                        string fileConfigVersionNumber;
+                        log.ErrorLog(mapPathError, "Conflict on configuration.txt and versions.txt -> Configuration_Version. Resolved by keeping configuration.txt.\n\t\t\t -> versions.txt:(" + configVersionNumber + ") " +
+                                                    "\n\t\t\t -> configuration.txt:(" + fileConfigVersionNumber + ") ", "generic");
+                        configVersionNumber = fileConfigVersionNumber;
+                    }
 
-                        float fconfigVersionNumber;
-                        float fDBVersionNumber;
-                        float fappVersionNumber;
-                        float ffileConfigVersionNumber;
+                    if (dt != null)
+                    {
 
-                        
-                        // get Configuration File and Version
-                        JObject configVer = GetConfigurationFile(mobileDevice, out configVersionNumber);
-
-                        // get DB Version File, DB Version, App version, configVersion.
-                        JObject dbVer = GetVersionsFile(mobileDevice, out DBVersionNumber, out appVersionNumber, out fileConfigVersionNumber);
-
-                        
-                        float.TryParse(configVersionNumber, out fconfigVersionNumber);
-                        float.TryParse(DBVersionNumber, out fDBVersionNumber);
-                        float.TryParse(appVersionNumber, out fappVersionNumber);
-                        float.TryParse(fileConfigVersionNumber, out ffileConfigVersionNumber);
-
-                        if (ffileConfigVersionNumber != fconfigVersionNumber)   // conflict to Configuration files!
+                        if (dt.Rows.Count > 0)
                         {
-                            log.ErrorLog(mapPathError, "Conflict on configuration.txt and versions.txt -> Configuration_Version. Resolved by keeping configuration.txt.\n\t\t\t -> versions.txt:(" + fconfigVersionNumber + ") " +
-                                                        "\n\t\t\t -> configuration.txt:(" + ffileConfigVersionNumber + ") " , "generic");
-                            fconfigVersionNumber = ffileConfigVersionNumber;
+                            //dirInfo.Name.ToLower()
+
+
+                            var results = from dsx in dt.AsEnumerable()
+                                          where dsx.Field<string>("appName").ToLower().Trim() == dirInfo.Name.ToLower().Trim()
+                                          select dsx;
+
+
+                            BackOffice.UpdateAppBundle(mobileDevice, ((string)results.CopyToDataTable().Rows[0][1]).ToLower(), ((int)results.CopyToDataTable().Rows[0][0]), appVersionNumber, configVersionNumber, DBVersionNumber, configVerJSON, dbVerJSON);
                         }
-
-                        BackOffice.UpdateAppBundle(mobileDevice, appName, appID, fappVersionNumber, fconfigVersionNumber, fDBVersionNumber, configVer.ToString(), dbVer.ToString());
-                        
-
                     }
-                    else    // no app Found to match selected folder 
-                    {
-                        log.ErrorLog(mapPathError, "No Directory found for App : " + appName + " when initializing Backoffice DB.", "generic");
-                            
-                    }
+                    //// no app Found to match selected folder 
+                    //{
+                    //    log.ErrorLog(mapPathError, "No Directory found for App : " + appName + " when initializing Backoffice DB.", "generic");
 
+                    //}
                 }
             }
-        
         }
-
 
 
         /*
