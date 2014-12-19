@@ -229,11 +229,17 @@ namespace GGApps
         {
            // CreateLogFiles Log = new CreateLogFiles();
             string startProcessing = DateTime.Now.ToString("HH:mm - ddd d MMM yyyy");
-            Finalize finalProcessing = new Finalize(Server.MapPath("~/"), appName, appID, Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+            
+            
+            
+            /*DEBUGIN TESTING HERE !*/
+
+           
+//            Finalize finalProcessing = new Finalize(Server.MapPath("~/"), appName, appID, Session["mapPathError"].ToString() + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
 
 #if DEBUG
-            BackOffice bk = new BackOffice(Server.MapPath("~/"), Session["mapPathError"].ToString());
-            finalProcessing.UpdateDBVersion();
+//            BackOffice bk = new BackOffice(Server.MapPath("~/"), Session["mapPathError"].ToString());
+//            finalProcessing.UpdateDBVersion();
             
 #endif
 
@@ -286,7 +292,7 @@ namespace GGApps
                                 if ( result6 != null)
                                 {
                              
-
+                                    // DO this syncronusly through .NET
                                     var result7 = await RunAsyncCommandBatch(ct, appID, appName, "7_ftp_fb_img.bat " +  appName.ToLower(), actualWorkDir
                                                                                                 , "Upload Images to FTP", Session["mapPathError"].ToString(), Log);
 
@@ -294,6 +300,7 @@ namespace GGApps
                                     {
 
 
+                                        // Do this Syncronously through .NET
                                         var result8 = await RunAsyncCommandBatch(ct, appID, appName, "8_ftp_entity_text.bat " + appName.ToLower() + " " + appID.ToString(), actualWorkDir
                                                                                                    , "Upload Entity to FTP", Session["mapPathError"].ToString(), Log);
 
@@ -392,12 +399,6 @@ namespace GGApps
         }
     
 
-        public void CommitPushLocal()
-        {
-            throw new NotImplementedException();
-
-        }
-
         private object ExecuteStep6(int appID, string appName, string actualWorkDir, CreateLogFiles Log, string logPath, string fileName)
         {
             StringBuilder sb = new StringBuilder();
@@ -470,6 +471,8 @@ namespace GGApps
 
 
         }
+
+
 
         /// <summary>
         /// Dynamically prints a message on Screen

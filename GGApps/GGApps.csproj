@@ -174,6 +174,7 @@
     <Content Include="Batch\watermark4.png" />
     <Content Include="Batch\WinSCP.exe" />
     <Content Include="BuildApp.aspx" />
+    <Content Include="Admin\Configure.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\img\720.GIF" />
     <Content Include="Content\Site.css" />
@@ -236,6 +237,7 @@
     <Content Include="EmailTemplates\EmailTemplateSuccess.html" />
     <Content Include="ExternalApp\SQLiteConverter.exe" />
     <Content Include="ExternalApp\System.Data.SQLite.dll" />
+    <Content Include="Admin\HomePage.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
@@ -276,6 +278,8 @@
     <None Include="Properties\PublishProfiles\teest.pubxml" />
     <None Include="Properties\PublishProfiles\Test 2.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Admin\Promo.aspx" />
+    <Content Include="Admin\Publish.aspx" />
     <Content Include="README_PRODUCTION.txt" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -373,6 +377,13 @@
     <Compile Include="BuildApp.aspx.designer.cs">
       <DependentUpon>BuildApp.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Configure.aspx.cs">
+      <DependentUpon>Configure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Configure.aspx.designer.cs">
+      <DependentUpon>Configure.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -389,10 +400,32 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Finalize.cs" />
+    <Compile Include="ftp.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Admin\HomePage.aspx.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\HomePage.aspx.designer.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Promo.aspx.cs">
+      <DependentUpon>Promo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Promo.aspx.designer.cs">
+      <DependentUpon>Promo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Admin\Publish.aspx.cs">
+      <DependentUpon>Publish.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Publish.aspx.designer.cs">
+      <DependentUpon>Publish.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
