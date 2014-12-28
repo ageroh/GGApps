@@ -29,7 +29,7 @@
 
             <div class="reportDivClass" runat="server" id="reportDiv" >
             </div>
-         
+            </br>
             <asp:Button id="ContinueBtn" runat="server" Text="Continue" Visible="false" Enabled="false" OnClick="ContinueBtn_Click"/>                   
 
     </asp:Panel>

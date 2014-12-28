@@ -9,70 +9,17 @@ using System.Data;
 using System.Configuration;
 using System.Text;
 using System.IO;
-using Microsoft.AspNet.Membership.OpenAuth;
+//using Microsoft.AspNet.Membership.OpenAuth;
 using System.Web.Hosting;
 
 namespace GGApps
 {
-    public partial class _Default : Page
+    public partial class _Default : Common
     {
-        #region Variables - Properties
-        public static StringBuilder sb = new StringBuilder();
-        public static String mapPathError = "";
-        public static String[] otherLangApps;
-        public static bool HasErrors = false;
-
-        
-        public static string actualWorkDir = HostingEnvironment.MapPath("~/Batch/");
-        // "C:\\Users\\Argiris\\Desktop\\GG_Batch\\Batch\\";    
-
-        public static CreateLogFiles Log
-        {
-            get
-            {
-                if ((CreateLogFiles)HttpContext.Current.Session["Log"] == null)
-                {
-                    return new CreateLogFiles();
-                }
-
-                return (CreateLogFiles)HttpContext.Current.Session["Log"];
-            }
-            set 
-            {
-                HttpContext.Current.Session["Log"] = value;
-            }
-                
-        }
-
-
-        public int timesExec
-        {
-            get
-            {
-                if (HttpContext.Current.Session["timesExec"] == null)
-                {
-                    return 0;
-                }
-
-                return ((int)HttpContext.Current.Session["timesExec"]);
-            }
-            set 
-            {
-                HttpContext.Current.Session["timesExec"] = value;
-            }
-                
-        }
-
-        
-
-        #endregion
-
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["mapPathError"] = MapPath("Logs/log_");
-            mapPathError = Session["mapPathError"].ToString();
-
+            
             if (!Page.IsPostBack)
             {
                 //if (User.Identity.IsAuthenticated)
@@ -91,66 +38,7 @@ namespace GGApps
             }
         }
 
-
-
-        
-        public static DataTable GetAllAppTable()
-        {
-            System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
-            try
-            {
-                if (rootWebConfig1.AppSettings.Settings["ContentAbilityGG"] != null)
-                {
-                    SqlConnection con = new SqlConnection(rootWebConfig1.AppSettings.Settings["ContentAbilityGG"].Value.ToString());
-                    SqlCommand cmd = new SqlCommand("select catCategoryId as id , catName as appName from category  where catParentID = 2", con);
-                    SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adp.Fill(dt);
-
-                    return dt;
-
-                }
-            }
-            catch (Exception e)
-            {
-                HasErrors = true;
-                Log.ErrorLog(mapPathError, e.Message, "generic", "");
-            }
-            return null;
-
-        }
-
-
-        public static DataTable GetAllAppBundles()
-        {
-            System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
-            try
-            {
-                if (rootWebConfig1.AppSettings.Settings["GG_Reporting"] != null)
-                {
-                    SqlConnection con = new SqlConnection(rootWebConfig1.AppSettings.Settings["GG_Reporting"].Value.ToString());
-                    SqlCommand cmd = new SqlCommand(@"select *
-                                                        from GGAppsBundleDetails
-                                                        inner join GGAppsBundle
-                                                        on GGAppsBundle.GGAppsBundleID = GGAppsBundleDetails.GGAppsBundleID", con);
-
-                    SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adp.Fill(dt);
-
-                    return dt;
-
-                }
-            }
-            catch (Exception e)
-            {
-                HasErrors = true;
-                Log.ErrorLog(mapPathError, e.Message, "generic", "");
-            }
-            return null;
-
-        }
-
+ 
 
         public void ContinueBtn_Click(object sender, EventArgs e)
         {
@@ -158,8 +46,7 @@ namespace GGApps
 
             if (Session["appID"] != null && Session["appName"] != null)
             {
-                Session["HasErrors"] = HasErrors;
-
+               
                 if (Session["FinishedProcessing"] == null)
                 { 
                     Session["FinishedProcessing"] = true;
@@ -195,6 +82,7 @@ namespace GGApps
         {
             DropDownList ddStart = (DropDownList)LoginViewImportant.FindControl("ddStart");
             sb.Clear();
+            HasErrors = false;
             String strRet = "";
 
 
@@ -236,13 +124,19 @@ namespace GGApps
 
                 // Make Continue button visible and clickable in order to continue 
                 Button btn = (Button)LoginViewImportant.FindControl("ContinueBtn");
-                btn.Enabled = true;
-                btn.Visible = true;
-                btn.Text = "Produce App for "+ ddStart.SelectedItem.ToString();
-                Session["appID"] = appID;
-                Session["appName"] = appName;
 
-                Log.InfoLog(mapPathError, "Finished : Building Report for " + appName, appName, "");
+                if (!(bool)HasErrors)
+                {
+                    btn.Enabled = true;
+                    btn.Visible = true;
+                    btn.Text = "Produce App for " + ddStart.SelectedItem.ToString();
+                    Session["appID"] = appID;
+                    Session["appName"] = appName;
+                    Log.InfoLog(mapPathError, "Finished : Building Report for " + appName, appName, "");
+                }
+                else
+                    Log.InfoLog(mapPathError, "Error : Building Report for " + appName, appName, "");
+                
             }
         }
 
@@ -402,12 +296,7 @@ namespace GGApps
                 File.WriteAllText(filepath, sb.ToString(), Encoding.UTF8);
             }
 
-
-            //
             Log.InfoLog(mapPathError, "Report for App: " + name + " Succesfully Generated and saved to:" + filepath, name, User.Identity.Name);
-             
-            // sent mail ?
-
 
 
             return sb.ToString();
@@ -417,53 +306,6 @@ namespace GGApps
 
 
 
-
-        public static String executeSQLScript(int id, string name, int langID, string sqlFile, string dbName = null)
-        {
-            try
-            {
-                FileInfo fileInfo = new FileInfo(sqlFile);
-                string script = fileInfo.OpenText().ReadToEnd();
-                StringBuilder sbSql = new StringBuilder();
-
-                string connectionString = BuildDynamicConnectionStringForDB(id, name, langID, dbName);
-
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    //con.InfoMessage += new SqlInfoMessageEventHandler(myConnection_InfoMessage);
-                    con.Open();
-                    using (SqlCommand command = new SqlCommand(script, con))
-                    {
-                        command.CommandType = CommandType.Text;
-                        command.CommandTimeout = 2000;
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.HasRows)
-                            {
-                                var dataTable = new DataTable();
-                                dataTable.Load(reader);
-
-                                // sure there are better ways..
-                                return ConvertDataTableToHTML(dataTable);
-                            }
-
-                        }
-                    }
-                }
-
-            }
-            catch (Exception e)
-            {
-                HasErrors = true;
-                Log.ErrorLog(mapPathError, "executeSQLScript for " + name + " lang:" + langID + " Exception:" + e.Message, name);
-            }
-
-            return "</br><span class='emptyTable'>Passed</span>";
-        }
-
-
-
-        #region Helpers
 
         void myConnection_InfoMessage(object sender, SqlInfoMessageEventArgs e)
         {
@@ -479,117 +321,6 @@ namespace GGApps
             }
 
         }
-
-
-
-
-        public static string ConvertDataTableToHTML(DataTable dt)
-        {
-            
-            string html = "<table>";
-            //add header row
-            html += "<tr>";
-            for (int i = 0; i < dt.Columns.Count; i++)
-                html += "<th>" + dt.Columns[i].ColumnName + "</th>";
-            html += "</tr>";
-            //add rows
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                html += "<tr>";
-                for (int j = 0; j < dt.Columns.Count; j++)
-                {
-                    if (dt.Columns[j].ColumnName.ToLower() == "id")
-                        html += "<td><a href='#' class='popAdm'>" + dt.Rows[i][j].ToString() + "</a></td>";
-                    else
-                    {
-                        // truncate text if too long!
-                        // {?}
-                        string strText = dt.Rows[i][j].ToString();
-
-                        if (strText.Length > 300)
-                        {
-                            // find {?} if exists
-                            if (strText.Contains("{?}"))
-                            {
-                                int pos = strText.IndexOf("{?}");
-                                int nPos = (pos - 150 < 0) ? 0 : pos - 150;
-
-                                strText = String.Concat("...", strText.Substring(nPos));
-                                pos = strText.IndexOf("{?}");
-
-                                // Not really an exception, try to remove all last chars , leave only 100.
-                                try { strText = strText.Remove(pos + 100); }
-                                catch (Exception)
-                                { strText = strText.Remove(pos + 2); }
-
-                                strText = String.Concat(strText, "...");
-                            }
-
-                            html += "<td>" + strText + "</td>";
-
-                        }
-                        else
-                            html += "<td>" + strText + "</td>";
-                    }
-                }
-                html += "</tr>";
-            }
-            html += "</table>";
-
-
-            return html;
-
-        }
-
-
-        /// <summary>
-        /// Check if the app is using 3 languages. This can be found on Web.Config
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public static bool CheckThreeLanguages(int id)
-        {
-            System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
-            String threelang = rootWebConfig1.AppSettings.Settings["ThreeLanguages"].Value;
-            if (threelang != null)
-            {
-                otherLangApps = threelang.Split('#');
-                if (otherLangApps != null)
-                {
-                    foreach (string x in otherLangApps)
-                    {
-                        if (x.Trim() == id.ToString())
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-
-            return false;
-
-        }
-
-        private static string BuildDynamicConnectionStringForDB(int id, string name, int lang, string DBNameOver = null)
-        {
-            System.Configuration.Configuration rootWebConfig1 = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
-            if (rootWebConfig1.AppSettings.Settings["DynamicConnectionString"] != null)
-            {
-                string dbName = "ContentDB_165_Lan_" + lang.ToString() + "_Cat_" + id.ToString();
-                string ConStr = rootWebConfig1.AppSettings.Settings["DynamicConnectionString"].Value;
-
-                if (!String.IsNullOrEmpty(DBNameOver))
-                    dbName = DBNameOver;
-
-                ConStr = ConStr.Replace("DBNAME", dbName);
-                return ConStr;
-            }
-
-            return null;
-
-        }
-        #endregion
-
 
     }
 }

@@ -15,32 +15,19 @@ using Newtonsoft.Json.Linq;
 
 namespace GGApps
 {
-    public class Finalize
+    public class Finalize : Common
     {
-
-        public static bool HasErrors = false;
-        public static string actualWorkDir = HostingEnvironment.MapPath("~/Batch/");
         public string appName = string.Empty;
         public int appID = -1;
-        public string mapPathError;
-        public string mapPath = "";
-        public string logPath = string.Empty;
         public string producedAppPath = string.Empty;
-        public CreateLogFiles log = new CreateLogFiles();
-        System.Configuration.Configuration rootWebConfig = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
-        private string p1;
-        private string appName1;
-        private int appID1;
-        private string p2;
+        public static string logPath = string.Empty;
 
-        public Finalize(string mapPath, string appName, int appID, string mapPathError)
+        public Finalize(string appName, int appID)
         {
-            this.mapPath = mapPath;
             this.appName = appName;
             this.appID = appID;
-            this.mapPathError = mapPathError;
-            this.logPath = mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt";
             this.producedAppPath = rootWebConfig.AppSettings.Settings["ProducedAppPath"].Value.ToString();
+            logPath = mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt";
         }
 
 
@@ -93,7 +80,7 @@ namespace GGApps
                 // if configuration file does not exists, then create a default, and keep a LOG!
                 CreateVersionsFile(fileName);
 
-                log.ErrorLog(logPath, " Versions file did not found in the expected location: " + fileName, appName);
+                Log.ErrorLog(logPath, " Versions file did not found in the expected location: " + fileName, appName);
             }
 
             // read JSON directly from a file
@@ -145,7 +132,7 @@ namespace GGApps
         public void UpdateDBVersion()
         {
             // Get The list of all apps
-            DataTable dt = GetAllAppBundles(appID, this.mapPathError);
+            DataTable dt = GetAllAppBundles(appID, mapPathError);
 
 
             InitializeDBFromFiles("ios");
@@ -183,7 +170,7 @@ namespace GGApps
             }
             catch (Exception ex)
             {
-                log.ErrorLog(logPath, "Some IO exception occured on UpdateSQLiteUserVersion: " + ex.Message, appName);
+                Log.ErrorLog(logPath, "Some IO exception occured on UpdateSQLiteUserVersion: " + ex.Message, appName);
             }
         
         }
@@ -223,7 +210,7 @@ namespace GGApps
             catch (Exception e)
             {
                 HasErrors = true;
-                log.ErrorLog(mapPathError, e.Message, "generic", "");
+                Log.ErrorLog(mapPathError, e.Message, "generic", "");
             }
             return null;
 
@@ -240,7 +227,7 @@ namespace GGApps
                 if (!dirInfo.Name.Contains("empty")) // leave out the empty directory
                 {
                     // scan based to DataTable of all apps, all folders ...
-                    DataTable dt = _Default.GetAllAppTable();
+                    DataTable dt = GetAllAppTable();
 
                     //when found create a record on DB, if its not already craeted.
                     string configVersionNumber;
@@ -257,7 +244,7 @@ namespace GGApps
 
                     if (fileConfigVersionNumber != configVersionNumber)   // conflict to Configuration files!
                     {
-                        log.ErrorLog(mapPathError, "Conflict on configuration.txt and versions.txt -> Configuration_Version. Resolved by keeping configuration.txt.\n\t\t\t -> versions.txt:(" + configVersionNumber + ") " +
+                        Log.ErrorLog(mapPathError, "Conflict on configuration.txt and versions.txt -> Configuration_Version. Resolved by keeping configuration.txt.\n\t\t\t -> versions.txt:(" + configVersionNumber + ") " +
                                                     "\n\t\t\t -> configuration.txt:(" + fileConfigVersionNumber + ") ", "generic");
                         configVersionNumber = fileConfigVersionNumber;
                     }

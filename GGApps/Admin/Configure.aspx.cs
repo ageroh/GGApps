@@ -7,11 +7,19 @@ using System.Web.UI.WebControls;
 
 namespace GGApps
 {
-    public partial class Configure : System.Web.UI.Page
+    public partial class Configure : CommonAdmin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                Init();
+            }
+        }
 
+        protected void EnvironmentConfig_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ;
         }
     }
 }

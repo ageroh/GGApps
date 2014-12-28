@@ -190,6 +190,10 @@ ul#menu {
         list-style: none;
         padding-left: 15px;
     }
+        ul#menu li.selected a{
+            font-weight:bold;
+            color: darkslategrey;
+        }
 
         ul#menu li a {
             background: none;

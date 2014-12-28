@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace GGApps
 {
-    public partial class Promo : System.Web.UI.Page
+    public partial class Promo : CommonAdmin
     {
         protected void Page_Load(object sender, EventArgs e)
         {

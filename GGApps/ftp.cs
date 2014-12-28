@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Net;
 using System.IO;
+using System.Web.Hosting;
 
 namespace GGApps
 {
@@ -16,9 +17,24 @@ namespace GGApps
         private FtpWebResponse ftpResponse = null;
         private Stream ftpStream = null;
         private int bufferSize = 2048;
+        public static CreateLogFiles Log = new CreateLogFiles();
+        private string mapErrorPath = string.Empty;
+        public string actualWorkDir = HostingEnvironment.MapPath("~/Batch/");
+        public string appName = string.Empty;
+                 
 
         /* Construct Object */
-        public FTP(string hostIP, string userName, string password) { host = hostIP; user = userName; pass = password; }
+        public FTP(string hostIP, string userName, string password, string mapParthError, string appName) 
+        { 
+            host = hostIP; 
+            user = userName; 
+            pass = password; 
+
+            // The Logger.
+            this.mapErrorPath = mapParthError;
+            this.appName = appName;
+
+        }
 
         /* Download File */
         public void download(string remoteFile, string localFile)
@@ -64,95 +80,40 @@ namespace GGApps
             return;
         }
 
-        /* Upload All files in Directory */
-        public void uploadDirectories(string localDir, string remoteDir)
-        {
-            try
-            {
-                //WebRequest request = WebRequest.Create(host);
-                //request.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
-                //request.Credentials = new NetworkCredential(user, pass);
-                //using (var resp = (FtpWebResponse)request.GetResponse())
-                //{
-                //    Console.WriteLine(resp.StatusCode);
-                //}
-
-
-                /* Create an FTP Request */
-                ftpRequest = (FtpWebRequest)FtpWebRequest.Create(host + "/" + remoteDir);
-                
-                /* Log in to the FTP Server with the User Name and Password Provided */
-                ftpRequest.Credentials = new NetworkCredential(user, pass);
-                
-                /* When in doubt, use these options */
-                ftpRequest.UseBinary = true;
-                ftpRequest.UsePassive = true;
-                ftpRequest.KeepAlive = true;
-                
-                /* Specify the Type of FTP Request */
-                ftpRequest.Method = WebRequestMethods.Ftp.MakeDirectory;
-
-                /* Establish Return Communication with the FTP Server */
-                ftpStream = ftpRequest.GetRequestStream();
-
-                foreach (string localFile in Directory.GetFiles(localDir))
-                {
-                    /* Open a File Stream to Read the File for Upload */
-                    FileStream localFileStream = new FileStream(localFile, FileMode.Create);
-                    
-                    /* Buffer for the Downloaded Data */
-                    byte[] byteBuffer = new byte[bufferSize];
-                    int bytesSent = localFileStream.Read(byteBuffer, 0, bufferSize);
-                    
-                    /* Upload the File by Sending the Buffered Data Until the Transfer is Complete */
-                    try
-                    {
-                        while (bytesSent != 0)
-                        {
-                            ftpStream.Write(byteBuffer, 0, bytesSent);
-                            bytesSent = localFileStream.Read(byteBuffer, 0, bufferSize);
-                        }
-                    }
-                    catch (Exception ex) { Console.WriteLine(ex.ToString()); }
-                    
-                    /* Resource Cleanup */
-                    localFileStream.Close();
-                }
-
-                ftpStream.Close();
-                ftpRequest = null;
-            }
-            catch (Exception ex) 
-            { 
-                Console.WriteLine(ex.ToString()); 
-            }
-            return;
-        }
-
 
 
         /* Upload File */
-        public void upload(string localFile, string remoteFile)
+        public long upload(string localFile, string remoteFile, bool overwrite)
         {
+            long totalBytes = 0;
+
             try
             {
+                
                 /* Create an FTP Request */
                 ftpRequest = (FtpWebRequest)FtpWebRequest.Create(host + "/" + remoteFile);
+                
                 /* Log in to the FTP Server with the User Name and Password Provided */
                 ftpRequest.Credentials = new NetworkCredential(user, pass);
+                
                 /* When in doubt, use these options */
                 ftpRequest.UseBinary = true;
                 ftpRequest.UsePassive = true;
                 ftpRequest.KeepAlive = true;
+                
                 /* Specify the Type of FTP Request */
                 ftpRequest.Method = WebRequestMethods.Ftp.UploadFile;
+                
                 /* Establish Return Communication with the FTP Server */
                 ftpStream = ftpRequest.GetRequestStream();
+                
                 /* Open a File Stream to Read the File for Upload */
                 FileStream localFileStream = new FileStream(localFile, FileMode.Open);
+                
                 /* Buffer for the Downloaded Data */
                 byte[] byteBuffer = new byte[bufferSize];
                 int bytesSent = localFileStream.Read(byteBuffer, 0, bufferSize);
+                
                 /* Upload the File by Sending the Buffered Data Until the Transfer is Complete */
                 try
                 {
@@ -161,10 +122,15 @@ namespace GGApps
                         ftpStream.Write(byteBuffer, 0, bytesSent);
                         bytesSent = localFileStream.Read(byteBuffer, 0, bufferSize);
                     }
+                    if( localFileStream != null)
+                        totalBytes += localFileStream.Length;
+
+                    // Log the file upload 
+                    Log.InfoLog(mapErrorPath, appName + " File " + localFile + " uploaded to " + remoteFile + " Size: " + SizeSuffix(localFileStream.Length), appName);
                 }
                 catch (Exception ex)
-                { 
-                    Console.WriteLine(ex.ToString()); 
+                {
+                    Log.ErrorLog(mapErrorPath, "Error while uploading file " + localFile + ": " + ex.Message, appName); 
                 }
                 /* Resource Cleanup */
                 localFileStream.Close();
@@ -173,9 +139,9 @@ namespace GGApps
             }
             catch (Exception ex) 
             { 
-                Console.WriteLine(ex.ToString()); 
+                Log.ErrorLog(mapErrorPath, "Error while initialize and upload file " + localFile + ": " + ex.Message, appName); 
             }
-            return;
+            return totalBytes;
         }
 
         /* Delete File */
@@ -411,6 +377,19 @@ namespace GGApps
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
             /* Return an Empty string Array if an Exception Occurs */
             return new string[] { "" };
+        }
+
+
+        public static readonly string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+        public static string SizeSuffix(Int64 value)
+        {
+            if (value < 0) { return "-" + SizeSuffix(-value); }
+            if (value == 0) { return "0.0 bytes"; }
+
+            int mag = (int)Math.Log(value, 1024);
+            decimal adjustedSize = (decimal)value / (1L << (mag * 10));
+
+            return string.Format("{0:n1} {1}", adjustedSize, SizeSuffixes[mag]);
         }
     }
 }

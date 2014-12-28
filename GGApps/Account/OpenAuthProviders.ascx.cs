@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
-using Microsoft.AspNet.Membership.OpenAuth;
+//using Microsoft.AspNet.Membership.OpenAuth;
 
 namespace GGApps.Account
 {
@@ -25,7 +25,7 @@ namespace GGApps.Account
                     redirectUrl += "?ReturnUrl=" + HttpUtility.UrlEncode(resolvedReturnUrl);
                 }
 
-                OpenAuth.RequestAuthentication(provider, redirectUrl);
+           //     OpenAuth.RequestAuthentication(provider, redirectUrl);
             }
         }
 
@@ -34,10 +34,10 @@ namespace GGApps.Account
         public string ReturnUrl { get; set; }
 
 
-        public IEnumerable<ProviderDetails> GetProviderNames()
-        {
-            return OpenAuth.AuthenticationClients.GetAll();
-        }
+        //public IEnumerable<ProviderDetails> GetProviderNames()
+        //{
+        //    return OpenAuth.AuthenticationClients.GetAll();
+        //}
 
     }
 }
