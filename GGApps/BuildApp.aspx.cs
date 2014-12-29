@@ -30,8 +30,6 @@ namespace GGApps
             if (!Page.IsPostBack)
             {
 
-                //CreateLogFiles Log = new CreateLogFiles();
-                
                 if (Session["appName"] != null && Session["appID"] != null)
                 {
                     
@@ -74,7 +72,7 @@ namespace GGApps
                       if (!result3.IsCancellationRequested)
                       {
 
-                          if (_Default.CheckThreeLanguages(appID))
+                          if (CheckThreeLanguages(appID))
                           {
                               var result3a = await RunAsyncCommandBatch(ct, appID, appName, "3a_fix_html_entities.bat " + appName, actualWorkDir, "convert HTML ENTITIES", mapPathError, Log);
 
@@ -200,7 +198,7 @@ namespace GGApps
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
                 {
 
-
+#if !DEBUG         
                     var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir
                                                                                , "convert SQL Db to SQLLite", mapPathError, Log);
 
@@ -219,6 +217,7 @@ namespace GGApps
                                                                     , "4_db_stats.bat " + appID.ToString() + "  reports/" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt"
                                                                     , actualWorkDir
                                                                     , "Export Database Statistics", mapPathError, Log);
+
 
                         if (!result4.IsCancellationRequested)
                         {
@@ -243,24 +242,22 @@ namespace GGApps
                                 if ( result6 != null)
                                 {
                              
+#endif
                                     // DO this syncronusly through .NET
-                                    var result7 =// await RunAsyncCommandBatch(ct, appID, appName, "7_ftp_fb_img.bat " +  appName.ToLower(), actualWorkDir
-                                                  //                                             , "Upload Images to FTP", mapPathError, Log);
-                                    ExecuteStep7(appID, appName, Server.MapPath("~/"), Log, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                                    var result7 = ExecuteStep7(appID, appName, Server.MapPath("~/"), Log, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+
+                                    if (result7 == null)
+                                        HasErrors = true;
 
 
-                                    if (result7 != null)
-                                    {
+                                    // Do this Syncronously through .NET
+                                    var result8 = ExecuteStep8(appID, appName);
+
+                                    if (result8 == null)
+                                        HasErrors = true;
 
 
-                                        // Do this Syncronously through .NET
-                                        var result8 = await RunAsyncCommandBatch(ct, appID, appName, "8_ftp_entity_text.bat " + appName.ToLower() + " " + appID.ToString(), actualWorkDir
-                                                                                                   , "Upload Entity to FTP", mapPathError, Log);
-
-                                        if (!result8.IsCancellationRequested)
-                                        {
-
-                                            var result9 = await RunAsyncCommandBatch(ct, appID, appName, "9_copy_img_databases.bat " + appName + " " + DateTime.Now.ToString("yyyyMMdd"), actualWorkDir
+                                    var result9 = await RunAsyncCommandBatch(ct, appID, appName, "9_copy_img_databases.bat " + appName + " " + DateTime.Now.ToString("yyyyMMdd"), actualWorkDir
                                                                                                         , "Copy files from Local to Server", mapPathError, Log);
 
                                             // LOG THIS
@@ -308,15 +305,13 @@ namespace GGApps
                                                                             , mapPathError, Log);
 
                                                     //Send Always email with Log info for currnet execution to ME.
-                                                    //_listAttachments.Add(mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
                                                     await SendMailToUsers(appName
                                                                             , GetEmailList("ErrorTeam")
                                                                             , _listAttachments
-                                                                            , EmailTemplate("Failure", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
+                                                                            , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
                                                                             , "GG App produced for " + appName
-                                                                            , mapPathError, Log);
-
-                                                    
+                                                                            , mapPathError, Log
+                                                                            );
                                                     
                                                 }
 
@@ -327,12 +322,11 @@ namespace GGApps
 
                                             }
 
-                                        }
-
                                     }
-                                }
-                            }
 
+#if !DEBUG         
+                                }
+                            
                         }
 
                     }
@@ -344,24 +338,87 @@ namespace GGApps
 
                 }
 
-
+#endif
 
             );
 
         }
+
+        /// <summary>
+        /// Upload Entity txt to FTP
+        /// </summary>
+        /// <param name="appID"></param>
+        /// <param name="appName"></param>
+        /// <param name="p1"></param>
+        /// <param name="Log"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
+        private object ExecuteStep8(int appID, string appName)
+        {
+            double totalBytesUploaded = 0;
+            
+            if (rootWebConfig.AppSettings.Settings["ProducedAppPath"] != null)
+            {
+                string ProducedAppPath = rootWebConfig.AppSettings.Settings["ProducedAppPath"].Value;
+                Log.InfoLog(mapPathError, ":> Start Create-upload Entity_text to  FTP", appName);
+
+                if (GenerateEntityText(appName, appID) == null)
+                {
+                    Log.ErrorLog(mapPathError, ":> Error in genaration of Entity_Text", appName);
+                    return null;
+                }
+
+                if( File.Exists(ProducedAppPath + "\\" + appName + "\\config\\entity_text.txt"))
+                    totalBytesUploaded = UploadFileRemote(appName, ProducedAppPath + "\\" + appName + "\\config\\entity_text.txt", appName.ToLower() + "/config/entity_text.txt");
+                else
+                {
+                    Log.ErrorLog(mapPathError, ":> Error! Entity_text.txt not found locally!", appName);
+                }
+
+
+                if (totalBytesUploaded <= 0)
+                {
+                    Log.ErrorLog(mapPathError, ":> Entity_text.txt too small or Zero size.", appName);
+                    return null;
+                }
+                else
+                {
+                    Log.InfoLog(mapPathError, ":> Success finish Upload Images FB to FTP", appName);
+                    return totalBytesUploaded;
+                }
+            }
+            return null;
+        }
+
+
+
+        private object GenerateEntityText(string appName, int appID)
+        {
+            throw new NotImplementedException();
+
+            // run query to produce entity_text under test ..
+
+            // sqlcmd -S 10.0.64.32 -d ContentDB_165_Lan_2_Cat_%2 -U ContentAbility_User_165 -P 3E6EA993-5EBA-4648-BF18-83C38D3E26DC -Q "set nocount on SELECT text FROM entity_text_vw quit" -W -h -1 -o entity_text.txt
+
+        }
+
 
         private object ExecuteStep7(int appID, string appName, string mapPath, CreateLogFiles Log, string logFileName)
         {
             double totalBytesUploaded = 0;
             // Upload Files Syncronously
 
-            totalBytesUploaded = UploadFilesRemote(appName, "C:\\temp\\images\\" + appName + "\\", "GGAPPS/Corfu/", true, step);
+            Log.InfoLog(mapPathError, ":> Start Upload Images FB to FTP", appName);
+            totalBytesUploaded = UploadFilesRemote(appName, "C:\\temp\\images\\" + appName + "-fb\\", appName.ToLower() + "/fb-assets/");
             if (totalBytesUploaded < 10)
+            {
+                Log.InfoLog(mapPathError, ":> Error! finish Upload Images FB to FTP", appName);
                 return null;
+            }
             else
             {
+                Log.InfoLog(mapPathError, ":> Success finish Upload Images FB to FTP", appName);
                 return totalBytesUploaded;
-
             }
         }
     
@@ -386,7 +443,6 @@ namespace GGApps
             }
             catch (Exception ex)
             {
-                HasErrors = true;
                 Log.ErrorLog(logPath, "ExecuteStep6 a." + ex.Message, appName);
                 return null;
             }
@@ -428,7 +484,6 @@ namespace GGApps
             }
             catch (IOException ex)
             {
-                HasErrors = true;
                 Log.ErrorLog(logPath, "Some IO exception occured on ExecuteStep6 b. " + ex.Message, appName);
                 return null;
             }
@@ -487,9 +542,6 @@ namespace GGApps
 
             if (chkList != null)
             {
-                if (HasErrors == null)
-                    HasErrors = false;
-
                 foreach (ListItem item in chkList.Items)
                 {
                     if (item.Selected)
@@ -652,7 +704,6 @@ namespace GGApps
             }
             catch (IOException e)
             {
-                HasErrors = true;
                 Log.ErrorLog(mapPathError, "Initialize of App-Update failed! " + e.Message, appName);
                 return false;
             }
@@ -768,8 +819,7 @@ namespace GGApps
         void smtp_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             if (! e.Cancelled)
-            {
-                CreateLogFiles Log = new CreateLogFiles();
+            {   
                 Log.InfoLog(mapPathError, "e-Mails sent completed.", Session["appName"].ToString());
             }
         }
@@ -853,7 +903,7 @@ namespace GGApps
                                 if (node.Attributes["db"].ToString() == "ContentDB_165_Lan_2_Cat_" + appID.ToString())
                                     checkLangs[(int)Lang.en] = true;
 
-                        if (_Default.CheckThreeLanguages(appID))
+                        if (CheckThreeLanguages(appID))
                             if (node.Attributes["name"].ToString() == appName)
                                 if (node.Attributes["lang"].ToString() == "ru")
                                     if (node.Attributes["db"].ToString() == "ContentDB_165_Lan_4_Cat_" + appID.ToString())

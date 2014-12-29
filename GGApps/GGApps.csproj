@@ -333,7 +333,9 @@
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="BackOffice.cs" />
+    <Compile Include="BackOffice.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="BuildApp.aspx.cs">
       <DependentUpon>BuildApp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

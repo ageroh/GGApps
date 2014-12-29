@@ -9,12 +9,11 @@ namespace GGApps
 	// Created by ali ahmad h - 2002
 	//</Summary>
 
-	public class CreateLogFiles
+	public sealed class CreateLogFiles
 	{
 		private string sLogFormat;
 		private string sErrorTime;
-        public bool HasErrors = false;
-
+        
 		public CreateLogFiles()
 		{
 			//sLogFormat used to create log files format :
@@ -27,7 +26,8 @@ namespace GGApps
 			string sMonth	= DateTime.Now.Month.ToString();
 			string sDay	= DateTime.Now.Day.ToString();
 			sErrorTime = sYear+sMonth+sDay;
-            HasErrors = false;
+            Common.HasErrors = false;
+            CommonAdmin.HasErrors = false;
 		}
 
 		public void ErrorLog(string sPathName, string sErrMsg, string appName, string user = null)
@@ -37,8 +37,8 @@ namespace GGApps
             sw.WriteLine(sLogFormat + "'" + user + "'> Error: " + sErrMsg);
 			sw.Flush();
 			sw.Close();
-            HasErrors = true;
-           //?  throw new Exception(sErrMsg);
+            Common.HasErrors = true;
+            CommonAdmin.HasErrors = true;
 		}
 
         public void InfoLog(string sPathName, string sInfoMsg, string appName, string user = null)

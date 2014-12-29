@@ -1,435 +1,150 @@
+1076@@Official holidays@@-@@-@@-
 1077@@Electricity@@-@@-@@-
 1078@@Currency@@-@@-@@-
 1079@@Time Zone@@-@@-@@-
-1081@@Police Flying Squad@@-@@100@@www.astynomia.gr
-1082@@European Emergency Call Number@@-@@112@@-
 1089@@Telephone Information (OTE)@@-@@11888@@11888.ote.gr
-1090@@Tourist Police (National Tourist Board information)@@-@@171@@-
 1436@@Currency Exchange@@-@@-@@-
 1438@@Language - Dictionary@@-@@-@@-
 1820@@More Apps@@-@@-@@-
 1829@@Help@@-@@-@@-
 1832@@Weather@@-@@-@@-
-2629@@White Tower@@Paralia, Thessaloniki@@+30 2310 267832@@www.lpth.gr
-2638@@Agios Dimitrios Church@@97, Agiou Dimitriou Street, Thessaloniki@@+30 2310 270008, +30 2310 260915@@www.inad.gr
-2639@@Archaeological Museum of Thessaloniki@@6, Manoli Andronikou Street, Thessaloniki@@+30 2310 830538@@www.amth.gr
-2640@@Museum of Byzantine Culture@@2, Stratou Avenue, Thessaloniki@@+30 2313 306400@@www.mbp.gr/html/gr
-2644@@Macedonian Museum of Contemporary Art@@154, Egnatia Street, Thessaloniki@@+30 2310 240002@@www.mmca.org.gr
-2645@@Teloglion Foundation of Art@@159A, Agiou Dimitriou Street, Thessaloniki@@+30 2310 991610 @@www.teloglion.gr
-2646@@State Museum of Contemporary Art@@21, Kolokotroni Street, Lazariston Monastery, Stavroupolis, Thessaloniki@@+30 2310 589143@@www.greekstatemuseum.com/
-2647@@Valaoritou Street@@Valaoritou Street, Thessaloniki@@-@@-
-2651@@Countryside District@@Vasilisis Olgas Avenue, Thessaloniki@@-@@-
-2652@@Ano Poli@@Ano Poli, Thessaloniki@@-@@-
-2653@@OTE Tower@@TIF Exhibition Center, Thessaloniki@@-@@-
-2654@@Arch of Galerius (Kamara)@@Egnatia Street, Thessaloniki@@+30 2310 801402@@odysseus.culture.gr/h/2/gh251.jsp?obj_id=1425
-2655@@Saint George's Rotunda@@Agiou Georgiou Square, Thessaloniki@@+30 2310 968860@@odysseus.culture.gr/h/2/gh251.jsp?obj_id=1812
-2664@@Ladadika@@Ladadika, Thessaloniki@@-@@-
-2665@@Tsimiski Street@@Tsimiski Street, Thessaloniki@@-@@-
-2668@@Iktinou & Zefxidos@@Iktinou Street & Zefxidos Street, Thessaloniki@@-@@-
-2669@@Nea Krini & Aretsou@@Nea Krini, Thessaloniki@@-@@-
-2670@@Nea Paralia@@Nea Paralia, Thessaloniki@@-@@-
-2671@@Aristotelous Square@@Aristotelous Square, Thessaloniki@@-@@-
-2672@@Traditional Markets@@-@@-@@-
-2673@@Ancient Agora Square@@Ancient Agora Square, Thessaloniki@@-@@-
-2674@@Roman Forum@@Olympou Street & Philipou Street, Thessaloniki@@+30 2310 801402, +30 2310 801428, +30 2310 801429, +30 2310 801424@@odysseus.culture.gr/h/2/gh251.jsp?obj_id=1424
-2675@@Vlatadon Monastery@@Eptapyrgiou Street, Thessaloniki@@+30 2310 209913@@-
-2676@@Seikh Sou Forest (Cedar Hill)@@105, Vasilisis Olgas Avenue, Thessaloniki@@+30 2310 886010, +30 2310 865835@@www.seihsou.gr
-2679@@Umbrellas@@Nea Paralia, Thessaloniki@@-@@-
-2682@@Moni Lazariston (Lazarists Monastery)@@21, Kolokotroni Street, Stavroupoli, Thessaloniki@@+30 2310 650999@@www.monilazariston.gr
-2683@@Agia Sophia Church@@Agias Sophias Street & Ermou Street, Thessaloniki@@+30 2310 270253@@www.agiasofia.info/
-2684@@Ataturk Museum@@75, Apostolou Pavlou Street, Thessaloniki@@+30 2310 248452@@-
-2685@@Byzantine Walls and Castles@@Ano Poli, Thessaloniki@@-@@-
-2686@@Anatolia Hotel@@13, Lagada Street, Thessaloniki@@+30 2310 522422@@www.anatoliahotels.gr, www.facebook.com/anatoliahotels
-2687@@The Bristol Hotel@@2, Oplopoiou Street & Katouni Street, Ladadika, Thessaloniki@@+30 2310 506500@@www.bristol.gr, www.facebook.com/the.bristol.hotel.thessaloniki
-2688@@Capsis Hotel@@18, Monastiriou Street, Thessaloniki@@+30 2310 596800@@www.capsishotel.gr
-2689@@The Met Hotel@@48, 26th Octovriou Street, Thessaloniki@@+30 2310 017000 @@www.themethotel.gr
-2690@@Mediterranean Palace@@3, Salaminos Street & Karatasou Street, Thessaloniki@@+30 2310 552554@@www.mediterranean-palace.gr, www.facebook.com/pages/MEDITERRANEAN-PALACE-HOTEL-THESSALONIKI/21471096384?fref=ts
-2691@@Daios Luxury Living@@59, Nikis Avenue, Thessaloniki@@+30 2310 250200@@www.daioshotels.com
-2692@@Makedonia Palace@@2, Megalou Alexandrou Avenue, Thessaloniki@@+30 2310 897197, +30 2310 897223@@www.makedoniapalace.com
-2693@@Electra Palace Hotel Thessaloniki@@9, Aristotelous Square, Thessaloniki@@+30 2310 294000, +30 2310 294011@@www.electrahotels.gr/electra-palace-hotel-thessaloniki/the-hotel
-2694@@Grand Hotel Palace@@305-307, Monastiriou Street, Thessaloniki@@+30 2310 549000@@www.grandhotelpalace.gr
-2695@@Holiday Inn Thessaloniki@@8, Monastiriou Street, Thessaloniki@@+30 2310 563100@@www.hithessaloniki.gr
-2696@@Hotel Nikopolis@@16-18, Asklipiou Street, Pylaia, Thessaloniki@@+30 2310 401000@@www.hotel-nikopolis.com
-2697@@Hotel Olympia@@65, Olympou Street, Thessaloniki@@+30 2310 366466@@www.hotelolympia.gr/
-2698@@Porto Palace Hotel@@65, 26th Octovriou Street, Thessaloniki@@+30 2310 504504, +30 2310 504520, +30 2310 504521@@www.portopalace.gr/
-2699@@Hyatt Regency Thessaloniki@@13th km Thessaloniki-Peraia Road, Thessaloniki@@+30 2310 401234@@www.hyatt.gr/
-2705@@Queen Olga@@44, Vasilissis Olgas Avenue, Thessaloniki@@+30 2310 824621  @@www.queenolga.gr/
-2706@@Tourist Hotel@@21, Mitropoleos Street, Thessaloniki@@+30 2310 270501@@www.touristhotel.gr
-2707@@Hotel Avra@@2, Ambelokipon Street, Peraia, Thessaloniki@@+30 23920 26236, +30 23920 24271 @@www.avrahotelthessaloniki.gr
-2708@@Domotel Les Lazaristes@@16, Kolokotroni Street, Thessaloniki@@+30 2310 647400@@www.domotelleslazaristeshotelthessaloniki.com
-2716@@Metropolitan Hotel@@65, Vasilissis Olgas Avenue & Fleming Street, Thessaloniki@@+30 2310 824221 @@www.metropolitan.gr
-2717@@Le Palace Art Hotel@@12, Tsimiski Street, Thessaloniki@@+30 2310 257400@@lepalace.gr
-2719@@Useful Information-The City@@-@@-@@-
-2720@@Emergency@@-@@-@@-
-2721@@Transportation@@-@@-@@-
-2726@@National Holidays@@-@@-@@-
-2727@@Pharmacies on Day & Night Duty@@-@@14944@@-
-2728@@National Emergency Service Center (EKAV)@@-@@166@@-
-2729@@Fire Department@@-@@199@@-
-2730@@Fire Service@@46, Kritis Street, Thessaloniki@@+30 2310 429701, +30 2313 326121@@www.fireservice.gr
-2731@@First Aid Station@@-@@+30 2310 530530@@-
-2732@@Tourist Police@@12, Dodekanisou Street, Thessaloniki@@+30 2310 544871@@-
-2733@@Urban Transportation@@-@@-@@-
-2734@@Taxi@@-@@-@@-
-2739@@OASTH (Thessaloniki Urban Transport Organization)@@90, Alexandrou Papanastasiou Street, Thessaloniki@@185, +30 2310 981100 @@oasth.gr/
-2740@@Intercity Transport@@-@@-@@-
-2741@@KTEL (Intercity Buses)@@16, Lagada Street, Thessaloniki@@-@@www.ktel-thes.gr
-2742@@OSE (Hellenic Railways Organisation)@@28, Monastiriou Street, Thessaloniki@@+30 2310 517517@@-
-2743@@Coastal Transport@@4, Navarhou Votsi, Thessaloniki@@+30 2310 593620, +30 2310 593650@@www.thpa.gr/index.php?lang=gr
-2744@@Air transport@@Mikra, Thessaloniki@@+30 2310 985000@@www.thessalonikiairport.com
-2745@@Thessaloniki International Airport "Macedonia"@@Mikra, Thessaloniki@@+30 2310 985000@@www.thessalonikiairport.com
-2746@@Limos@@15, Mitropoleos Street, Thessaloniki@@+30 2310 280800, +30 2310 288388, +30 2310 508190@@www.excellent-services.gr
-2752@@VIP services@@-@@-@@-
-2753@@Helicopter@@15th km Thessaloniki-Peraia Road, Thessaloniki@@11555, +30 2310 492100@@www.intersalonika.gr
-2756@@Yachts@@9, Paraskevopoulou Street, Thessaloniki@@+30 6932 395810@@www.thessaloniki-yachting.gr
-2759@@Car & Moto Rental@@-@@-@@-
-2760@@Avis@@Macedonia Airport, Thessaloniki@@+30 2310 473858@@www.avis.gr
-2761@@Hertz@@Macedonia Airport, Thessaloniki@@+30 2310 473952 (airport), +30 2310 476270 (Georgikis Scholis 130)@@www.hertz.gr/Thessaloniki
-2762@@Canteen@@7, Dimitriou Gounari Street, Thessaloniki@@+30 2310 228520@@www.facebook.com/pages/Canteen/446128715451927
-2764@@Ladiko@@3, Komninon Street, Thessaloniki@@+30 2310 268388@@www.ladiko.gr
-2765@@Cafe Balkan@@3, Proxenou Koromila Street, Thessaloniki@@+30 2310 233992@@www.facebook.com/pages/Caf%C3%A9-Balkan/134010710004185
-2767@@B@@2, 3rd Septemvriou Avenue, Thessaloniki@@+30 2310 869695@@www.brestaurant.gr/
-2768@@Punto Es@@2-4, Frangon Street, Thessaloniki@@+30 2310 206339@@www.facebook.com/pages/Punto-ES/235695296524736
-2769@@Kitchen Bar@@Pier A, Warehouse B2, Port, Thessaloniki@@+30 2310 502241@@-
-2770@@Karavomylos@@53, N. Plastira Street, Charilaou, Thessaloniki@@+30 2310 327340@@www.facebook.com/pages/%CE%9A%CE%B1%CF%81%CE%B1%CE%B2%CF%8C%CE%BC%CF%85%CE%BB%CE%BF%CF%82/183972708290513
-2772@@Diagonios@@13, Stratigou Kallari Street, Thessaloniki@@+30 2310 260958@@www.facebook.com/pages/%CE%94%CE%B9%CE%B1%CE%B3%CF%8E%CE%BD%CE%B9%CE%BF%CF%82-%CE%9F%CE%95/176935699072161?hc_location=timeline
-2773@@Palati@@3, Morichovou Square, Ladadika, Thessaloniki@@+30 2310 550888@@www.palati.gr/
-2775@@Clochard@@4, Proxenou Koromila Street, Thessaloniki@@+30 2310 239805@@www.clochard.gr
-2777@@Fri@@Salaminos Street & 4, Doxis Street, Thessaloniki@@+30 6971 910272@@-
-2779@@Chan@@48, 26th Octovriou Avenue, Thessaloniki@@+30 2310 017000@@www.themethotel.gr/chan-restaurant-%2Cdining_viewItem_1-gr.html
-2781@@Les Zazous@@108, Th. Sofouli Street, Kalamaria, Thessaloniki@@+30 2310 420600@@www.facebook.com/pages/LES-ZAZOUS/154664987928033
-2803@@The Excelsior@@10, Komninon Street & 23, Mitropoleos Street, Thessaloniki@@+30 2310 021000, +30 2310 021020@@www.excelsiorhotel.gr, www.facebook.com/excelsiorhotel?fref=ts
-2805@@About us@@-@@-@@-
-2806@@City Hotel@@11, Komninon Street, Thessaloniki@@+30 2310 021000, +30 2310 269421 @@www.cityhotel.gr, www.facebook.com/CityHotelThessaloniki?fref=ts
-2807@@Singles@@-@@-@@-
-2808@@One day@@-@@-@@-
-2809@@Two Days@@-@@-@@-
-2810@@Three Days@@-@@-@@-
-2811@@Excelsior Bistro@@10, Komninon Street & 23, Mitropoleos Street, Thessaloniki@@+30 2310 021020@@www.excelsiorhotel.gr/gr/bar-restaurant-gourmet.php, www.facebook.com/excelsiorbistro?fref=ts
-2812@@Suggested Itineraries@@-@@-@@-
-2813@@Couples@@-@@-@@-
-2814@@One day@@-@@-@@-
-2815@@Thessaloniki Cinema Museum@@Pier A, Warehouse A, Port, Thessaloniki@@+30 2310 508398@@www.cinemuseum.gr
-2816@@Two Days@@-@@-@@-
-2817@@Three Days@@-@@-@@-
-2818@@Families@@-@@-@@-
-2819@@One day@@-@@-@@-
-2820@@Thessaloniki Olympic Museum@@Agiou Dimitriou Street & 3rd Septemvriou Street, Thessaloniki@@+30 2310 968531, +30 2310 968532 @@www.olympicmuseum-thessaloniki.org/
-2821@@Thessaloniki Concert Hall@@25th Martiou Street, Nea Paralia, Thessaloniki@@+30 2310 895800 @@www.tch.gr/
-2822@@Two Days@@-@@-@@-
-2823@@Three Days@@-@@-@@-
-2824@@Noesis - Science Center and Technology Museum@@6th km Thessaloniki-Thermi Road, Thessaloniki@@+30 2310 483000@@www.noesis.edu.gr
-2825@@Panorama@@Panorama, Thessaloniki@@-@@-
-2826@@Statue of Alexander the Great@@Nea Paralia, Thessaloniki@@-@@-
-2827@@Seniors@@-@@-@@-
-2828@@One Day@@-@@-@@-
-2829@@Two Days@@-@@-@@-
-2830@@Three Days@@-@@-@@-
-2831@@Mediterranean Cosmos@@11th km Thessaloniki-Nea Moudania National Road, Thessaloniki@@+30 2310 489571@@www.medcosmos.gr/
-2835@@5 Museums of Thessaloniki Initiative@@-@@-@@www.5museums.gr/
-2837@@Coq Au Zen@@37, Valaoritou Street, Thessaloniki@@+30 2310 520119@@www.facebook.com/pages/Coq-Au-Zen-Bar-Bistrot/1450500905176127
-2845@@Boston CoffeeTails & Friends@@13, Nikis Avenue, Thessaloniki@@+30 2310 232991 @@www.facebook.com/pages/Boston-CoffeeTails-Friends/417913951604394
-2847@@OTE Tower@@Thessaloniki International Fair, Thessaloniki@@+30 2310 265460@@-
-2848@@Achileion@@37, Nikis Avenue, Thessaloniki@@+30 2310 229330@@www.facebook.com/pages/Axilleion-Cafe-Bar/149849748419684?rf=444532755593215
-2849@@Monroe@@17, El. Venizelou Street, Thessaloniki@@+30 2310 265131, +30 6946 965222@@www.barmonroe.gr, www.facebook.com/pages/Monroe-Entertainment-Group/219428024786065?fref=ts
-2851@@Pasta Flora Darling@@6, Zefxidos Street, Thessaloniki@@+30 2310 261518@@www.facebook.com/pastaflora.darling.7
-2853@@Nooon@@10, Karolou Dill Street & 51, Mitropoleos Street, Thessaloniki@@+30 2310 284212@@www.facebook.com/pages/Nooon-Cafe/111526628927679
-2854@@Mavro Provato@@11, Syngrou Street, Thessaloniki@@+30 2310 555185@@www.facebook.com/tomavroprovatosyggrou11
-2855@@Markiz@@6, Kountouriotou Street, Port, Thessaloniki@@+30 2310 550358, +30 6945 700705@@www.facebook.com/Markiz.thessaloniki
-2858@@The Bar (Panic Button)@@3, Nikiforou Foka Street, Thessaloniki@@+30 2310 243219@@www.facebook.com/panicbuttonthebar
-2859@@La Doze@@1, Vilara Street & Syngrou Street, Thessaloniki@@-@@www.facebook.com/pages/La-Doze/206678832692863?rf=304242582949442
-2862@@Daios Food Bar Restaurant@@59, Nikis Avenue, Thessaloniki@@+30 2310 250200@@www.daioshotels.com
-2864@@Haven@@3, El. Venizelou Street, Thessaloniki@@+30 2310 261271, +30 6934 240735@@www.havenbar.gr/
-2865@@Glykanisos@@46, Megalou Alexandrou Street, Pylaia, Thessaloniki@@+30 2310 302882@@www.facebook.com/pages/%CE%93%CE%BB%CF%85%CE%BA%CE%AC%CE%BD%CE%B9%CF%83%CE%BF%CF%82/114987751915523
-2867@@Thermaikos@@21, Nikis Avenue, Thessaloniki@@+30 2310 239842@@www.thermaikos.net/
-2868@@Soul@@3, Kalapothaki Street, Thessaloniki@@+30 2310 222424@@www.facebook.com/soulbarofficial
-2869@@To Hellenikon@@9, Stratigou Kallari Street, Thessaloniki@@+30 2310 250210@@-
-2870@@Remvi@@5, Kanari Street, Nea Krini, Thessaloniki@@+30 2310 433100@@www.remvicafebar.gr/
-2871@@The Real Rocknrolla@@31, Valaoritou Street, Thessaloniki@@+30 2313 037828@@-
-2874@@Hontro Alati@@26, Ermou Street, Thessaloniki@@+30 2310 281566@@www.facebook.com/xontroalati
-2877@@eNola@@19, Valaoritou Street, Thessaloniki@@-@@www.facebook.com/enolabarclub?fref=ts
-2878@@Coral@@3, Nikis Avenue, Thessaloniki@@+30 6936 542103@@www.facebook.com/Coral.New.Generation?rf=167823243275620
-2879@@Olympion@@10, Aristotelous Square & 37, Mitropoleos Street, Thessaloniki@@+30 2310 278920@@www.facebook.com/pages/%CE%9F%CE%BB%CF%8D%CE%BC%CF%80%CE%B9%CE%BF%CE%BD/185385338174615
-2880@@Local@@17, Palaion Patron Germanou Street, Thessaloniki@@+30 6948 654622@@www.localthessaloniki.gr, www.facebook.com/pages/Local-espresso-bar/199221510165148?rf=171839636198138
-2882@@Estrella@@48, Pavlou Mela Street, Thessaloniki@@+30 2310 272045@@www.facebook.com/EstrellaThessaloniki?filter=2
-2883@@Bord de l'eau@@45, Egnatia Street, Thessaloniki@@+30 2310 520911@@bdl.gr
-2884@@Cantina Tropicana@@31, Egnatia Street, Colombou Market Arcade, Thessaloniki@@+30 2310 539727@@www.facebook.com/CantinaTropicana
-2885@@Rover@@6, Salaminos Street, Ladadika, Thessaloniki@@+30 2310 544304@@www.facebook.com/roverbar
-2887@@Piece of Cake@@19, Chrysostomou Smyrnis Street, Thessaloniki@@-@@www.facebook.com/pages/Piece-of-Cake/340197129339385
-2888@@Fabrica Brew Bar@@17, Polytechniou Street, Thessaloniki@@+30 2310 460888@@www.facebook.com/fabricabrewbar
-2889@@Fox Trot@@31, Egnatia Street, Colombus Market Arcade, Thessaloniki@@+30 2314 011676@@www.foxtrot.gr
-2890@@Astra@@6, Frixou Street, Sfagia, Thessaloniki@@+30 2310 53332@@-
-2891@@Gaspard Wine Bar@@35, Paikou Street & Kapodistriou Street, Thessaloniki@@+30 2315 005645@@www.facebook.com/pages/Gaspard-Wine-Bar/259523047488861
-2892@@Omilos@@12, Megalou Alexandrou Avenue, Nea Paralia, Thessaloniki@@+30 2310 869950@@www.omilos-cafe.gr
-2893@@Domatio me Thea (Room with a View)@@10, Aristotelous Square, 5th floor (Entrance from Olympion), Thessaloniki@@+30 2310 378650@@www.facebook.com/pages/%CE%94%CF%89%CE%BC%CE%AC%CF%84%CE%B9%CE%BF-%CE%BC%CE%B5-%CE%98%CE%AD%CE%B1/209766182397636
-2894@@Barbarella@@43, Vasileos Irakleiou Street, Thessaloniki@@+30 2310 276266@@-
-2908@@Shark bar restaurant@@2, Argonafton Street & Them. Sofouli Street, Kalamaria, Thessaloniki@@+30 2310 416855, +30 2310 416856@@www.shark.gr, www.facebook.com/sharkgr?fref=ts&rf=397425350305109
-2909@@Intervista@@71, Tsimiski Street, Thessaloniki@@+30 2310 230906@@www.facebook.com/INTERVISTA.SHOP
-2911@@Style Fax@@19, Proxenou Koromila Street, Thessaloniki@@+30 2310 240898@@www.facebook.com/stylefaxboutiquebyAnnaKapsali
-2912@@Penny Sabbado@@50, Mitropoleos Street, Thessaloniki@@+30 2310 231717@@www.facebook.com/PennySabbado
-2913@@Attica@@11th km Thessaloniki-Moudania Road, Thessaloniki@@+30 2311 813000@@www.atticadps.gr
-2914@@Brigitte Boutique@@79, Mitropoleos Street, Thessaloniki@@+30 2310 275800@@www.facebook.com/pages/Brigitte-Boutique/265011933599368
-2915@@Nikolas@@6, Chrysostomou Smyrnis Street, Thessaloniki@@+30 2310 230056@@www.nikolasfashion.gr
-2916@@Nails in Heaven@@6, Kouskoura Street (2nd floor), Thessaloniki@@+30 2310 239581@@www.nailsinheaven.gr, www.facebook.com/nailinheaven?fref=ts
-2917@@Yianni Hair Spa@@Mitropoleos Street & 2, Kouskoura Street, Thessaloniki@@+30 2310 222839@@www.yianni.gr
-2918@@Nailspot@@48, Proxenou Koromila Street, Thessaloniki@@+30 2310 277060@@facebook.com/nailspot
-2919@@Twenty Nails@@3, Lassani Street, Thessaloniki@@+30 2310 284910@@www.20nails.gr
-2920@@Thessaloniki International Film Festival (November)@@10, Aristotelous Square, Thessaloniki@@+30 2310 378400@@www.filmfestival.gr
-2921@@Dimitria Festival (September-October)@@17, Navarhou Kountouriotou Street, Thessaloniki@@+30 2313 318213 @@www.dimitria.thessaloniki.gr
-2922@@Thessaloniki International Fair (September)@@154, Egnatia Street, Thessaloniki@@+30 2310 291111@@www.helexpo.gr
-2923@@Thessaloniki Food Festival (October-November)@@1, Vasileos Georgiou I Street, Thessaloniki@@+30 2313 317812@@foodfestival.thessaloniki.gr
-2924@@Reworks Festival (September)@@Thessaloniki@@+30 2310 266648@@www.reworks.gr
-2925@@International Photography Festival (January-February)@@Thessaloniki@@+30 2310 638447@@www.fotoporoi.gr
-2926@@Documentary Festival (March)@@10, Aristotelous Square, Thessaloniki@@+30 2310 378400@@www.filmfestival.gr
-2927@@Thessaloniki Book Festival (June)@@Nea Paralia, Thessaloniki@@+30 2310 286377@@www.facebook.com/festivalvivliou
-2928@@One day excursion to Veria and Naoussa@@Naoussa, Imathia@@+30 2310 231170@@www.zorpidis.gr
-2929@@One day excursion to Kastoria@@Kastoria@@+30 2310 231170@@www.zorpidis.gr
-2930@@One day excursion to Drama@@Drama@@+30 2310 231170@@www.zorpidis.gr
-2931@@One day excursion to Xanthi@@Xanthi@@+30 2310 231170@@www.zorpidis.gr
-2932@@One day excursion to Florina@@Florina@@+30 2310 231170@@www.zorpidis.gr
-2933@@One day excursion to Edessa@@Edessa, Pella@@+30 2310 231170@@www.zorpidis.gr
-2934@@One day excursion to Lake Kerkini & Poroia@@Lake Kerkini, Serres@@+30 2310 231170@@www.zorpidis.gr
-2935@@Culture Bus Line@@White Tower, Thessaloniki@@+30 2310 981100@@oasth.gr/#el/politistikh-diadromh/
-2936@@Hop on-Hop off@@39, Ionos Dragoumi Street, Thessaloniki@@+30 2310 515944@@www.thessaloniki-sightseeing.com
-2937@@Magic Park@@12th km Thessaloniki-Airport National Road, Thessaloniki@@+30 2310 476770@@www.magicpark.gr
-2938@@Thessaloniki Flavors@@-@@-@@gr.city-discovery.com
-2939@@Free Bicycle@@1, Vasileos Georgiou I, Thessaloniki@@+30 2313 317777@@www.thessaloniki.gr
-2940@@Segway Center@@25, Chalkeon Street, Aristotelous Square, Thessaloniki@@+30 6936 280691@@www.segway.gr
-2941@@Kaftanzoglio Stadium@@Agiou Dimitriou Street Extension, Thessaloniki@@+30 2310 205534, +30 2310 205536, +30 2310 205443@@www.kaftanzoglio.gr
-2942@@Yahundi Hammam (Baths of the Jews)@@Loudoudadika, Thessaloniki@@-@@-
-2943@@Alatza Imaret@@91-93, Kassandrou Street, Thessaloniki@@+30 2310 278587@@-
-2944@@Bit Bazaar@@Bit Bazaar Square, Thessaloniki@@-@@-
-2945@@Local Products@@Center, Thessaloniki@@-@@-
-2946@@Byzantine Churches@@Center, Thessaloniki@@-@@-
-2948@@Ble (Agias Sophias)@@19, Agias Sophias Street & Georgiou Stavrou Street, Thessaloniki@@+30 2310 231200 @@www.ble.com.gr, www.facebook.com/Ble.taste
-2949@@Konstandinidis@@7, Pavlou Mela Street & 117, Mitropoleos Street, Thessaloniki@@+30 2310 227956@@www.konstandinidis.com
-2950@@Terkenlis@@30, Tsimiski Street & 4, Aristotelous Square, Thessaloniki@@+30 2310 271148@@www.terkenlis.gr
-2951@@Chatzis@@50, El. Venizelou Street, Thessaloniki@@+30 2310 279058@@chatzis.gr/
-2952@@Hatzifotiou@@37, Pavlou Mela Street, Thessaloniki@@+30 2310 232166@@hatzifotiou.gr
-2953@@Plaisir@@Aristotelous Square & Mitropoleos Street, Thessaloniki@@+30 2310 277444@@plaisir.gr
-2955@@Ergon@@3-5, Kouskoura Street, Thessaloniki@@+30 2310 284224@@www.ergonproducts.gr
-2956@@Plateia Parking@@43, Tsimiski Street, Thessaloniki@@-@@-
-2966@@Bey Hammam@@Egnatia Street & Aristotelous Square, Thessaloniki@@+30 2310 226931@@-
-2967@@Jewish Museum of Thessaloniki@@13, Agiou Mina Street, Thessaloniki@@+30 2310 250406@@www.jmth.gr
-2968@@To Mikraki@@2, Proxenou Koromila Street, Thessaloniki@@+30 2310 270517@@www.facebook.com/mikraki.gr
-2969@@Negroponte@@24, Egyptou Street, Ladadika, Thessaloniki@@+30 2310 523571@@-
-2970@@Hamodrakas@@13, Manoli Gagili Street, Kalamaria, Thessaloniki@@+30 2310 447943, +30 2310 447945@@www.hamodrakas.gr
-2971@@Tapas Bar@@4, Katouni Street, Ladadika, Thessaloniki@@+30 2310 547777@@www.tapas.gr
-2972@@Molyvos Evergreen@@1, Tsirogianni Street, Thessaloniki@@+30 2310 224400@@www.molyvos.gr
-2974@@KEFTEdes@@4, Vogatsikou Street, Thessaloniki@@+30 2310 272900@@www.facebook.com/pages/%CE%9A%CE%95%CE%A6%CE%A4%CE%95-%CE%B4%CE%B5%CF%82/179711558849780?rf=135464723234165
-2975@@7 Thalasses@@8-10, Kalapothaki Street, Thessaloniki@@+30 2310 233173@@www.7thalasses.eu, www.facebook.com/pages/7-Thalasses/140732802665848?fref=ts
-2976@@Paradosiako (Aristotelous Square)@@3, Aristotelous Square & 28, Tsimiski Street, Thessaloniki@@+30 2310 242200@@www.paradosiako.net, www.facebook.com/ParadosiakoParadosiako
-2977@@Derlicatessen@@7, Kouskoura Street, Thessaloniki@@+30 2310 226367@@www.facebook.com/NterlikatesenOlaSoublaki
-2984@@Neon@@20, Frangon Street & Leontos Sofou Street, Thessaloniki@@+30 2310 527804@@-
-2985@@Mavri Thalassa@@Chilis Street & 3 Plastira Street, Kalamaria, Thessaloniki@@+30 2310 932542@@www.facebook.com/mavrithalassa?fref=ts
-2986@@Pepper Hot Spot@@55, Nikis Avenue, Thessaloniki@@+30 2310 257781@@www.facebook.com/PepperHotSpot
-2987@@Argo The Boat@@-@@+30 6977 063530@@www.facebook.com/ArgoTheBoat
-2990@@La Place Mignogne@@4, Ethnikis Amynis Street, Thessaloniki@@+30 2310 288354@@www.laplacemignonne.gr
-2991@@Fix Live@@15, 26th Oktovriou Street, Thessaloniki@@+30 2310 514666, +30 2310 566 163@@www.fixcom.gr
-2992@@Pili Axiou Live Clubbing@@9, Georgiou Andreou Street, Thessaloniki@@+30 2310 553158@@www.facebook.com/piliaxioulive
-2994@@Kombologadiko@@45, Mitropoleos Street, Thessaloniki@@+30 2310 223100@@www.kombologadiko.gr
-2995@@Thessbike@@25th Martiou Street & Maria Kallas Street, Concert Hall Outdoor Parking, Thessaloniki@@+30 6978 008141@@www.thessbike.gr
-2997@@Titania@@22, Karolou Dil Street, Thessaloniki@@+30 2310 279879@@www.titania-artos.gr
-2998@@On the Road@@61, Nikis Avenue, Thessaloniki@@+30 2310 271240@@-
-2999@@Frederico Agapi Mou@@87, Olympou Street, Thessaloniki@@+30 2310 238532@@-
-3000@@Dirent@@14th km Thessaloniki-Nea Mixaniona National Road, Thessaloniki@@+30 2310 820035@@www.direntacar.gr, www.facebook.com/pages/Dirent-A-Car/310718895733029?fref=ts
-3001@@Diesel@@12, Agias Sophias Street, Thessaloniki@@+30 2310 221205@@www.diesel.com, www.facebook.com/Diesel
-3002@@Dolce & Gabbana@@3, Morgentaou Street & Proxenou Koromila Street, Thessaloniki@@+30 210 3356000@@www.dolcegabbana.com
-3003@@Louis Vuitton@@6, Mitropolitou Iosif Street & 48, Proxenou Koromila Street, Thessaloniki@@+30 2310 225052@@www.louisvuitton.eu
-3004@@Juicy Couture@@3, Mitropolitou Iosif Street & Proxenou Koromila Street, Thessaloniki@@+30 2310 262270@@-
-3005@@Nati Mati@@40, Proxenou Koromila Street, Thessaloniki@@+30 2310 241104@@-
-3006@@Askaridis@@30, Tsimiski Street, Thessaloniki@@+30 2310 233995@@-
-3007@@Bitzidis@@10, Palaion Patron Germanou Street, Thessaloniki@@+30 2310 286856@@-
-3008@@Links of London@@46-48, Mitropoleos Street, Thessaloniki@@+30 2310 239140@@-
-3009@@Studio Hair@@13, Agias Theodoras Street, Thessaloniki@@+30 2310 280700@@-
-3010@@Sinatra Espresso Wine Bar@@20, Mitropoleos Street & Komninon Street, Thessaloniki@@+30 2310 223739@@www.facebook.com/SinatraEspressoWineBar
-3012@@Mon Frere@@Proxenou Koromila Street & 6, Karolou Dil Street, Thessaloniki@@-@@www.facebook.com/pages/Mon-frere/254739701245674
-3013@@Beer Store@@6-8, Kalapothaki Street, Thessaloniki@@+30 2310 233438@@www.facebook.com/pages/The-Beerstore/341882621790
-3014@@Beer Store@@6-8, Kalapothaki Street, Thessaloniki@@+30 2310 233438@@www.facebook.com/pages/The-Beerstore/341882621790
-3015@@Colors Ladadika Central@@1, Oplopoiou Street, Thessaloniki@@+30 2316 007676@@colorscentral.gr
-3018@@Virginia Vildiridi@@78, Mitropoleos Street, Thessaloniki@@+30 2310 262009@@www.virginiavildiridi.gr/
-3043@@Savvikos Aristotelous@@8, Aristotelous Square, Thessaloniki@@+30 2310 510910@@www.savvikos.gr, www.facebook.com/savvikos1947?fref=ts
-3045@@Savvikos Polytechniou@@Polytechniou Street (extension of Tsimiski Street) & Dodekanissou Street, Thessaloniki@@+30 2310 510910@@www.savvikos.gr
-3046@@Savvikos Lambraki@@131, Gr. Lambraki Street, Thessaloniki@@+30 2310 510910@@www.savvikos.gr
-3047@@Hondos Center@@9, Aristotelous Square, Thessaloniki@@+30 2310 256080@@www.hondoscenter.gr
-3050@@Polis Hammam@@40A, Konstantinou Karamanli Street, Kalamaria, Thessaloniki@@+30 2310 488216@@www.polis-hammam.gr, www.facebook.com/PolisHammam?fref=ts
-3054@@Sephora@@62, Tsimiski Street, Thessaloniki@@+30 2310 235416@@www.sephora.gr
-3055@@Marks & Spencer@@45, Tsimiski Street, Thessaloniki@@+30 2310 244790@@global.marksandspencer.com/gr
-3056@@Mac@@53, Tsimiski Street, Thessaloniki@@+30 2310 260034@@www.maccosmetics.gr
-3057@@Notos Galleries@@24, Tsimiski Street & 31, Mitropoleos Street, Hirsch Arcade, Thessaloniki@@+30 2310 366600@@www.notosgalleries.gr
-3059@@Houze Urban Warehouse Club@@4, Agiou Mina Street, Valaoritou, Thessaloniki@@+30 6972 442598@@www.facebook.com/Houzeclubthessaloniki
-3060@@Mitropoleos Street@@Mitropoleos Street@@-@@-
-3063@@Proxenou Koromila Street@@Proxenou Koromila Street@@-@@-
-3069@@Kosmos Rent a Car@@Macedonia Airport, Thessaloniki@@+30 2310 443930@@www.kosmos-carrental.com
-3073@@Albeta@@9, Ionos Dragoumi Street & 10, Mitropoleos Street, Thessaloniki@@+30 2310 548547@@www.albeta.gr, www.facebook.com/albetagr
-3074@@7seas Cocktail Bar@@8, Kalapothaki Street, Thessaloniki@@+30 2310 233173 @@7thalasses.eu, www.facebook.com/7ThalassesCoctailBar?fref=ts
-3083@@El Burrito@@5, Chrysostomou Smyrnis Street, Thessaloniki@@+30 2310 220622@@www.elburrito.gr, www.facebook.com/elburrito.gr?fref=ts
-3085@@Thessaloniki's Secret Markets@@-@@-@@gr.city-discovery.com
-3091@@Paparouna@@4, Paggaiou Street & Doxis, Kato Ladadika, Thessaloniki@@+30 2310 510852@@www.paparouna.com
-3092@@Odontoglyfida (City Center)@@20, Pavlou Mela Street, Thessaloniki@@+30 2310 224399@@odontoglyfida.gr
-3093@@Odontoglyfida (Kalamaria)@@61, Komninon Street, Kalamaria, Thessaloniki@@+30 2310 481901@@odontoglyfida.gr, www.facebook.com/Odontoglyfida?fref=ts
-3109@@Zithos (Ladadika)@@5, Katouni Street, Ladadika, Thessaloniki@@+30 2310 540284 @@www.zithos.gr, www.facebook.com/pages/Zithos/61774850838
-3112@@Zithos (Dore)@@7, Tsirogianni Street, Thessaloniki@@+30 2310 279010@@www.zithos.gr, www.facebook.com/Zithos.Restaurants?fref=ts
-3113@@Magic Stage@@27, 26th Octovriou Street, Sfagia, Thessaloniki@@+30 2310 566768, +30 2310 441601@@-
-3169@@Salto@@6, Karolou Dil Street, Thessaloniki@@+30 2310 222206@@www.facebook.com/pages/Salto/543685512363760
-3195@@Short Trips@@-@@-@@-
-3694@@Agora Ouzeri@@5, Kapodistriou Street & Ionos Dragoumi Street, Thessaloniki@@+30 2310 532428@@www.ouzeriagora.gr
-3696@@Ouzo ston Pinaka@@Athonos Square, Thessaloniki@@+30 2310 280076@@www.facebook.com/OuzoStonPinaka
-3697@@Tiho Tiho@@Mesaia Portara, Ano Poli, Thessaloniki@@+30 2310 245351@@www.facebook.com/pages/toixo-toixo/276871794622
-3698@@Ouzou Melathron@@21, Karipi Street, Thessaloniki@@+30 2310 275016@@www.facebook.com/pages/%CE%9F%CE%A5%CE%96%CE%9F%CE%A5-%CE%9C%CE%95%CE%9B%CE%91%CE%98%CE%A1%CE%9F%CE%9D/118894131530325
-3699@@Fileto Solomonidi@@47, Nikolaou Plastira Street, Kalamaria@@+30 2310 455510@@-
-3700@@Mom's Cooking@@10, Vogatsikou Street, Thessaloniki@@+30 2310 253777@@www.facebook.com/pages/Moms-Cooking/224673920915711
-3701@@Ta Pinelikia@@89, Themistokli Sofouli Street, Kalamaria@@+30 2310 410555@@www.pinelikia.gr, www.facebook.com/pinelikia
-3702@@Methistanes@@38, Prosfigikis Agoras (Bit Bazaar), Thessaloniki@@+30 2314 010810, +30 6937 264336@@www.facebook.com/methistanas
-3703@@Elia Lemoni@@9, Kapodistriou Street, Thessaloniki@@+30 2310 515881@@www.facebook.com/elialemoni
-3704@@Mezedolatria@@9, Filippou Street & Ionos Dragoumi Street, Thessaloniki@@+30 2313 019783@@-
-3705@@Mandola@@19, Katouni Street, Ladadika, Thessaloniki@@+30 2310 523136@@www.facebook.com/mandolarestaurant
-3707@@Tsinari@@52, Alexandras Papadopoulou Street & Isminis Street, Ano Poli, Thessaloniki@@+30 2310 284028@@www.facebook.com/pages/Ouzeri-Tsinari/161289803922336?sk=wall
-3708@@Athivoli@@15, Katouni Street, Ladadika, Thessaloniki@@+30 2310 508509@@www.athivoli.gr
-3721@@Ta Gorilakia@@40, Amfipoleos Street, Kato Touba, Thessaloniki@@+30 2310 941941@@www.facebook.com/gorilakiathessaloniki
-3722@@Laikon@@24, Polytechniou Street, Thessaloniki@@+30 2310 523433 @@-
-3723@@Mallioras@@37-39, Vasileos Irakleiou Street, Thessaloniki@@+30 2310 266866@@www.mallioras.gr/
-3724@@Todaylicious@@112, Tsimiski Street, Thessaloniki@@+30 2310 242210@@todaylicious.gr, www.facebook.com/To.daylicious
-3725@@Saltsa Bar@@81, Tsimiski Street & Iktinou Street, Thessaloniki@@+30 2310 241122@@www.saltsabar.gr
-3726@@Bite Me!@@1, Nikis Avenue, Thessaloniki@@+30 2310 241533@@www.facebook.com/pages/Bite-Me-Grills-Snacks/239073496222600
-3727@@Rina's BBQ@@1, Ionos Dragoumi Street, Thessaloniki@@+30 2310 566122@@www.facebook.com/pages/Rinas-BBQ/483671601667690
-3728@@Tsarouhas@@78, Olympou Street, Thessaloniki@@+30 2310 271621@@www.facebook.com/pages/%CE%95%CF%83%CF%84%CE%B9%CE%B1%CF%84%CF%8C%CF%81%CE%B9%CE%BF-%CE%A0%CE%B1%CF%84%CF%83%CE%B1%CF%84%CE%B6%CE%AF%CE%B4%CE%B9%CE%BA%CE%BF-%CE%A4%CF%83%CE%B1%CF%81%CE%BF%
-3729@@One day excursion to Pozar Baths-Aridaia@@Pozar Baths, Aridaia@@+30 2310 231170@@zorpidis.gr/
-3730@@Greek Pharmaceutical Museum@@173-175, Ethnikis Antistaseos Avenue, Finikas@@+30 2310 471776@@www.fsth.gr/
-3731@@Mia feta-Feta Bar@@14, Pavlou Mela Street, Thessaloniki@@+30 2310 221120@@miafetafetabar.gr, www.facebook.com/miafetafetabar
-3732@@Museum of Macedonian Struggle@@23, Proxenou Koromila Street, Thessaloniki@@+30 2310 229778@@www.imma.edu.gr/
 3762@@Passport-Visa@@-@@-@@-
 3789@@Smoking@@-@@-@@-
 3796@@Tipping@@-@@-@@-
-3799@@Shopping@@-@@-@@-
-3803@@Exchange@@-@@-@@-
-3804@@Banks@@-@@-@@-
-3805@@Medical Care@@-@@-@@-
-3806@@Petrol Stations@@-@@-@@-
-3807@@Travel Information@@-@@-@@-
-3808@@Thessaloniki Tourism Organization@@-@@+30 2310 252170@@www.thessaloniki.travel
-3915@@Sushija@@70, Mitropoleos Street & Mitropolitou Iosif Street, Thessaloniki@@+30 2310 229000@@sushija.gr, www.facebook.com/pages/Sushija/419599924815320
-5173@@Tre Marie (Center)@@13, Paleon Patron Germanou Street, Thessaloniki@@+30 2310 240051   @@www.tremarie.gr, www.facebook.com/TreMarieGR?fref=ts
-5192@@One Day Excursion to Halkidiki@@Sani, Halkidiki@@-@@-
-5331@@Volver Live Stage@@23, 26th October Street, Sfagia, Thessaloniki@@-@@-
-6114@@Komninos@@18, Ermou Street, Thessaloniki@@+30 2310 250393@@-
-6115@@Boating@@Paralia, Thessaloniki@@-@@-
-6116@@Da Leonardo@@Philip 50, Pilea, Thessaloniki@@+30 2310 323377 @@daleonardo.gr, www.facebook.com/DaLeonardoCucinaItaliana
-6721@@Europcar@@14th km Thessaloniki - Peraias, Thessaloniki@@+30 2310 478778@@www.europcar-greece.gr
-6798@@Papillon@@207, Grigoriou Lambraki, Thessaloniki@@+30 6982 998999@@www.facebook.com/pages/Papillon/1493181647578215?sk=timeline
-6799@@Regency Casino Thessaloniki@@12 klm National Road Thessaloniki- Airport, Thessaloniki@@+30 2310 491234@@www.regencycasinos.gr
-6800@@Regency Casino Thessaloniki@@12 klm National Road Thessaloniki- Airport, Thessaloniki@@+30 2310 491234@@www.regencycasinos.gr
-6802@@-@@-@@-@@-
-7308@@Motion by Five Car Rental@@56, Ethnikis Antistaseos Street, Nea Politeia Evosmos, Thessaloniki@@+30 2310 588262@@www.car-motion.gr
-7309@@Budget@@15th km Thessaloniki-Michaniona, Thessaloniki@@+30 2310 819990, +30 2310 471455@@www.budget.gr
-7310@@Journeys in Thessaloniki@@6, Georgiou Stavrou, Thessaloniki@@+30 2311 242382@@www.dot2dot.gr, www.facebook.com/dot2dot.thess
-7966@@Chocolate Factory & Museum@@Thessaloniki International Exhibition Centre, Kiosk 1, 154 Egnatia Street, Thessaloniki@@+30 2310 291267@@chocofactory.helexpo.gr, www.facebook.com/ErgostasioSokolatas/timeline
-7967@@Gelato e Amore@@44 Alexandrou Svolou Street, Thessaloniki@@+30 2310 242014 @@-
-8237@@Dinosaur Park@@7th km Thessalonikis- Oraiokastrou motorway, Thessaloniki@@+30 2310 686544@@www.parkodeinosauron.gr
-8238@@Zoo@@Xilia Dendra, Thessaloniki@@+30 2310 219980 @@-
-8239@@Day Trip to Amphipolis, Kavala and Philippi@@-@@+30 2310 231170@@www.zorpidis.gr
-8240@@Journey to The World of Wine@@-@@-@@thessalonikiwalkingtours.com
-8241@@Daily trip to Olympus@@Olympus, Pieria@@+30 2310 231170@@www.zorpidis.gr
-8243@@Malt & Jazz@@1 Proxenou Koromila Street, Thessaloniki@@+30 2310 278876, +30 6937 380554@@www.facebook.com/pages/MALT-JAZZ/274572625994996?sk=timeline
-8244@@Mouses Live@@25 Aggelaki Street, Thessaloniki@@+30 2310 231237 @@-
-8245@@Kourdisto Gourouni@@31 Agias Sofias Street, Thessaloniki@@+30 2310 274672@@www.kourdistogourouni.gr, www.facebook.com/KourdistoGourouni
-8246@@Route 88@@51 Nikis Avenue, Thessaloniki@@+30 2311 282744@@route88.gr, www.facebook.com/Route.88.Thessaloniki
-8272@@Lena's Bistro@@7 Katouni Street, Ladadika, Thessaloniki@@+30 2311 249140@@www.facebook.com/pages/Lenas-Bistro/319179299204
-8283@@Love Casual Living@@16 Ethnikis Antistaseos Street, Kalamaria, Thessaloniki@@+30 2310 365425 @@www.facebook.com/pages/LOVE-CASUAL-LIVING/145799142186301
-8284@@Ypovrihio@@6 Sygrou Street, Thessaloniki@@+30 2313 017886@@www.facebook.com/ToYpovrihio
-8285@@Stretto@@18 Karolou Dill Street, Thessaloniki@@+30 2310 275159@@www.strettocafe.eu
-8286@@Spirto@@Pavlou Mela Street & 33 Zefxidos Street, Thessaloniki@@+30 2310 222207@@www.facebook.com/pages/Spirto-cafe-bar/316566071690378?sk=timeline
-8287@@Urban@@7 Zefxidos Street, Thessaloniki@@+30 2310 272821@@www.facebook.com/Urban.Bar.Cafe
-8291@@Sherlock@@25 Nikis Avenue, Thessaloniki@@+30 2310 256012@@www.facebook.com/Sherlock.Speak.Easy.Bar
-8292@@Vogatsikou 3@@3 Vogatsikou, Thessaloniki@@+30 2310 222899@@www.facebook.com/pages/Vogatsikou-3/1487387164823945?sk=timeline
-8296@@Tokyo@@29 Valaoritou Street, Thessaloniki@@+30 6942 684630@@www.facebook.com/TokyoCityBar
-8297@@Extrablatt@@46 Alexandrou Svolou, Thessaloniki@@+30 2310 256900@@www.extrablatt.gr
-8299@@Casa Madre@@10 Agias Theodoras Street, Thessaloniki@@+30 2310 257568@@www.facebook.com/pages/Casa-Madre/221395771384384?sk=timeline
-8300@@Stage Live@@27 26th October Street, Sfageia, Thessaloniki@@+30 2310 566768@@www.facebook.com/pages/Stage-By-Night/455066644550414
-8301@@Koukouvagia@@8 Kleisouras Street, Thessaloniki@@+30 2313 010892@@www.facebook.com/pages/%CE%9A%CE%BF%CF%85%CE%BA%CE%BF%CF%85%CE%B2%CE%B1%CE%B3%CE%B9%CE%B1/229940297129512?sk=timeline
-8302@@Yfilios@@1 Proxenou Koromila Street, Thessaloniki@@+30 6936 790401@@-
-8303@@Colpo@@30 Katouni Street, Ladadika, Thessaloniki@@+30 2310 511509@@www.facebook.com/ColpoBar/timeline
-8304@@Slag@@2 Zefxidos Street, Thessaloniki@@+30 2313 040747 @@www.facebook.com/pages/Slag/219654574739348
-8333@@Elia Lemoni@@9 Kapodistriou Street, Thessaloniki@@+30 2310 515881@@www.elialemoni.gr
-8334@@Brothers in Law@@30 Pavlou Mela Street, Thessaloniki@@+30 2310 270707@@www.brothersinlaw.gr, www.facebook.com/BrothersinLawThessaloniki
-8335@@Ta Nisia@@13 Proxenou Koromila Street, Thessaloniki@@+30 2310 285991@@www.tanisia.com
-8337@@Habanera@@29 Georgiou Papandreou Street, Thessaloniki@@+30 2310 869331@@www.habanera.gr
-8338@@Anassa@@26 Themistokli Sofouli Street, Thessaloniki@@+30 2311 821360@@www.anassa-restaurant.gr, www.facebook.com/pages/Anassa-Restaurant/172726036083139
-8340@@Akadimia@@3 Agiou Mina Street, Thessaloniki@@+30 2310 521803@@www.facebook.com/pages/Akadimia-restaurant-%CE%91%CE%BA%CE%B1%CE%B4%CE%B7%CE%BC%CE%AF%CE%B1-restaurant/342154045825067?sk=timeline
-8341@@Massalia@@Manousogiannaki Street & Filikis Etairias Street, Thessaloniki@@+30 2314 003714@@www.facebook.com/massaliathessaloniki
-8342@@Votsalo@@17 Proxenou Koromila Street, Thessaloniki@@+30 2310 267000 @@-
-8343@@Kouzina by kioupia@@3-5 Morihovou Square, Ladadika, Thessaloniki@@+30 2310 553239@@www.kioupia.gr, www.facebook.com/kouzina.kioupia
-8344@@Pax Homemade Burgers@@Kalapothaki Street & 8 Venizelou Street, Thessaloniki@@+30 2310 221970@@www.facebook.com/paxburgers
-8346@@Xalaro@@7 Themistokli Sofouli Street, Kalamaria, Thessaloniki@@+30 2310 423284@@www.xalaro.gr
-8348@@Mom's Cooking@@10 Vogatsikou Street, Thessaloniki@@+30 2310 253777@@www.facebook.com/cucinafamiliare
-8349@@Miami@@18 Thetidos Street, Nea Krini, Thessaloniki@@+30 2310 447996@@www.maiamirestaurant.gr, www.facebook.com/maiami.gr
-8354@@Ta Bakaliarakia tou Aristou@@3 Katouni Street & 2 Fasianou Street, Ladadika, Thessaloniki@@+30 2310 548668@@-
-8355@@Grapa & Mezes@@1 Logothetou Street, Thessaloniki@@+30 2310 417706@@-
-8357@@Myrsini@@6 Ethnikis Amynis Street, Thessaloniki@@+30 2310 228300 @@www.facebook.com/pages/%CE%9C%CF%85%CF%81%CF%83%CE%AF%CE%BD%CE%B7-Myrsini/245524925606106
-8358@@Modigliani@@12 Kydoniatou Street & Vlali, Kapani, Thessaloniki@@+30 2310 225925@@www.facebook.com/Modiglianikafe
-8359@@Bazagiazi@@35 Vasileos Irakleiou Street, Thessaloniki@@+30 2310 279006@@-
-8360@@Hamidie@@10 Navarinou Square, Thessaloniki@@+30 2310 222514@@www.facebook.com/pages/%CE%A7%CE%B1%CE%BC%CE%B9%CE%BD%CF%84%CE%B9%CE%AD/289084711231089?sk=info&ref=page_internal
-8361@@Sebrico@@2 Frangon Street, Thessaloniki@@+30 2310 557513@@-
-8363@@Mpaxtses@@211 Vasilissis Olgas Avenue, Thessaloniki@@+30 2310 427339@@www.facebook.com/mpaxtsesthessaloniki
-8364@@Flavors Bistrot@@23 Karolou Dil Street, Thessaloniki@@+30 2310 226999@@www.facebook.com/flavorsbistrotgr
-8365@@Frutti Di Mare@@20 Komninon Street, Thessaloniki@@+30 2310 239100 @@www.fruttidimare.gr
-8367@@Salumeria@@5 Balanou Street, Athonos Square, Thessaloniki@@+30 2310 228585@@www.facebook.com/pages/Salumeria/169622769739899?sk=timeline
-8368@@Christofer@@12 Megalou Alexandrou Avenue, Sailing Club, Thessaloniki@@+30 2310 859369@@www.christofergroup.gr/fishtavern
-8369@@To Manitari@@57 Themistokli Sofouli Street, Sofouli Shopping Centre, Kalamaria, Thessaloniki@@+30 2310 415289@@www.to-manitari.gr, www.facebook.com/pages/%CE%95%CE%A3%CE%A4%CE%99%CE%91%CE%A4%CE%9F%CE%A1%CE%99%CE%9F-%CE%A4%CE%9F-%CE%9C%CE%91%CE%9D%CE%
-8405@@ABC Hotel@@41 Aggelaki Street, Thessaloniki@@+30 2310 265421@@www.hotelabc.gr, www.facebook.com/pages/Hotel-ABC/159702874234586
-8426@@Ambassador Hotel@@Plagiari, Thessaloniki@@+30 23920 21200, +30 23920 21201, +30 23920 21202. +30 23920 21203@@www.ambassador.gr, www.facebook.com/Ambassador.Hotel.Thessaloniki
-8456@@Sugar Angel@@1 Lassani Street & Proxenou Koromila Street, Thessaloniki@@+30 2310 225575@@www.sugarangel.gr, www.facebook.com/pages/Sugar-Angel-workshop-coffee/227471980651991
-8473@@Sugar Angel@@1 Lassani Street & Proxenou Koromila Street, Thessaloniki@@+30 2310 225575@@www.sugarangel.gr, www.facebook.com/pages/Sugar-Angel-workshop-coffee/227471980651991
-8475@@Pantheon@@Proxenou Koromila Street & Karolou Dil Street, Thessaloniki@@+30 2310 287767@@www.facebook.com/Pantheon.bar
-8482@@Boulevard 23@@23 Nikis Avenue, Thessaloniki@@+30 2313 033733@@www.facebook.com/Boulevard23?fref=photo
-8484@@Fregio Aristotelous@@3 Aristotelous Street, Thessaloniki@@+30 2310 263302@@www.fregio.gr
-8485@@Fregio Mediterranean Cosmos@@11km National Road Thessalonikis-Neon Moudanion, Thessaloniki@@+30 2310 473401@@www.fregio.gr
-8486@@Fregio Kalamaria@@59 N. Plastira Street, Aretsou Beach, Kalamaria@@+30 2310 459045@@www.fregio.gr
-8487@@Fregio Ano Toumba@@142 Grigoriou Lambraki Street, Thessaloniki@@+30 2310 947360@@www.fregio.gr
-8488@@Fregio Charilaou@@134 Papanastasiou Street, Thessaloniki@@+30 2310 327305@@www.fregio.gr
-8489@@Fregio Centre@@7 Kouskoura Street, Thessaloniki@@+30 2310 239445@@www.fregio.gr
-8490@@Massaya@@22 Chimaras Street, Thessaloniki@@+30 2310 904202@@www.facebook.com/massayathessaloniki?fref=ts, www.massaya.gr
-8495@@Agioli (restaurant)@@15 Nikis Avenue & Ploutarchou Street, Thessaloniki@@+30 2310 262888@@agioli.gr
-8506@@Agioli (beer restaurant)@@15 Nikis Avenue & Ploutarchou Street, Thessaloniki@@+30 2310 262888@@agioli.gr
-8508@@Agioli (taverna)@@15 Nikis Avenue & Ploutarchou Street, Thessaloniki@@+30 2310 262888@@agioli.gr
-8518@@Cazzarola@@15 Pavlou Mela Street, Thessaloniki@@-@@www.facebook.com/cazzarola.cuisine?fref=ts
-8523@@Aristotelika@@10 Aristotelous Sreet, Thessaloniki@@+30 2310 220300@@-
-8524@@Koita Kota@@22 Aristotelous Street, Thessaloniki@@+30 2310 276109@@-
-8547@@Automotorental@@9 Aggelaki Street, Thessaloniki@@+30 2310 241119, +30 2310 231454@@www.automotorental.com
-8552@@Be@@23 Mitropoleos Street & 11 Komninon Street, Thessaloniki@@+30 6974 633642 (ask for Mr. Grigoris Mouhtaris for bookings)  @@www.excelsiorhotel.gr
-8574@@ThyMare@@2 Megalou Alexandrou Avenue, Thessaloniki@@+30 2310 897197 @@www.makedoniapalace.com/el/fagito-poto/estiatorio-thymare.html
-8575@@Hemingway Bistrot@@19 Alexandrou Svolou Street, Thessaloniki@@+30 2310 281620@@www.facebook.com/pages/Hemingway-bistrot/225653120874744?sk=timeline
-8628@@Saint George@@25 Pavlou Mela Street, Thessaloniki@@+30 2316 007985@@www.facebook.com/pages/SAINT-GEORGE-Fresh-Baked-Goods/699320350130099
-8645@@Wonderwall@@16A Aigyptou Street, Thessaloniki@@+30 2311 242492@@wonderwallbar.gr, www.facebook.com/WonderWallCafeBar?fref=ts
-8648@@Cocktail Bar@@17A Polytechniou Street (Passageway), Thessaloniki@@+30 2310 524242 @@www.facebook.com/CocktailBarSKG?fref=ts
-8661@@Froyd's@@3 Kalapothaki Street, Thessaloniki@@+30 6942 464672 @@www.facebook.com/pages/Froyds-cocktail-bar/269994189788737
-8667@@Paparouna  Cocktail Bar@@9 Doxis Street, Thessaloniki@@+30 2310 510852@@www.paparouna.com
-8692@@-@@-@@-@@-
-8760@@Papillon Colore@@38 Mitropoloeos Street, Thessaloniki@@+30 2310 221575 @@www.facebook.com/PapillonColore38
-8792@@Dogs@@4 Polytechniou Street (extension of Tsimiski Street), Thessaloniki@@+30 6944 863248, +30 6947 377749@@www.facebook.com/dogsbarthessaloniki
-8814@@J'adore@@3 Kountourioti Street, Thessaloniki@@+30 6980 943109@@www.facebook.com/jadoreclub
-8820@@Foodporn@@11 Proxenou Koromila Street, Thessaloniki@@+30 2310 222505@@www.foodporn.kitchen, www.facebook.com/foodporn.kitchen
-8926@@Nestor Yannakis@@30 Proxenou Koromila Street, Thessaloniki@@+30 2310 244838@@www.nestoryannakis.gr, www.facebook.com/NestorYannakis
-8927@@Ariane@@61 Tsimiski Street, Thessaloniki@@+30 2310 284805@@coiffure.ariane.gr, www.facebook.com/pages/arianegr/209545635757902
-8928@@Coco Nail Boutique@@38 Tsimiski Street, Thessaloniki@@+30 2310 222079@@www.coconailboutique.gr, www.facebook.com/CocoNailBoutique
-8929@@Nails & More@@Pavlou Mela Street & 16 Grigoriou Palama Street, Thessaloniki@@+30 2310 252295@@www.nailsandmore.com.gr, www.facebook.com/pages/Nails-and-more/137153753023040?sk=timeline
-8930@@Nyxi-Nyxi@@7 Agias Sofias Street, Thessaloniki@@+30 2310 281013@@nyxinyxi.com.gr, www.facebook.com/nailsthessaloniki?ref=ts&fref=ts
-8931@@Naily's Beauty Services@@20 Karolou Dil Street, Thessaloniki@@-@@www.nailysacademy.gr
-8932@@Finesse@@27 Paleon Patron Germanou Street, Thessaloniki@@+30 2310 270634@@www.facebook.com/pages/Finesse-Coiffures-PP-Germanou/222312697878121
-8935@@Grigoriadis Hair Styling@@32, Dim. Gounari Street, Thessaloniki@@+30 2310 264022@@www.grigoriadis.gr, www.facebook.com/GrigoriadisHairStyling
-8936@@Z2@@2 Paleon Patron Germanou Street, Thessaloniki@@+30 2310 222287@@z2hairsalon.com
-8937@@Lefas Hair Ideas@@34 Proxenou Koromila Street, Thessaloniki@@+30 2310 260974@@www.lefas.com
-8938@@Be2in@@6 Ploutarchou Street, Thessaloniki@@+30 2310 272525@@www.be2in.gr, www.facebook.com/be2in
-8939@@Narcissus Haute Coiffure@@8 Chrysostomou Smyrnis, Thessaloniki@@+30 2310 220091@@www.narcissus.gr, www.facebook.com/narcissushautecoiffure
-8940@@Chic Nails@@17 Agias Sofias Street, Thessaloniki@@+30 2311 281288@@www.chicnails.gr
-8941@@Komis Erga@@6 Lori Margariti Street, Thessaloniki@@+30 2310 222073@@www.facebook.com/pages/%CE%9A%CE%9F%CE%9C%CE%97%CE%A3-%CE%B5%CE%A1%CE%93%CE%91/476250255815523
-8942@@Tabya@@14 Melenikou Street, Thessaloniki@@+30 2311 242522@@www.facebook.com/pages/TABYA/1467117063556485?sk=timeline
-8943@@Zak@@1 Taxiarchon Street, Kalamaria@@+30 2310 438921@@www.facebook.com/zak.bistrot
-8945@@Savvikos@@-@@-@@www.savvikos.gr
-8946@@Kritikos Gallery & Restaurants@@5 Venizelou Street, Panorama, Thessaloniki@@+30 2310 332810@@www.okritikos.com, www.facebook.com/kritikos.restaurant
-8947@@Dio con Dio@@Papadopoulou Street, Panorama, Thessaloniki@@+30 2310 344294@@www.facebook.com/dio.con.dio.panorama
-8963@@Day with Colours@@Kodra Military Camp, Kalamaria, Thessaloniki@@-@@www.facebook.com/sfinamia
-8968@@-@@-@@-@@-
-8969@@Souel@@16 Pavlou Mela Street, Thessaloniki@@+30 2310 262827@@www.facebook.com/SouelWineConceptBar
-8970@@Brockolo Bar@@55 Olympiou Diamanti Street, Ano Ladadika, Thessaloniki@@+30 6999 338282@@www.facebook.com/pages/Brockolo-Bar/157565220955667?sk=timeline
-9086@@Fregio@@-@@-@@www.fregio.gr
+3940@@Tourist Police@@-@@+30 22980 73100@@-
+3945@@Fire Department@@-@@199@@-
+4201@@Orloff Hotel Hydra@@Hydra@@+30 22980 52564@@www.orloff.gr
+4202@@Hotel Angelica@@43, Andrea Miaouli Street, Hydra@@+30 22980 53202@@www.angelica.gr, www.facebook.com/pages/Angelica-VIP-Boutique-Hotel/264512786922796
+4203@@Hydra Icons@@Town, Hydra@@+30 2298 400010@@www.hydraicons.gr, www.facebook.com/HydraIcons
+4204@@Fourseasonshydra@@Plakes Vlihou, Hydra@@+30 22980 53698@@www.fourseasonshydra.gr, www.facebook.com/Fourseasonshydra
+4205@@Nireids Traditional Guesthouse@@Town, Hydra@@+30 22980 52875@@www.nereids-hydra.com
+4206@@Cotommatae Hydra 1810@@Town, Hydra@@+30 22980 53873@@www.cotommatae.gr, www.facebook.com/cotommatae
+4207@@Leto Hydra Hotel@@Town, Hydra@@+30 22980 53385@@www.letohydra.gr
+4208@@Hydroussa Hotel Hydra@@Votsi Square, Hydra@@+30 22980 53580@@www.hydroussa-hydra.gr
+4209@@Piteoussa Guesthouse@@Town, Hydra@@+30 22980 52810@@www.piteoussa.com, www.facebook.com/pages/Piteoussa-Guest-House/38445074924
+4210@@Mistral Hotel@@Town, Hydra@@+30 22980 52509@@www.hotelmistral.gr
+4211@@Bratsera Hotel@@Town, Hydra@@+30 22980 53971@@www.bratserahotel.com
+4212@@Hydra Hotel@@8, Petrou Voulgari Street, Hydra@@+30 22980 53420 @@www.hydra-hotel.gr
+4213@@Hotel Miranda@@Port, Hydra@@+30 22980 52230@@www.mirandahotel.gr
+4214@@Ippokampos@@Town, Hydra@@+30 22980 53453@@www.ippokampos.com
+4215@@Porta del Mare@@Town, Hydra@@+30 22980 54105, +30 6977 777951@@www.portadelmare.gr
+4216@@Phaedra Hotel@@Town, Hydra@@+30 22980 53330 @@www.phaedrahotel.com, www.facebook.com/phaedra.hilda
+4217@@Villa Mandraki@@Mandraki, Hydra@@+30 22980 53072@@www.hydra.com.gr/mandraki-villa
+4218@@Pension Erofili@@Town, Hydra@@+30 22980 54049@@www.pensionerofili.gr
+4219@@Theassis Guesthouse@@Town, Hydra@@+30 22980 52411@@www.theassis.gr
+4220@@Mira Mare@@Mandraki, Hydra@@+30 22980 52300@@www.miramare.gr, www.facebook.com/miramare.hydra
+4221@@Alkionides Pension@@Town, Hydra@@+30 22980 54055@@www.alkionidespension.com
+4222@@Hotel Sophia@@1, Miaouli Street & Paralias, Hydra@@+30 22980 52313@@www.hotelsophia.gr, www.facebook.com/pages/Hotel-Sophia-boutique-hotel/145622042161145
+4223@@Erato Villas@@Vlihos, Hydra@@-@@www.hydraerato.com
+4224@@Hotel Nefeli@@Town, Hydra@@+30 22980 53297@@www.hotelnefeli.eu
+4225@@Residence Kiafa@@Town, Hydra@@+30 210 3640441@@yadeshotels.gr/hotel/residence-kiafa
+4226@@The Stone House@@Hydra@@+30 6984 522355@@www.oliveandstone.com/stonehouse.html
+4227@@Mandraki@@Mandraki, Hydra@@-@@-
+4228@@Spilia@@Spilia, Hydra@@-@@-
+4229@@Hydronetta@@Hydronetta, Hydra@@-@@-
+4230@@Avlaki@@Avlaki, Hydra@@-@@-
+4231@@Palamidas@@Palamidas, Hydra@@-@@-
+4232@@Vlihos@@Vlihos, Hydra@@-@@-
+4233@@Bisti@@Bisti, Hydra@@-@@-
+4234@@Agios Nikolaos@@Agios Nikolaos, Hydra@@-@@-
+4235@@Agios Georgios@@Agios Georgios, Hydra@@-@@-
+4236@@Molos@@Molos, Hydra@@-@@-
+4237@@Limnioniza@@Limnioniza, Hydra@@-@@-
+4238@@Nisiza@@Nisiza, Hydra@@-@@-
+4239@@Megalo Kamini@@Megalo Kamini, Hydra@@-@@-
+4240@@Mikro Kamini@@Mikro Kamini, Hydra@@-@@-
+4241@@Klimaki@@Klimaki, Hydra@@-@@-
+4242@@Kaoumithi@@Kaoumithi, Hydra@@-@@-
+4243@@Plakes Vlihou@@Plakes Vlihou, Hydra@@-@@-
+4244@@Miaouleia@@-@@-@@-
+4245@@Kountourioteia@@-@@-@@-
+4247@@Sailing Races@@-@@-@@-
+4248@@Carnival@@-@@-@@-
+4249@@Easter on Hydra@@-@@-@@-
+4250@@Hiking@@-@@-@@-
+4251@@Hydra Diving Center@@Vlihos, Hydra@@+30 6977 792403, +30 6982 972084@@www.hydra.com.gr/diving-center/en-index.html
+4252@@Excursion to Spetses@@-@@-@@-
+4253@@Excursion to Poros@@-@@-@@-
+4254@@Excursion to Epidavros@@Epidavros@@-@@-
+4255@@Useful Information-Hydra@@-@@-@@-
+4256@@Hydra Town Hall@@-@@+30 22980 52210@@-
+4257@@Hydra Health Center@@-@@+30 22980 52420, +30 6972 099152 @@-
+4258@@Hospital@@-@@+30 22980 53150@@-
+4259@@Police@@-@@+30 22980 52205@@-
+4260@@Hydra Port Authority@@-@@+30 22980 52279@@-
+4261@@Citizens' Service Centre@@-@@+30 22980 53782@@-
+4262@@Pharmacies@@-@@-@@-
+4263@@Emergency Services@@-@@-@@-
+4264@@Local Information@@-@@+30 22980 53365@@-
+4265@@Transportation@@-@@-@@-
+4266@@Donkeys@@-@@-@@-
+4267@@Water Taxi@@Port, Hydra@@+30 22980 53690@@-
+4268@@Flying Dolphin@@-@@+30 210 4199000@@www.hellenicseaways.gr
+4270@@Mandraki 1800@@Mandraki, Hydra@@+30 22980 52112@@www.facebook.com/Mandraki1800
+4271@@Geitoniko@@Town, Hydra@@+30 22980 53615@@-
+4272@@Sunset@@Canons, Hydra@@+30 22980 52067@@www.sunsethydra.com
+4273@@Xeri Elia@@Xeri Elia Square, Hydra@@+30 22980 52886@@www.facebook.com/xerielia.douskos
+4274@@Psaropoula@@Port, Hydra@@+30 22980 52573@@www.psaropoula.org
+4275@@Kondilenia@@Kaminia, Hydra@@+30 22980 53520@@www.hydra-kodylenia.gr
+4276@@To Paradosiakon@@Town, Hydra@@+30 22980 54155@@www.hydra.com.gr/paradosiako
+4277@@Enalion@@Vlihos, Hydra@@+30 22980 53455@@enalion-hydra.gr
+4288@@Da Barba Dimas@@182, Tobazi Street, Town, Hydra@@+30 22980 52967@@-
+4289@@Ta Gefiria@@Town, Hydra@@+30 22980 29677@@-
+4290@@Marina Tavern@@Vlihos, Hydra@@+30 22980 52496@@-
+4291@@Zefiros@@Town, Hydra@@+30 22980 52008@@-
+4292@@Veranda@@Port, Hydra@@+30 22980 52259@@www.hydra.com.gr/veranda-restaurant
+4293@@Bratsera@@Town, Hydra@@+30 22980 53971@@www.bratserahotel.com, www.facebook.com/pages/Bratsera-Hotel-Hydra/139748242705180
+4294@@Omilos@@Port, Hydra@@+30 22980 53800@@www.omilos-hydra.com
+4295@@Tsangaris Patisserie@@Port, Hydra@@+30 22980 52314@@www.tsangaris-ydra.gr
+4296@@4 Seasons@@Plakes Vlihou, Hydra@@+30 22980 53698@@www.fourseasonshydra.gr, www.facebook.com/Fourseasonshydra
+4298@@Amalour@@Tobazi Street, Town, Hydra@@+30 22980 29680@@www.amalour.com
+4299@@Pirate Bar@@Town, Hydra@@+30 22980 52711@@-
+4300@@Castello Beach Bar & Restaurant@@Kamini, Hydra@@+30 22980 54101@@www.castellohydra.gr
+4301@@Beach Club Spilia@@Spilia, Hydra@@+30 22980 54166@@-
+4302@@Creperie Mikro Cafe@@Town, Hydra@@+30 22680 52335@@-
+4303@@O Kipos tis Gefsis@@Town, Hydra@@+30 22980 53705@@-
+4304@@Papagalos@@Port, Hydra@@+30 22980 52626 @@-
+4305@@Hydronetta@@Hydronetta, Hydra@@+30 22980 54166@@-
+4306@@Skipper@@Port, Hydra@@+30 22980 52483@@www.facebook.com/pages/Skipper-Cafe/185649574841590
+4307@@Elena Votsi@@Port, Hydra@@+30 22980 52637@@www.elenavotsi.com, www.facebook.com/ElenaVotsiOfficial
+4308@@Arrraides@@Town, Hydra@@+30 22980 54006@@www.arrraides.com, www.facebook.com/pages/arrraides/186842488085705
+4309@@Speak Out@@Port, Hydra@@+30 22980 52099@@speakouthydra.blogspot.gr
+4310@@Spoiled@@180, Tobazi Street, Hydra@@+30 22980 52363@@www.spoiled.gr
+4313@@Commo Gusto@@Town, Hydra@@+30 22980 54076@@-
+4314@@Macaroons@@-@@-@@-
+4315@@Foreign Exchange@@-@@-@@-
+4316@@Banks@@-@@-@@-
+4317@@Travel Agents@@Town, Hydra@@+30 22980 54007@@www.hydreoniki.gr
+4318@@Medical Care@@-@@-@@-
+4319@@Did you Know...@@-@@-@@-
+4320@@Beaches@@-@@-@@-
+4321@@Best View@@-@@-@@-
+4323@@Donkey Ride@@-@@-@@-
+4324@@Entertainment@@-@@-@@-
+4325@@When to Visit@@-@@-@@-
+4326@@Art on Hydra@@-@@-@@-
+4327@@Parking Metohi@@-@@-@@-
+4328@@Nostimomania@@Port, Hydra@@+30 22980 53005@@www.nostimomania.com, www.facebook.com/pages/Nostimomania/180246045495173?ref=stream
+4329@@Town@@Old Town, Hydra@@-@@-
+4331@@Rafalias Pharmacy@@D. Rafalia Street, Hydra@@+30 22980 52059@@www.facebook.com/rafaliaspharmacy
+4332@@Tobazi Mansion (School of Fine Art)@@Port, Hydra@@+30 22980 52291@@-
+4333@@Post Byzantine Art and History Museum (Georgios Kountouriotis Mansion)@@Port, Hydra@@+30 22980 52245@@-
+4334@@"Melina Merkouri" Exhibition and Concert Hall@@Port, Hydra@@-@@-
+4335@@Port@@Port, Hydra@@-@@-
+4336@@Merchant Marine Academy@@Port, Hydra@@-@@-
+4337@@Zourva Lighthouse@@Hydra@@-@@-
+4343@@Dokos Island & Dokos Lighthouse@@-@@-@@-
+4344@@Mansions@@Town, Hydra@@-@@-
+4345@@Churches & Monasteries@@Town, Hydra@@-@@-
+4346@@Historical Archive Museum@@Port, Hydra@@+30 22890 52355, +30 22890 54142@@www.iamy.gr
+4348@@Lazaros Kountouriotis Mansion@@Port, Hydra@@+30 22980 52421@@-
+4349@@About us@@-@@-@@-
+5051@@Giname Pita@@Port, Hydra@@+30 22980 52593@@www.facebook.com/GinamePita
+5123@@Zoe's@@Port, Hydra@@+30 22980 52143, +30 6972 258041@@-
+5128@@Psinese@@Port, Hydra@@+30 22980 52467@@www.facebook.com/pages/%CE%A8%CE%AE%CE%BD%CE%B5%CF%83%CE%B1%CE%B9/333704040102764?fref=ts
+5134@@21st Century@@Port, Hydra@@+30 22980 53105, +30 22980 53621@@-
+5136@@"Gardenia" Summer Cinema@@Hora, Hydra@@+30 22980 53105@@cineclubhydras.blogspot.gr
+5179@@Travel Information@@-@@-@@-
+5218@@Idraiki Gonia@@Port, Hydra@@+30 22980 53813@@-
+5777@@Hydra Style@@Hora, Hydra@@+30 22980 54168@@www.facebook.com/pages/%CE%97ydra-Style/433363410103343
+7642@@Rodi@@Avlaki, Hydra@@+30 22980 29751@@www.facebook.com/pages/%CE%A1%CE%9F%CE%94%CE%99/579362682163028

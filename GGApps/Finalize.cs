@@ -142,7 +142,7 @@ namespace GGApps
 
             UpdateSQLiteUserVersion("EL");
 
-            if( _Default.CheckThreeLanguages(this.appID))
+            if( CheckThreeLanguages(this.appID))
                 UpdateSQLiteUserVersion("RU");
 
         }
@@ -209,7 +209,6 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                HasErrors = true;
                 Log.ErrorLog(mapPathError, e.Message, "generic", "");
             }
             return null;

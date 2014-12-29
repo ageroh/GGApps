@@ -10,13 +10,8 @@ using Newtonsoft.Json.Linq;
 
 namespace GGApps
 {
-    public class BackOffice
+    public class BackOffice : CommonAdmin
     {
-        static CreateLogFiles Log = new CreateLogFiles();
-        static string mapPathError = string.Empty;
-        static string MapPath = string.Empty;
-        static System.Configuration.Configuration rootWebConfig = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
-
         public BackOffice(string MPath, string mPathError) 
         {
             MapPath = MPath;

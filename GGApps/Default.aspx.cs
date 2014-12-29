@@ -179,9 +179,7 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                HasErrors = true;
                 Log.ErrorLog(mapPathError, e.Message +" Stack Trace:"  + e.StackTrace, name, "");
-
             }
         }
 
@@ -223,7 +221,6 @@ namespace GGApps
             }
             catch (SqlException ex)
             {
-                HasErrors = true;
                 Log.ErrorLog(mapPathError, "Refresh_DB_inner for " + name + " lang:" + langID + " Exception:" + ex.Message, name);
             }
             
@@ -316,7 +313,7 @@ namespace GGApps
             }
             catch (Exception ex)
             {
-                HasErrors = true;
+                HasErrors = true;   //??
                 //Log.ErrorLog(mapPathError, "myConnection_InfoMessage: " + ex.Message, Session["appName"].ToString(), "");
             }
 

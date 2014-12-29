@@ -9,6 +9,12 @@ namespace GGApps
     public class CommonAdmin : System.Web.UI.Page
     {
 
+        public static CreateLogFiles Log = new CreateLogFiles();
+        public static string mapPathError = string.Empty;
+        public static string MapPath = string.Empty;
+        public static System.Configuration.Configuration rootWebConfig = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+        public static bool HasErrors = false;
+
         public void Init()
         {
             if (CheckAccount())
