@@ -161,6 +161,61 @@ namespace GGApps
 
         }
 
+        /// <summary>
+        /// Executes a query that stores results in a file.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="langID"></param>
+        /// <param name="sqlFile"></param>
+        /// <param name="dbName"></param>
+        /// <param name="fileNameToSave"></param>
+        /// <returns></returns>
+        public bool executeSQLScript(int id, string name, int langID, string sqlFile, string fileNameToSave, string dbName = null )
+        {
+            try
+            {
+                FileInfo fileInfo = new FileInfo(sqlFile);
+
+                string script = File.ReadAllText(fileInfo.FullName, Encoding.Default);
+                StringBuilder sbSql = new StringBuilder();
+
+                string connectionString = BuildDynamicConnectionStringForDB(id, name, langID, dbName);
+
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    //con.InfoMessage += new SqlInfoMessageEventHandler(myConnection_InfoMessage);
+                    con.Open();
+                    using (SqlCommand command = new SqlCommand(script, con))
+                    {
+                        command.CommandType = CommandType.Text;
+                        command.CommandTimeout = 2000;
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            using (StreamWriter writer = new StreamWriter(fileNameToSave))
+                            {
+                                while (reader.Read())
+                                {
+                                    // Using Name and Phone as example columns.
+                                    writer.WriteLine(reader[0].ToString());
+                                }
+                                return true;
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                Log.ErrorLog(mapPathError, "executeSQLScript for " + name + " lang:" + langID + " Exception:" + e.Message, name);
+                return false;
+            }
+
+        }
+
+
 
 
         public String executeSQLScript(int id, string name, int langID, string sqlFile, string dbName = null)
@@ -200,7 +255,6 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                HttpContext.Current.Session["hErrors"] = true;
                 Log.ErrorLog(mapPathError, "executeSQLScript for " + name + " lang:" + langID + " Exception:" + e.Message, name);
                 return "<span class='error'>Error!</span>";
             }
@@ -301,6 +355,21 @@ namespace GGApps
 
         }
 
+
+        internal int LangToInt(string Lng)
+        {
+            if (Lng != null)
+            {
+                switch (Lng.Trim().ToLower())
+                {
+                    case "en": return (int)Lang.en; 
+                    case "el": return (int)Lang.el; 
+                    case "ru": return (int)Lang.ru; 
+                    default: return -1;
+                }
+            }
+            return -1;
+       }
 
 
         public static double UploadFileRemote(string appName, string localFilename, string remotePath, bool overwrite = true)

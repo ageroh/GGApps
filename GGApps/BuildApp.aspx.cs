@@ -197,15 +197,27 @@ namespace GGApps
             Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
                 {
-
-#if !DEBUG         
-                    var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir
-                                                                               , "convert SQL Db to SQLLite", mapPathError, Log);
+                    var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", mapPathError, Log);
 
                     if (!result3.IsCancellationRequested)
                     {
 
-                        if (_Default.CheckThreeLanguages(appID))
+                        // move DB files generated to Android and Ios folder
+                        InitCopySQLitesLocalPath(mapPath + "Batch\\dbfiles\\");
+                        CopySQLitesLocalPath( mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName + "_EN_" + DateTime.Now.ToString("yyyyMMdd") + ".db" );
+                        CopySQLitesLocalPath( mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName + "_EL_" + DateTime.Now.ToString("yyyyMMdd") + ".db" );
+
+                        if(CheckThreeLanguages(appID))
+                        {
+                           CopySQLitesLocalPath( mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName + "_RU_" + DateTime.Now.ToString("yyyyMMdd") + ".db" );
+                           ClearLocalPath(mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName + "_RU_" + DateTime.Now.ToString("yyyyMMdd") + ".db");
+                        }
+
+                        ClearLocalPath(mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName + "_EL_" + DateTime.Now.ToString("yyyyMMdd") + ".db" );
+                        ClearLocalPath(mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName + "_EN_" + DateTime.Now.ToString("yyyyMMdd") + ".db");
+#if !DEBUG  
+
+                        if (CheckThreeLanguages(appID))
                         {
                             var result3a = await RunAsyncCommandBatch(ct, appID, appName, "3a_fix_html_entities.bat " + appName, actualWorkDir
                                                                                         , "convert HTML ENTITIES", mapPathError, Log);
@@ -242,18 +254,22 @@ namespace GGApps
                                 if ( result6 != null)
                                 {
                              
-#endif
-                                    // DO this syncronusly through .NET
+
+                                    // upload fb-images to production suncronusly. or remove it from here.
                                     var result7 = ExecuteStep7(appID, appName, Server.MapPath("~/"), Log, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
 
                                     if (result7 == null)
                                         HasErrors = true;
 
-
-                                    // Do this Syncronously through .NET
+                                    // Do this Syncronously through create entity_text file and upload it to Production !?
                                     var result8 = ExecuteStep8(appID, appName);
 
                                     if (result8 == null)
+                                        HasErrors = true;
+
+#endif
+                    // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
+                                    if( IncreaseDBMinorVersion(appID, appName) == null)
                                         HasErrors = true;
 
 
@@ -264,7 +280,7 @@ namespace GGApps
                                             // Send email to QA - Nadia - Galufos Team (for versions file)
                                             if (!result9.IsCancellationRequested)
                                             {
-                                                
+                                               
                                                 List<string> _listAttachments = new List<string>();
                                                 _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
                                                 _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
@@ -322,9 +338,10 @@ namespace GGApps
 
                                             }
 
-                                    }
 
-#if !DEBUG         
+                    }
+
+#if !DEBUG    
                                 }
                             
                         }
@@ -335,14 +352,73 @@ namespace GGApps
                     // Send failure email if execution was interupted / or other error occured!!
                     // ?
 
-
+#endif
                 }
 
-#endif
+
 
             );
 
         }
+
+
+        private void InitCopySQLitesLocalPath(string localPath)
+        {
+            if (Directory.Exists(localPath + "android\\"))
+                Directory.Delete(localPath + "android\\", true);
+            Directory.CreateDirectory(localPath + "android\\");
+
+            if (Directory.Exists(localPath + "ios\\"))
+                Directory.Delete(localPath + "ios\\", true);
+            Directory.CreateDirectory(localPath + "ios\\");
+
+        }
+
+        private void CopySQLitesLocalPath(string localPath, string filename)
+        {
+            if (!File.Exists(localPath + filename))
+                throw new FileNotFoundException();
+
+            File.Copy(localPath + filename, localPath + "android\\" + filename);
+
+            if (!File.Exists(localPath + filename))
+                throw new FileNotFoundException();
+
+            File.Copy(localPath + filename, localPath + "ios\\" + filename);
+        }
+
+        private void ClearLocalPath(string localPath, string filename)
+        { 
+            // Clear DB files 
+            if(File.Exists(localPath + filename))
+                File.Delete(localPath + filename);
+        }
+
+
+
+        /// <summary>
+        /// Read excpected DB version from Admin DB, assign this plus a minor ver to produced SQLite DB.
+        /// If DB version already in minor version, add minor version
+        /// </summary>
+        /// <param name="appID"></param>
+        /// <param name="appName"></param>
+        /// <returns></returns>
+        private object IncreaseDBMinorVersion(int appID, string appName)
+        {
+            Finalize fin = new Finalize(appName, appID);
+            
+            // makes a minor version update
+            if( fin.UpdateDBVersion("ios") == null)
+                return null;
+
+            if (fin.UpdateDBVersion("android") == null)
+                return null;
+            
+            return 0;
+
+        }
+
+
 
         /// <summary>
         /// Upload Entity txt to FTP
@@ -362,7 +438,7 @@ namespace GGApps
                 string ProducedAppPath = rootWebConfig.AppSettings.Settings["ProducedAppPath"].Value;
                 Log.InfoLog(mapPathError, ":> Start Create-upload Entity_text to  FTP", appName);
 
-                if (GenerateEntityText(appName, appID) == null)
+                if (GenerateEntityText(appName, appID, ProducedAppPath + "\\" + appName + "\\config\\", "entity_text.txt") == null)
                 {
                     Log.ErrorLog(mapPathError, ":> Error in genaration of Entity_Text", appName);
                     return null;
@@ -373,6 +449,7 @@ namespace GGApps
                 else
                 {
                     Log.ErrorLog(mapPathError, ":> Error! Entity_text.txt not found locally!", appName);
+                    return null;
                 }
 
 
@@ -392,14 +469,17 @@ namespace GGApps
 
 
 
-        private object GenerateEntityText(string appName, int appID)
+        private object GenerateEntityText(string appName, int appID, string path, string filenametoSave)
         {
-            throw new NotImplementedException();
-
+            // check if path exists, else create it
+            if( ! Directory.Exists(path))
+                Directory.CreateDirectory(path);
+            
             // run query to produce entity_text under test ..
+            if (!executeSQLScript(appID, appName, 2, mapPath + "SQLScripts\\" + "db_create_entity.sql", path + filenametoSave, null))
+                return null;
 
-            // sqlcmd -S 10.0.64.32 -d ContentDB_165_Lan_2_Cat_%2 -U ContentAbility_User_165 -P 3E6EA993-5EBA-4648-BF18-83C38D3E26DC -Q "set nocount on SELECT text FROM entity_text_vw quit" -W -h -1 -o entity_text.txt
-
+            return 1;
         }
 
 

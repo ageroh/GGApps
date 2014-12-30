@@ -5,6 +5,7 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -21,47 +22,6 @@ namespace GGApps
             Initialize();
         }
 
-
-        public static string UpdateAppBundle(string mobileDevice, string appName, int appID, string versionNumber, string ConfiguratioNumber, string DBVersionNumber, JObject ConfigurationJSON, JObject VersionJSON)
-        {
-            try
-            {
-
-                if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
-                {
-                    string sConfigurationJSON = "", sVersionJSON = "";
-                    try { sConfigurationJSON = ConfigurationJSON.ToString(); sVersionJSON = VersionJSON.ToString(); }
-                    catch (Exception e) { }
-                    using (SqlConnection con = new SqlConnection(rootWebConfig.AppSettings.Settings["GG_Reporting"].Value.ToString()))
-                    {
-                        using (SqlCommand cmd = new SqlCommand("usp_Update_Bundle", con))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.Add("@appID", SqlDbType.Int).Value = appID;
-                            cmd.Parameters.Add("@App_VersionNumber", SqlDbType.NVarChar).Value = versionNumber;
-                            cmd.Parameters.Add("@ConfiguratioNumber", SqlDbType.NVarChar).Value = ConfiguratioNumber;
-                            cmd.Parameters.Add("@DBVersionNumber", SqlDbType.NVarChar).Value = DBVersionNumber;
-                            cmd.Parameters.Add("@VersionJSON", SqlDbType.NVarChar).Value = sVersionJSON;
-                            cmd.Parameters.Add("@ConfigurationJSON", SqlDbType.NVarChar).Value = sConfigurationJSON;
-                            cmd.Parameters.Add("@mobileDevice", SqlDbType.NVarChar).Value = mobileDevice;
-
-                            con.Open();
-                            string res = ((string)cmd.ExecuteScalar());
-
-                            return res;
-
-                        }
-                    }
-
-                }
-            }
-            catch (Exception e)
-            {
-                Log.ErrorLog(mapPathError, "Exception thrown UpdateAppBundle: " + e.Message, "generic");
-            }
-            return null;
-
-        }
 
 
         public static void Initialize()
@@ -95,17 +55,24 @@ namespace GGApps
         }
 
 
+        /// <summary>
+        /// Initialize for all Apps / Languages to keep updated Admin DB.
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="appID"></param>
+        /// <param name="path"></param>
+        /// <param name="log"></param>
+        /// <param name="filename"></param>
+        public void InitializeAdminDB()
+        {
+            Finalize fin = new Finalize();
 
+            if (fin.InitializeDBFromFiles("ios") == null)
+                HasErrors = true;
 
-  
-
-
-
-
-
-        // always insert record if not exits !
-
-        // update record Configuration file only ?
+            if( fin.InitializeDBFromFiles("android") == null)
+                HasErrors = true;
+        }
 
     }
 }

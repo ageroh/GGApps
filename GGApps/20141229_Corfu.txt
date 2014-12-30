@@ -1,5 +1,0 @@
-29/12/2014 2:35:43 μμ ==> ''> Info: Started uploading files to FTP
-29/12/2014 2:42:37 μμ ==> ''> Info: Started uploading files to FTP
-29/12/2014 2:44:01 μμ ==> ''> Info: Started uploading files to FTP
-29/12/2014 2:46:36 μμ ==> ''> Info: Started uploading files to FTP
-29/12/2014 2:50:19 μμ ==> ''> Info: Finished with uploading files to FTP, total Bytes uploaded: 2,1 MB

@@ -123,7 +123,7 @@
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Admin.aspx" />
     <Content Include="Batch\DbAccess.dll" />
-    <Content Include="Batch\db_number_of_images.sql" />
+    <Content Include="SQLScripts\db_create_entity.sql" />
     <Content Include="Batch\db_stats.sql" />
     <Content Include="Batch\gg_fix_html_entities.py" />
     <Content Include="Batch\gg_free_lines.py" />
