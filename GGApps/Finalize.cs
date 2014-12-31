@@ -39,9 +39,67 @@ namespace GGApps
         }
 
 
+        public bool SetVerionsFileProperty(string property, string value, string appName, int appId, string mobileDevice, int LangID)
+        {
+            string CurdbVersion, appVersion, configVersion, strPropertyValue; 
+            //// read versions file
+            //JObject jo = GetVersionsFile(mobileDevice, out CurdbVersion, out appVersion, out configVersion, appName);
+
+            JObject nObject;
+            var fileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\configuration.txt";
+
+            // Update JObject property
+            using (StreamReader file = File.OpenText(fileName))
+            {
+                using (JsonTextReader reader = new JsonTextReader(file))
+                {
+                    JObject code = (JObject)JToken.ReadFrom(reader);
+                    strPropertyValue = code.Value<string>(property);  //"db_version");
+                    code[property] = value;
+                    nObject = code;
+                }
+            }
+
+            using (Stream stream = File.OpenWrite(fileName))
+            {
+                using (var streamWriter = new StreamWriter(stream))
+                {
+                    using (var writer = new JsonTextWriter(streamWriter))
+                    {
+                        writer.Formatting = Formatting.Indented;
+                        writer.WriteRaw(nObject.ToString());
+                    }
+                }
+            }
+
+
+            return false;
+
+        }
+
+
+        /*
+         writer.WriteStartArray();
+                        {
+                            writer.WriteStartObject();
+                            {
+                                writer.WritePropertyName("foo");
+                                writer.WriteValue(1);
+                                writer.WritePropertyName("bar");
+                                writer.WriteValue(2.3);
+                            }
+                            writer.WriteEndObject();
+                        }
+                        writer.WriteEndArray();
+         */
+
         /// <summary>
-        /// Check if configuration file exists in DB
+        /// Get Configuration version from cofiguration.txt if exists
         /// </summary>
+        /// <param name="mobileDevice"></param>
+        /// <param name="configVersion"></param>
+        /// <param name="appName"></param>
+        /// <returns></returns>
         public JObject GetConfigurationFile(string mobileDevice, out string configVersion, string appName)
         {
             // open Configuration file if exists
@@ -72,7 +130,15 @@ namespace GGApps
         }
 
 
-
+        /// <summary>
+        /// Read Properties from JSON Version file "versions.txt", and store in OUT params, for specific mobileDevice and App.
+        /// </summary>
+        /// <param name="mobileDevice"></param>
+        /// <param name="dbVersion">db version found in file</param>
+        /// <param name="appVersion">application version found in file</param>
+        /// <param name="configVersion">config version found in file</param>
+        /// <param name="appName"></param>
+        /// <returns></returns>
         public JObject GetVersionsFile(string mobileDevice, out string dbVersion, out string appVersion, out string configVersion, string appName)
         {
             // open Configuration file if exists
@@ -120,11 +186,15 @@ namespace GGApps
 
 
 
-
+        /// <summary>
+        /// Create a default Versions file, if file not EXISTS!.
+        /// </summary>
+        /// <param name="filename"></param>
         public static void CreateVersionsFile(string filename)
         { 
             // Create configuration JSON default file 
-            File.WriteAllText(filename, @"{  ""app_version"": ""2.1"",  ""config_version"": ""1"",  ""db_version"": ""1""}", System.Text.Encoding.UTF8);
+            if( !File.Exists(filename))
+                File.WriteAllText(filename, @"{  ""app_version"": ""2.1"",  ""config_version"": ""1"",  ""db_version"": ""1""}", System.Text.Encoding.UTF8);
         }
 
 
@@ -154,7 +224,13 @@ namespace GGApps
         }
 
 
-        
+        /// <summary>
+        /// For device and Lang and App, auto-update DB version in SQLite Db, based on value in ADMIN MSSQL.
+        /// </summary>
+        /// <param name="dbLang"></param>
+        /// <param name="mobileDevice"></param>
+        /// <param name="addVersion"></param>
+        /// <returns></returns>
         public object UpdateSQLiteUserVersion(string dbLang , string mobileDevice, int addVersion = 1)
         {
 
@@ -162,20 +238,7 @@ namespace GGApps
             {
                 
                 string curVerStr = "";
-                string curVerStrProduced = null;
-
-                // two connection strings 
-                // get current version of DB from last Test occured!
-                using (SQLiteConnection conProduced = new SQLiteConnection("Data Source=" + "C:\\GGAppContent\\"+ this.appName + "\\update\\" + mobileDevice + "\\Content" + dbLang.ToUpper() + ".db; Version=3;"))
-                {
-                    using (SQLiteCommand cmd = new SQLiteCommand("PRAGMA USER_VERSION;", conProduced))
-                    {
-                        conProduced.Open();
-                        curVerStrProduced = cmd.ExecuteScalar().ToString();
-                        conProduced.Close();
-                    }
-                }
-
+                
                 using (SQLiteConnection con = new SQLiteConnection("Data Source=" + mapPath + "Batch\\dbfiles\\" + mobileDevice +"\\GreekGuide_" + this.appName + "_" + dbLang + "_" + DateTime.Now.ToString("yyyyMMdd") + ".db; Version=3;"))
                 {
                     using (SQLiteCommand cmd = new SQLiteCommand("PRAGMA USER_VERSION;", con))
@@ -183,17 +246,12 @@ namespace GGApps
                         int curVersion = 0;
                         int major = 0, minor = 0;
                         string newVersionStr = "";
-                        con.Open();
-                        curVerStr = cmd.ExecuteScalar().ToString();
-                        con.Close();
+                        
+                        // always initialize with version shown from DB.
+                        curVerStr = InitializeSQLiteVersionFromDB(appID, appName, LangToInt(dbLang), mobileDevice);
+                        
 
-                        if (curVerStr == "0" && (curVerStrProduced == null || curVerStrProduced == "0"))
-                            curVerStr = InitializeSQLiteVersionFromDB(appID, appName, LangToInt(dbLang), mobileDevice);
-                        else
-                            curVerStr = curVerStrProduced;
-
-
-                        if (curVerStr == null)
+                        if ( String.IsNullOrEmpty(curVerStr))
                         {
                             Log.ErrorLog(logPath, "No DB version for SQL Lite for " + dbLang + " of " + this.appName, this.appName);
                             return null;
@@ -202,30 +260,50 @@ namespace GGApps
                         if (addVersion == 0)    // means add MINOR version to SQLite
                         {                       // maybe needs a record in Admin DB that an minor update occured.
 
-                            if (curVerStr.Contains("."))
+                            // already in a minor version!
+                            if (curVerStr.Length >= 2)
                             {
-                                // already in a minor, so increase minor.
-                                major = Convert.ToInt32(curVerStr.Split('.')[0]);
-                                minor = Convert.ToInt32(curVerStr.Split('.')[1]);
-                                curVerStr = major.ToString() + "." + minor.ToString();
+                                if (!getMajorMinorVer(curVerStr, out major, out minor))
+                                {
+                                    Log.ErrorLog(logPath, "Error occured while anlayzing minor-major DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
+                                    return null;
+                                }
+
                                 minor++;
-                                newVersionStr = major.ToString() + "." + minor.ToString();
+                                newVersionStr = setVerFromMajorMinor(major, minor);
 
                                 con.Open();
                                 cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
                                 cmd.ExecuteNonQuery();
                                 con.Close();
+                                
+                                //add new version as record to DB
+                                if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang)==null)
+                                {
+                                    Log.ErrorLog(logPath, "Error occured in AddDBversionAdmin DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
+                                    return null;
+                                }
+
                                 Log.InfoLog(logPath, "DB to moved to MAJOR Version from MINOR: " + curVerStr + " to  :" + newVersionStr, this.appName);
                                 return 1;
 
                             }
                             else // first minor add.
                             {
-                                newVersionStr = curVerStr + ".1";
+                                Int32.TryParse(curVerStr, out major);
+                                newVersionStr = setVerFromMajorMinor(major, 1);
+
                                 con.Open();
                                 cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
                                 cmd.ExecuteNonQuery();
                                 con.Close();
+
+                                if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang) == null)
+                                {
+                                    Log.ErrorLog(logPath, "Error occured in AddDBversionAdmin DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
+                                    return null;
+                                }
+
                                 Log.InfoLog(logPath, "DB created first MINOR version: " + newVersionStr, this.appName);
                                 return 2;
 
@@ -234,11 +312,16 @@ namespace GGApps
                         else// Means MAJOR add
                         {
 
-                            if (curVerStr.Contains("."))
+                            // we are in a MINOR version.
+                            if (curVerStr.Length >= 2)
                             {
-                                // get only major ver and ADD!
-                                major = Convert.ToInt32(curVerStr.Split('.')[0]);
-                                minor = Convert.ToInt32(curVerStr.Split('.')[1]);
+                                // get major minor versions.
+                                if (!getMajorMinorVer(curVerStr, out major, out minor))
+                                {
+                                    Log.ErrorLog(logPath, "Error occured while anlayzing minor-major DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
+                                    return null;
+                                }
+
 
                                 if (addVersion > 1) 
                                     major = major + addVersion;
@@ -250,6 +333,12 @@ namespace GGApps
                                 con.Open();
                                 cmd.ExecuteNonQuery();
                                 con.Close();
+
+                                if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang, MAJOR) == null)
+                                {
+                                    Log.ErrorLog(logPath, "Error occured in AddDBversionAdmin DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
+                                    return null;
+                                }
                                 Log.InfoLog(logPath, "DB to moved to MAJOR Version from MINOR: " + major + "." + minor + " to  :" + newVersionStr, this.appName);
                                 return 3;
                             }
@@ -262,7 +351,13 @@ namespace GGApps
                                 cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
                                 cmd.ExecuteNonQuery();
                                 con.Close();
-                                Log.InfoLog(logPath, "DB to moved to MAJOR Version from MAJOR: " + curVersion + " to  :" + newVersionStr, this.appName);
+
+                                if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang, MAJOR) == null)
+                                {
+                                    Log.ErrorLog(logPath, "Error occured in AddDBversionAdmin DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
+                                    return null;
+                                }
+                                Log.InfoLog(logPath, "DB to moved to MAJOR Version from MAJOR: " + curVerStr + " to  :" + newVersionStr, this.appName);
                                 return 4;
                             }
                         }
@@ -279,9 +374,133 @@ namespace GGApps
 
         }
 
+        /// <summary>
+        /// Set new DB version to Admin, given App, Lang, and Mobile Device.
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="appID"></param>
+        /// <param name="curVerStr"></param>
+        /// <param name="newVersionStr"></param>
+        /// <param name="mobileDevice"></param>
+        /// <param name="dbLang"></param>
+        /// <param name="ver"></param>
+        /// <returns></returns>
+        private object AddDBversionAdmin(string appName, int appID, string curVerStr, string newVersionStr, string mobileDevice, string dbLang, int ver = MINOR)
+        {
+            int LangID = LangToInt(dbLang);
+            int res;
+
+            try
+            {
+                if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
+                {
+                    using (SqlConnection con = new SqlConnection(rootWebConfig.AppSettings.Settings["GG_Reporting"].Value.ToString()))
+                    {
+                        con.Open();
+
+                        // Get initial values of versions from SQL server Admin.
+                        using (SqlCommand command = new SqlCommand("usp_Set_DB_Version", con))
+                        {
+                            command.CommandType = CommandType.StoredProcedure;
+                            command.Parameters.Add("@appID", SqlDbType.Int).Value = appID;
+                            command.Parameters.Add("@langID", SqlDbType.Int).Value = LangID;
+                            command.Parameters.Add("@mobileDevice", SqlDbType.VarChar).Value = mobileDevice;
+                            command.Parameters.Add("@curVersion", SqlDbType.VarChar).Value = curVerStr;
+                            command.Parameters.Add("@newVersion", SqlDbType.VarChar).Value = newVersionStr;
+                            command.Parameters.Add("@kind", SqlDbType.Int).Value = ver;
+                            command.CommandTimeout = 2000;
+                            res = (int)command.ExecuteScalar();
+                            con.Close();
+                            return res;
+                        }
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Log.ErrorLog(mapPathError, "Some excepetion occured in AddDBversionAdmin " + e.Message, appName);
+            }
+
+            return null;
+
+        }
+
+         /// <summary>
+         ///  Normailize major, minor to be store as string, add leading zeros
+         /// </summary>
+         /// <param name="major"></param>
+         /// <param name="minor"></param>
+         /// <returns></returns>
+        private string setVerFromMajorMinor(int major, int minor)
+        {
+            if( major == null || minor == null)
+                return null;
+            
+            string smajor = major.ToString();
+            string sminor = minor.ToString();
+            //dbVersion.PadLeft(myString.Length + 5, '0');
+
+            if (smajor.Length == 1) smajor = "0" + smajor;
+            if (sminor.Length == 1) sminor = "0" + sminor;
+
+            return smajor + sminor;
+        }
+
+        /// <summary>
+        /// Get two integers, major, minor as DB version, from a String. (2 first is MAJOR, 2 last is MINOR)
+        /// </summary>
+        /// <param name="curVerStr"></param>
+        /// <param name="major"></param>
+        /// <param name="minor"></param>
+        /// <returns></returns>
+        private bool getMajorMinorVer(string curVerStr, out int major, out int minor)
+        {
+            major = 0;
+            minor = 0;
+            bool res = false;
+
+            if (curVerStr != null)
+            {
+                if (curVerStr.Length == 3)
+                {
+                    res = Int32.TryParse(curVerStr.Substring(0, 1), out major);  // 403 , 4 major 03 minor
+                    if (!res) major = -1;
+
+                    res = Int32.TryParse(curVerStr.Substring(1, 2), out minor);  // 403 , 4 major 03 minor
+                    if (!res) minor = -1;
+
+                    return res; 
+                }
+
+                if (curVerStr.Length == 4)
+                {
+                    res = Int32.TryParse(curVerStr.Substring(0, 2), out major);  // 2433 , 24 major 33 minor
+                    if (!res) major = -1;
+
+                    res = Int32.TryParse(curVerStr.Substring(2, 2), out minor);  // 2453 , 24 major 53 minor
+                    if (!res) minor = -1;
+
+                    return res;
+                }
+
+            }
+
+            return false;
+        }
+
+
+        /// <summary>
+        /// Get the Latest Version found on Admin DB, set this DB version to SQLite.
+        /// </summary>
+        /// <param name="appID"></param>
+        /// <param name="appName"></param>
+        /// <param name="dbLang"></param>
+        /// <param name="mobileVersion"></param>
+        /// <returns></returns>
         private string InitializeSQLiteVersionFromDB(int appID, string appName, int dbLang, string mobileVersion)
         {
-            DataTable dt = new DataTable();
+            string db_Ver;
 
             // read DB version from admin table.
             if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
@@ -291,48 +510,37 @@ namespace GGApps
                     con.Open();
 
                     // Get initial values of versions from SQL server Admin.
-                    using (SqlCommand command = new SqlCommand("usp_Get_Info_App", con))
+                    using (SqlCommand command = new SqlCommand("usp_Get_DB_version", con))
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.Add("@appID", SqlDbType.Int).Value = appID;
                         command.Parameters.Add("@langID", SqlDbType.Int).Value = dbLang;
                         command.Parameters.Add("@mobileDevice", SqlDbType.VarChar).Value = mobileVersion;
-
                         command.CommandTimeout = 2000;
-                        SqlDataAdapter adp = new SqlDataAdapter(command);
-                        adp.Fill(dt);
-
+                        db_Ver = (string)command.ExecuteScalar();
                     }
                     con.Close();
                 }
 
                 // Do the work with DataTable
-                if(dt == null)
+                if (String.IsNullOrEmpty(db_Ver))
                 {
                     Log.ErrorLog(mapPathError, "No App configuration found for " + appName, appName);
                     return null;
                 }
 
-                
-                // most reasonably one row would be returned every time.
-                foreach (DataRow dr in dt.Rows)
-                {
-                    if (dr["db_version"] != DBNull.Value &&
-                        dr["mobileDevice"] != DBNull.Value &&
-                        dr["langID"] != DBNull.Value)
-                        return SetDBVersionForApp(dr["db_version"].ToString(), dr["mobileDevice"].ToString(), dr["langID"].ToString());
-                }
-
-                return "0";
-                
+                return SetDBVersionForApp(db_Ver, mobileVersion, LangStr[dbLang]);
             }
-
             return null;
-
         }
 
-
-
+        /// <summary>
+        /// Set DB Version on SQLite DB, found on LOCAL path!
+        /// </summary>
+        /// <param name="db_version"></param>
+        /// <param name="mobiledevice"></param>
+        /// <param name="langID"></param>
+        /// <returns></returns>
         private string SetDBVersionForApp(string db_version, string mobiledevice, string langID)
         {
             try

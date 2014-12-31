@@ -55,5 +55,13 @@ namespace GGApps
             }
         }
 
+
+        public static bool SetVerionsFileProperty(string property, string value, string appName, int appId, string mobileDevice, int LangID)
+        {
+
+            return false;
+        
+        }
+
     }
 }

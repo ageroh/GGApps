@@ -201,20 +201,8 @@ namespace GGApps
 
                     if (!result3.IsCancellationRequested)
                     {
-
                         // move DB files generated to Android and Ios folder
-                        InitCopySQLitesLocalPath(mapPath + "Batch\\dbfiles\\");
-                        CopySQLitesLocalPath( mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName + "_EN_" + DateTime.Now.ToString("yyyyMMdd") + ".db" );
-                        CopySQLitesLocalPath( mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName + "_EL_" + DateTime.Now.ToString("yyyyMMdd") + ".db" );
-
-                        if(CheckThreeLanguages(appID))
-                        {
-                           CopySQLitesLocalPath( mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName + "_RU_" + DateTime.Now.ToString("yyyyMMdd") + ".db" );
-                           ClearLocalPath(mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName + "_RU_" + DateTime.Now.ToString("yyyyMMdd") + ".db");
-                        }
-
-                        ClearLocalPath(mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName + "_EL_" + DateTime.Now.ToString("yyyyMMdd") + ".db" );
-                        ClearLocalPath(mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName + "_EN_" + DateTime.Now.ToString("yyyyMMdd") + ".db");
+                        MoveGeneratedDBtoPaths(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db");
 #if !DEBUG  
 
                         if (CheckThreeLanguages(appID))
@@ -268,14 +256,17 @@ namespace GGApps
                                         HasErrors = true;
 
 #endif
-                    // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
+                                    // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
                                     if( IncreaseDBMinorVersion(appID, appName) == null)
                                         HasErrors = true;
 
+                                    if (!HasErrors)
+                                        if (UpdateVersionsFile(appID, appName) == null)
+                                            HasErrors = true;
 
                                     var result9 = await RunAsyncCommandBatch(ct, appID, appName, "9_copy_img_databases.bat " + appName + " " + DateTime.Now.ToString("yyyyMMdd"), actualWorkDir
                                                                                                         , "Copy files from Local to Server", mapPathError, Log);
-
+#if !DEBUG
                                             // LOG THIS
                                             // Send email to QA - Nadia - Galufos Team (for versions file)
                                             if (!result9.IsCancellationRequested)
@@ -341,23 +332,48 @@ namespace GGApps
 
                     }
 
-#if !DEBUG    
+
                                 }
                             
                         }
 
+                        
+#endif
                     }
 
 
                     // Send failure email if execution was interupted / or other error occured!!
                     // ?
 
-#endif
                 }
 
 
 
             );
+
+        }
+
+        private object UpdateVersionsFile(int appID, string appName)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void MoveGeneratedDBtoPaths(string appName, int appID, string path, string filenameHl1, string filenameHl2)
+        {
+
+            InitCopySQLitesLocalPath(path);
+            CopySQLitesLocalPath(path, filenameHl1 + "_EN_" + filenameHl2);
+            CopySQLitesLocalPath(path, filenameHl1 + "_EL_" + filenameHl2);
+
+            if (CheckThreeLanguages(appID))
+            {
+                CopySQLitesLocalPath(path, filenameHl1 + "_RU_" + filenameHl2);
+                ClearLocalPath(path, filenameHl1 + "_RU_" + filenameHl2);
+            }
+
+            ClearLocalPath(path, filenameHl1 + "_EL_" + filenameHl2);
+            ClearLocalPath(path, filenameHl1 + "_EN_" + filenameHl2);
+
 
         }
 
@@ -373,6 +389,7 @@ namespace GGApps
             Directory.CreateDirectory(localPath + "ios\\");
 
         }
+
 
         private void CopySQLitesLocalPath(string localPath, string filename)
         {
