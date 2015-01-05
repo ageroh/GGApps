@@ -94,9 +94,8 @@ namespace GGApps
 
                 Log.InfoLog(mapPathError, "Started : Building Report for " + appName, appName, "");
 
-#if !DEBUG                
                 Refresh_DB(appID, appName);
-#endif
+
                 // if no error continue.. ??
                 strRet = RunReportTestsForProducedDBs(appID, appName);
 

@@ -197,7 +197,7 @@ namespace GGApps
             Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
                 {
-#if !DEBUG                    
+           
                     var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", mapPathError, Log);
 
                     if (!result3.IsCancellationRequested && !HasErrors)
@@ -247,11 +247,13 @@ namespace GGApps
                                     if (result6 != null && !HasErrors)
                                     {
 
+
+
                                         object result7 = null, result8 = null;
                                         CancellationToken result9;
+
                                         // upload fb-images to production suncronusly. or remove it from here.
                                         result7 = ExecuteStep7(appID, appName, Server.MapPath("~/"), Log, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
-
                                         if (result7 == null)
                                             HasErrors = true;
                                         else
@@ -265,14 +267,13 @@ namespace GGApps
                                             HasErrors = true;
                                         else
                                         {
-#endif
-                                            // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
+                                          // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
                                             if (IncreaseDBMinorVersion(appID, appName) == null)
                                                 HasErrors = true;
-#if !DEBUG 
+
                                         }
 
-#endif                    
+                 
 
                                         if (!HasErrors)
                                         {
@@ -280,20 +281,20 @@ namespace GGApps
                                             {
                                                 HasErrors = true;
                                             }
+                                            else
+                                            {
+                                                result9 = await RunAsyncCommandBatch(ct, appID, appName, "9_copy_img_databases.bat " + appName + " " + DateTime.Now.ToString("yyyyMMdd"), actualWorkDir
+                                                                                                                    , "Copy files from Local to Server", mapPathError, Log);
+                                            }
                                         }
-#if !DEBUG 
-                                        else
-                                        {
-                                            result9 = await RunAsyncCommandBatch(ct, appID, appName, "9_copy_img_databases.bat " + appName + " " + DateTime.Now.ToString("yyyyMMdd"), actualWorkDir
-                                                                                                                , "Copy files from Local to Server", mapPathError, Log);
-                                        }
+
 
                                         // LOG THIS
                                         // Send email to QA - Nadia - Galufos Team (for versions file)
                                         if (!result9.IsCancellationRequested && !HasErrors)
                                         {
 
-#endif
+
                                             List<string> _listAttachments = new List<string>();
                                             _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
                                             _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
@@ -317,12 +318,16 @@ namespace GGApps
                                                                         , "GG App produced for " + appName
                                                                         , mapPathError, Log
                                                                         );
+
+                                                ClearGeneratedDB(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+
+
                                                 HasErrors = false;
                                                 Session["FinishedProcessing"] = true;
                                                 return;
                                             }
-#if !DEBUG 
                                         }
+
                                     }
                                 }
                             }
@@ -353,11 +358,14 @@ namespace GGApps
                                                 , "GG App produced for " + appName
                                                 , mapPathError, Log
                                                 );
+                        ClearGeneratedDB(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+
                         HasErrors = false;
                         Session["FinishedProcessing"] = true;
                         return;
                     }
-#endif
+
+
                 }
 
             );
@@ -374,7 +382,7 @@ namespace GGApps
         {
             try
             {
-                Log.InfoLog(mapPathError, "Started> Clearing local batch db files", appName);
+                Log.InfoLog(mapPathError, "Started> Moving local batch db files", appName);
                 InitCopySQLitesLocalPath(path);
                 CopySQLitesLocalPath(path, filenameHl1 + "_EN_" + filenameHl2);
                 CopySQLitesLocalPath(path, filenameHl1 + "_EL_" + filenameHl2);
@@ -384,10 +392,7 @@ namespace GGApps
                     CopySQLitesLocalPath(path, filenameHl1 + "_RU_" + filenameHl2);
                     ClearLocalPath(path, filenameHl1 + "_RU_" + filenameHl2);
                 }
-
-                ClearLocalPath(path, filenameHl1 + "_EL_" + filenameHl2);
-                ClearLocalPath(path, filenameHl1 + "_EN_" + filenameHl2);
-                Log.InfoLog(mapPathError, "Finished> Clearing local batch db files", appName);
+                Log.InfoLog(mapPathError, "Finished> Moving local batch db files", appName);
                 return 1;
             }
             catch (Exception ex)
@@ -398,6 +403,28 @@ namespace GGApps
 
         }
 
+
+        private object ClearGeneratedDB(string appName, int appID, string path, string filenameHl1, string filenameHl2, string logPath)
+        {
+            try
+            {
+                if (CheckThreeLanguages(appID))
+                {
+                    ClearLocalPath(path, filenameHl1 + "_RU_" + filenameHl2);
+                }
+
+                ClearLocalPath(path, filenameHl1 + "_EL_" + filenameHl2);
+                ClearLocalPath(path, filenameHl1 + "_EN_" + filenameHl2);
+
+                Log.InfoLog(mapPathError, "Finished> Moving local batch db files", appName);
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorLog(logPath, "Exception in ClearGeneratedDB(), " + ex.Message, appName);
+                return null;
+            }
+        }
 
         private void InitCopySQLitesLocalPath(string localPath)
         {
@@ -548,7 +575,7 @@ namespace GGApps
 
             Log.InfoLog(mapPathError, ":> Start Upload Images FB to FTP", appName);
             totalBytesUploaded = UploadFilesRemote(appName, "C:\\temp\\images\\" + appName + "-fb\\", appName.ToLower() + "/fb-assets/");
-            if (totalBytesUploaded < 10)
+            if (totalBytesUploaded <= 0)
             {
                 Log.InfoLog(mapPathError, ":> Error! finish Upload Images FB to FTP", appName);
                 return null;

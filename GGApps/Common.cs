@@ -389,8 +389,7 @@ namespace GGApps
 
             if (ftpClient != null)
             {
-                FileInfo fi = new FileInfo(localFilename);
-                totalBytesUploaded += ftpClient.upload(localFilename, remotePath + fi.Name, overwrite);
+                totalBytesUploaded += ftpClient.upload(localFilename, remotePath, overwrite);
 
             }
             ftpClient = null;
