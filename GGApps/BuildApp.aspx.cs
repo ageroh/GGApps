@@ -32,22 +32,22 @@ namespace GGApps
 
                 if (Session["appName"] != null && Session["appID"] != null)
                 {
-                    
+
 
                     if (!Init_BuildApp(Convert.ToInt32(Session["appID"].ToString()), Session["appName"].ToString()))
                     {
-                       
-                        Log.ErrorLog(mapPathError, "Failed to Initialize In-App update for <span class='appName'>" + Session["appName"].ToString() + "</span>", Session["appName"].ToString() );
+
+                        Log.ErrorLog(mapPathError, "Failed to Initialize In-App update for <span class='appName'>" + Session["appName"].ToString() + "</span>", Session["appName"].ToString());
                         AddMessageToScreen("ExecutionMessages",
                                             @"<h2>Failed to Initialize In-App update, <strong>please contact Admin!</strong></h2>", this.Page);
 
                     }
                     else
-                    { 
+                    {
                         // ready to upDate!
                         lbl1.Text = "Ready to perform update for <span class='appName'>" + Session["appName"].ToString() + "</span>, please select what to do from the below list.";
                     }
-                    
+
                 }
                 else
                     Response.Redirect("~/");
@@ -84,11 +84,11 @@ namespace GGApps
 
                                   if (!result9b.IsCancellationRequested)
                                   {
-                                      
+
                                       Log.InfoLog(mapPathError, appName + " Produced successfully over Test Content.", appName);
                                       List<string> _listAttachments = new List<string>();
 
-                                      if ((bool)HasErrors == false) 
+                                      if ((bool)HasErrors == false)
                                       {
                                           //SendMail To All Teams
                                           await SendMailToUsers(appName
@@ -139,7 +139,7 @@ namespace GGApps
 
 
                                   if ((bool)HasErrors == false)
-                                  {  
+                                  {
                                       //SendMail To All Teams
                                       await SendMailToUsers(appName
                                                               , GetEmailList("AllTeams")
@@ -164,14 +164,14 @@ namespace GGApps
                                                               , _listAttachments
                                                               , EmailTemplate("Failure", appName, startProcessing), "GG DB produced for " + appName
                                                               , mapPathError, Log);
-                                    
+
                                   }
 
                                   HasErrors = false;
                                   Session["FinishedProcessing"] = true;
                                   return;
                               }
-                          
+
                           }
                       }
 
@@ -190,20 +190,23 @@ namespace GGApps
         /// <param name="appName"></param>
         public void BatchExecuteAllSteps(int appID, string appName)
         {
-           // CreateLogFiles Log = new CreateLogFiles();
+            // CreateLogFiles Log = new CreateLogFiles();
             string startProcessing = DateTime.Now.ToString("HH:mm - ddd d MMM yyyy");
- 
+
 
             Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
                 {
+#if !DEBUG                    
                     var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", mapPathError, Log);
 
-                    if (!result3.IsCancellationRequested)
+                    if (!result3.IsCancellationRequested && !HasErrors)
                     {
                         // move DB files generated to Android and Ios folder
-                        MoveGeneratedDBtoPaths(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db");
-#if !DEBUG  
+                        var res3_5 = MoveGeneratedDBtoPaths(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                        if (res3_5 == null)
+                            HasErrors = true;
+
 
                         if (CheckThreeLanguages(appID))
                         {
@@ -211,169 +214,187 @@ namespace GGApps
                                                                                         , "convert HTML ENTITIES", mapPathError, Log);
                         }
 
-                        // Redirect result to temp file for APP with dateFormat
-                        var result4 = await RunAsyncCommandBatch(ct, appID
-                                                                    , appName
-                                                                    , "4_db_stats.bat " + appID.ToString() + "  reports/" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt"
-                                                                    , actualWorkDir
-                                                                    , "Export Database Statistics", mapPathError, Log);
-
-
-                        if (!result4.IsCancellationRequested)
+                        if (res3_5 != null)
                         {
+                            // Redirect result to temp file for APP with dateFormat
+                            var result4 = await RunAsyncCommandBatch(ct, appID
+                                                                        , appName
+                                                                        , "4_db_stats.bat " + appID.ToString() + "  reports/" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt"
+                                                                        , actualWorkDir
+                                                                        , "Export Database Statistics", mapPathError, Log);
 
-                            var result5 = await RunAsyncCommandBatch(ct, appID, appName, "5_get_images.bat " + appName, actualWorkDir
-                                                                                        , "Transform All Images running Python", mapPathError, Log);
 
-                            if (!result5.IsCancellationRequested)
+                            if (!result4.IsCancellationRequested && !HasErrors)
                             {
 
-                                Log.InfoLog(mapPathError, appName + "> Started Execution of Image Statics for App ", appName);
-                                var result6 = ExecuteStep6(appID
-                                                , appName
-                                                , Server.MapPath("~/")
-                                                , Log
-                                                , mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt"
-                                                , "Batch/reports/" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
-                                Log.InfoLog(mapPathError, appName + "> Finished Execution of Image Statics for App ", appName);
-                                // Do this suncrounsly
+                                var result5 = await RunAsyncCommandBatch(ct, appID, appName, "5_get_images.bat " + appName, actualWorkDir
+                                                                                            , "Transform All Images running Python", mapPathError, Log);
 
-
-                                if ( result6 != null)
+                                if (!result5.IsCancellationRequested && !HasErrors)
                                 {
-                             
 
-                                    // upload fb-images to production suncronusly. or remove it from here.
-                                    var result7 = ExecuteStep7(appID, appName, Server.MapPath("~/"), Log, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                                    Log.InfoLog(mapPathError, appName + "> Started Execution of Image Statics for App ", appName);
+                                    var result6 = ExecuteStep6(appID
+                                                    , appName
+                                                    , Server.MapPath("~/")
+                                                    , Log
+                                                    , mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt"
+                                                    , "Batch/reports/" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
+                                    Log.InfoLog(mapPathError, appName + "> Finished Execution of Image Statics for App ", appName);
+                                    // Do this suncrounsly
 
-                                    if (result7 == null)
-                                        HasErrors = true;
 
-                                    // Do this Syncronously through create entity_text file and upload it to Production !?
-                                    var result8 = ExecuteStep8(appID, appName);
+                                    if (result6 != null && !HasErrors)
+                                    {
 
-                                    if (result8 == null)
-                                        HasErrors = true;
+                                        object result7 = null, result8 = null;
+                                        CancellationToken result9;
+                                        // upload fb-images to production suncronusly. or remove it from here.
+                                        result7 = ExecuteStep7(appID, appName, Server.MapPath("~/"), Log, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+
+                                        if (result7 == null)
+                                            HasErrors = true;
+                                        else
+                                        {
+                                            // Do this Syncronously through create entity_text file and upload it to Production !?
+                                            result8 = ExecuteStep8(appID, appName);
+                                        }
+
+                                        
+                                        if (result8 == null)
+                                            HasErrors = true;
+                                        else
+                                        {
+#endif
+                                            // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
+                                            if (IncreaseDBMinorVersion(appID, appName) == null)
+                                                HasErrors = true;
+#if !DEBUG 
+                                        }
+
+#endif                    
+
+                                        if (!HasErrors)
+                                        {
+                                            if (UpdateVersionsFile(appID, appName) == null)
+                                            {
+                                                HasErrors = true;
+                                            }
+                                        }
+#if !DEBUG 
+                                        else
+                                        {
+                                            result9 = await RunAsyncCommandBatch(ct, appID, appName, "9_copy_img_databases.bat " + appName + " " + DateTime.Now.ToString("yyyyMMdd"), actualWorkDir
+                                                                                                                , "Copy files from Local to Server", mapPathError, Log);
+                                        }
+
+                                        // LOG THIS
+                                        // Send email to QA - Nadia - Galufos Team (for versions file)
+                                        if (!result9.IsCancellationRequested && !HasErrors)
+                                        {
 
 #endif
-                                    // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
-                                    if( IncreaseDBMinorVersion(appID, appName) == null)
-                                        HasErrors = true;
+                                            List<string> _listAttachments = new List<string>();
+                                            _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
+                                            _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
+                                            Log.InfoLog(mapPathError, appName + " Produced successfully over Test Content.", appName);
 
-                                    if (!HasErrors)
-                                        if (UpdateVersionsFile(appID, appName) == null)
-                                            HasErrors = true;
-
-                                    var result9 = await RunAsyncCommandBatch(ct, appID, appName, "9_copy_img_databases.bat " + appName + " " + DateTime.Now.ToString("yyyyMMdd"), actualWorkDir
-                                                                                                        , "Copy files from Local to Server", mapPathError, Log);
-#if !DEBUG
-                                            // LOG THIS
-                                            // Send email to QA - Nadia - Galufos Team (for versions file)
-                                            if (!result9.IsCancellationRequested)
+                                            if ((bool)HasErrors == false)
                                             {
-                                               
-                                                List<string> _listAttachments = new List<string>();
-                                                _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
-                                                _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
-                                                Log.InfoLog(mapPathError, appName + " Produced successfully over Test Content.", appName);
+                                                //SendMail To All Teams
+                                                await SendMailToUsers(appName
+                                                                        , GetEmailList("AllTeams")
+                                                                        , _listAttachments
+                                                                        , EmailTemplate("Success", appName, startProcessing), "GG App produced for " + appName
+                                                                        , mapPathError, Log);
 
-                                                if ((bool)HasErrors == false)
-                                                {
-                                                    
-                                               
-
-                                                    
-                                                    //SendMail To All Teams
-                                                    await SendMailToUsers(appName
-                                                                            , GetEmailList("AllTeams")
-                                                                            , _listAttachments
-                                                                            , EmailTemplate("Success", appName, startProcessing), "GG App produced for " + appName
-                                                                            , mapPathError, Log);
-
-                                                    //Send Always email with Log info for currnet execution to ME.
-                                                    //_listAttachments.Add(mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
-                                                    await SendMailToUsers(appName
-                                                                            , GetEmailList("ErrorTeam")
-                                                                            , _listAttachments
-                                                                            , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
-                                                                            , "GG App produced for " + appName
-                                                                            , mapPathError, Log
-                                                                            );
-
-
-                                                }
-                                                else// Send Failure Message!
-                                                {
-                                                    //SendMail To All Teams
-                                                    await SendMailToUsers(appName
-                                                                            , GetEmailList("AllTeams")
-                                                                            , _listAttachments
-                                                                            , EmailTemplate("Failure", appName, startProcessing), "GG App produced for " + appName
-                                                                            , mapPathError, Log);
-
-                                                    //Send Always email with Log info for currnet execution to ME.
-                                                    await SendMailToUsers(appName
-                                                                            , GetEmailList("ErrorTeam")
-                                                                            , _listAttachments
-                                                                            , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
-                                                                            , "GG App produced for " + appName
-                                                                            , mapPathError, Log
-                                                                            );
-                                                    
-                                                }
-
-
+                                                //Send Always email with Log info for currnet execution to ME.
+                                                //_listAttachments.Add(mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                                                await SendMailToUsers(appName
+                                                                        , GetEmailList("ErrorTeam")
+                                                                        , _listAttachments
+                                                                        , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
+                                                                        , "GG App produced for " + appName
+                                                                        , mapPathError, Log
+                                                                        );
                                                 HasErrors = false;
                                                 Session["FinishedProcessing"] = true;
                                                 return;
-
                                             }
-
-
-                    }
-
-
+#if !DEBUG 
+                                        }
+                                    }
                                 }
-                            
+                            }
                         }
-
-                        
-#endif
                     }
 
 
                     // Send failure email if execution was interupted / or other error occured!!
-                    // ?
+                    if (HasErrors)
+                    {
+                        List<string> _listAttachments = new List<string>();
+                        _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
+                        _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
+                        Log.InfoLog(mapPathError, appName + " Produced successfully over Test Content.", appName);
 
+                        //SendMail To All Teams
+                        await SendMailToUsers(appName
+                                                , GetEmailList("AllTeams")
+                                                , _listAttachments
+                                                , EmailTemplate("Failure", appName, startProcessing), "GG App produced for " + appName
+                                                , mapPathError, Log);
+
+                        //Send Always email with Log info for currnet execution to ME.
+                        await SendMailToUsers(appName
+                                                , GetEmailList("ErrorTeam")
+                                                , _listAttachments
+                                                , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
+                                                , "GG App produced for " + appName
+                                                , mapPathError, Log
+                                                );
+                        HasErrors = false;
+                        Session["FinishedProcessing"] = true;
+                        return;
+                    }
+#endif
                 }
-
-
 
             );
 
+
+
+
+
         }
 
-        private object UpdateVersionsFile(int appID, string appName)
+
+
+        private object MoveGeneratedDBtoPaths(string appName, int appID, string path, string filenameHl1, string filenameHl2, string logPath)
         {
-            throw new NotImplementedException();
-        }
-
-        private void MoveGeneratedDBtoPaths(string appName, int appID, string path, string filenameHl1, string filenameHl2)
-        {
-
-            InitCopySQLitesLocalPath(path);
-            CopySQLitesLocalPath(path, filenameHl1 + "_EN_" + filenameHl2);
-            CopySQLitesLocalPath(path, filenameHl1 + "_EL_" + filenameHl2);
-
-            if (CheckThreeLanguages(appID))
+            try
             {
-                CopySQLitesLocalPath(path, filenameHl1 + "_RU_" + filenameHl2);
-                ClearLocalPath(path, filenameHl1 + "_RU_" + filenameHl2);
+                Log.InfoLog(mapPathError, "Started> Clearing local batch db files", appName);
+                InitCopySQLitesLocalPath(path);
+                CopySQLitesLocalPath(path, filenameHl1 + "_EN_" + filenameHl2);
+                CopySQLitesLocalPath(path, filenameHl1 + "_EL_" + filenameHl2);
+
+                if (CheckThreeLanguages(appID))
+                {
+                    CopySQLitesLocalPath(path, filenameHl1 + "_RU_" + filenameHl2);
+                    ClearLocalPath(path, filenameHl1 + "_RU_" + filenameHl2);
+                }
+
+                ClearLocalPath(path, filenameHl1 + "_EL_" + filenameHl2);
+                ClearLocalPath(path, filenameHl1 + "_EN_" + filenameHl2);
+                Log.InfoLog(mapPathError, "Finished> Clearing local batch db files", appName);
+                return 1;
             }
-
-            ClearLocalPath(path, filenameHl1 + "_EL_" + filenameHl2);
-            ClearLocalPath(path, filenameHl1 + "_EN_" + filenameHl2);
-
+            catch (Exception ex)
+            {
+                Log.ErrorLog(logPath, "Exception in MoveGeneratedDBtoPaths(), " + ex.Message, appName);
+                return null;
+            }
 
         }
 
@@ -405,9 +426,9 @@ namespace GGApps
         }
 
         private void ClearLocalPath(string localPath, string filename)
-        { 
+        {
             // Clear DB files 
-            if(File.Exists(localPath + filename))
+            if (File.Exists(localPath + filename))
                 File.Delete(localPath + filename);
         }
 
@@ -423,18 +444,38 @@ namespace GGApps
         private object IncreaseDBMinorVersion(int appID, string appName)
         {
             Finalize fin = new Finalize(appName, appID);
-            
+
             // makes a minor version update
-            if( fin.UpdateDBVersion("ios") == null)
+            if (fin.UpdateDBVersion("ios") == null)
                 return null;
 
             if (fin.UpdateDBVersion("android") == null)
                 return null;
-            
+
+            fin = null;
             return 0;
 
         }
 
+        private object UpdateVersionsFile(int appID, string appName)
+        {
+            Finalize fin = new Finalize(appName, appID);
+            string dbver;
+
+            // Set Versions file for IOS only for one Lang
+            dbver = fin.InitializeSQLiteVersionFromDB(appID, appName, 1, "ios");
+            Log.InfoLog(mapPathError, "Started> Update Versions.txt to " + dbver, appName);
+            if (!fin.SetVerionsFileProperty("db_version", dbver, appName, appID, "ios", 1, "versions.txt") )
+                return null;
+
+            // Set Versions file for ANDROID
+            dbver = fin.InitializeSQLiteVersionFromDB(appID, appName, 1, "android");
+            if (!fin.SetVerionsFileProperty("db_version", dbver, appName, appID, "android", 1, "versions.txt"))
+                return null;
+
+            Log.InfoLog(mapPathError, "Finished> Update Versions.txt to " + dbver, appName);
+            return 0;
+        }
 
 
         /// <summary>
@@ -449,7 +490,7 @@ namespace GGApps
         private object ExecuteStep8(int appID, string appName)
         {
             double totalBytesUploaded = 0;
-            
+
             if (rootWebConfig.AppSettings.Settings["ProducedAppPath"] != null)
             {
                 string ProducedAppPath = rootWebConfig.AppSettings.Settings["ProducedAppPath"].Value;
@@ -457,22 +498,22 @@ namespace GGApps
 
                 if (GenerateEntityText(appName, appID, ProducedAppPath + "\\" + appName + "\\config\\", "entity_text.txt") == null)
                 {
-                    Log.ErrorLog(mapPathError, ":> Error in genaration of Entity_Text", appName);
+                    Log.ErrorLog(mapPathError, ":> Error: in genaration of Entity_Text", appName);
                     return null;
                 }
 
-                if( File.Exists(ProducedAppPath + "\\" + appName + "\\config\\entity_text.txt"))
+                if (File.Exists(ProducedAppPath + "\\" + appName + "\\config\\entity_text.txt"))
                     totalBytesUploaded = UploadFileRemote(appName, ProducedAppPath + "\\" + appName + "\\config\\entity_text.txt", appName.ToLower() + "/config/entity_text.txt");
                 else
                 {
-                    Log.ErrorLog(mapPathError, ":> Error! Entity_text.txt not found locally!", appName);
+                    Log.ErrorLog(mapPathError, ":> Error: Entity_text.txt not found locally!", appName);
                     return null;
                 }
 
 
                 if (totalBytesUploaded <= 0)
                 {
-                    Log.ErrorLog(mapPathError, ":> Entity_text.txt too small or Zero size.", appName);
+                    Log.ErrorLog(mapPathError, ":>Error: Entity_text.txt too small or Zero size.", appName);
                     return null;
                 }
                 else
@@ -489,9 +530,9 @@ namespace GGApps
         private object GenerateEntityText(string appName, int appID, string path, string filenametoSave)
         {
             // check if path exists, else create it
-            if( ! Directory.Exists(path))
+            if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
-            
+
             // run query to produce entity_text under test ..
             if (!executeSQLScript(appID, appName, 2, mapPath + "SQLScripts\\" + "db_create_entity.sql", path + filenametoSave, null))
                 return null;
@@ -518,14 +559,14 @@ namespace GGApps
                 return totalBytesUploaded;
             }
         }
-    
+
 
         private object ExecuteStep6(int appID, string appName, string actualWorkDir, CreateLogFiles Log, string logPath, string fileName)
         {
             StringBuilder sb = new StringBuilder();
-        
+
             // Start Log
-            
+
             string path = actualWorkDir + "SQLScripts\\";
             sb.Length = 0;
             sb.Clear();
@@ -547,7 +588,7 @@ namespace GGApps
 
             sb.AppendLine("<br/>* ");
             string path_from = "c:\\Temp\\Images\\" + appName;
-            
+
             try
             {
 
@@ -566,7 +607,7 @@ namespace GGApps
                     int cnt = Directory.GetFiles(path_from).Length;
                     sb.AppendLine("<br/>* " + cnt);
                 }
-                
+
                 //sb.AppendLine("<br/>* ");
                 //sb.AppendLine("<br/>*** fb images in remote dir (" + path_to + ")");
                 //sb.AppendLine("<br/>* ");
@@ -621,7 +662,7 @@ namespace GGApps
                 }
 
             }
-        
+
         }
 
         /// <summary>
@@ -699,8 +740,8 @@ namespace GGApps
                 }
             }
 
-            
-         }
+
+        }
 
 
         private async Task<CancellationToken> RunAsyncCommandBatch(CancellationToken ct, int appID, string appName, string command, string actualWorkDir, string ExplainCmd, string mapPath, CreateLogFiles log, bool redirectOut = true)
@@ -779,7 +820,7 @@ namespace GGApps
         /// <param name="appName"></param>
         public bool Init_BuildApp(int appID, string appName)
         {
-            
+
             try
             {
                 // Create directories under C:\temp\images if not exists, else create them
@@ -806,7 +847,7 @@ namespace GGApps
             }
 
             return true;
-            
+
         }
 
 
@@ -908,15 +949,15 @@ namespace GGApps
                     log.InfoLog(mapPath, "Exception while sending notification email! " + sE.Message, appName);
                 }
             }
-            
+
         }
 
 
         // Verify that email had been sent.
         void smtp_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            if (! e.Cancelled)
-            {   
+            if (!e.Cancelled)
+            {
                 Log.InfoLog(mapPathError, "e-Mails sent completed.", Session["appName"].ToString());
             }
         }
@@ -954,7 +995,7 @@ namespace GGApps
             {
                 str = str.Replace("{1}", startProcessing);
                 str = str.Replace("{2}", appName);
-                if( LogErrorRealPath != null)
+                if (LogErrorRealPath != null)
                     str = str.Replace("{3}", LogErrorRealPath);
 
                 return str;
@@ -964,9 +1005,9 @@ namespace GGApps
         }
 
 
-        
 
-     
+
+
 
 
         #region NOT USED  - do for v.2
@@ -1017,7 +1058,7 @@ namespace GGApps
                     {
                         xml.SelectSingleNode("configuration/DBConfigSection/DBSettings").AppendChild(addMissingNode(appID, appName, i, xml));
                     }
-                
+
                 }
 
 
@@ -1026,7 +1067,8 @@ namespace GGApps
 
                 return true;
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 // log exception
                 return false;
             }
@@ -1050,7 +1092,7 @@ namespace GGApps
             elem.Attributes.Append(attr);
 
             attr = xml.CreateAttribute("db");
-            attr.Value = "ContentDB_165_Lan_"+lang.ToString()+"_Cat_" + appID.ToString();
+            attr.Value = "ContentDB_165_Lan_" + lang.ToString() + "_Cat_" + appID.ToString();
             elem.Attributes.Append(attr);
 
             return elem;

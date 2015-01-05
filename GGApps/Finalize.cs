@@ -39,59 +39,50 @@ namespace GGApps
         }
 
 
-        public bool SetVerionsFileProperty(string property, string value, string appName, int appId, string mobileDevice, int LangID)
+        public bool SetVerionsFileProperty(string property, string value, string appName, int appId, string mobileDevice, int LangID, string typeOfConfigfile)
         {
-            string CurdbVersion, appVersion, configVersion, strPropertyValue; 
+            string strPropertyValue, fileName = "";
             //// read versions file
-            //JObject jo = GetVersionsFile(mobileDevice, out CurdbVersion, out appVersion, out configVersion, appName);
 
-            JObject nObject;
-            var fileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\configuration.txt";
-
-            // Update JObject property
-            using (StreamReader file = File.OpenText(fileName))
+            try
             {
-                using (JsonTextReader reader = new JsonTextReader(file))
-                {
-                    JObject code = (JObject)JToken.ReadFrom(reader);
-                    strPropertyValue = code.Value<string>(property);  //"db_version");
-                    code[property] = value;
-                    nObject = code;
-                }
-            }
 
-            using (Stream stream = File.OpenWrite(fileName))
-            {
-                using (var streamWriter = new StreamWriter(stream))
+                JObject nObject;
+                fileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\" + typeOfConfigfile;
+
+                // Update JObject property
+                using (StreamReader file = File.OpenText(fileName))
                 {
-                    using (var writer = new JsonTextWriter(streamWriter))
+                    using (JsonTextReader reader = new JsonTextReader(file))
                     {
-                        writer.Formatting = Formatting.Indented;
-                        writer.WriteRaw(nObject.ToString());
+                        JObject code = (JObject)JToken.ReadFrom(reader);
+                        strPropertyValue = code.Value<string>(property);  //"db_version");
+                        code[property] = value;
+                        nObject = code;
+                    }
+                }
+
+                using (Stream stream = File.OpenWrite(fileName))
+                {
+                    using (var streamWriter = new StreamWriter(stream))
+                    {
+                        using (var writer = new JsonTextWriter(streamWriter))
+                        {
+                            writer.Formatting = Formatting.Indented;
+                            writer.WriteRaw(nObject.ToString());
+                        }
                     }
                 }
             }
-
-
-            return false;
+            catch (Exception ex)
+            {
+                Log.ErrorLog(mapPathError, "JSON> Setting property " + property + " with value: " + value + " on file " + fileName + " failed! , " + ex.Message, appName);
+                return false;
+            }
+            return true;
 
         }
 
-
-        /*
-         writer.WriteStartArray();
-                        {
-                            writer.WriteStartObject();
-                            {
-                                writer.WritePropertyName("foo");
-                                writer.WriteValue(1);
-                                writer.WritePropertyName("bar");
-                                writer.WriteValue(2.3);
-                            }
-                            writer.WriteEndObject();
-                        }
-                        writer.WriteEndArray();
-         */
 
         /// <summary>
         /// Get Configuration version from cofiguration.txt if exists
@@ -498,7 +489,7 @@ namespace GGApps
         /// <param name="dbLang"></param>
         /// <param name="mobileVersion"></param>
         /// <returns></returns>
-        private string InitializeSQLiteVersionFromDB(int appID, string appName, int dbLang, string mobileVersion)
+        public string InitializeSQLiteVersionFromDB(int appID, string appName, int dbLang, string mobileVersion)
         {
             string db_Ver;
 
