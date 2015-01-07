@@ -196,9 +196,9 @@ namespace GGApps
 
             Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
-                {
-           
-                    var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", mapPathError, Log);
+            {
+#if DEBUG
+                var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", mapPathError, Log);
 
                     if (!result3.IsCancellationRequested && !HasErrors)
                     {
@@ -246,14 +246,12 @@ namespace GGApps
 
                                     if (result6 != null && !HasErrors)
                                     {
-
-
-
+#endif
                                         object result7 = null, result8 = null;
                                         CancellationToken result9;
-
+#if DEBUG
                                         // upload fb-images to production suncronusly. or remove it from here.
-                                        result7 = ExecuteStep7(appID, appName, Server.MapPath("~/"), Log, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                                        result7 = ExecuteStep7(appID, appName, Server.MapPath("~/"), Log, mapPathError);
                                         if (result7 == null)
                                             HasErrors = true;
                                         else
@@ -267,13 +265,15 @@ namespace GGApps
                                             HasErrors = true;
                                         else
                                         {
+#endif
                                           // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
                                             if (IncreaseDBMinorVersion(appID, appName) == null)
                                                 HasErrors = true;
+#if DEBUG
 
                                         }
-
-                 
+#endif
+     
 
                                         if (!HasErrors)
                                         {
@@ -327,7 +327,7 @@ namespace GGApps
                                                 return;
                                             }
                                         }
-
+#if DEBUG  
                                     }
                                 }
                             }
@@ -365,8 +365,8 @@ namespace GGApps
                         return;
                     }
 
-
-                }
+#endif
+            }
 
             );
 
@@ -408,6 +408,7 @@ namespace GGApps
         {
             try
             {
+                Log.InfoLog(mapPathError, "Started> Clear local batch db files", appName);
                 if (CheckThreeLanguages(appID))
                 {
                     ClearLocalPath(path, filenameHl1 + "_RU_" + filenameHl2);
@@ -416,7 +417,7 @@ namespace GGApps
                 ClearLocalPath(path, filenameHl1 + "_EL_" + filenameHl2);
                 ClearLocalPath(path, filenameHl1 + "_EN_" + filenameHl2);
 
-                Log.InfoLog(mapPathError, "Finished> Moving local batch db files", appName);
+                Log.InfoLog(mapPathError, "Finished> Clear local batch db files", appName);
                 return 1;
             }
             catch (Exception ex)
@@ -471,7 +472,7 @@ namespace GGApps
         private object IncreaseDBMinorVersion(int appID, string appName)
         {
             Finalize fin = new Finalize(appName, appID);
-
+            Log.InfoLog(mapPathError, appName + "> Started increase DB minor Version", appName);
             // makes a minor version update
             if (fin.UpdateDBVersion("ios") == null)
                 return null;
@@ -480,6 +481,7 @@ namespace GGApps
                 return null;
 
             fin = null;
+            Log.InfoLog(mapPathError, appName + "> Finished increase DB minor Version", appName);
             return 0;
 
         }
@@ -545,7 +547,7 @@ namespace GGApps
                 }
                 else
                 {
-                    Log.InfoLog(mapPathError, ":> Success finish Upload Images FB to FTP", appName);
+                    Log.InfoLog(mapPathError, ":> Success finish Upload Entity_text.txt to FTP", appName);
                     return totalBytesUploaded;
                 }
             }
@@ -568,22 +570,31 @@ namespace GGApps
         }
 
 
-        private object ExecuteStep7(int appID, string appName, string mapPath, CreateLogFiles Log, string logFileName)
+        private object ExecuteStep7(int appID, string appName, string mapPath, CreateLogFiles Log, string logPath)
         {
-            double totalBytesUploaded = 0;
-            // Upload Files Syncronously
+            try
+            {
+                double totalBytesUploaded = 0;
+                // Upload Files Syncronously
 
-            Log.InfoLog(mapPathError, ":> Start Upload Images FB to FTP", appName);
-            totalBytesUploaded = UploadFilesRemote(appName, "C:\\temp\\images\\" + appName + "-fb\\", appName.ToLower() + "/fb-assets/");
-            if (totalBytesUploaded <= 0)
-            {
-                Log.InfoLog(mapPathError, ":> Error! finish Upload Images FB to FTP", appName);
-                return null;
+                Log.InfoLog(mapPathError, ":> Start Upload Images FB to FTP", appName);
+                totalBytesUploaded = UploadFilesRemote(appName, "C:\\temp\\images\\" + appName + "-fb\\", appName.ToLower() + "/fb-assets/");
+                if (totalBytesUploaded <= 0)
+                {
+                    Log.InfoLog(mapPathError, ":> Error! finish Upload Images FB to FTP", appName);
+                    return null;
+                }
+                else
+                {
+                    Log.InfoLog(mapPathError, ":> Success finish Upload Images FB to FTP", appName);
+                    return totalBytesUploaded;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Log.InfoLog(mapPathError, ":> Success finish Upload Images FB to FTP", appName);
-                return totalBytesUploaded;
+
+                Log.ErrorLog(mapPathError, "Some Excepetion occured in ExecuteStep7(): " + ex.Message, appName);
+                return null;
             }
         }
 
@@ -608,7 +619,7 @@ namespace GGApps
             }
             catch (Exception ex)
             {
-                Log.ErrorLog(logPath, "ExecuteStep6 a." + ex.Message, appName);
+                Log.ErrorLog(mapPathError, "ExecuteStep6 a." + ex.Message, appName);
                 return null;
             }
 
@@ -649,7 +660,7 @@ namespace GGApps
             }
             catch (IOException ex)
             {
-                Log.ErrorLog(logPath, "Some IO exception occured on ExecuteStep6 b. " + ex.Message, appName);
+                Log.ErrorLog(mapPathError, "Some IO exception occured on ExecuteStep6 b. " + ex.Message, appName);
                 return null;
             }
 

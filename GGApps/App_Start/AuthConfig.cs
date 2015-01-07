@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-//using Microsoft.AspNet.Membership.OpenAuth;
+using Microsoft.AspNet.Membership.OpenAuth;
 
 namespace GGApps
 {
@@ -25,7 +25,7 @@ namespace GGApps
             //    clientId: "your Microsoft account client id",
             //    clientSecret: "your Microsoft account client secret");
 
-   //         OpenAuth.AuthenticationClients.AddGoogle();
+            OpenAuth.AuthenticationClients.AddGoogle();
 
         }
     }

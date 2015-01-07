@@ -7,17 +7,18 @@ using System.Web.UI.WebControls;
 
 namespace GGApps.Account
 {
-    public partial class Login : Page
+    public partial class Login : Common
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           // RegisterHyperLink.NavigateUrl = "Register";
+            //RegisterHyperLink.NavigateUrl = "Register";
             OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
 
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
             if (!String.IsNullOrEmpty(returnUrl))
             {
-              //  RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
+                
+//                RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
             }
         }
     }

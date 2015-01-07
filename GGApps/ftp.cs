@@ -138,8 +138,17 @@ namespace GGApps
                 ftpRequest = null;
             }
             catch (Exception ex) 
-            { 
-                Log.ErrorLog(mapErrorPath, "Error while initialize and upload file " + localFile + ": " + ex.Message, appName); 
+            {
+                if (ex.Message.Contains("File name not allowed"))   // this is not really an error
+                {
+                    Log.InfoLog(mapErrorPath, "Error while initialize and upload file " + localFile + ": " + ex.Message, appName);
+                    return totalBytes;
+                }
+                else
+                {
+                    Log.ErrorLog(mapErrorPath, "Error while initialize and upload file " + localFile + ": " + ex.Message, appName);
+                    return -1; 
+                }
             }
             return totalBytes;
         }

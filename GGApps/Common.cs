@@ -321,38 +321,45 @@ namespace GGApps
         }
 
 
-        public static double UploadFilesRemote(string appName, string localDir, string remotePath, bool overwrite = true)
+        public static double UploadFilesRemote(string appName, string localDir, string remotePath,  bool overwrite = true)
         {
-            Log.InfoLog(mapPath, "Started uploading files to FTP", appName);
-            FTP ftpClient = null;
-            long totalBytesUploaded = 0;
-            if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
+            try
             {
-                var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
-                if (ftpConStr.Length == 3)
+                Log.InfoLog(mapPathError, "Started uploading files to FTP", appName);
+                FTP ftpClient = null;
+                long totalBytesUploaded = 0;
+                if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
                 {
-                    ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
+                    var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
+                    if (ftpConStr.Length == 3)
+                    {
+                        ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
+                    }
                 }
+
+
+                if (ftpClient != null)
+                {
+                    foreach (string localFile in Directory.GetFiles(localDir))
+                    {
+                        FileInfo fi = new FileInfo(localFile);
+                        totalBytesUploaded += ftpClient.upload(localFile, remotePath + fi.Name, overwrite);
+                    }
+                }
+                ftpClient = null;
+
+                if (totalBytesUploaded > 10)
+                    Log.InfoLog(mapPathError, "Finished with uploading files to FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
+                else
+                    Log.ErrorLog(mapPathError, "Some error ocured while uploading files to FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
+
+                return totalBytesUploaded;
             }
-
-
-            if (ftpClient != null)
+            catch (Exception ex)
             {
-                foreach (string localFile in Directory.GetFiles(localDir))
-                {
-                    FileInfo fi = new FileInfo(localFile);
-                    totalBytesUploaded += ftpClient.upload(localFile, remotePath + fi.Name, overwrite);
-                }
+                Log.ErrorLog(mapPathError, "Some error ocured while uploading files to FTP, Exception:  " + ex.Message, appName);
+                return 0;
             }
-            ftpClient = null;
-
-            if( totalBytesUploaded > 10)
-                Log.InfoLog(mapPath, "Finished with uploading files to FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
-            else
-                Log.ErrorLog(mapPath, "Some error ocured while uploading files to FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
-
-            return totalBytesUploaded;
-
         }
 
 
@@ -374,33 +381,40 @@ namespace GGApps
 
         public static double UploadFileRemote(string appName, string localFilename, string remotePath, bool overwrite = true)
         {
-            Log.InfoLog(mapPath, "Started uplodaded Entity.txt upload to FTP", appName);
-            FTP ftpClient = null;
-            long totalBytesUploaded = 0;
-            if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
+            try
             {
-                var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
-                if (ftpConStr.Length == 3)
+                Log.InfoLog(mapPathError, "Started uplodaded Entity.txt upload to FTP", appName);
+                FTP ftpClient = null;
+                long totalBytesUploaded = 0;
+                if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
                 {
-                    ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
+                    var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
+                    if (ftpConStr.Length == 3)
+                    {
+                        ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
+                    }
                 }
+
+
+                if (ftpClient != null)
+                {
+                    totalBytesUploaded += ftpClient.upload(localFilename, remotePath, overwrite);
+
+                }
+                ftpClient = null;
+
+                if (totalBytesUploaded > 10)
+                    Log.InfoLog(mapPathError, "Finished with Entity.txt upload to FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
+                else
+                    Log.ErrorLog(mapPathError, "Some error ocured while with Entity.txt upload to FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
+
+                return totalBytesUploaded;
             }
-
-
-            if (ftpClient != null)
+            catch (Exception ex)
             {
-                totalBytesUploaded += ftpClient.upload(localFilename, remotePath, overwrite);
-
+                Log.ErrorLog(mapPathError, "Some error ocured while uploading files to FTP, Exception:  " + ex.Message, appName);
+                return -1;
             }
-            ftpClient = null;
-
-            if (totalBytesUploaded > 10)
-                Log.InfoLog(mapPath, "Finished with Entity.txt upload to FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
-            else
-                Log.ErrorLog(mapPath, "Some error ocured while with Entity.txt upload to FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
-
-            return totalBytesUploaded;
-
         }
     }
 }

@@ -1,185 +1,185 @@
-SELECT ententityid                                                     AS ID, 
+ï»¿SELECT ententityid                                                     AS ID, 
        
 	   /* entEntityTypeID, */ 
-	   case when isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', title_s) ,0) = 0 then '' else
-       isnull('<strong>At ' + cast(Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', title_s), 0) as nvarchar(5)) + ' :</strong></br>', '///') end + 
-	   CASE Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', title_s), 0) 
+	   case when isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', title_s) ,0) = 0 then '' else
+       isnull('<strong>At ' + cast(Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', title_s), 0) as nvarchar(5)) + ' :</strong></br>', '///') end + 
+	   CASE Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', title_s), 0) 
          WHEN 0 THEN '' 
          WHEN 1 THEN '{' + Substring(title_s, 1, 1) + '}' 
                      + Substring(title_s, 2, 1000) 
-         ELSE Substring(title_s, 1, Patindex('%[á-ùÁ-Ù¢-¿]%', title_s)-1) 
+         ELSE Substring(title_s, 1, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', title_s)-1) 
               + '{' 
-              + Substring(title_s, Patindex('%[á-ùÁ-Ù¢-¿]%', title_s), 1) 
+              + Substring(title_s, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', title_s), 1) 
               + '}' 
-              + Substring(title_s, Patindex('%[á-ùÁ-Ù¢-¿]%', title_s)+1, 
+              + Substring(title_s, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', title_s)+1, 
               1000) 
        END                                                             AS 
        TITLE, 
       
-       case when isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', short_description_t),0) = 0 then '' else
-       isnull('<strong>At ' + cast(Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', short_description_t), 0) as nvarchar(5)) + ' :</strong></br>', '')  end  + 
-	   CASE Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', short_description_t), 0) 
+       case when isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', short_description_t),0) = 0 then '' else
+       isnull('<strong>At ' + cast(Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', short_description_t), 0) as nvarchar(5)) + ' :</strong></br>', '')  end  + 
+	   CASE Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', short_description_t), 0) 
          WHEN 0 THEN '' 
          WHEN 1 THEN '{' + Substring(short_description_t, 1, 1) + '}' 
                      + Substring(short_description_t, 2, 1000) 
-         ELSE Substring(short_description_t, 1, Patindex('%[á-ùÁ-Ù¢-¿]%', 
+         ELSE Substring(short_description_t, 1, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', 
               short_description_t)-1) 
               + '{' 
-              + Substring(short_description_t, Patindex('%[á-ùÁ-Ù¢-¿]%', 
+              + Substring(short_description_t, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', 
               short_description_t), 1) 
               + '}' 
-              + Substring(short_description_t, Patindex('%[á-ùÁ-Ù¢-¿]%', 
+              + Substring(short_description_t, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', 
               short_description_t)+1, 1000) 
        END                                                             AS 
        [SHORT DESCRIPTION], 
        
-       case when isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', body_t),0) = 0 then '' else
-	   isnull('<strong>At ' + cast(Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', body_t), 0) as nvarchar(5)) + ' :</strong></br>', '')  end  + 
-	   CASE Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', body_t), 0) 
+       case when isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', body_t),0) = 0 then '' else
+	   isnull('<strong>At ' + cast(Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', body_t), 0) as nvarchar(5)) + ' :</strong></br>', '')  end  + 
+	   CASE Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', body_t), 0) 
          WHEN 0 THEN '' 
          WHEN 1 THEN '{' + Substring(body_t, 1, 1) + '}' 
                      + Substring(body_t, 2, 1000) 
-         ELSE Substring(body_t, 1, Patindex('%[á-ùÁ-Ù¢-¿]%', body_t)-1) 
+         ELSE Substring(body_t, 1, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', body_t)-1) 
               + '{' 
-              + Substring(body_t, Patindex('%[á-ùÁ-Ù¢-¿]%', body_t), 1) 
+              + Substring(body_t, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', body_t), 1) 
               + '}' 
-              + Substring(body_t, Patindex('%[á-ùÁ-Ù¢-¿]%', body_t)+1, 
+              + Substring(body_t, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', body_t)+1, 
               1000) 
        END                                                             AS BODY
        , 
        
-       case when isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', caption_s),0) = 0 then '' else
-	   isnull('<strong>At ' + cast(Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', caption_s), 0) as nvarchar(5)) + ' :</strong></br>', '') end  + 
-	   CASE Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', caption_s), 0) 
+       case when isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', caption_s),0) = 0 then '' else
+	   isnull('<strong>At ' + cast(Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', caption_s), 0) as nvarchar(5)) + ' :</strong></br>', '') end  + 
+	   CASE Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', caption_s), 0) 
          WHEN 0 THEN '' 
          WHEN 1 THEN '{' + Substring(caption_s, 1, 1) + '}' 
                      + Substring(caption_s, 2, 1000) 
-         ELSE Substring(caption_s, 1, Patindex('%[á-ùÁ-Ù¢-¿]%', caption_s) 
+         ELSE Substring(caption_s, 1, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', caption_s) 
               -1) 
               + '{' 
-              + Substring(caption_s, Patindex('%[á-ùÁ-Ù¢-¿]%', caption_s), 
+              + Substring(caption_s, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', caption_s), 
               1) 
               + '}' 
-              + Substring(caption_s, Patindex('%[á-ùÁ-Ù¢-¿]%', caption_s)+ 
+              + Substring(caption_s, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', caption_s)+ 
               1, 1000 
               ) 
        END                                                             AS 
        CAPTION, 
        
-       case when isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', opening_hours_s),0) = 0 then '' else
-	   isnull('<strong>At ' + cast(Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', opening_hours_s), 0) as nvarchar(5)) + ' :</strong></br>', '') end  + 
-       CASE Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', opening_hours_s), 0) 
+       case when isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', opening_hours_s),0) = 0 then '' else
+	   isnull('<strong>At ' + cast(Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', opening_hours_s), 0) as nvarchar(5)) + ' :</strong></br>', '') end  + 
+       CASE Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', opening_hours_s), 0) 
          WHEN 0 THEN '' 
          WHEN 1 THEN '{' + Substring(opening_hours_s, 1, 1) + '}' 
                      + Substring(opening_hours_s, 2, 1000) 
-         ELSE Substring(opening_hours_s, 1, Patindex('%[á-ùÁ-Ù¢-¿]%', 
+         ELSE Substring(opening_hours_s, 1, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', 
               opening_hours_s)-1 
               ) 
               + '{' 
-              + Substring(opening_hours_s, Patindex('%[á-ùÁ-Ù¢-¿]%', 
+              + Substring(opening_hours_s, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', 
               opening_hours_s), 1) 
               + '}' 
-              + Substring(opening_hours_s, Patindex('%[á-ùÁ-Ù¢-¿]%', 
+              + Substring(opening_hours_s, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', 
               opening_hours_s)+1, 1000) 
        END                                                             AS 
        [OPENING HOURS], 
        
-       case when isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', price_s),0) = 0 then '' else
-	   isnull('<strong>At ' + cast(Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', price_s), 0) as nvarchar(5)) + ' :</strong></br>', '')  end + 
-       CASE Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', price_s), 0) 
+       case when isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', price_s),0) = 0 then '' else
+	   isnull('<strong>At ' + cast(Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', price_s), 0) as nvarchar(5)) + ' :</strong></br>', '')  end + 
+       CASE Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', price_s), 0) 
          WHEN 0 THEN '' 
          WHEN 1 THEN '{' + Substring(price_s, 1, 1) + '}' 
                      + Substring(price_s, 2, 1000) 
-         ELSE Substring(price_s, 1, Patindex('%[á-ùÁ-Ù¢-¿]%', price_s)-1) 
+         ELSE Substring(price_s, 1, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', price_s)-1) 
               + '{' 
-              + Substring(price_s, Patindex('%[á-ùÁ-Ù¢-¿]%', price_s), 1) 
+              + Substring(price_s, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', price_s), 1) 
               + '}' 
-              + Substring(price_s, Patindex('%[á-ùÁ-Ù¢-¿]%', price_s)+1, 
+              + Substring(price_s, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', price_s)+1, 
               1000) 
        END                                                             AS 
        PRICE, 
 
-       case when isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', useful_tips_t),0) = 0 then '' else
-	   isnull('<strong>At ' + cast(Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', useful_tips_t), 0) as nvarchar(5)) + ' :</strong></br>', '') end  + 
-	   CASE Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', useful_tips_t), 0) 
+       case when isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', useful_tips_t),0) = 0 then '' else
+	   isnull('<strong>At ' + cast(Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', useful_tips_t), 0) as nvarchar(5)) + ' :</strong></br>', '') end  + 
+	   CASE Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', useful_tips_t), 0) 
          WHEN 0 THEN '' 
          WHEN 1 THEN '{' + Substring(useful_tips_t, 1, 1) + '}' 
                      + Substring(useful_tips_t, 2, 1000) 
-         ELSE Substring(useful_tips_t, 1, Patindex('%[á-ùÁ-Ù¢-¿]%', 
+         ELSE Substring(useful_tips_t, 1, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', 
               useful_tips_t 
               )-1) 
               + '{' 
-              + Substring(useful_tips_t, Patindex('%[á-ùÁ-Ù¢-¿]%', 
+              + Substring(useful_tips_t, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', 
               useful_tips_t) 
               , 1) 
               + '}' 
-              + Substring(useful_tips_t, Patindex('%[á-ùÁ-Ù¢-¿]%', 
+              + Substring(useful_tips_t, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', 
               useful_tips_t) 
               +1, 1000) 
        END                                                             AS 
        [USEFUL TIPS], 
 
-		case when isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', address_s),0) = 0 then '' else
-	   isnull('<strong>At ' + cast(Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', address_s), 0) as nvarchar(5)) + ' :</strong></br>', '') end  + 
-       CASE Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', address_s), 0) 
+		case when isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', address_s),0) = 0 then '' else
+	   isnull('<strong>At ' + cast(Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', address_s), 0) as nvarchar(5)) + ' :</strong></br>', '') end  + 
+       CASE Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', address_s), 0) 
          WHEN 0 THEN '' 
          WHEN 1 THEN '{' + Substring(address_s, 1, 1) + '}' 
                      + Substring(address_s, 2, 1000) 
-         ELSE Substring(address_s, 1, Patindex('%[á-ùÁ-Ù¢-¿]%', address_s) 
+         ELSE Substring(address_s, 1, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', address_s) 
               -1) 
               + '{' 
-              + Substring(address_s, Patindex('%[á-ùÁ-Ù¢-¿]%', address_s), 
+              + Substring(address_s, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', address_s), 
               1) 
               + '}' 
-              + Substring(address_s, Patindex('%[á-ùÁ-Ù¢-¿]%', address_s)+ 
+              + Substring(address_s, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', address_s)+ 
               1, 1000 
               ) 
        END                                                             AS 
        [ADDRESS],
        
-      case when isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', path_c),0) = 0 then '' else
-	   isnull('<strong>At ' + cast(Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', path_c), 0) as nvarchar(5)) + ' :</strong></br>', '')  end + 
-	   CASE Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', path_c), 0) 
+      case when isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', path_c),0) = 0 then '' else
+	   isnull('<strong>At ' + cast(Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', path_c), 0) as nvarchar(5)) + ' :</strong></br>', '')  end + 
+	   CASE Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', path_c), 0) 
          WHEN 0 THEN '' 
          WHEN 1 THEN '{' + Substring(path_c, 1, 1) + '}' 
                      + Substring(path_c, 2, 1000) 
-         ELSE Substring(path_c, 1, Patindex('%[á-ùÁ-Ù¢-¿]%', path_c)-1) 
+         ELSE Substring(path_c, 1, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', path_c)-1) 
               + '{' 
-              + Substring(path_c, Patindex('%[á-ùÁ-Ù¢-¿]%', path_c), 1) 
+              + Substring(path_c, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', path_c), 1) 
               + '}' 
-              + Substring(path_c, Patindex('%[á-ùÁ-Ù¢-¿]%', path_c)+1, 
+              + Substring(path_c, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', path_c)+1, 
               1000) 
        END                                                             AS [PATH] 
        , 
        
-		case when isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', editorial_t),0) = 0 then '' else
-	   isnull('<strong>At ' + cast(Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', editorial_t), 0) as nvarchar(5)) + ' :</strong></br>', '') end  + 
-	   CASE Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', editorial_t), 0) 
+		case when isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', editorial_t),0) = 0 then '' else
+	   isnull('<strong>At ' + cast(Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', editorial_t), 0) as nvarchar(5)) + ' :</strong></br>', '') end  + 
+	   CASE Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', editorial_t), 0) 
          WHEN 0 THEN '' 
          WHEN 1 THEN '{' + Substring(editorial_t, 1, 1) + '}' 
                      + Substring(editorial_t, 2, 1000) 
-         ELSE Substring(editorial_t, 1, Patindex('%[á-ùÁ-Ù¢-¿]%', 
+         ELSE Substring(editorial_t, 1, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', 
               editorial_t)-1) 
               + '{' 
-              + Substring(editorial_t, Patindex('%[á-ùÁ-Ù¢-¿]%', 
+              + Substring(editorial_t, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', 
               editorial_t), 1) 
               + '}' 
-              + Substring(editorial_t, Patindex('%[á-ùÁ-Ù¢-¿]%', 
+              + Substring(editorial_t, Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', 
               editorial_t)+1, 
               1000) 
        END                                                            AS 
        EDITORIAL 
 FROM   entity 
-WHERE  Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', title_s), 0) 
-       + Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', short_description_t), 0) 
-       + Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', body_t), 0) 
-       + Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', caption_s), 0) 
-       + Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', opening_hours_s), 0) 
-       + Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', price_s), 0) 
-       + Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', useful_tips_t ), 0) 
-       + Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', address_s), 0) 
-       + Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', path_c), 0) 
-       + Isnull(Patindex('%[á-ùÁ-Ù¢-¿]%', editorial_t), 0) > 0 
+WHERE  Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', title_s), 0) 
+       + Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', short_description_t), 0) 
+       + Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', body_t), 0) 
+       + Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', caption_s), 0) 
+       + Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', opening_hours_s), 0) 
+       + Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', price_s), 0) 
+       + Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', useful_tips_t ), 0) 
+       + Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', address_s), 0) 
+       + Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', path_c), 0) 
+       + Isnull(Patindex('%[Î±-Ï‰Î‘-Î©Î†-Î]%', editorial_t), 0) > 0 
        AND ententitytypeid > 0 
 ORDER  BY 2, 
           1 

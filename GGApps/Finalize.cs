@@ -144,7 +144,7 @@ namespace GGApps
                 // if configuration file does not exists, then create a default, and keep a LOG!
                 CreateVersionsFile(fileName);
 
-                Log.ErrorLog(logPath, " Versions file did not found in the expected location: " + fileName, appName);
+                Log.ErrorLog(mapPathError, " Versions file did not found in the expected location: " + fileName, appName);
             }
 
             // read JSON directly from a file
@@ -244,7 +244,7 @@ namespace GGApps
 
                         if ( String.IsNullOrEmpty(curVerStr))
                         {
-                            Log.ErrorLog(logPath, "No DB version for SQL Lite for " + dbLang + " of " + this.appName, this.appName);
+                            Log.ErrorLog(mapPathError, "No DB version for SQL Lite for " + dbLang + " of " + this.appName, this.appName);
                             return null;
                         }
 
@@ -252,11 +252,11 @@ namespace GGApps
                         {                       // maybe needs a record in Admin DB that an minor update occured.
 
                             // already in a minor version!
-                            if (curVerStr.Length >= 2)
+                            if (curVerStr.Length > 2)
                             {
                                 if (!getMajorMinorVer(curVerStr, out major, out minor))
                                 {
-                                    Log.ErrorLog(logPath, "Error occured while anlayzing minor-major DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
+                                    Log.ErrorLog(mapPathError, "MINOR ver update, Error occured while anlayzing minor-major DB ver numbers, for " + dbLang + " of " + this.appName + " major:" + major + " minor:" + minor + " curVersion: " + curVerStr, this.appName);
                                     return null;
                                 }
 
@@ -271,11 +271,11 @@ namespace GGApps
                                 //add new version as record to DB
                                 if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang)==null)
                                 {
-                                    Log.ErrorLog(logPath, "Error occured in AddDBversionAdmin DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
+                                    Log.ErrorLog(mapPathError, "Error occured in AddDBversionAdmin DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
                                     return null;
                                 }
 
-                                Log.InfoLog(logPath, "DB to moved to MAJOR Version from MINOR: " + curVerStr + " to  :" + newVersionStr, this.appName);
+                                Log.InfoLog(mapPathError, "DB to moved to MAJOR Version from MINOR: " + curVerStr + " to  :" + newVersionStr, this.appName);
                                 return 1;
 
                             }
@@ -295,7 +295,7 @@ namespace GGApps
                                     return null;
                                 }
 
-                                Log.InfoLog(logPath, "DB created first MINOR version: " + newVersionStr, this.appName);
+                                Log.InfoLog(mapPathError, "DB created first MINOR version: " + newVersionStr, this.appName);
                                 return 2;
 
                             }
@@ -304,12 +304,12 @@ namespace GGApps
                         {
 
                             // we are in a MINOR version.
-                            if (curVerStr.Length >= 2)
+                            if (curVerStr.Length > 2)
                             {
                                 // get major minor versions.
                                 if (!getMajorMinorVer(curVerStr, out major, out minor))
                                 {
-                                    Log.ErrorLog(logPath, "Error occured while anlayzing minor-major DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
+                                    Log.ErrorLog(mapPathError, "MAJOR ver update, Error occured while anlayzing minor-major DB ver numbers, for " + dbLang + " of " + this.appName + " major:" + major + " minor:" + minor + " curVersion: " + curVerStr, this.appName);
                                     return null;
                                 }
 
@@ -327,10 +327,10 @@ namespace GGApps
 
                                 if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang, MAJOR) == null)
                                 {
-                                    Log.ErrorLog(logPath, "Error occured in AddDBversionAdmin DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
+                                    Log.ErrorLog(mapPathError, "Error occured in AddDBversionAdmin DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
                                     return null;
                                 }
-                                Log.InfoLog(logPath, "DB to moved to MAJOR Version from MINOR: " + major + "." + minor + " to  :" + newVersionStr, this.appName);
+                                Log.InfoLog(mapPathError, "DB to moved to MAJOR Version from MINOR: " + major + "." + minor + " to  :" + newVersionStr, this.appName);
                                 return 3;
                             }
                             else
@@ -345,10 +345,10 @@ namespace GGApps
 
                                 if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang, MAJOR) == null)
                                 {
-                                    Log.ErrorLog(logPath, "Error occured in AddDBversionAdmin DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
+                                    Log.ErrorLog(mapPathError, "Error occured in AddDBversionAdmin DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
                                     return null;
                                 }
-                                Log.InfoLog(logPath, "DB to moved to MAJOR Version from MAJOR: " + curVerStr + " to  :" + newVersionStr, this.appName);
+                                Log.InfoLog(mapPathError, "DB to moved to MAJOR Version from MAJOR: " + curVerStr + " to  :" + newVersionStr, this.appName);
                                 return 4;
                             }
                         }
@@ -359,7 +359,7 @@ namespace GGApps
             }
             catch (Exception ex)
             {
-                Log.ErrorLog(logPath, "Some exception occured on UpdateSQLiteUserVersion: " + ex.Message, appName);
+                Log.ErrorLog(mapPathError, "Some exception occured on UpdateSQLiteUserVersion: " + ex.Message, appName);
                 return null;
             }
 

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-//using Microsoft.AspNet.Membership.OpenAuth;
+using Microsoft.AspNet.Membership.OpenAuth;
 
 namespace GGApps.Account
 {
@@ -13,7 +13,7 @@ namespace GGApps.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           // RegisterUser.ContinueDestinationPageUrl = Request.QueryString["ReturnUrl"];
+            RegisterUser.ContinueDestinationPageUrl = Request.QueryString["ReturnUrl"];
         }
 
         protected void RegisterUser_CreatedUser(object sender, EventArgs e)

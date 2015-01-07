@@ -17,8 +17,8 @@ Global
 		{BEB14E72-67E4-410C-8F62-F45E188D7A8F}.Debug|x86.Build.0 = Debug|x86
 		{BEB14E72-67E4-410C-8F62-F45E188D7A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEB14E72-67E4-410C-8F62-F45E188D7A8F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BEB14E72-67E4-410C-8F62-F45E188D7A8F}.Release|x86.ActiveCfg = Release|x86
-		{BEB14E72-67E4-410C-8F62-F45E188D7A8F}.Release|x86.Build.0 = Release|x86
+		{BEB14E72-67E4-410C-8F62-F45E188D7A8F}.Release|x86.ActiveCfg = Release|Any CPU
+		{BEB14E72-67E4-410C-8F62-F45E188D7A8F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
