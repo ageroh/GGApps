@@ -197,7 +197,7 @@ namespace GGApps
             Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
             {
-#if DEBUG
+#if !DEBUG
                 var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", mapPathError, Log);
 
                     if (!result3.IsCancellationRequested && !HasErrors)
@@ -248,8 +248,13 @@ namespace GGApps
                                     {
 #endif
                                         object result7 = null, result8 = null;
-                                        CancellationToken result9;
-#if DEBUG
+                                        CancellationToken result9, result10;
+
+
+                                        if (CreateSQLiteDBs.CreateBundleDBAndFiles(appName) < 0)
+                                            HasErrors = true;
+                                         
+#if !DEBUG
                                         // upload fb-images to production suncronusly. or remove it from here.
                                         result7 = ExecuteStep7(appID, appName, Server.MapPath("~/"), Log, mapPathError);
                                         if (result7 == null)
@@ -267,9 +272,11 @@ namespace GGApps
                                         {
 #endif
                                           // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
-                                            if (IncreaseDBMinorVersion(appID, appName) == null)
-                                                HasErrors = true;
-#if DEBUG
+                                           // its not supported from ANDROID APK.
+                                            // if (IncreaseDBMinorVersion(appID, appName) == null)
+                                           //     HasErrors = true;
+                                            ;
+#if !DEBUG
 
                                         }
 #endif
@@ -289,45 +296,51 @@ namespace GGApps
                                         }
 
 
+
                                         // LOG THIS
                                         // Send email to QA - Nadia - Galufos Team (for versions file)
                                         if (!result9.IsCancellationRequested && !HasErrors)
                                         {
 
+                                            // Create a zip with all files generated under /appName/update/ with name appName.zip.
+                                            result10 = await RunAsyncCommandBatch(ct, appID, appName, "10_create_zip.bat " + appName, actualWorkDir, "Zip all files created under UPDATE to zip file for Mobile", mapPathError, Log);
 
-                                            List<string> _listAttachments = new List<string>();
-                                            _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
-                                            _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
-                                            Log.InfoLog(mapPathError, appName + " Produced successfully over Test Content.", appName);
-
-                                            if ((bool)HasErrors == false)
+                                            if (!result10.IsCancellationRequested && !HasErrors)
                                             {
-                                                //SendMail To All Teams
-                                                await SendMailToUsers(appName
-                                                                        , GetEmailList("AllTeams")
-                                                                        , _listAttachments
-                                                                        , EmailTemplate("Success", appName, startProcessing), "GG App produced for " + appName
-                                                                        , mapPathError, Log);
+                                                List<string> _listAttachments = new List<string>();
+                                                _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
+                                                _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
+                                                Log.InfoLog(mapPathError, appName + " Produced successfully over Test Content.", appName);
 
-                                                //Send Always email with Log info for currnet execution to ME.
-                                                //_listAttachments.Add(mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
-                                                await SendMailToUsers(appName
-                                                                        , GetEmailList("ErrorTeam")
-                                                                        , _listAttachments
-                                                                        , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
-                                                                        , "GG App produced for " + appName
-                                                                        , mapPathError, Log
-                                                                        );
+                                                if ((bool)HasErrors == false)
+                                                {
+                                                    //SendMail To All Teams
+                                                    await SendMailToUsers(appName
+                                                                            , GetEmailList("AllTeams")
+                                                                            , _listAttachments
+                                                                            , EmailTemplate("Success", appName, startProcessing), "GG App produced for " + appName
+                                                                            , mapPathError, Log);
 
-                                                ClearGeneratedDB(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                                                    //Send Always email with Log info for currnet execution to ME.
+                                                    //_listAttachments.Add(mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                                                    await SendMailToUsers(appName
+                                                                            , GetEmailList("ErrorTeam")
+                                                                            , _listAttachments
+                                                                            , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
+                                                                            , "GG App produced for " + appName
+                                                                            , mapPathError, Log
+                                                                            );
+
+                                                    ClearGeneratedDB(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
 
 
-                                                HasErrors = false;
-                                                Session["FinishedProcessing"] = true;
-                                                return;
+                                                    HasErrors = false;
+                                                    Session["FinishedProcessing"] = true;
+                                                    return;
+                                                }
                                             }
                                         }
-#if DEBUG  
+#if !DEBUG  
                                     }
                                 }
                             }
@@ -597,6 +610,8 @@ namespace GGApps
                 return null;
             }
         }
+
+
 
 
         private object ExecuteStep6(int appID, string appName, string actualWorkDir, CreateLogFiles Log, string logPath, string fileName)
@@ -967,15 +982,33 @@ namespace GGApps
 
                 try
                 {
+                    string GenericEmailUserName = "", GenericEmailPswd = "", sSmtpClient = "";
+                    if (rootWebConfig.AppSettings.Settings["GenericEmailUserName"] != null)
+                    {
+                        GenericEmailUserName = rootWebConfig.AppSettings.Settings["GenericEmailUserName"].Value;
+                    }
+
+                    if (rootWebConfig.AppSettings.Settings["GenericEmailPswd"] != null)
+                    {
+                        GenericEmailPswd = rootWebConfig.AppSettings.Settings["GenericEmailPswd"].Value;
+                    }
+
+                    if (rootWebConfig.AppSettings.Settings["SmtpClient"] != null)
+                    {
+                        sSmtpClient = rootWebConfig.AppSettings.Settings["SmtpClient"].Value;
+                    }
+
+
+
                     // Finaly send email ..
                     var smtp = new SmtpClient
                     {
-                        Host = "smtp.gmail.com",
+                        Host = sSmtpClient,
                         Port = 25,
                         EnableSsl = true,
                         DeliveryMethod = SmtpDeliveryMethod.Network,
                         UseDefaultCredentials = false,
-                        Credentials = new System.Net.NetworkCredential("admin@primemedia.gr", "ferrari35#71")
+                        Credentials = new System.Net.NetworkCredential(GenericEmailUserName, GenericEmailPswd)
                     };
 
                     smtp.SendCompleted += smtp_SendCompleted;

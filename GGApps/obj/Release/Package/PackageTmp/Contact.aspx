@@ -23,7 +23,7 @@
         </header>
         <p>
             <span class="label">Support:</span>
-            <span><a href="mailto:development@primemedia.gr">development@primemedia.gr</a></span>
+            <span><a href="mailto:development@qwe.gr">development@qwe.gr</a></span>
         </p>
     </section>
 
@@ -32,8 +32,8 @@
             <h3>Address:</h3>
         </header>
         <p>
-            Kifisias 209<br />
-            PrimeMedia Block, Floor Ground
+            Address here<br />
+            
         </p>
     </section>
 </asp:Content>

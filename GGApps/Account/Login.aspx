@@ -3,7 +3,7 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <hgroup class="title">
-        <h2>Use Prime's Gmail account to log in.</h2>
+        <h2>Use Private Email account to log in.</h2>
     </hgroup>
     <section id="socialLoginForm">
         <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
