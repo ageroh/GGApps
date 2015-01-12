@@ -73,4 +73,3 @@ C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\GGApps.dll.config
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\GGApps.dll
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\GGApps.pdb
-C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.csprojResolveAssemblyReference.cache

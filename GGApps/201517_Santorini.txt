@@ -1,4 +1,0 @@
-7/1/2015 10:24:50 πμ ==> ''> Info: Started uploading files to FTP
-7/1/2015 10:26:54 πμ ==> ''> Info: Finished with uploading files to FTP, total Bytes uploaded: 1,4 MB
-7/1/2015 10:27:13 πμ ==> ''> Info: Started uplodaded Entity.txt upload to FTP
-7/1/2015 10:27:15 πμ ==> ''> Info: Finished with Entity.txt upload to FTP, total Bytes uploaded: 15,0 KB

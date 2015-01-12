@@ -263,10 +263,15 @@ namespace GGApps
                                 minor++;
                                 newVersionStr = setVerFromMajorMinor(major, minor);
 
+                                /*
+                                 * resolve BUG to Android APK first.
+
                                 con.Open();
                                 cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
                                 cmd.ExecuteNonQuery();
                                 con.Close();
+                                 
+                                 */
                                 
                                 //add new version as record to DB
                                 if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang)==null)
@@ -284,10 +289,15 @@ namespace GGApps
                                 Int32.TryParse(curVerStr, out major);
                                 newVersionStr = setVerFromMajorMinor(major, 1);
 
+                               /*
+                                * resolve BUG to Android APK first.
+
                                 con.Open();
                                 cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
                                 cmd.ExecuteNonQuery();
                                 con.Close();
+                                
+                                */
 
                                 if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang) == null)
                                 {
@@ -320,10 +330,15 @@ namespace GGApps
                                     major++;
 
                                 newVersionStr = major.ToString();
+                                
+                                /*
+                                 * resolve BUG to Android APK first.
+
                                 cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
                                 con.Open();
                                 cmd.ExecuteNonQuery();
                                 con.Close();
+                                */
 
                                 if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang, MAJOR) == null)
                                 {
@@ -338,10 +353,15 @@ namespace GGApps
                                 Int32.TryParse(curVerStr, out curVersion);
                                 curVersion = curVersion + addVersion;       // add plus one to existing version file.
                                 newVersionStr = curVersion.ToString();
+                                
+                                /*
+                                * resolve BUG to Android APK first.
+
                                 con.Open();
                                 cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
                                 cmd.ExecuteNonQuery();
                                 con.Close();
+                                */
 
                                 if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang, MAJOR) == null)
                                 {
@@ -541,8 +561,13 @@ namespace GGApps
                     using (SQLiteCommand cmd = new SQLiteCommand("PRAGMA USER_VERSION;", con))
                     {
                         con.Open();
-                        cmd.CommandText = "PRAGMA USER_VERSION = " + db_version + " ;";
-                        cmd.ExecuteNonQuery();
+                        /*
+                         * resolve BUG to Android APK first.
+                         *  
+                         * cmd.CommandText = "PRAGMA USER_VERSION = " + db_version + " ;";
+                         * cmd.ExecuteNonQuery();
+                         * 
+                         */
                         con.Close();
                         return db_version;
                     }

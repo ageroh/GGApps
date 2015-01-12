@@ -13,6 +13,15 @@ namespace GGApps {
     public partial class Publish {
         
         /// <summary>
+        /// LoginViewImportant control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel LoginViewImportant;
+        
+        /// <summary>
         /// SelectApp control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace GGApps {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView latestVersions;
+        
+        /// <summary>
+        /// VersionProduction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView VersionProduction;
         
         /// <summary>
         /// publishApp control.

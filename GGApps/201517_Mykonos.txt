@@ -1,2 +1,0 @@
-7/1/2015 3:06:01 μμ ==> ''> Info: Started uploading files to FTP
-7/1/2015 3:11:31 μμ ==> ''> Info: Finished with uploading files to FTP, total Bytes uploaded: 2,2 MB

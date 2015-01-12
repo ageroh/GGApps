@@ -27,7 +27,6 @@ namespace GGApps
 			string sDay	= DateTime.Now.Day.ToString();
 			sErrorTime = sYear+sMonth+sDay;
             Common.HasErrors = false;
-            CommonAdmin.HasErrors = false;
 		}
 
 		public void ErrorLog(string sPathName, string sErrMsg, string appName, string user = null)
@@ -38,7 +37,6 @@ namespace GGApps
 			sw.Flush();
 			sw.Close();
             Common.HasErrors = true;
-            CommonAdmin.HasErrors = true;
 		}
 
         public void InfoLog(string sPathName, string sInfoMsg, string appName, string user = null)

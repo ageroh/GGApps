@@ -11,11 +11,11 @@ using Newtonsoft.Json.Linq;
 
 namespace GGApps
 {
-    public class BackOffice : CommonAdmin
+    public class BackOffice : Common
     {
         public BackOffice(string MPath, string mPathError) 
         {
-            MapPath = MPath;
+            mapPath = MPath;
             mapPathError = mPathError;
             
             // always check for changes

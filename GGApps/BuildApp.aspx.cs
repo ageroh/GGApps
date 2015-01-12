@@ -273,9 +273,9 @@ namespace GGApps
 #endif
                                           // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
                                            // its not supported from ANDROID APK.
-                                            // if (IncreaseDBMinorVersion(appID, appName) == null)
-                                           //     HasErrors = true;
-                                            ;
+                                           if (IncreaseDBMinorVersion(appID, appName) == null)
+                                                HasErrors = true;
+                                           // ;
 #if !DEBUG
 
                                         }
@@ -499,14 +499,23 @@ namespace GGApps
 
         }
 
+        /// <summary>
+        /// Update the JSON property db_version on Versions.txt
+        /// </summary>
+        /// <param name="appID"></param>
+        /// <param name="appName"></param>
+        /// <returns></returns>
         private object UpdateVersionsFile(int appID, string appName)
         {
+            /* Pending while APK is not ready for testing this.
+            
             Finalize fin = new Finalize(appName, appID);
             string dbver;
 
+            Log.InfoLog(mapPathError, "Started> Update Versions.txt to " + dbver, appName);
+            
             // Set Versions file for IOS only for one Lang
             dbver = fin.InitializeSQLiteVersionFromDB(appID, appName, 1, "ios");
-            Log.InfoLog(mapPathError, "Started> Update Versions.txt to " + dbver, appName);
             if (!fin.SetVerionsFileProperty("db_version", dbver, appName, appID, "ios", 1, "versions.txt") )
                 return null;
 
@@ -516,6 +525,10 @@ namespace GGApps
                 return null;
 
             Log.InfoLog(mapPathError, "Finished> Update Versions.txt to " + dbver, appName);
+            
+             
+            */
+
             return 0;
         }
 

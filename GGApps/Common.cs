@@ -7,6 +7,9 @@ using System.Web.Hosting;
 using System.IO;
 using System.Text;
 using System.Data.SqlClient;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 
 namespace GGApps
 {
@@ -321,6 +324,73 @@ namespace GGApps
         }
 
 
+
+        public JObject GetVersionsFileProduction(string mobileDevice, out string dbVersion, out string appVersion, out string configVersion, string appName)
+        {
+            dbVersion = null;           // something is wrong !
+            configVersion = null;       // when return should ALWAYS have values..
+            appVersion = null;          // when return should ALWAYS have values..
+            
+
+            // open Configuration file if exists
+          //  var fileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\versions.txt";
+
+
+            Log.InfoLog(mapPathError, "Get Production File via FTP", appName);
+            FTP ftpClient = null;
+            long totalBytesUploaded = 0;
+            if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
+            {
+                var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
+                if (ftpConStr.Length == 3)
+                {
+                    ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
+                }
+            }
+
+            // try get file from production and check it.
+         ////   if (ftpClient.download(localFile, remotePath + fi.Name) <= 0)
+         //   {
+         //       // Check if file exists on expcted location.
+         //       Log.ErrorLog(mapPathError, " Versions file did not found in PRODUCTION: " + fileName, appName);
+         //       return null;
+         //   }
+
+         
+         
+         
+
+
+         //   // read JSON directly from a file
+         //   using (StreamReader file = File.OpenText(fileName))
+         //   {
+         //       using (JsonTextReader reader = new JsonTextReader(file))
+         //       {
+         //           JObject o2 = (JObject)JToken.ReadFrom(reader);
+         //           configVersion = o2.Value<string>("config_version");
+
+         //           if (configVersion != null)
+         //           {
+         //               dbVersion = o2.Value<string>("db_version");
+         //               if (dbVersion != null)
+         //               {
+         //                   // get also the AppVersion !
+         //                   appVersion = o2.Value<string>("app_version");
+         //                   if (appVersion != null)
+         //                   {
+         //                       return o2;       // All good, app_version and db_version found.
+         //                   }
+
+         //               }
+         //           }
+         //       }
+         //   }
+            return null;
+
+        }
+
+
+
         public static double UploadFilesRemote(string appName, string localDir, string remotePath,  bool overwrite = true)
         {
             try
@@ -416,5 +486,29 @@ namespace GGApps
                 return -1;
             }
         }
+
+        public void Init()
+        {
+            if (CheckAccount())
+            {
+                InitializeControls();
+            }
+            else
+            {
+                Response.Redirect("~/");
+            }
+        }
+
+        // Implement this as for multiple account users.
+        public bool CheckAccount()
+        {
+            return true;
+        }
+
+
+        public void InitializeControls()
+        {
+        }
+
     }
 }

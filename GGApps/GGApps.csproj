@@ -387,9 +387,6 @@
     <Compile Include="Common.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CommonAdmin.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

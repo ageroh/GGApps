@@ -51,7 +51,10 @@ namespace GGApps
                 if (CreateSQLiteDBs.CreateBundledModeForDB(3, "C:\\temp\\images\\" + appName + "\\", "C:\\GGAppContent\\" + appName + "\\update\\android\\bundled_resources\\mode_" + 3 + "\\", appName) >= 0)
 
                     if (CreateSQLiteDBs.CreateBundledModeForDB(4, "C:\\temp\\images\\" + appName + "\\", "C:\\GGAppContent\\" + appName + "\\update\\android\\bundled_resources\\mode_" + 4 + "\\", appName) >= 0)
-                        return 1;
+
+                        // build bundle images mode 1 as DEFAULT.
+                        if (CreateSQLiteDBs.CreateBundledModeForDB(1, "C:\\temp\\images\\" + appName + "\\", "C:\\GGAppContent\\" + appName + "\\update\\android\\images\\", appName) >= 0)
+                            return 1;
 
             return -1;
             
@@ -147,12 +150,23 @@ namespace GGApps
 
 	    private static int createDBs(int mode, String inputPhotoPath, String outputPhotosPath, string mobileDevice, string appName, string langID)
         {
+            // move original DB to temp, and work with temp one in a later version.
+            string localDBfile = mapPath + "Batch\\dbfiles\\" + mobileDevice + "\\GreekGuide_" + appName + "_" + langID + "_" + DateTime.Now.ToString("yyyyMMdd") + ".db";
+            string tempLocalDBfile = mapPath + "Batch\\dbfiles\\tempGG.db";
 
-            if (File.Exists(mapPath + "Batch\\dbfiles\\" + mobileDevice + "\\GreekGuide_" + appName + "_" + langID + "_" + DateTime.Now.ToString("yyyyMMdd") + ".db"))
+
+            if (File.Exists(localDBfile))
             {
+
+                // copy file to temp Path.
+                File.Copy(localDBfile, tempLocalDBfile, true);
+
+
+                // work on tempLocalDBfile !
+
                 try
                 {
-                    using (SQLiteConnection con = new SQLiteConnection("Data Source=" + mapPath + "Batch\\dbfiles\\" + mobileDevice + "\\GreekGuide_" + appName + "_" + langID + "_" + DateTime.Now.ToString("yyyyMMdd") + ".db; Version=3;"))
+                    using (SQLiteConnection con = new SQLiteConnection("Data Source=" + tempLocalDBfile + "; Version=3;"))
                     {
                         using (SQLiteCommand cmd = new SQLiteCommand(createTable, con))
                         {
@@ -183,7 +197,7 @@ namespace GGApps
                     else if (mode == 4)
                         query = query4;
 
-                    using (SQLiteConnection con = new SQLiteConnection("Data Source=" + mapPath + "Batch\\dbfiles\\" + mobileDevice + "\\GreekGuide_" + appName + "_" + langID + "_" + DateTime.Now.ToString("yyyyMMdd") + ".db; Version=3;"))
+                    using (SQLiteConnection con = new SQLiteConnection("Data Source=" + tempLocalDBfile + "; Version=3;"))
                     {
                         using (SQLiteCommand cmd = new SQLiteCommand(query, con))
                         {
@@ -231,8 +245,14 @@ namespace GGApps
 
                                     copyAssets(entitiesPaths, mode, inputPhotoPath, outputPhotosPath, mobileDevice, appName, langID);
 
-                                }
 
+                                    // copy temp DB to real path -- this is only needed for mode = 1
+                                    if (mode == 1)
+                                        File.Copy(tempLocalDBfile, localDBfile, true);
+
+                                    // for other modes move db to necessary path.
+
+                                }
                                 else
                                     Log.ErrorLog(mapPathError, "Some error occured while reading sql lite db for bundled images.", appName);
 
@@ -248,6 +268,8 @@ namespace GGApps
                     Log.ErrorLog(mapPathError, "exception in createDBs(), " + e.Message, appName);
                     return -1;
                 }
+
+
             }
             else
                 return 2;   // no DB file exists, no bundled created.
