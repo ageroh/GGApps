@@ -250,6 +250,9 @@ namespace GGApps
                                     if (mode == 1)
                                         File.Copy(tempLocalDBfile, localDBfile, true);
 
+                                    if( File.Exists(tempLocalDBfile))
+                                        File.Delete(tempLocalDBfile);
+
                                     // for other modes move db to necessary path.
 
                                 }

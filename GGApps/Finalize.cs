@@ -19,7 +19,7 @@ namespace GGApps
     {
         public string appName = string.Empty;
         public int appID = -1;
-        public static string producedAppPath = rootWebConfig.AppSettings.Settings["ProducedAppPath"].Value.ToString();
+        
         public static string logPath = string.Empty;
         public const int MAJOR = 1;
         public const int MINOR = 0;
@@ -121,72 +121,6 @@ namespace GGApps
         }
 
 
-        /// <summary>
-        /// Read Properties from JSON Version file "versions.txt", and store in OUT params, for specific mobileDevice and App.
-        /// </summary>
-        /// <param name="mobileDevice"></param>
-        /// <param name="dbVersion">db version found in file</param>
-        /// <param name="appVersion">application version found in file</param>
-        /// <param name="configVersion">config version found in file</param>
-        /// <param name="appName"></param>
-        /// <returns></returns>
-        public JObject GetVersionsFile(string mobileDevice, out string dbVersion, out string appVersion, out string configVersion, string appName)
-        {
-            // open Configuration file if exists
-            var fileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\versions.txt";
-            dbVersion = null;           // something is wrong !
-            configVersion = null;       // when return should ALWAYS have values..
-            appVersion = null;          // when return should ALWAYS have values..
-
-            // Check if file exists on expcted location.
-            if (!File.Exists(fileName))
-            { 
-                // if configuration file does not exists, then create a default, and keep a LOG!
-                CreateVersionsFile(fileName);
-
-                Log.ErrorLog(mapPathError, " Versions file did not found in the expected location: " + fileName, appName);
-            }
-
-            // read JSON directly from a file
-            using (StreamReader file = File.OpenText(fileName))
-            {
-                using (JsonTextReader reader = new JsonTextReader(file))
-                {
-                    JObject o2 = (JObject)JToken.ReadFrom(reader);
-                    configVersion = o2.Value<string>("config_version");
-
-                    if (configVersion != null)
-                    {
-                        dbVersion = o2.Value<string>("db_version");
-                        if (dbVersion != null)
-                        {
-                            // get also the AppVersion !
-                            appVersion = o2.Value<string>("app_version");
-                            if (appVersion != null)
-                            {
-                                return o2;       // All good, app_version and db_version found.
-                            }
-
-                        }
-                    }
-                }
-            }
-            return null;
-
-        }
-
-
-
-        /// <summary>
-        /// Create a default Versions file, if file not EXISTS!.
-        /// </summary>
-        /// <param name="filename"></param>
-        public static void CreateVersionsFile(string filename)
-        { 
-            // Create configuration JSON default file 
-            if( !File.Exists(filename))
-                File.WriteAllText(filename, @"{  ""app_version"": ""2.1"",  ""config_version"": ""1"",  ""db_version"": ""1""}", System.Text.Encoding.UTF8);
-        }
 
 
 

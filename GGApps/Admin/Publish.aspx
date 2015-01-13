@@ -6,10 +6,10 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
      <div class="sub">
         <ul id="menu">
-            <li><a href="/Admin/Configure.aspx">Configure</a></li>
-            <li><a href="/Admin/HomePage.aspx">Home Page</a></li>
-            <li><a href="/Admin/Promo.aspx">Promo</a></li>
-            <li class="selected"><a href="/Admin/Publish.aspx">Publish</a></li>
+            <li><a href="Configure.aspx">Configure</a></li>
+            <li><a href="HomePage.aspx">Home Page</a></li>
+            <li><a href="Promo.aspx">Promo</a></li>
+            <li class="selected"><a href="Publish.aspx">Publish</a></li>
         </ul>
     </div>
     <asp:Panel ID="LoginViewImportant" CssClass="LoginViewImportant" runat="server">
@@ -21,12 +21,12 @@
         <asp:DropDownList ID="SelectApp" Width="200" runat="server" onselectedindexchanged="SelectApp_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
             
         <h3>Just Produced</h3>
-        <div style="width:100%">
-            <asp:ListView ID="latestVersions" runat="server" ItemPlaceholderID="itemPlaceHolder1">
+        <div style="width:960px;">
+            <asp:ListView ID="latestVersions" runat="server"  ItemPlaceholderID="itemPlaceHolder1">
                 <LayoutTemplate>
-                    <table cellpadding="2" cellspacing="0" runat="server"  border="1" style="width: 200px; height: 100px; border: dashed 2px #04AFEF; background-color: #B0E2F5; table-layout:auto;">
+                    <table cellpadding="2" cellspacing="0" runat="server" border="1" class="latestVersions" style="width: 100%; height: 100px; border: dashed 2px #04AFEF; background-color: #B0E2F5; table-layout:fixed;">
                         <tr style="background-color: #E5E5FE">
-                            <th>Select</th>
+                            <th style="width:50px;">Select</th>
                             <th>Mobile Device</th>
                             <th>Database Version</th>
                             <th>Application Version</th>
@@ -61,45 +61,70 @@
                     </tr>
                     <tr id="itemPlaceHolder1" runat="server"></tr>
                 </ItemTemplate>
+                <EmptyItemTemplate>
+                </EmptyItemTemplate>
+                <EmptyDataTemplate>
+                        <p>Nothing produced recently...</p>
+                </EmptyDataTemplate>
             </asp:ListView>
 
         </div>
         <br />
         
-        <h3>Production Now</h3>
+        <h3>Version's Details</h3>
 
-        <div style="width:100%">
-            <asp:ListView ID="VersionProduction" runat="server" ItemPlaceholderID="itemPlaceHolder1">
-                <LayoutTemplate>
-                    <table id="Table1" cellpadding="2" cellspacing="0" runat="server"  border="1" style="width: 200px; height: 100px; border: dashed 2px #04AFEF; background-color: #B0E2F5">
-                        <tr style="background-color: #E5E5FE">
-                            <th>Mobile Device</th>
-                            <th>Database Version</th>
-                            <th>Application Version</th>
-                            <th>Configuration Version</th>
-                        </tr>
-                        <tr id="itemPlaceHolder1" runat="server"></tr>
-                    </table>
-                </LayoutTemplate>
-                <ItemTemplate>
-                    <tr>
-                        <td>
-                            <asp:TextBox ID="txtmobileDevice" Text='<%#Eval("mobileDevice") %>' Enabled="false" Font-Bold="true" runat="server"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtdbversion" Text='<%#Eval("db_version") %>'  Enabled="false" runat="server"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtappversion" Text='<%#Eval("app_version") %>'  Enabled="false" runat="server"></asp:TextBox>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtconfigversion" Text='<%#Eval("config_version") %>'  Enabled="false" runat="server"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr id="itemPlaceHolder1" runat="server"></tr>
-                </ItemTemplate>
-            </asp:ListView>
-        </div>
+        <asp:Table ID="androidVerTable" runat="server" Width="100%" CssClass="latestVersions">
+            <asp:TableHeaderRow>
+                <asp:TableHeaderCell runat="server" ColumnSpan="4">Android</asp:TableHeaderCell>
+            </asp:TableHeaderRow>
+            <asp:TableHeaderRow>
+                <asp:TableHeaderCell Wrap="true" Text="Environment"></asp:TableHeaderCell>
+                <asp:TableHeaderCell Wrap="true" Text="Database Version"></asp:TableHeaderCell>
+                <asp:TableHeaderCell Wrap="true" Text="Application Version"></asp:TableHeaderCell>
+                <asp:TableHeaderCell Wrap="true" Text="Configuration Version"></asp:TableHeaderCell>
+            </asp:TableHeaderRow>
+           
+            <asp:TableRow>
+                <asp:TableCell ID="TableCell4" Text="Staging"></asp:TableCell>
+                <asp:TableCell ID="stagAndDB"></asp:TableCell>
+                <asp:TableCell ID="stagAndAV"></asp:TableCell>
+                <asp:TableCell ID="stagAndCV"></asp:TableCell>
+            </asp:TableRow>
+
+            <asp:TableRow>
+                <asp:TableCell ID="TableCell5" Text="Production"></asp:TableCell>
+                <asp:TableCell ID="prodAndDB"></asp:TableCell>
+                <asp:TableCell ID="prodAndAV"></asp:TableCell>
+                <asp:TableCell ID="prodAndCV"></asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>    
+        
+        <asp:Table ID="iosVerTable" runat="server" Width="100%" CssClass="latestVersions">
+            <asp:TableHeaderRow>
+                <asp:TableHeaderCell ID="TableHeaderCell1" runat="server" ColumnSpan="4">iOS</asp:TableHeaderCell>
+            </asp:TableHeaderRow>
+            <asp:TableHeaderRow>
+                <asp:TableHeaderCell Wrap="true" Text="Environment"></asp:TableHeaderCell>
+                <asp:TableHeaderCell Wrap="true" Text="Database Version"></asp:TableHeaderCell>
+                <asp:TableHeaderCell Wrap="true" Text="Application Version"></asp:TableHeaderCell>
+                <asp:TableHeaderCell Wrap="true" Text="Configuration Version"></asp:TableHeaderCell>
+            </asp:TableHeaderRow>
+            
+            <asp:TableRow>
+                <asp:TableCell ID="TableCell2" Text="Staging"></asp:TableCell>
+                <asp:TableCell ID="stagIosDB"></asp:TableCell>
+                <asp:TableCell ID="stagIosAV"></asp:TableCell>
+                <asp:TableCell ID="stagIosCV"></asp:TableCell>
+            </asp:TableRow>
+
+            <asp:TableRow>
+                <asp:TableCell ID="TableCell1" Text="Production"></asp:TableCell>
+                <asp:TableCell ID="prodIosDB"></asp:TableCell>
+                <asp:TableCell ID="prodIosAV"></asp:TableCell>
+                <asp:TableCell ID="prodIosCV"></asp:TableCell>
+            </asp:TableRow>
+
+        </asp:Table>    
 
         <asp:Button runat="server" Text="Publish App to Production" ID="publishApp"/>
         <asp:Button runat="server" Text="Undo Publish" ID="undoPublish" />

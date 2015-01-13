@@ -818,9 +818,11 @@ tr.pager td {
 	    border-bottom-color: #F00;
     }
 
+.latestVersions tr th {
+    font-size: 1em;
+}
 
-    
-
-
-
-
+.latestVersions tr td input{
+    font-size: 1em;
+    width: auto;
+}

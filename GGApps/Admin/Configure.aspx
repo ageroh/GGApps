@@ -7,13 +7,13 @@
 
       <div class="sub">
         <ul id="menu">
-            <li class="selected"><a href="/Admin/Configure.aspx">Configure</a></li>
-            <li><a href="/Admin/HomePage.aspx">Home Page</a></li>
-            <li><a href="/Admin/Promo.aspx">Promo</a></li>
-            <li><a href="/Admin/Publish.aspx">Publish</a></li>
+            <li class="selected"><a href="Configure.aspx">Configure</a></li>
+            <li><a href="HomePage.aspx">Home Page</a></li>
+            <li><a href="Promo.aspx">Promo</a></li>
+            <li><a href="Publish.aspx">Publish</a></li>
         </ul>
     </div>
-     <asp:Panel runat="server" ID="mainAdminPanel">
+     <asp:Panel ID="LoginViewImportant" CssClass="LoginViewImportant" runat="server">
 
         <asp:RadioButtonList ID="EnvironmentConfig" CssClass="BuildAppList" runat="server" OnSelectedIndexChanged="EnvironmentConfig_SelectedIndexChanged" >
             <asp:ListItem
@@ -38,9 +38,14 @@
         <asp:DropDownList ID="SelectApp" Width="200" runat="server"></asp:DropDownList>
 
         <div style="width:100%">
-        <asp:ListView runat="server" ID="latestVersions"></asp:ListView>
-            </div>
-        <asp:Button runat="server" Text="Publish App to Production" ID="publishApp"/>
-        <asp:Button runat="server" Text="Undo Publish" ID="undoPublish" />
+        
+            <asp:Literal ID="Literal1" runat="server">Versions.txt</asp:Literal>
+            <asp:TextBox runat="server" TextMode="multiline" Columns="50" Rows="5"  ID="VersionsTxt" ></asp:TextBox>
+            <asp:Literal ID="Literal2" runat="server">Configuration.txt</asp:Literal>
+            <asp:TextBox runat="server" TextMode="multiline" Columns="50" Rows="5"  ID="ConfigurationTxt" ></asp:TextBox>
+
+
+        </div>
+
     </asp:Panel>
 </asp:Content>

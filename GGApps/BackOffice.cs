@@ -35,23 +35,29 @@ namespace GGApps
 
         private static void CheckAppsBundleList()
         {
-            if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
+            try
             {
-                using (SqlConnection con = new SqlConnection(rootWebConfig.AppSettings.Settings["GG_Reporting"].Value.ToString()))
+                if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
                 {
-                    using (SqlCommand cmd = new SqlCommand("usp_Check_App_Bundle", con))
+                    using (SqlConnection con = new SqlConnection(rootWebConfig.AppSettings.Settings["GG_Reporting"].Value.ToString()))
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@appLanguages", SqlDbType.VarChar).Value = rootWebConfig.AppSettings.Settings["ThreeLanguages"].Value.ToString();
-                        con.Open();
-                        string res = ((string)cmd.ExecuteScalar());
+                        using (SqlCommand cmd = new SqlCommand("usp_Check_App_Bundle", con))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.Add("@appLanguages", SqlDbType.VarChar).Value = rootWebConfig.AppSettings.Settings["ThreeLanguages"].Value.ToString();
+                            con.Open();
+                            string res = ((string)cmd.ExecuteScalar());
 
-                        // Log a message maybe or not
+                            // Log a message maybe or not
+                        }
                     }
-                }
 
+                }
             }
-            
+            catch (Exception e)
+            {
+                Log.ErrorLog(mapPathError, "some exception occured on CheckAppsBundleList(), ", e.Message, "generic");
+            }
         }
 
 

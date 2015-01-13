@@ -40,7 +40,7 @@ namespace GGApps
         public long download(string remoteFile, string localFile)
         {
             long totalBytes = -1;
-
+            
             try
             {
                 /* Create an FTP Request */

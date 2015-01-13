@@ -13,13 +13,13 @@ namespace GGApps {
     public partial class Configure {
         
         /// <summary>
-        /// mainAdminPanel control.
+        /// LoginViewImportant control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel mainAdminPanel;
+        protected global::System.Web.UI.WebControls.Panel LoginViewImportant;
         
         /// <summary>
         /// EnvironmentConfig control.
@@ -40,30 +40,39 @@ namespace GGApps {
         protected global::System.Web.UI.WebControls.DropDownList SelectApp;
         
         /// <summary>
-        /// latestVersions control.
+        /// Literal1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView latestVersions;
+        protected global::System.Web.UI.WebControls.Literal Literal1;
         
         /// <summary>
-        /// publishApp control.
+        /// VersionsTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button publishApp;
+        protected global::System.Web.UI.WebControls.TextBox VersionsTxt;
         
         /// <summary>
-        /// undoPublish control.
+        /// Literal2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button undoPublish;
+        protected global::System.Web.UI.WebControls.Literal Literal2;
+        
+        /// <summary>
+        /// ConfigurationTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ConfigurationTxt;
     }
 }

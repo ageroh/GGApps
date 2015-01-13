@@ -26,6 +26,8 @@ namespace GGApps
         public static string[] LangStr = { "", "el", "en", "miss", "ru" };
         public static StringBuilder sbExec = new StringBuilder();
         public static string mapPathError = HostingEnvironment.MapPath("~/Logs") + "\\Log_";
+        
+        public static string producedAppPath = rootWebConfig.AppSettings.Settings["ProducedAppPath"].Value.ToString();
 
         public static bool HasErrors = false;
         //{
@@ -38,6 +40,25 @@ namespace GGApps
         //}
 
         public static CreateLogFiles Log = new CreateLogFiles();
+
+
+        public class AppVersionDetail
+        {
+            string Environment;
+            string Device;
+            string DB_Version;
+            string App_Version;
+            string Config_Version;
+
+            public AppVersionDetail(string Environment, string Device, string DB_Version, string App_Version, string Config_Version)
+            {
+                this.Device = Device;
+                this.Environment = Environment;
+                this.DB_Version = DB_Version;
+                this.App_Version = App_Version;
+                this.Config_Version = Config_Version;
+            }
+        }
 
         public int timesExec
         {
@@ -75,7 +96,7 @@ namespace GGApps
                 for (int j = 0; j < dt.Columns.Count; j++)
                 {
                     if (dt.Columns[j].ColumnName.ToLower() == "id")
-                        html += "<td><a href='#' class='popAdm'>" + dt.Rows[i][j].ToString() + "</a></td>";
+                        html += "<td><a href='' class='popAdm'>" + dt.Rows[i][j].ToString() + "</a></td>";
                     else
                     {
                         // truncate text if too long!
@@ -324,17 +345,84 @@ namespace GGApps
         }
 
 
+        /// <summary>
+        /// Read Properties from JSON Version file "versions.txt", and store in OUT params, for specific mobileDevice and App.
+        /// </summary>
+        /// <param name="mobileDevice"></param>
+        /// <param name="dbVersion">db version found in file</param>
+        /// <param name="appVersion">application version found in file</param>
+        /// <param name="configVersion">config version found in file</param>
+        /// <param name="appName"></param>
+        /// <returns></returns>
+        public JObject GetVersionsFile(string mobileDevice, out string dbVersion, out string appVersion, out string configVersion, string appName)
+        {
+            // open Configuration file if exists
+            var fileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\versions.txt";
+            dbVersion = null;           // something is wrong !
+            configVersion = null;       // when return should ALWAYS have values..
+            appVersion = null;          // when return should ALWAYS have values..
+
+            // Check if file exists on expcted location.
+            if (!File.Exists(fileName))
+            {
+                // if configuration file does not exists, then create a default, and keep a LOG!
+                CreateVersionsFile(fileName);
+
+                Log.ErrorLog(mapPathError, " Versions file did not found in the expected location: " + fileName, appName);
+            }
+
+            // read JSON directly from a file
+            using (StreamReader file = File.OpenText(fileName))
+            {
+                using (JsonTextReader reader = new JsonTextReader(file))
+                {
+                    JObject o2 = (JObject)JToken.ReadFrom(reader);
+                    configVersion = o2.Value<string>("config_version");
+
+                    if (configVersion != null)
+                    {
+                        dbVersion = o2.Value<string>("db_version");
+                        if (dbVersion != null)
+                        {
+                            // get also the AppVersion !
+                            appVersion = o2.Value<string>("app_version");
+                            if (appVersion != null)
+                            {
+                                return o2;       // All good, app_version and db_version found.
+                            }
+
+                        }
+                    }
+                }
+            }
+            return null;
+
+        }
+
+
+
+        /// <summary>
+        /// Create a default Versions file, if file not EXISTS!.
+        /// </summary>
+        /// <param name="filename"></param>
+        public static void CreateVersionsFile(string filename)
+        {
+            // Create configuration JSON default file 
+            if (!File.Exists(filename))
+                File.WriteAllText(filename, @"{  ""app_version"": ""2.1"",  ""config_version"": ""1"",  ""db_version"": ""1""}", System.Text.Encoding.UTF8);
+        }
+
+
+
 
         public JObject GetVersionsFileProduction(string mobileDevice, out string dbVersion, out string appVersion, out string configVersion, string appName)
         {
             dbVersion = null;           // something is wrong !
             configVersion = null;       // when return should ALWAYS have values..
             appVersion = null;          // when return should ALWAYS have values..
-            
 
-            // open Configuration file if exists
-          //  var fileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\versions.txt";
-
+            string localFilename = actualWorkDir + "\\reports\\tempVersions.txt";
+            string remotefilename = appName.ToLower() + "//update//" + mobileDevice + "//versions.txt";
 
             Log.InfoLog(mapPathError, "Get Production File via FTP", appName);
             FTP ftpClient = null;
@@ -348,43 +436,43 @@ namespace GGApps
                 }
             }
 
-            // try get file from production and check it.
-         ////   if (ftpClient.download(localFile, remotePath + fi.Name) <= 0)
-         //   {
-         //       // Check if file exists on expcted location.
-         //       Log.ErrorLog(mapPathError, " Versions file did not found in PRODUCTION: " + fileName, appName);
-         //       return null;
-         //   }
+            //   try get file from production and check it.
+            if (ftpClient.download(remotefilename, localFilename) <= 0)
+            {
+                // Check if file exists on expcted location.
+                Log.ErrorLog(mapPathError, " Versions file did not found in PRODUCTION: " + remotefilename, appName);
+                return null;
+            }
 
          
-         
-         
+            // read JSON directly from a file
+            using (StreamReader file = File.OpenText(localFilename))
+            {
+                using (JsonTextReader reader = new JsonTextReader(file))
+                {
+                    JObject o2 = (JObject)JToken.ReadFrom(reader);
+                    configVersion = o2.Value<string>("config_version");
 
+                    if (configVersion != null)
+                    {
+                        dbVersion = o2.Value<string>("db_version");
+                        if (dbVersion != null)
+                        {
+                            // get also the AppVersion !
+                            appVersion = o2.Value<string>("app_version");
+                            if (appVersion != null)
+                            {
+                                return o2;       // All good, app_version and db_version found.
+                            }
 
-         //   // read JSON directly from a file
-         //   using (StreamReader file = File.OpenText(fileName))
-         //   {
-         //       using (JsonTextReader reader = new JsonTextReader(file))
-         //       {
-         //           JObject o2 = (JObject)JToken.ReadFrom(reader);
-         //           configVersion = o2.Value<string>("config_version");
+                        }
+                    }
+                }
+            }
 
-         //           if (configVersion != null)
-         //           {
-         //               dbVersion = o2.Value<string>("db_version");
-         //               if (dbVersion != null)
-         //               {
-         //                   // get also the AppVersion !
-         //                   appVersion = o2.Value<string>("app_version");
-         //                   if (appVersion != null)
-         //                   {
-         //                       return o2;       // All good, app_version and db_version found.
-         //                   }
+            if (File.Exists(localFilename))
+                File.Delete(localFilename);
 
-         //               }
-         //           }
-         //       }
-         //   }
             return null;
 
         }
@@ -487,7 +575,7 @@ namespace GGApps
             }
         }
 
-        public void Init()
+        public void Initialize()
         {
             if (CheckAccount())
             {
@@ -495,20 +583,73 @@ namespace GGApps
             }
             else
             {
-                Response.Redirect("~/");
+                string user = HttpContext.Current.User.Identity.Name;
+                System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Warning!", "alert('" + user.Substring(user.IndexOf("\\")+1)  + ", you are not authorized to view this page!'); setInterval(function(){location.href='../';}, 500);", true);
+                
             }
         }
 
         // Implement this as for multiple account users.
         public bool CheckAccount()
         {
-            return true;
+            if( HttpContext.Current.User.Identity != null)
+                if( User.Identity.IsAuthenticated){
+                    string user = HttpContext.Current.User.Identity.Name;
+                    if( rootWebConfig.AppSettings.Settings["authorized"].Value.Contains( user.Substring(user.IndexOf("\\")+1) ) )
+                        return true;
+                }
+            return false;
         }
 
 
         public void InitializeControls()
         {
         }
+
+
+        /// <summary>
+        /// Get Latest produced Details of an App that udpated recently.
+        /// </summary>
+        /// <param name="appID"></param>
+        /// <param name="appName"></param>
+        /// <returns></returns>
+        protected DataSet GetInfoAppData(int appID, string appName)
+        {
+
+            try
+            {
+                if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
+                {
+                    string conString = rootWebConfig.AppSettings.Settings["GG_Reporting"].Value;
+                    using (SqlCommand cmd = new SqlCommand("usp_Get_Info_App", new SqlConnection(conString)))
+                    {
+                        using (SqlConnection con = new SqlConnection(conString))
+                        {
+                            using (SqlDataAdapter sda = new SqlDataAdapter())
+                            {
+                                cmd.Connection = con;
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.Add("@appID", SqlDbType.Int).Value = appID;
+
+                                sda.SelectCommand = cmd;
+                                using (DataSet ds = new DataSet())
+                                {
+                                    sda.Fill(ds);
+                                    return ds;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Log.ErrorLog(mapPathError, "Some Exception occured in GetData(), " + e.Message, appName);
+                return null;
+            }
+            return null;
+        }
+
 
     }
 }
