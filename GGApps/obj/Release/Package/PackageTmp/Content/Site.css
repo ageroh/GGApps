@@ -798,9 +798,22 @@ tr.pager td {
             margin-left: 0.3em;
 	    }
 
-    .BuildAppList input {
-        width: auto;
-    }
+        .BuildAppList input {
+            width: auto;
+        }
+
+
+       .BuildAppList label {
+            display: inline-block;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-left: 0.3em;
+	    }
+
+        .BuildAppList input {
+            width: auto;
+        }
+
 
     span.appName {
          font-style: italic;

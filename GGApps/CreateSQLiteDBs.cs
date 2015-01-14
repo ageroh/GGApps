@@ -85,7 +85,7 @@ namespace GGApps
         {
             try
             {
-                using (SQLiteConnection con = new SQLiteConnection("Data Source=" + mapPath + "Batch\\dbfiles\\" + mobileDevice + "\\GreekGuide_" + appName + "_" + langID + "_" + DateTime.Now.ToString("yyyyMMdd") + ".db; Version=3;"))
+                using (SQLiteConnection con = new SQLiteConnection("Data Source=" + mapPath + "Batch\\dbfiles\\tempGG.db; Version=3;"))
                 {
                     con.Open();
 
@@ -101,7 +101,7 @@ namespace GGApps
 
                     try
                     {
-                        Log.InfoLog(mapPathError, "Insert in bundled_images started for " + appName + " " + langID, appName);
+                        Log.InfoLog(mapPathError, "Try Inserting in bundled_images for "+mobileDevice+" on: " + appName + " " + langID, appName);
 
                         foreach (String filename in entitiesPaths)
                         {
@@ -127,7 +127,7 @@ namespace GGApps
 
                         }
                         myTrans.Commit();
-                        Log.InfoLog(mapPathError, "Inserting completed successfuelly", appName);
+                        Log.InfoLog(mapPathError, "Completed successfuelly", appName);
                     }
                     catch (Exception e)
                     {
@@ -197,6 +197,8 @@ namespace GGApps
                     else if (mode == 4)
                         query = query4;
 
+                    List<String> entitiesPaths = new List<String>();
+
                     using (SQLiteConnection con = new SQLiteConnection("Data Source=" + tempLocalDBfile + "; Version=3;"))
                     {
                         using (SQLiteCommand cmd = new SQLiteCommand(query, con))
@@ -206,7 +208,7 @@ namespace GGApps
 
                             using (SQLiteDataReader resultSet = cmd.ExecuteReader())
                             {
-                                List<String> entitiesPaths = new List<String>();
+                                
 
                                 if (resultSet.HasRows)
                                 {
@@ -243,27 +245,31 @@ namespace GGApps
                                     }
                                     Log.InfoLog(mapPathError, "Finished reading query for images", appName);
 
-                                    copyAssets(entitiesPaths, mode, inputPhotoPath, outputPhotosPath, mobileDevice, appName, langID);
-
-
-                                    // copy temp DB to real path -- this is only needed for mode = 1
-                                    if (mode == 1)
-                                        File.Copy(tempLocalDBfile, localDBfile, true);
-
-                                    if( File.Exists(tempLocalDBfile))
-                                        File.Delete(tempLocalDBfile);
-
-                                    // for other modes move db to necessary path.
 
                                 }
                                 else
+                                {
                                     Log.ErrorLog(mapPathError, "Some error occured while reading sql lite db for bundled images.", appName);
-
-                                
-                                Log.InfoLog(mapPathError, "Query executed succesfully " + appName + " " + langID, appName);
+                                    return -1;
+                                }
                             }
                         }
                     }
+
+                    
+                    copyAssets(entitiesPaths, mode, inputPhotoPath, outputPhotosPath, mobileDevice, appName, langID);
+
+
+                    // copy temp DB to real path -- this is only needed for mode = 1
+                    if (mode == 1)
+                        File.Copy(tempLocalDBfile, localDBfile, true);
+
+                    if (File.Exists(tempLocalDBfile))
+                        File.Delete(tempLocalDBfile);
+
+                    // for other modes move db to necessary path.
+
+                   
                 }
 
                 catch (Exception e)

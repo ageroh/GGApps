@@ -345,6 +345,30 @@ namespace GGApps
         }
 
 
+
+
+        /// <summary>
+        /// Create a default Versions file, if file not EXISTS!.
+        /// </summary>
+        /// <param name="filename"></param>
+        public static string CreateVersionsFile(string filename)
+        {
+            // Create configuration JSON default file 
+            if (Directory.Exists(filename.Substring(0, filename.LastIndexOf("\\"))))
+            {
+                if (!File.Exists(filename))
+                {
+                    File.WriteAllText(filename, @"{  ""app_version"": ""2.1"",  ""config_version"": ""1"",  ""db_version"": ""1""}", System.Text.Encoding.UTF8);
+                    return "created";
+                }
+                return "exists";
+            }
+            else
+                return null;
+        }
+
+
+
         /// <summary>
         /// Read Properties from JSON Version file "versions.txt", and store in OUT params, for specific mobileDevice and App.
         /// </summary>
@@ -366,116 +390,51 @@ namespace GGApps
             if (!File.Exists(fileName))
             {
                 // if configuration file does not exists, then create a default, and keep a LOG!
-                CreateVersionsFile(fileName);
-
-                Log.ErrorLog(mapPathError, " Versions file did not found in the expected location: " + fileName, appName);
-            }
-
-            // read JSON directly from a file
-            using (StreamReader file = File.OpenText(fileName))
-            {
-                using (JsonTextReader reader = new JsonTextReader(file))
+                if (CreateVersionsFile(fileName) != null)
                 {
-                    JObject o2 = (JObject)JToken.ReadFrom(reader);
-                    configVersion = o2.Value<string>("config_version");
+                    Log.ErrorLog(mapPathError, " Versions file did not found in the expected location but created: " + fileName, "generic");
+                }
+                else
+                    return null;
+            }
+            try
+            {
 
-                    if (configVersion != null)
+                // read JSON directly from a file
+                using (StreamReader file = File.OpenText(fileName))
+                {
+                    using (JsonTextReader reader = new JsonTextReader(file))
                     {
-                        dbVersion = o2.Value<string>("db_version");
-                        if (dbVersion != null)
-                        {
-                            // get also the AppVersion !
-                            appVersion = o2.Value<string>("app_version");
-                            if (appVersion != null)
-                            {
-                                return o2;       // All good, app_version and db_version found.
-                            }
+                        JObject o2 = (JObject)JToken.ReadFrom(reader);
+                        configVersion = o2.Value<string>("config_version");
 
+                        if (configVersion != null)
+                        {
+                            dbVersion = o2.Value<string>("db_version");
+                            if (dbVersion != null)
+                            {
+                                // get also the AppVersion !
+                                appVersion = o2.Value<string>("app_version");
+                                if (appVersion != null)
+                                {
+                                    return o2;       // All good, app_version and db_version found.
+                                }
+
+                            }
                         }
                     }
                 }
             }
-            return null;
-
-        }
-
-
-
-        /// <summary>
-        /// Create a default Versions file, if file not EXISTS!.
-        /// </summary>
-        /// <param name="filename"></param>
-        public static void CreateVersionsFile(string filename)
-        {
-            // Create configuration JSON default file 
-            if (!File.Exists(filename))
-                File.WriteAllText(filename, @"{  ""app_version"": ""2.1"",  ""config_version"": ""1"",  ""db_version"": ""1""}", System.Text.Encoding.UTF8);
-        }
-
-
-
-
-        public JObject GetVersionsFileProduction(string mobileDevice, out string dbVersion, out string appVersion, out string configVersion, string appName)
-        {
-            dbVersion = null;           // something is wrong !
-            configVersion = null;       // when return should ALWAYS have values..
-            appVersion = null;          // when return should ALWAYS have values..
-
-            string localFilename = actualWorkDir + "\\reports\\tempVersions.txt";
-            string remotefilename = appName.ToLower() + "//update//" + mobileDevice + "//versions.txt";
-
-            Log.InfoLog(mapPathError, "Get Production File via FTP", appName);
-            FTP ftpClient = null;
-            long totalBytesUploaded = 0;
-            if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
-            {
-                var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
-                if (ftpConStr.Length == 3)
-                {
-                    ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
-                }
-            }
-
-            //   try get file from production and check it.
-            if (ftpClient.download(remotefilename, localFilename) <= 0)
-            {
-                // Check if file exists on expcted location.
-                Log.ErrorLog(mapPathError, " Versions file did not found in PRODUCTION: " + remotefilename, appName);
+            catch (Exception e)
+            { 
+                Log.ErrorLog(mapPathError, appName + ": Some Exception occured in GetVersionsFile(), " + e.Message, "generic");
                 return null;
             }
 
-         
-            // read JSON directly from a file
-            using (StreamReader file = File.OpenText(localFilename))
-            {
-                using (JsonTextReader reader = new JsonTextReader(file))
-                {
-                    JObject o2 = (JObject)JToken.ReadFrom(reader);
-                    configVersion = o2.Value<string>("config_version");
-
-                    if (configVersion != null)
-                    {
-                        dbVersion = o2.Value<string>("db_version");
-                        if (dbVersion != null)
-                        {
-                            // get also the AppVersion !
-                            appVersion = o2.Value<string>("app_version");
-                            if (appVersion != null)
-                            {
-                                return o2;       // All good, app_version and db_version found.
-                            }
-
-                        }
-                    }
-                }
-            }
-
-            if (File.Exists(localFilename))
-                File.Delete(localFilename);
-
             return null;
 
         }
+
 
 
 
@@ -577,16 +536,14 @@ namespace GGApps
 
         public void Initialize()
         {
-            if (CheckAccount())
-            {
-                InitializeControls();
-            }
-            else
+#if !DEBUG
+            if (! CheckAccount())
             {
                 string user = HttpContext.Current.User.Identity.Name;
                 System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Warning!", "alert('" + user.Substring(user.IndexOf("\\")+1)  + ", you are not authorized to view this page!'); setInterval(function(){location.href='../';}, 500);", true);
-                
             }
+#endif
+
         }
 
         // Implement this as for multiple account users.
@@ -602,9 +559,6 @@ namespace GGApps
         }
 
 
-        public void InitializeControls()
-        {
-        }
 
 
         /// <summary>
@@ -644,11 +598,207 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                Log.ErrorLog(mapPathError, "Some Exception occured in GetData(), " + e.Message, appName);
+                Log.ErrorLog(mapPathError, appName + ": Some Exception occured in GetData(), " + e.Message, "generic");
                 return null;
             }
             return null;
         }
+
+
+        
+        protected string GetCofigureFile(string mobileDevice, string appName, int appID, string Environment, string fileName)
+        {
+            string localFilename = actualWorkDir + "\\reports\\getTempfilename.txt";
+            string getFileName;
+
+            // Clear previous file.
+            if (File.Exists(localFilename))
+                File.Delete(localFilename);
+
+
+            if (Environment == "Production")
+            {
+                getFileName = appName.ToLower() + "//update//" + mobileDevice + "//" + fileName;
+
+                if (DownloadProductionFile(appName, getFileName, localFilename) == null)
+                    return null;
+
+                if (File.Exists(localFilename))
+                    return File.ReadAllText(localFilename, Encoding.UTF8);
+                else
+                    return "";
+            }
+            else 
+            {
+                getFileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\" + fileName;
+
+                if (File.Exists(getFileName))
+                    return File.ReadAllText(getFileName, Encoding.UTF8);
+                else
+                    return "";
+            }
+
+        }
+
+
+
+        private object DownloadProductionFile(string appName, string remotefilename, string localFilename)
+        {
+            Log.InfoLog(mapPathError, appName + ": Try get Production File " + remotefilename + " via FTP", "generic");
+            FTP ftpClient = null;
+
+            if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
+            {
+                var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
+                if (ftpConStr.Length == 3)
+                {
+                    ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
+                }
+            }
+
+            //   try get file from production and check it.
+            if (ftpClient.download(remotefilename, localFilename) <= 0)
+            {
+                // Check if file exists on expcted location.
+                Log.ErrorLog(mapPathError, appName + ": File did not found in PRODUCTION: " + remotefilename, "generic");
+                return null;
+            }
+            Log.InfoLog(mapPathError, appName + ": Successfully", "generic");
+            return 0;
+        }
+
+
+
+        public JObject GetVersionsFileProduction(string mobileDevice, out string dbVersion, out string appVersion, out string configVersion, string appName)
+        {
+            dbVersion = null;           // something is wrong !
+            configVersion = null;       // when return should ALWAYS have values..
+            appVersion = null;          // when return should ALWAYS have values..
+
+            string localFilename = actualWorkDir + "\\reports\\tempVersions.txt";
+            string remotefilename = appName.ToLower() + "//update//" + mobileDevice + "//versions.txt";
+
+            if (DownloadProductionFile(appName, remotefilename, localFilename) == null)
+                return null;
+            
+            JObject o2;
+            bool ok = false;
+            // read JSON directly from a file
+            using (StreamReader file = File.OpenText(localFilename))
+            {
+                using (JsonTextReader reader = new JsonTextReader(file))
+                {
+                    o2 = (JObject)JToken.ReadFrom(reader);
+                    configVersion = o2.Value<string>("config_version");
+
+                    if (configVersion != null)
+                    {
+                        dbVersion = o2.Value<string>("db_version");
+                        if (dbVersion != null)
+                        {
+                            // get also the AppVersion !
+                            appVersion = o2.Value<string>("app_version");
+                            if (appVersion != null)
+                            {
+                                ok = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (ok)
+            {
+                if (File.Exists(localFilename))
+                    File.Delete(localFilename);
+                return o2;       // All good, app_version and db_version found.
+            }
+
+            return null;
+
+
+        }
+
+
+
+        protected void PrintSaveMessage(string message, string appName, string Environment, string mobileDevice, string filename)
+        {
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(this
+                , this.GetType()
+                , "Info", "alert('File "+ filename+ "saved successfuly, for " + appName + " in " + Environment + " for " + mobileDevice+ ".')", true);
+        }
+
+
+        protected string SaveConfigureFile(string mobileDevice, string appName, int appID, string Environment, string fileName, string fileContents)
+        {
+
+            try
+            {
+                // check JSON , save with intended!
+                fileContents = fileContents.Replace(System.Environment.NewLine, string.Empty).Replace(@"\", "");
+                fileContents = JsonConvert.SerializeObject(fileContents, Formatting.Indented);
+
+            }
+            catch (JsonException je)
+            {
+                Log.ErrorLog(mapPathError, appName + ": not valid json for " + fileName + ", " + je.Message, "generic");
+                return "Not A Valid JSON file.";
+            }
+            
+
+            string localFilename = actualWorkDir + "\\reports\\getTempfilename.txt";
+            string setFileName;
+
+            // Clear previous file.
+            if (File.Exists(localFilename))
+                File.Delete(localFilename);
+
+
+            if (Environment == "Production")
+            {
+                setFileName = appName.ToLower() + "//update//" + mobileDevice + "//" + fileName;
+
+                File.WriteAllText(localFilename, fileContents, Encoding.UTF8);
+
+                if (File.Exists(localFilename))
+                {
+                    try
+                    {
+                        if (UploadFileRemote(appName, localFilename, setFileName) <= 0)
+                            return null;
+                        else
+                            return fileName;
+                    }
+                    catch (Exception e)
+                    {
+                        Log.ErrorLog(mapPathError, appName + ": Some Critical Exception occured when try to save file: " + setFileName + ", " + appName + ", " + mobileDevice + ", " + Environment + "  , " + e.Message, "generic");
+                        return null;
+                    }
+                }
+                else
+                    return "";
+            }
+            else
+            {
+                setFileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\" + fileName;
+
+                if (File.Exists(setFileName))
+                    File.Delete(setFileName);
+                
+                try{
+                    File.WriteAllText(setFileName, fileContents, Encoding.UTF8);
+                    return fileName;
+                } 
+                catch(Exception e) 
+                {
+                    Log.ErrorLog(mapPathError, appName + ": Some Critical Exceprion occured when try to save file: " + setFileName + ", " + appName + ", " + mobileDevice + ", " + Environment + "  , " + e.Message, "generic"); 
+                    return null;
+                }
+                
+            }
+
+        }
+
 
 
     }

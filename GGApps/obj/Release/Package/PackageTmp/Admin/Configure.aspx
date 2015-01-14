@@ -15,36 +15,56 @@
     </div>
      <asp:Panel ID="LoginViewImportant" CssClass="LoginViewImportant" runat="server">
 
-        <asp:RadioButtonList ID="EnvironmentConfig" CssClass="BuildAppList" runat="server" OnSelectedIndexChanged="EnvironmentConfig_SelectedIndexChanged" >
-            <asp:ListItem
-                    Enabled="True"
-                    Selected="true"
-                    Text="Staging"
-                    Value="Staging"
-                />
-            <asp:ListItem
-                    Enabled="True"
-                    Selected="false"
-                    Text="Production"
-                    Value="Production"
-                />
-        </asp:RadioButtonList>
 
-
-         <h3>Select application to Configure</h3>
-         <span>*All previous updates must have finished!</span>
-            
+        <h3>Select application to Configure</h3>
+        <span>*All previous updates must have finished!</span>
         <br />
-        <asp:DropDownList ID="SelectApp" Width="200" runat="server"></asp:DropDownList>
+        <asp:DropDownList ID="SelectApp" Width="200" runat="server" OnSelectedIndexChanged="SelectApp_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
 
-        <div style="width:100%">
+         <div width="960px;">
+            <div style="float:left;">
+                 <asp:RadioButtonList ID="RadioButtonLisEnvironment" CssClass="BuildAppList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonLisEnvironment_SelectedIndexChanged" >
+                    <asp:ListItem
+                            Enabled="True"
+                            Selected="true"
+                            Text="Staging"
+                            Value="Staging"
+                        />
+                    <asp:ListItem
+                            Enabled="True"
+                            Selected="false"
+                            Text="Production"
+                            Value="Production"
+                        />
+                </asp:RadioButtonList>
+            </div>
+         
+            <div style="float:left;">
+            <asp:RadioButtonList ID="RadioButtonListDevice" CssClass="BuildAppList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonListDevice_SelectedIndexChanged">
+                <asp:ListItem
+                        Enabled="True"
+                        Selected="true"
+                        Text="Android"
+                        Value="android"
+                    />
+                <asp:ListItem
+                        Enabled="True"
+                        Selected="false"
+                        Text="iOS"
+                        Value="ios"
+                    />
+            </asp:RadioButtonList>
+            </div>
+         </div>
+
+        <div style="width:960px; float: left;">
         
-            <asp:Literal ID="Literal1" runat="server">Versions.txt</asp:Literal>
-            <asp:TextBox runat="server" TextMode="multiline" Columns="50" Rows="5"  ID="VersionsTxt" ></asp:TextBox>
-            <asp:Literal ID="Literal2" runat="server">Configuration.txt</asp:Literal>
-            <asp:TextBox runat="server" TextMode="multiline" Columns="50" Rows="5"  ID="ConfigurationTxt" ></asp:TextBox>
+            <h4>Versions.txt</h4>
+            <asp:TextBox runat="server" TextMode="multiline" Columns="200" Rows="5"  ID="VersionsTxt" ></asp:TextBox>
+            <h4>Configuration.txt</h4>
+            <asp:TextBox runat="server" TextMode="multiline" Columns="200" Rows="20" Width="100%"  ID="ConfigurationTxt" ></asp:TextBox>
 
-
+            <asp:Button runat="server" ID="SaveAll" Text="Save All Changes" OnClick="SaveAll_Click"/>
         </div>
 
     </asp:Panel>

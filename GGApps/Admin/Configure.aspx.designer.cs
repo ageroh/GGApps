@@ -22,15 +22,6 @@ namespace GGApps {
         protected global::System.Web.UI.WebControls.Panel LoginViewImportant;
         
         /// <summary>
-        /// EnvironmentConfig control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList EnvironmentConfig;
-        
-        /// <summary>
         /// SelectApp control.
         /// </summary>
         /// <remarks>
@@ -40,13 +31,22 @@ namespace GGApps {
         protected global::System.Web.UI.WebControls.DropDownList SelectApp;
         
         /// <summary>
-        /// Literal1 control.
+        /// RadioButtonLisEnvironment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal1;
+        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonLisEnvironment;
+        
+        /// <summary>
+        /// RadioButtonListDevice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListDevice;
         
         /// <summary>
         /// VersionsTxt control.
@@ -58,15 +58,6 @@ namespace GGApps {
         protected global::System.Web.UI.WebControls.TextBox VersionsTxt;
         
         /// <summary>
-        /// Literal2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal2;
-        
-        /// <summary>
         /// ConfigurationTxt control.
         /// </summary>
         /// <remarks>
@@ -74,5 +65,14 @@ namespace GGApps {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ConfigurationTxt;
+        
+        /// <summary>
+        /// SaveAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SaveAll;
     }
 }
