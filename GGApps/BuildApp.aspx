@@ -6,7 +6,7 @@
 
     <asp:RadioButtonList ID="BuildAppListID" CssClass="BuildAppList" runat="server" >
         <asp:ListItem 
-            Enabled="true" Text="Export Database only" Value="DBOnly"
+            Enabled="false" Text="Export Database only" Value="DBOnly" 
             />
         <asp:ListItem 
             Enabled="false" Text="Genearate and Copy images only" Value="ImagesOnly"

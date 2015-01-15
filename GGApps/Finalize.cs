@@ -134,19 +134,100 @@ namespace GGApps
         public object UpdateDBVersion(string mobileDevice, int ver = MINOR)
         {
 
-            if (UpdateSQLiteUserVersion("EN", mobileDevice, ver) == null)
+            if (UpdateSQLiteUserVersionSIMPLE("EN", mobileDevice, ver) == null)
                 return null;
 
-            if (UpdateSQLiteUserVersion("EL", mobileDevice, ver) == null)
+            if (UpdateSQLiteUserVersionSIMPLE("EL", mobileDevice, ver) == null)
                 return null;
 
             if (CheckThreeLanguages(this.appID))
-                if (UpdateSQLiteUserVersion("RU", mobileDevice, ver) == null)
+                if (UpdateSQLiteUserVersionSIMPLE("RU", mobileDevice, ver) == null)
                     return null;
 
             return 0;
 
         }
+
+
+        /// <summary>
+        /// For device and Lang and App, auto-update DB version in SQLite Db, based on value in ADMIN MSSQL, NO MINOR-MAJOR Versions!
+        /// </summary>
+        /// <param name="dbLang"></param>
+        /// <param name="mobileDevice"></param>
+        /// <param name="addVersion"></param>
+        /// <returns></returns>
+        public object UpdateSQLiteUserVersionSIMPLE(string dbLang, string mobileDevice, int addVersion = 1)
+        {
+
+            try
+            {
+
+                string curVerStr = "";
+
+                using (SQLiteConnection con = new SQLiteConnection("Data Source=" + mapPath + "Batch\\dbfiles\\" + mobileDevice + "\\GreekGuide_" + this.appName + "_" + dbLang + "_" + DateTime.Now.ToString("yyyyMMdd") + ".db; Version=3;"))
+                {
+                    using (SQLiteCommand cmd = new SQLiteCommand("PRAGMA USER_VERSION;", con))
+                    {
+                        int major = 0;
+                        string newVersionStr = "";
+
+                        // always initialize with version shown from DB.
+                        curVerStr = InitializeSQLiteVersionFromDB(appID, appName, LangToInt(dbLang), mobileDevice);
+
+
+                        if (String.IsNullOrEmpty(curVerStr))
+                        {
+                            Log.ErrorLog(mapPathError, "No DB version for SQL Lite for " + dbLang + " of " + this.appName, this.appName);
+                            return null;
+                        }
+
+                        if (addVersion == 0)        // Add one version to existing DB_version.     
+                        {
+                            // get curVerStr
+                            Int32.TryParse(curVerStr, out major);
+                            major++;                                // just add +1 to ver.
+                            newVersionStr = major.ToString();
+
+                        }
+                        else// MEANS PRODUCTION
+                        {
+                           // make ver whatever addVersion is
+                            newVersionStr = addVersion.ToString();
+                        }
+
+                        /*
+                            * resolve BUG to Android APK first.
+
+                            con.Open();
+                            cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                                
+                        */
+
+                        if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang) == null)
+                        {
+                            Log.ErrorLog(logPath, "Error occured in AddDBversionAdmin DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
+                            return null;
+                        }
+
+                        Log.InfoLog(mapPathError, "DB ver added : " + newVersionStr, this.appName);
+                        return 1;
+
+
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorLog(mapPathError, "Some exception occured on UpdateSQLiteUserVersion: " + ex.Message, appName);
+                return null;
+            }
+
+        }
+
+
 
 
         /// <summary>
@@ -330,7 +411,7 @@ namespace GGApps
         /// <param name="dbLang"></param>
         /// <param name="ver"></param>
         /// <returns></returns>
-        private object AddDBversionAdmin(string appName, int appID, string curVerStr, string newVersionStr, string mobileDevice, string dbLang, int ver = MINOR)
+        public object AddDBversionAdmin(string appName, int appID, string curVerStr, string newVersionStr, string mobileDevice, string dbLang, int ver = MINOR)
         {
             int LangID = LangToInt(dbLang);
             int res;

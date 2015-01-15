@@ -507,12 +507,12 @@ namespace GGApps
         /// <returns></returns>
         private object UpdateVersionsFile(int appID, string appName)
         {
-            /* Pending while APK is not ready for testing this.
+            /* Pending while APK is not ready for testing this.*/
             
             Finalize fin = new Finalize(appName, appID);
             string dbver;
 
-            Log.InfoLog(mapPathError, "Started> Update Versions.txt to " + dbver, appName);
+            Log.InfoLog(mapPathError, "Started> Update Versions.txt", appName);
             
             // Set Versions file for IOS only for one Lang
             dbver = fin.InitializeSQLiteVersionFromDB(appID, appName, 1, "ios");
@@ -524,10 +524,10 @@ namespace GGApps
             if (!fin.SetVerionsFileProperty("db_version", dbver, appName, appID, "android", 1, "versions.txt"))
                 return null;
 
+            // also Set configuraion version taken from Configuration.txt doc.!!
+
             Log.InfoLog(mapPathError, "Finished> Update Versions.txt to " + dbver, appName);
             
-             
-            */
 
             return 0;
         }

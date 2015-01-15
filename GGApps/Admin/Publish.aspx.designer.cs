@@ -31,6 +31,15 @@ namespace GGApps {
         protected global::System.Web.UI.WebControls.DropDownList SelectApp;
         
         /// <summary>
+        /// refersbtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton refersbtn;
+        
+        /// <summary>
         /// latestVersions control.
         /// </summary>
         /// <remarks>
@@ -211,13 +220,13 @@ namespace GGApps {
         protected global::System.Web.UI.WebControls.TableCell prodIosCV;
         
         /// <summary>
-        /// publishApp control.
+        /// BtnPublishApp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button publishApp;
+        protected global::System.Web.UI.WebControls.Button BtnPublishApp;
         
         /// <summary>
         /// undoPublish control.

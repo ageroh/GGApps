@@ -839,3 +839,11 @@ tr.pager td {
     font-size: 1em;
     width: auto;
 }
+
+.selectApp {
+    width: 200px;
+    float: left;
+    padding: 5px;
+    margin: 5px;
+    font-size: 18px;
+}

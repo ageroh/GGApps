@@ -44,11 +44,11 @@ namespace GGApps
 
         public class AppVersionDetail
         {
-            string Environment;
-            string Device;
-            string DB_Version;
-            string App_Version;
-            string Config_Version;
+            public string Environment;
+            public string Device;
+            public string DB_Version;
+            public string App_Version;
+            public string Config_Version;
 
             public AppVersionDetail(string Environment, string Device, string DB_Version, string App_Version, string Config_Version)
             {
@@ -494,6 +494,38 @@ namespace GGApps
             }
             return -1;
        }
+
+
+
+        public static double RenameFileRemote(string appName, string localFilename, string localFilenameNew)
+        {
+            try
+            {
+                FTP ftpClient = null;
+                if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
+                {
+                    var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
+                    if (ftpConStr.Length == 3)
+                    {
+                        ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
+                    }
+                }
+
+                if (ftpClient != null)
+                {
+                    ftpClient.rename(localFilename, localFilenameNew);
+                }
+                ftpClient = null;
+                
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorLog(mapPathError, "Some error ocured while uploading files to FTP, Exception:  " + ex.Message, appName);
+                return -1;
+            }
+        
+        }
 
 
         public static double UploadFileRemote(string appName, string localFilename, string remotePath, bool overwrite = true)

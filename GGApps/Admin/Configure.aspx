@@ -19,7 +19,7 @@
         <h3>Select application to Configure</h3>
         <span>*All previous updates must have finished!</span>
         <br />
-        <asp:DropDownList ID="SelectApp" Width="200" runat="server" OnSelectedIndexChanged="SelectApp_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+        <asp:DropDownList ID="SelectApp" CssClass="selectApp" runat="server" OnSelectedIndexChanged="SelectApp_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
 
          <div width="960px;">
             <div style="float:left;">

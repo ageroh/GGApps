@@ -26,6 +26,7 @@
                 //loading.css({ top: top, left: left });
             }, 200);
         }
+
         $('form').live("submit", function () {
             ShowProgress();
         });
@@ -35,6 +36,22 @@
             $(".reportDivClass").find(".popAdm").on('click', function () {
                 DoOpenEntity(parseInt($(this).text().trim()));
             });
+        });
+
+
+        // validations for Buttons 
+        $(document).on('ready', function () {
+
+            $("#BtnPublishApp").click(
+                function () {
+                    if (confirm('Are you sure you want to publish to Production this Application?')) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+
+
         });
 
 

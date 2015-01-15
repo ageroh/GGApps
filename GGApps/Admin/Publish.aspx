@@ -12,14 +12,19 @@
             <li class="selected"><a href="Publish.aspx">Publish</a></li>
         </ul>
     </div>
+
     <asp:Panel ID="LoginViewImportant" CssClass="LoginViewImportant" runat="server">
+
+
 
          <h3>Select application to Publish</h3>
          <span>*All previous updates must have finished!</span>
             
         <br />
-        <asp:DropDownList ID="SelectApp" Width="200" runat="server" onselectedindexchanged="SelectApp_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-            
+        <asp:DropDownList ID="SelectApp" CssClass="selectApp" runat="server" onselectedindexchanged="SelectApp_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+        <asp:ImageButton runat="server" ID="refersbtn" ImageUrl="~/Content/img/refreshDD.png" BorderStyle="None" BackColor="Transparent" OnClick="refreshDD_Click" style="width:26px; margin: 5px;"/>
+        
+
         <h3>Just Produced</h3>
         <div style="width:960px;">
             <asp:ListView ID="latestVersions" runat="server"  ItemPlaceholderID="itemPlaceHolder1">
@@ -126,7 +131,8 @@
 
         </asp:Table>    
 
-        <asp:Button runat="server" Text="Publish App to Production" ID="publishApp"/>
-        <asp:Button runat="server" Text="Undo Publish" ID="undoPublish" />
+        <asp:Button runat="server" Text="Publish App to Production" ID="BtnPublishApp" ClientIDMode="Static" Enabled="false" OnClick="BtnPublishApp_Click"/>
+        <asp:Button runat="server" Text="Undo Publish" ID="undoPublish" Enabled="false"/>
+
     </asp:Panel>
 </asp:Content>

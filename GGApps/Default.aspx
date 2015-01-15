@@ -18,7 +18,7 @@
             <span>*All previous updates must have finished!</span>
             
             <br />
-            <asp:DropDownList ID="ddStart" Width="200" runat="server"></asp:DropDownList>
+            <asp:DropDownList ID="ddStart" CssClass="selectApp" runat="server"></asp:DropDownList>
             <asp:Button id="GoFirst" runat="server" Text="Build Report" OnClick="GoFirst_Click"/>
 
 
