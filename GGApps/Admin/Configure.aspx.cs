@@ -32,7 +32,7 @@ namespace GGApps
                 SelectApp.DataValueField = "id";
 
                 SelectApp.DataBind();
-                SelectApp.Items.Insert(0, new ListItem(" - Select Application - "));
+                SelectApp.Items.Insert(0, new ListItem(" - Select Application - ", "-1"));
                 SelectApp.SelectedIndex = 0;
             }
         }

@@ -21,7 +21,7 @@
         <br />
         <asp:DropDownList ID="SelectApp" CssClass="selectApp" runat="server" OnSelectedIndexChanged="SelectApp_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
 
-         <div width="960px;">
+         <div style="float: left; width: 100%;">
             <div style="float:left;">
                  <asp:RadioButtonList ID="RadioButtonLisEnvironment" CssClass="BuildAppList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonLisEnvironment_SelectedIndexChanged" >
                     <asp:ListItem

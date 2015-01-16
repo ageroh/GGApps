@@ -1,0 +1,20 @@
+*	
+*** fb images in local dir (c:\Temp\Images\/c-fb) 	
+*	
+* 0
+*	
+*** images in local dir (c:\Temp\Images\/c) 	
+*	
+* 39
+*	
+*** images in remote dir ( M:\GreekGuide\Images\/c)	
+*	
+* 25
+*	
+*** images in db	
+*					
+Msg 4060, Level 11, State 1, Server WIN-KF8F7F1OS2G, Line 1
+Cannot open database "ContentDB_165_Lan_1_Cat_hydra" requested by the login. The login failed.
+Msg 18456, Level 14, State 1, Server WIN-KF8F7F1OS2G, Line 1
+Login failed for user 'ContentAbility_User_165'.
+*	

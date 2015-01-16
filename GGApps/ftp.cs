@@ -200,7 +200,7 @@ namespace GGApps
         }
 
         /* Rename File */
-        public void rename(string currentFileNameAndPath, string newFileName)
+        public string rename(string currentFileNameAndPath, string newFileName)
         {
             try
             {
@@ -228,8 +228,12 @@ namespace GGApps
                 ftpResponse.Close();
                 ftpRequest = null;
             }
-            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
-            return;
+            catch (Exception ex) 
+            {
+                Log.InfoLog(mapErrorPath, "Error while rename file in production: " + currentFileNameAndPath + " to " + newFileName + " : " + ex.Message, appName);
+                return null;
+            }
+            return currentFileNameAndPath;
         }
 
         /* Create a New Directory on the FTP Server */
@@ -282,7 +286,12 @@ namespace GGApps
                 string fileInfo = null;
                 /* Read the Full Response Stream */
                 try { fileInfo = ftpReader.ReadToEnd(); }
-                catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+                catch (Exception ex) 
+                {
+                    // this is not really an error..
+                    Log.InfoLog(mapErrorPath, "PUBLISH> File " + fileName + " does not exist in production: " + ex.Message, appName);
+                    return null; 
+                }
                 /* Resource Cleanup */
                 ftpReader.Close();
                 ftpStream.Close();
@@ -291,9 +300,13 @@ namespace GGApps
                 /* Return File Created Date Time */
                 return fileInfo;
             }
-            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
-            /* Return an Empty string Array if an Exception Occurs */
-            return "";
+            catch (Exception ex) 
+            {
+                // this is not really an error..
+                Log.InfoLog(mapErrorPath, "PUBLISH> file " + fileName + " does not exist in production: " + ex.Message, appName);
+                return null; 
+            }
+
         }
 
         /* Get the Size of a File */
@@ -330,7 +343,7 @@ namespace GGApps
                 /* Return File Size */
                 return fileInfo;
             }
-            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { return null; }
             /* Return an Empty string Array if an Exception Occurs */
             return "";
         }

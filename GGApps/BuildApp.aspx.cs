@@ -85,7 +85,7 @@ namespace GGApps
                                   if (!result9b.IsCancellationRequested)
                                   {
 
-                                      Log.InfoLog(mapPathError, appName + " Produced successfully over Test Content.", appName);
+                                     
                                       List<string> _listAttachments = new List<string>();
 
                                       if ((bool)HasErrors == false)
@@ -117,7 +117,7 @@ namespace GGApps
 
                                       }
 
-
+                                     
                                       HasErrors = false;
                                       Session["FinishedProcessing"] = true;
                                       return;
@@ -134,7 +134,7 @@ namespace GGApps
                               if (!result9b.IsCancellationRequested)
                               {
 
-                                  Log.InfoLog(mapPathError, appName + " Produced successfully over Test Content.", appName);
+                                 
                                   List<string> _listAttachments = new List<string>();
 
 
@@ -167,6 +167,7 @@ namespace GGApps
 
                                   }
 
+                                  Log.InfoLog(mapPathError, appName + " Produced over Staging Content.", appName);
                                   HasErrors = false;
                                   Session["FinishedProcessing"] = true;
                                   return;
@@ -310,7 +311,6 @@ namespace GGApps
                                                 List<string> _listAttachments = new List<string>();
                                                 _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
                                                 _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
-                                                Log.InfoLog(mapPathError, appName + " Produced successfully over Test Content.", appName);
 
                                                 if ((bool)HasErrors == false)
                                                 {
@@ -333,6 +333,7 @@ namespace GGApps
 
                                                     ClearGeneratedDB(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
 
+                                                    Log.InfoLog(mapPathError, appName + " Produced Successfully over Staging Content.", appName);
 
                                                     HasErrors = false;
                                                     Session["FinishedProcessing"] = true;
@@ -372,6 +373,8 @@ namespace GGApps
                                                 , mapPathError, Log
                                                 );
                         ClearGeneratedDB(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+
+                        Log.InfoLog(mapPathError, appName + " Produced WITH ERROR over Staging Content.", appName);
 
                         HasErrors = false;
                         Session["FinishedProcessing"] = true;

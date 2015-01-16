@@ -49,14 +49,18 @@ namespace GGApps
             public string DB_Version;
             public string App_Version;
             public string Config_Version;
+            public string appName;
+            public int appID;
 
-            public AppVersionDetail(string Environment, string Device, string DB_Version, string App_Version, string Config_Version)
+            public AppVersionDetail(string Environment, string Device, string DB_Version, string App_Version, string Config_Version, string appName, int appID )
             {
                 this.Device = Device;
                 this.Environment = Environment;
                 this.DB_Version = DB_Version;
                 this.App_Version = App_Version;
                 this.Config_Version = Config_Version;
+                this.appName = appName;
+                this.appID = appID;
             }
         }
 
@@ -466,15 +470,15 @@ namespace GGApps
                 ftpClient = null;
 
                 if (totalBytesUploaded > 10)
-                    Log.InfoLog(mapPathError, "Finished with uploading files to FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
+                    Log.InfoLog(mapPathError, "Finished with uploading files from " + localDir + " to "+remotePath+ " FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
                 else
-                    Log.ErrorLog(mapPathError, "Some error ocured while uploading files to FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
+                    Log.ErrorLog(mapPathError, "Some error ocured while uploading files from " + localDir + " to " + remotePath + " FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
 
                 return totalBytesUploaded;
             }
             catch (Exception ex)
             {
-                Log.ErrorLog(mapPathError, "Some error ocured while uploading files to FTP, Exception:  " + ex.Message, appName);
+                Log.ErrorLog(mapPathError, "Some error ocured while uploading files from " + localDir + " to " + remotePath + " FTP, Exception:  " + ex.Message, appName);
                 return 0;
             }
         }
@@ -513,11 +517,17 @@ namespace GGApps
 
                 if (ftpClient != null)
                 {
-                    ftpClient.rename(localFilename, localFilenameNew);
+                    if (ftpClient.getFileCreatedDateTime(localFilename) != null)                       // Cunrrent file does not exits contact admin !
+                    {
+                        if (ftpClient.rename(localFilename, localFilenameNew) == null)
+                            return -1;
+                    }
+                    else
+                        return 1;
                 }
                 ftpClient = null;
                 
-                return 0;
+                return 1;
             }
             catch (Exception ex)
             {
@@ -532,7 +542,6 @@ namespace GGApps
         {
             try
             {
-                Log.InfoLog(mapPathError, "Started uplodaded Entity.txt upload to FTP", appName);
                 FTP ftpClient = null;
                 long totalBytesUploaded = 0;
                 if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
@@ -552,10 +561,8 @@ namespace GGApps
                 }
                 ftpClient = null;
 
-                if (totalBytesUploaded > 10)
-                    Log.InfoLog(mapPathError, "Finished with Entity.txt upload to FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
-                else
-                    Log.ErrorLog(mapPathError, "Some error ocured while with Entity.txt upload to FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
+                if (totalBytesUploaded <= 0)
+                    Log.ErrorLog(mapPathError, "Some error ocured while uploading file: "+localFilename+" to FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
 
                 return totalBytesUploaded;
             }

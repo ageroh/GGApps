@@ -29,9 +29,10 @@ namespace GGApps
                     ddStart.DataSource = GetAllAppTable();
                     ddStart.DataTextField = "appName";
                     ddStart.DataValueField = "id";
-                    ddStart.Items.Insert(0, " - Select App - ");
-
+                    
                     ddStart.DataBind();
+                    ddStart.Items.Insert(0, new ListItem(" - Select Application - ", "-1"));
+                    ddStart.SelectedIndex = 0;
                     
                // }
             

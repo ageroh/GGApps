@@ -20,12 +20,6 @@ namespace GGApps
             if (!Page.IsPostBack)
             {
                 InitializeAppDD();
-
-                if (StagProdAppVersions == null)
-                    BtnPublishApp.Enabled = false;
-                
-                if (StagProdAppVersions != null && StagProdAppVersions.Count <= 0)
-                    BtnPublishApp.Enabled = true;
             }
         }
 
@@ -41,7 +35,7 @@ namespace GGApps
                 SelectApp.DataValueField = "id";
 
                 SelectApp.DataBind();
-                SelectApp.Items.Insert(0, new ListItem(" - Select Application - "));
+                SelectApp.Items.Insert(0, new ListItem(" - Select Application - ", "-1"));
                 SelectApp.SelectedIndex = 0;
             }
         }
@@ -64,6 +58,22 @@ namespace GGApps
             // Fetch details from Production for App
             FetchAppDetailsProduction(appID, appName);
 
+            int rc =0;
+            try{rc = ((DataSet)(latestVersions.DataSource)).Tables[0].Rows.Count;}
+            catch(Exception ex){rc = 0;}
+
+
+            //StagProdAppVersions.Clear();
+            if (SelectApp.SelectedIndex > 0 && rc > 0)
+            {
+                BtnPublishApp.CssClass = null;
+                BtnPublishApp.Enabled = true;
+            }
+            else
+            {
+                BtnPublishApp.CssClass = "InputDisabledCustom";
+                BtnPublishApp.Enabled = false;
+            }
         }
 
         private void FetchAppDetailsProduction(int appID, string appName)
@@ -76,14 +86,14 @@ namespace GGApps
             prodAndDB.Text = dbVersion;
             prodAndAV.Text = appVersion;
             prodAndCV.Text = configVersion;
-            StagProdAppVersions.Add(new AppVersionDetail("production", "android", dbVersion, appVersion, configVersion));
+            StagProdAppVersions.Add(new AppVersionDetail("production", "android", dbVersion, appVersion, configVersion, appName, appID));
 
             GetVersionsFile("android", out dbVersion, out appVersion, out configVersion, appName);
 
             stagAndDB.Text = dbVersion;
             stagAndAV.Text = appVersion;
             stagAndCV.Text = configVersion;
-            StagProdAppVersions.Add(new AppVersionDetail("staging", "android", dbVersion, appVersion, configVersion));
+            StagProdAppVersions.Add(new AppVersionDetail("staging", "android", dbVersion, appVersion, configVersion, appName, appID));
 
             
             GetVersionsFileProduction("ios", out dbVersion, out appVersion, out configVersion, appName);
@@ -91,16 +101,40 @@ namespace GGApps
             prodIosDB.Text = dbVersion;
             prodIosAV.Text = appVersion;
             prodIosCV.Text = configVersion;
-            StagProdAppVersions.Add(new AppVersionDetail("production", "ios", dbVersion, appVersion, configVersion));
+            StagProdAppVersions.Add(new AppVersionDetail("production", "ios", dbVersion, appVersion, configVersion, appName, appID));
 
             GetVersionsFile("ios", out dbVersion, out appVersion, out configVersion, appName);
 
             stagIosDB.Text = dbVersion;
             stagIosAV.Text = appVersion;
             stagIosCV.Text = configVersion;
-            StagProdAppVersions.Add(new AppVersionDetail("staging", "ios", dbVersion, appVersion, configVersion));
+            StagProdAppVersions.Add(new AppVersionDetail("staging", "ios", dbVersion, appVersion, configVersion, appName, appID));
 
         }
+
+        private void DisplayCustomMessageInValidationSummary(string message)
+        {
+
+            CustomValidator CustomValidatorCtrl = new CustomValidator();
+
+            CustomValidatorCtrl.IsValid = false;
+            CustomValidatorCtrl.Text = message;
+            CustomValidatorCtrl.ErrorMessage = message;
+
+            BtnPublishApp.Controls.Add(CustomValidatorCtrl);
+//            this.Page.Controls.Add(CustomValidatorCtrl);
+
+        }  
+
+        protected void cusCustom_ServerValidate(object sender, ServerValidateEventArgs e)
+        {
+            if (e.Value.Length == 8)
+                e.IsValid = true;
+            else
+                e.IsValid = false;
+        }
+
+
 
         protected void BtnPublishApp_Click(object sender, EventArgs e)
         {
@@ -109,39 +143,104 @@ namespace GGApps
             string appName = SelectApp.SelectedItem.Text;
             int appID = -1;
             Int32.TryParse(SelectApp.SelectedItem.Value, out appID);
+#if DEBUG
+            appName = "HYDRATEST";
+            appID = 999;
+#endif
+
 
             if (!CheckStagingProductionDBVersions(appName, appID, StagProdAppVersions))
             {
-                Response.Write("Please check DB version files.");
+                DisplayCustomMessageInValidationSummary("Please check DB version files.");
                 return;
             }
 
             // if is ok must staging_db_version = production_db_version + 1 foreach app. on Staging
             if (!RefreshVersionFileStaging(appID, appName, "ios"))
             {
-                Response.Write("some error occured please contact admin !!!");
-                return; 
+                ClientScript.RegisterStartupScript(this.GetType(), "error", "alert('error! while deploying " + appName + " to production!');", true);
+                Response.Write("<span class='ErrorGeneral'>Some Error occured please contact Admin!</span>");
+                return;
             }
 
             // if is ok must staging_db_version = production_db_version + 1 foreach app. on Staging
             if (!RefreshVersionFileStaging(appID, appName, "android"))
             {
-                Response.Write("some error occured please contact admin !!!");
+                ClientScript.RegisterStartupScript(this.GetType(), "error", "alert('error! while deploying " + appName + " to production!');", true);
+                Response.Write("<span class='ErrorGeneral'>Some Error occured please contact Admin!</span>");
                 return;
             }
 
             // rename existing Versions.txt on production to versions-getdate().txt
-            RenameFileRemote(appName, appName + "//update//ios//versions.txt", appName + "//update//ios//versions_" + DateTime.Now.ToString("yyyyMMdd_hhmm") + ".txt");
-            RenameFileRemote(appName, appName + "//update//android//versions.txt", appName + "//update//android//versions_" + DateTime.Now.ToString("yyyyMMdd_hhmm") + ".txt");
+            if (RenameFileRemote(appName, appName.ToLower() + "/update/ios/versions.txt", "versions_" + DateTime.Now.ToString("yyyyMMdd_hhmm") + ".txt") > 0)
+            {
+                if (RenameFileRemote(appName, appName.ToLower() + "/update/android/versions.txt", "versions_" + DateTime.Now.ToString("yyyyMMdd_hhmm") + ".txt") > 0)
+                {
 
-            // upload all files (replace if exists) [images]-[update.zip]-[promo]-[configuration?] - >> !!! except versions.txt !!!
-            
-            // upload versions.txt from staging to production
+                    // upload all files (replace if exists) [images]-[update.zip]-[promo]-[configuration?] - >> !!! except versions.txt !!!
+                    string res = UploadToProduction(appName, appID);
+                    if (res == null)
+                    {
 
-            // if error occurs rollback transition.
+                        Response.Write("<span class='ErrorGeneral'>Some Error occured while Uploading Files to Production!</span>");
+                        return;
+                    }
+                    else if (res == "success")
+                    {
+                        // print Success Message...
+                        ClientScript.RegisterStartupScript(this.GetType(), "SUCCESS", "alert('SUCCESS! " + appName + " is up to Production, ready to download.');", true);
+                        // maybe add a DB record for this deployment.
+                    }
+                    else
+                    {
 
-            // else print success message
+                        ClientScript.RegisterStartupScript(this.GetType(), "Error!", "alert('ERROR ! " + res + "');", true);
+                        Response.Write("<span class='ErrorGeneral'>Some Error occured: " + res + " </span>");
+                    }
+                }
 
+            }
+            else
+                Response.Write("<span class='ErrorGeneral'>Some Error occured, nothing deployed!</span>");
+
+        }
+
+        private string UploadToProduction(string appName, int appID)
+        {
+            if( UploadFileRemote(appName, producedAppPath + appName + "\\update\\android\\update.zip", appName.ToLower() + "//update//android//update.zip", true) >= 0)     // upload ok android for update.zip
+                if( UploadFilesRemote(appName, producedAppPath + appName + "\\update\\android\\images\\", appName.ToLower() + "//update//android//images//", true) >= 0 )   // upload succed for android
+                    if( UploadFileRemote(appName, producedAppPath + appName + "\\update\\ios\\update.zip", appName.ToLower() + "//update//ios//update.zip", true) >= 0)     // upload ok for ios update.zip
+                        if (UploadFilesRemote(appName, producedAppPath + appName + "\\update\\ios\\images\\", appName.ToLower() + "//update//ios//images//", true) >= 0)   // upload succed for ios
+                        { 
+                            // upload configurations.txt if exists
+                            try
+                            {
+                                UploadFileRemote(appName, producedAppPath + appName + "\\update\\android\\configuration.txt", appName.ToLower() + "//update//android//configuration.txt");
+                                UploadFileRemote(appName, producedAppPath + appName + "\\update\\ios\\configuration.txt", appName.ToLower() + "//update//ios//configuration.txt");
+                            }
+                            catch (Exception e)
+                            {
+                                Log.ErrorLog(mapPathError, "Failed to upload Configurations.txt file to production, " + e.Message, "generic");
+                                return null;
+                            }
+
+                            // upload Staging Versions.txt for both apps - make app raelly live and ready to be downloaded !
+                            if (UploadFileRemote(appName, producedAppPath + appName + "\\update\\android\\versions.txt", appName.ToLower() + "//update//android//versions.txt") >= 1)
+                                if (UploadFileRemote(appName, producedAppPath + appName + "\\update\\ios\\versions.txt", appName.ToLower() + "//update//ios//versions.txt") >= 1)
+                                    return "success";
+                                else
+                                    return "Could not upload file : " + appName + "\\update\\ios\\versions.txt to production.";
+                            else
+                                return "Could not upload file : " + appName + "\\update\\android\\versions.txt to production.";
+                        } 
+                        else
+                            return "Could not upload files : " + appName + "\\update\\ios\\images\\ to production.";
+                    else
+                        return "Could not upload file : " + appName + "\\update\\ios\\update.zip to production.";
+                else
+                    return "Could not upload files : " + appName + "\\update\\android\\images\\ to production.";
+            else
+                return "Could not upload file : " + appName + "\\update\\android\\update.zip to production.";
         }
 
         private bool RefreshVersionFileStaging(int appID, string appName, string mobileDevice)
@@ -198,11 +297,11 @@ namespace GGApps
             {
                 foreach (AppVersionDetail x in StagProdAppVersions)
                 {
-                    if (x.Environment == "Staging")
+                    if (x.Environment == "staging")
                     {
                         foreach (AppVersionDetail y in StagProdAppVersions)
                         {
-                            if (y.Environment == "Production" && y.Device == x.Device)
+                            if (y.Environment == "production" && y.Device == x.Device)
                             { 
                                 Int32.TryParse(x.DB_Version, out dbverStag);
                                 Int32.TryParse(y.DB_Version, out dbverProd);
