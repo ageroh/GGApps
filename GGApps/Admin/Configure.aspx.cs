@@ -102,13 +102,8 @@ namespace GGApps
 
         protected void SaveAll_Click(object sender, EventArgs e)
         {
-            // Are you sure?
-            string user = HttpContext.Current.User.Identity.Name;
-            System.Web.UI.ScriptManager.RegisterClientScriptBlock(this
-                , this.GetType()
-                , "Warning!", "if(!confirm('" + user.Substring(user.IndexOf("\\") + 1) + ", are you sure you want to save all changes for " + Session["appName"] + " in " + RadioButtonLisEnvironment.SelectedItem.Text + " for " + RadioButtonListDevice.SelectedItem.Text + " ?'){return false;}", true);
-
-
+            // if client confirm is previously ok;
+            
             // save files from TextAreas
             SaveVersionsConfigurationFiles((int)Session["appID"], (string)Session["appName"], RadioButtonLisEnvironment.SelectedItem.Value, RadioButtonListDevice.SelectedItem.Value);
 

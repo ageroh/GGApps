@@ -3,6 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
       <div class="sub">
@@ -64,7 +65,7 @@
             <h4>Configuration.txt</h4>
             <asp:TextBox runat="server" TextMode="multiline" Columns="200" Rows="20" Width="100%"  ID="ConfigurationTxt" ></asp:TextBox>
 
-            <asp:Button runat="server" ID="SaveAll" Text="Save All Changes" OnClick="SaveAll_Click"/>
+            <asp:Button runat="server" ID="SaveAll" Text="Save All Changes" OnClick="SaveAll_Click" OnClientClick="return confirm('Are you sure you want SAVE all changes?')" />
         </div>
 
     </asp:Panel>

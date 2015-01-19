@@ -774,11 +774,10 @@ namespace GGApps
             try
             {
                 // check JSON , save with intended!
-                fileContents = fileContents.Replace(System.Environment.NewLine, string.Empty).Replace(@"\", "");
-                fileContents = JsonConvert.SerializeObject(fileContents, Formatting.Indented);
-
+                fileContents = JsonConvert.DeserializeObject(fileContents).ToString();
+                
             }
-            catch (JsonException je)
+            catch (Exception je)
             {
                 Log.ErrorLog(mapPathError, appName + ": not valid json for " + fileName + ", " + je.Message, "generic");
                 return "Not A Valid JSON file.";

@@ -62,124 +62,146 @@ namespace GGApps
         /// <param name="appName"></param>
         private void BatchExecuteDBExport(int appID, string appName)
         {
+            // CreateLogFiles Log = new CreateLogFiles();
             string startProcessing = DateTime.Now.ToString("HH:mm - ddd d MMM yyyy");
+
+
             Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
-                  {
+            {
+                var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", mapPathError, Log);
 
-                      var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", mapPathError, Log);
-
-                      if (!result3.IsCancellationRequested)
-                      {
-
-                          if (CheckThreeLanguages(appID))
-                          {
-                              var result3a = await RunAsyncCommandBatch(ct, appID, appName, "3a_fix_html_entities.bat " + appName, actualWorkDir, "convert HTML ENTITIES", mapPathError, Log);
-
-                              if (!result3a.IsCancellationRequested)
-                              {
-
-                                  // do the copy-paste of DBs to server.
-                                  var result9b = await RunAsyncCommandBatch(ct, appID, appName, "9b_copy_databases.bat " + appName, actualWorkDir, "COPY DATABASES Files", mapPathError, Log);
-
-                                  if (!result9b.IsCancellationRequested)
-                                  {
-
-                                     
-                                      List<string> _listAttachments = new List<string>();
-
-                                      if ((bool)HasErrors == false)
-                                      {
-                                          //SendMail To All Teams
-                                          await SendMailToUsers(appName
-                                                                  , GetEmailList("AllTeams")
-                                                                  , null
-                                                                  , EmailTemplate("Success", appName, startProcessing), "GG DB produced for " + appName
-                                                                  , mapPathError, Log);
-
-                                      }
-                                      else// Send Failure Message!
-                                      {
-                                          //SendMail To All Teams
-                                          await SendMailToUsers(appName
-                                                                  , GetEmailList("AllTeams")
-                                                                  , null
-                                                                  , EmailTemplate("Failure", appName, startProcessing), "GG DB produced for " + appName
-                                                                  , mapPathError, Log);
-
-                                          //Send Always email with Log info for currnet execution to ME.
-                                          _listAttachments.Add(mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
-                                          await SendMailToUsers(appName
-                                                                  , GetEmailList("ErrorTeam")
-                                                                  , _listAttachments
-                                                                  , EmailTemplate("Failure", appName, startProcessing), "GG DB produced for " + appName
-                                                                  , mapPathError, Log);
-
-                                      }
-
-                                     
-                                      HasErrors = false;
-                                      Session["FinishedProcessing"] = true;
-                                      return;
-                                  }
-
-                              }
-                          }
-                          else
-                          {
-
-                              // do the copy-paste of DBs to server.
-                              var result9b = await RunAsyncCommandBatch(ct, appID, appName, "9b_copy_databases.bat " + appName, actualWorkDir, "COPY DATABASES Files", mapPathError, Log);
-
-                              if (!result9b.IsCancellationRequested)
-                              {
-
-                                 
-                                  List<string> _listAttachments = new List<string>();
+                if (!result3.IsCancellationRequested && !HasErrors)
+                {
+                    // move DB files generated to Android and Ios folder
+                    var res3_5 = MoveGeneratedDBtoPaths(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                    if (res3_5 == null)
+                        HasErrors = true;
 
 
-                                  if ((bool)HasErrors == false)
-                                  {
-                                      //SendMail To All Teams
-                                      await SendMailToUsers(appName
-                                                              , GetEmailList("AllTeams")
-                                                              , null
-                                                              , EmailTemplate("Success", appName, startProcessing), "GG DB produced for " + appName
-                                                              , mapPathError, Log);
+                    if (CheckThreeLanguages(appID))
+                    {
+                        var result3a = await RunAsyncCommandBatch(ct, appID, appName, "3a_fix_html_entities.bat " + appName, actualWorkDir
+                                                                                    , "convert HTML ENTITIES", mapPathError, Log);
+                    }
 
-                                  }
-                                  else// Send Failure Message!
-                                  {
-                                      //SendMail To All Teams
-                                      await SendMailToUsers(appName
-                                                              , GetEmailList("AllTeams")
-                                                              , null
-                                                              , EmailTemplate("Failure", appName, startProcessing), "GG DB produced for " + appName
-                                                              , mapPathError, Log);
+                    if (res3_5 != null)
+                    {
+                        // Redirect result to temp file for APP with dateFormat
+                        var result4 = await RunAsyncCommandBatch(ct, appID
+                                                                    , appName
+                                                                    , "4_db_stats.bat " + appID.ToString() + "  reports/" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt"
+                                                                    , actualWorkDir
+                                                                    , "Export Database Statistics", mapPathError, Log);
 
-                                      //Send Always email with Log info for currnet execution to ME.
-                                      _listAttachments.Add(mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
-                                      await SendMailToUsers(appName
-                                                              , GetEmailList("ErrorTeam")
-                                                              , _listAttachments
-                                                              , EmailTemplate("Failure", appName, startProcessing), "GG DB produced for " + appName
-                                                              , mapPathError, Log);
 
-                                  }
+                        if (!result4.IsCancellationRequested && !HasErrors)
+                        {
+                            CancellationToken result9, result10;
 
-                                  Log.InfoLog(mapPathError, appName + " Produced over Staging Content.", appName);
-                                  HasErrors = false;
-                                  Session["FinishedProcessing"] = true;
-                                  return;
-                              }
+                            if (CreateSQLiteDBs.CreateBundleDBAndFiles(appName) < 0)
+                                HasErrors = true;
 
-                          }
-                      }
+                            if (!HasErrors )
+                            {
+                                // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
+                                if (IncreaseDBMinorVersion(appID, appName) == null)
+                                    HasErrors = true;
+                            }
 
-                      // send error mail for failure !
+                            if (!HasErrors)
+                            {
+                                if (UpdateVersionsFile(appID, appName) == null)
+                                {
+                                    HasErrors = true;
+                                }
+                                else
+                                {
+                                    /* Call the Bat that moves only DB files without images */
+                                    result9 = await RunAsyncCommandBatch(ct, appID, appName, "9b_copy_img_databases.bat " + appName + " " + DateTime.Now.ToString("yyyyMMdd"), actualWorkDir
+                                                                                                        , "Copy files from Local to Server", mapPathError, Log);
+                                }
+                            }
 
-                  }
-          );
+                            // Send email to QA - Nadia - Galufos Team (for versions file)
+                            if (!result9.IsCancellationRequested && !HasErrors)
+                            {
+
+                                // Create a zip with all files generated under /appName/update/ with name appName.zip.
+                                result10 = await RunAsyncCommandBatch(ct, appID, appName, "10_create_zip.bat " + appName, actualWorkDir, "Zip all files created under UPDATE to zip file for Mobile", mapPathError, Log);
+
+                                if (!result10.IsCancellationRequested && !HasErrors)
+                                {
+                                    List<string> _listAttachments = new List<string>();
+                                    _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
+                                    
+                                    if ((bool)HasErrors == false)
+                                    {
+                                        //SendMail To All Teams
+                                        await SendMailToUsers(appName
+                                                                , GetEmailList("AllTeams")
+                                                                , _listAttachments
+                                                                , EmailTemplate("Success", appName, startProcessing), "GG App produced for " + appName + " >Success!"
+                                                                , mapPathError, Log);
+
+                                        //Send Always email with Log info for currnet execution to ME.
+                                        //_listAttachments.Add(mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                                        await SendMailToUsers(appName
+                                                                , GetEmailList("ErrorTeam")
+                                                                , _listAttachments
+                                                                , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
+                                                                , "GG App produced for " + appName + " >Success!"
+                                                                , mapPathError, Log
+                                                                );
+
+                                        ClearGeneratedDB(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+
+                                        Log.InfoLog(mapPathError, appName + " Produced Successfully over Staging Content.", appName);
+
+                                        HasErrors = false;
+                                        Session["FinishedProcessing"] = true;
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+                // Send failure email if execution was interupted / or other error occured!!
+                if (HasErrors)
+                {
+                    List<string> _listAttachments = new List<string>();
+                    _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
+                    
+                    //SendMail To All Teams
+                    await SendMailToUsers(appName
+                                            , GetEmailList("AllTeams")
+                                            , _listAttachments
+                                            , EmailTemplate("Failure", appName, startProcessing), "GG App produced for " + appName + " >Failed!"
+                                            , mapPathError, Log);
+
+                    //Send Always email with Log info for currnet execution to ME.
+                    await SendMailToUsers(appName
+                                            , GetEmailList("ErrorTeam")
+                                            , _listAttachments
+                                            , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
+                                            , "GG App produced for " + appName + " >Failed!"
+                                            , mapPathError, Log
+                                            );
+
+                    ClearGeneratedDB(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+
+                    Log.InfoLog(mapPathError, appName + " Produced WITH ERRORS over Staging Content.", appName);
+
+                    HasErrors = false;
+                    Session["FinishedProcessing"] = true;
+                    return;
+                }
+              }
+            );
+
 
         }
 
@@ -318,7 +340,8 @@ namespace GGApps
                                                     await SendMailToUsers(appName
                                                                             , GetEmailList("AllTeams")
                                                                             , _listAttachments
-                                                                            , EmailTemplate("Success", appName, startProcessing), "GG App produced for " + appName
+                                                                            , EmailTemplate("Success", appName, startProcessing)
+                                                                            , "GG App produced for " + appName + " >Success!"
                                                                             , mapPathError, Log);
 
                                                     //Send Always email with Log info for currnet execution to ME.
@@ -327,7 +350,7 @@ namespace GGApps
                                                                             , GetEmailList("ErrorTeam")
                                                                             , _listAttachments
                                                                             , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
-                                                                            , "GG App produced for " + appName
+                                                                            , "GG App produced for " + appName + " >Success!"
                                                                             , mapPathError, Log
                                                                             );
 
@@ -355,13 +378,14 @@ namespace GGApps
                         List<string> _listAttachments = new List<string>();
                         _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt");
                         _listAttachments.Add(actualWorkDir + "reports\\" + appName + "_image_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".html");
-                        Log.InfoLog(mapPathError, appName + " Produced successfully over Test Content.", appName);
+                       
 
                         //SendMail To All Teams
                         await SendMailToUsers(appName
                                                 , GetEmailList("AllTeams")
                                                 , _listAttachments
-                                                , EmailTemplate("Failure", appName, startProcessing), "GG App produced for " + appName
+                                                , EmailTemplate("Failure", appName, startProcessing)
+                                                , "GG App produced for " + appName + " >Failed!"
                                                 , mapPathError, Log);
 
                         //Send Always email with Log info for currnet execution to ME.
@@ -369,24 +393,21 @@ namespace GGApps
                                                 , GetEmailList("ErrorTeam")
                                                 , _listAttachments
                                                 , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
-                                                , "GG App produced for " + appName
+                                                , "GG App produced for " + appName + " >Failed!"
                                                 , mapPathError, Log
                                                 );
                         ClearGeneratedDB(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
 
-                        Log.InfoLog(mapPathError, appName + " Produced WITH ERROR over Staging Content.", appName);
+                        Log.InfoLog(mapPathError, appName + " Produced WITH ERRORS over Staging Content.", appName);
 
                         HasErrors = false;
                         Session["FinishedProcessing"] = true;
                         return;
                     }
-
 #endif
-            }
+              }
 
             );
-
-
 
 
 
@@ -765,6 +786,7 @@ namespace GGApps
                     {
                         if (cmdStr == "FullBatch")
                         {
+                            Log.InfoLog(mapPathError, "================================= START EXECUTION: Batch Full, In-App UPDATE FOR:  " + Session["appName"].ToString().ToUpper() + "================================= ", Session["appName"].ToString());
                             BatchExecuteAllSteps((int)Session["appID"], Session["appName"].ToString());
                             ((Control)sender).Parent.FindControl("mainSubPanel").Visible = false;
                             AddMessageToScreen("ExecutionMessages"
@@ -774,6 +796,7 @@ namespace GGApps
                         }
                         else if (cmdStr == "DBOnly")
                         {
+                            Log.InfoLog(mapPathError, "================================= START EXECUTION: DB Only, In-App UPDATE FOR:  " + Session["appName"].ToString().ToUpper() + "================================= ", Session["appName"].ToString());
                             BatchExecuteDBExport((int)Session["appID"], Session["appName"].ToString());
                             ((Control)sender).Parent.FindControl("mainSubPanel").Visible = false;
                             AddMessageToScreen("ExecutionMessages"
