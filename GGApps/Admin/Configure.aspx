@@ -24,37 +24,47 @@
 
          <div style="float: left; width: 100%;">
             <div style="float:left;">
-                 <asp:RadioButtonList ID="RadioButtonLisEnvironment" CssClass="BuildAppList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonLisEnvironment_SelectedIndexChanged" >
-                    <asp:ListItem
-                            Enabled="True"
+                
+                
+                <asp:DropDownList runat="server" ID="DDEnvironment" CssClass="selectApp"  AutoPostBack="true" OnSelectedIndexChanged="DDEnvironment_SelectedIndexChanged" >
+                    <asp:ListItem Enabled="True"
                             Selected="true"
+                            Text="- Select Environment -"
+                            Value=""/>
+                    <asp:ListItem Enabled="True"
+                            Selected="False"
                             Text="Staging"
-                            Value="Staging"
-                        />
+                            Value="Staging"/>
                     <asp:ListItem
                             Enabled="True"
                             Selected="false"
                             Text="Production"
                             Value="Production"
                         />
-                </asp:RadioButtonList>
+                </asp:DropDownList> 
+                
             </div>
          
             <div style="float:left;">
-            <asp:RadioButtonList ID="RadioButtonListDevice" CssClass="BuildAppList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonListDevice_SelectedIndexChanged">
-                <asp:ListItem
-                        Enabled="True"
-                        Selected="true"
-                        Text="Android"
-                        Value="android"
-                    />
-                <asp:ListItem
-                        Enabled="True"
-                        Selected="false"
-                        Text="iOS"
-                        Value="ios"
-                    />
-            </asp:RadioButtonList>
+                <asp:DropDownList runat="server" ID="DDListDevice" CssClass="selectApp" AutoPostBack="true" OnSelectedIndexChanged="DDListDevice_SelectedIndexChanged" >
+                    <asp:ListItem Enabled="True"
+                            Selected="true"
+                            Text="- Select Device -"
+                            Value=""/>
+                    <asp:ListItem
+                            Enabled="True"
+                            Selected="False"
+                            Text="Android"
+                            Value="android"
+                        />
+                    <asp:ListItem
+                            Enabled="True"
+                            Selected="false"
+                            Text="iOS"
+                            Value="ios"
+                        />
+                </asp:DropDownList> 
+
             </div>
          </div>
 

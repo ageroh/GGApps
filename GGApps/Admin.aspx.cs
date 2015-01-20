@@ -13,10 +13,7 @@ namespace GGApps
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //string localDir = "C:\\temp\\images\\Corfu\\";
-            //string remotepath = "GGAPPS/Corfu/";
-            //UploadFilesRemote("Athens", localDir, remotepath);
-
+            Initialize();  
         }
 
 

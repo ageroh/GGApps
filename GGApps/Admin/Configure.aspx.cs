@@ -49,13 +49,13 @@ namespace GGApps
             Session["appName"] = appName;
             Session["appID"] = appID;
 
-            FetchVersionsConfigurationFiles(appID, appName, RadioButtonLisEnvironment.SelectedItem.Value, RadioButtonListDevice.SelectedItem.Value);
+            FetchVersionsConfigurationFiles(appID, appName,  DDEnvironment.SelectedItem.Value, DDListDevice.SelectedItem.Value);
 
         }
 
-        protected void RadioButtonLisEnvironment_SelectedIndexChanged(object sender, EventArgs e)
+        protected void DDEnvironment_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RadioButtonList rdList = sender as RadioButtonList;
+            DropDownList rdList = sender as DropDownList;
             string appName = SelectApp.SelectedItem.Text;
             int appID = -1;
             Int32.TryParse(SelectApp.SelectedItem.Value, out appID);
@@ -64,13 +64,13 @@ namespace GGApps
 
             if (appID != -1)
             {
-                FetchVersionsConfigurationFiles(appID, appName, rdList.SelectedItem.Value, RadioButtonListDevice.SelectedItem.Value);
+                FetchVersionsConfigurationFiles(appID, appName, rdList.SelectedItem.Value, DDListDevice.SelectedItem.Value);
             }
         }
 
-        protected void RadioButtonListDevice_SelectedIndexChanged(object sender, EventArgs e)
+        protected void DDListDevice_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RadioButtonList rdList = sender as RadioButtonList;
+            DropDownList rdList = sender as DropDownList;
             string appName = SelectApp.SelectedItem.Text;
             int appID = -1;
             Int32.TryParse(SelectApp.SelectedItem.Value, out appID);
@@ -79,7 +79,7 @@ namespace GGApps
 
             if (appID != -1)
             {
-                FetchVersionsConfigurationFiles(appID, appName, RadioButtonLisEnvironment.SelectedItem.Value, rdList.SelectedItem.Value);
+                FetchVersionsConfigurationFiles(appID, appName, DDEnvironment.SelectedItem.Value, rdList.SelectedItem.Value);
             }
         }
 
@@ -105,7 +105,7 @@ namespace GGApps
             // if client confirm is previously ok;
             
             // save files from TextAreas
-            SaveVersionsConfigurationFiles((int)Session["appID"], (string)Session["appName"], RadioButtonLisEnvironment.SelectedItem.Value, RadioButtonListDevice.SelectedItem.Value);
+            SaveVersionsConfigurationFiles((int)Session["appID"], (string)Session["appName"], DDEnvironment.SelectedItem.Value, DDListDevice.SelectedItem.Value);
 
         }
 

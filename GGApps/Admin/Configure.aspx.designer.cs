@@ -31,22 +31,22 @@ namespace GGApps {
         protected global::System.Web.UI.WebControls.DropDownList SelectApp;
         
         /// <summary>
-        /// RadioButtonLisEnvironment control.
+        /// DDEnvironment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonLisEnvironment;
+        protected global::System.Web.UI.WebControls.DropDownList DDEnvironment;
         
         /// <summary>
-        /// RadioButtonListDevice control.
+        /// DDListDevice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListDevice;
+        protected global::System.Web.UI.WebControls.DropDownList DDListDevice;
         
         /// <summary>
         /// VersionsTxt control.

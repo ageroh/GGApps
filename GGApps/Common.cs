@@ -575,14 +575,15 @@ namespace GGApps
 
         public void Initialize()
         {
-#if !DEBUG
             if (! CheckAccount())
             {
-                string user = HttpContext.Current.User.Identity.Name;
-                System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Warning!", "alert('" + user.Substring(user.IndexOf("\\")+1)  + ", you are not authorized to view this page!'); setInterval(function(){location.href='../';}, 500);", true);
+                //string user = HttpContext.Current.User.Identity.Name;
+                //System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType()
+                //            , "Warning!"
+                //            , "alert('" + user.Substring(user.IndexOf("\\")+1)  + ", you are not authorized to view this page!'); ", true);
+                
+                Response.Redirect("~/");
             }
-#endif
-
         }
 
         // Implement this as for multiple account users.

@@ -19,6 +19,8 @@ namespace GGApps
         {
             if (!Page.IsPostBack)
             {
+                Initialize();
+
                 InitializeAppDD();
             }
         }

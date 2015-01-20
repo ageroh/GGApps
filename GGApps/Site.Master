@@ -137,7 +137,7 @@
         <div class="content-wrapper">
             <div class="float-left">
                 <p class="site-title">
-                    <a runat="server" href="~/">GreekGuide App Update</a>
+                    <a runat="server" href="~/">GREEKGUIDE.COM In-App Update</a>
                 </p>
             </div>
             <div class="float-right">
@@ -153,7 +153,7 @@
                             <p>
                                 Hello, <a runat="server" class="username" href="" title="Manage your account">
                                     <asp:LoginName runat="server" CssClass="username" /></a>!
-                                <%--<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />--%>
+                                <asp:LoginStatus runat="server" LogoutText="Log off" OnLoggedOut="Unnamed_LoggedOut"/>
                             </p>
                         </LoggedInTemplate>
                     </asp:LoginView>
@@ -161,7 +161,6 @@
                 <nav>
                     <ul id="menu">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
                         <li><a runat="server" href="~/Admin.aspx">Admin</a></li>
                     </ul>
                 </nav>

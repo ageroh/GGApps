@@ -156,6 +156,10 @@ namespace GGApps
 
                                         ClearGeneratedDB(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
 
+
+                                        var result11 = await RunAsyncCommandBatch(ct, appID, appName, "11_commit_to_git.bat " + appName, actualWorkDir, "Commit changes to SVN", mapPathError, Log);
+
+
                                         Log.InfoLog(mapPathError, appName + " Produced Successfully over Staging Content.", appName);
 
                                         HasErrors = false;
@@ -205,6 +209,7 @@ namespace GGApps
 
         }
 
+        
 
         /// <summary>
         /// Run all Steps from 3 to 9 of Batch Build asyncronously.
@@ -356,6 +361,9 @@ namespace GGApps
 
                                                     ClearGeneratedDB(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
 
+                                                    var result11 = await RunAsyncCommandBatch(ct, appID, appName, "11_commit_to_git.bat " + appName, actualWorkDir, "Commit changes to SVN", mapPathError, Log);
+
+                                                        
                                                     Log.InfoLog(mapPathError, appName + " Produced Successfully over Staging Content.", appName);
 
                                                     HasErrors = false;

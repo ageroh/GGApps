@@ -6,7 +6,7 @@
         <section class="featured">
                 <div class="content-wrapper">
                     <hgroup class="title">
-                        <h2>Select the App to update for GreekGuide</h2>
+                        <h2>Select the App to update for GREEKGUIDE.COM</h2>
                     </hgroup>
                 </div>
             </section>
