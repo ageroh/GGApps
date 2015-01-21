@@ -19,6 +19,7 @@ namespace GGApps
         {
             if (!Page.IsPostBack)
             {
+                ClearCustomMessageValidationSummary();
                 Initialize();
 
                 InitializeAppDD();
@@ -116,26 +117,18 @@ namespace GGApps
 
         private void DisplayCustomMessageInValidationSummary(string message)
         {
-
-            CustomValidator CustomValidatorCtrl = new CustomValidator();
-
-            CustomValidatorCtrl.IsValid = false;
-            CustomValidatorCtrl.Text = message;
-            CustomValidatorCtrl.ErrorMessage = message;
-
-            BtnPublishApp.Controls.Add(CustomValidatorCtrl);
-//            this.Page.Controls.Add(CustomValidatorCtrl);
-
-        }  
-
-        protected void cusCustom_ServerValidate(object sender, ServerValidateEventArgs e)
-        {
-            if (e.Value.Length == 8)
-                e.IsValid = true;
-            else
-                e.IsValid = false;
+            custValidation.Text = message;
+            custValidation.Enabled = true;
+            custValidation.Visible = true;
         }
 
+        private void ClearCustomMessageValidationSummary()
+        {
+
+            custValidation.Text = String.Empty;
+            custValidation.Enabled = false;
+            custValidation.Visible = false;
+        }
 
 
         protected void BtnPublishApp_Click(object sender, EventArgs e)
@@ -145,31 +138,25 @@ namespace GGApps
             string appName = SelectApp.SelectedItem.Text;
             int appID = -1;
             Int32.TryParse(SelectApp.SelectedItem.Value, out appID);
-#if DEBUG
-            appName = "HYDRATEST";
-            appID = 999;
-#endif
-
 
             if (!CheckStagingProductionDBVersions(appName, appID, StagProdAppVersions))
             {
-                DisplayCustomMessageInValidationSummary("Please check DB version files.");
+                DisplayCustomMessageInValidationSummary("Please check DB version files for: " + appName + ". Nothing Deployed to Production.");
                 return;
             }
 
+            Log.InfoLog(mapPathError, "============================================== STARTED PUBLISH TO PRODUCTION FOR " + appName + " ==============================================", appName);
             // if is ok must staging_db_version = production_db_version + 1 foreach app. on Staging
             if (!RefreshVersionFileStaging(appID, appName, "ios"))
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "error", "alert('error! while deploying " + appName + " to production!');", true);
-                Response.Write("<span class='ErrorGeneral'>Some Error occured please contact Admin!</span>");
+                DisplayCustomMessageInValidationSummary("Error, while deploying " + appName + " to Production for iOS. Nothing Deployed to Production.");
                 return;
             }
 
             // if is ok must staging_db_version = production_db_version + 1 foreach app. on Staging
             if (!RefreshVersionFileStaging(appID, appName, "android"))
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "error", "alert('error! while deploying " + appName + " to production!');", true);
-                Response.Write("<span class='ErrorGeneral'>Some Error occured please contact Admin!</span>");
+                DisplayCustomMessageInValidationSummary("Error, while deploying " + appName + " to Production for Android. Nothing Deployed to Production."); 
                 return;
             }
 
@@ -184,27 +171,54 @@ namespace GGApps
                     if (res == null)
                     {
 
-                        Response.Write("<span class='ErrorGeneral'>Some Error occured while Uploading Files to Production!</span>");
+                        DisplayCustomMessageInValidationSummary("Some Error occured while Uploading Files to Production"); 
                         return;
                     }
                     else if (res == "success")
                     {
+                        // Create a version for this DB and Version just produced.
+                        Finalize fin = new Finalize();
+                        string DbVersion = "";
+
+                        if ((DbVersion = fin.AddProductionVerAdmin(appID, appName, "android")) == null)
+                        {
+                            DisplayCustomMessageInValidationSummary("Some Error occured while finalizing DB for Android.");
+                            return;
+                        }
+                        string topath = producedAppPath + appName.ToLower() + "\\update\\android\\DBVER\\";
+                        // Create a version of DB zip files inside a Directory with all the Databases when generated.
+                        fin.StoreNewDBtoHistory(appName, appID, "android", DbVersion, topath);
+
+
+                        if (fin.AddProductionVerAdmin(appID, appName, "ios") == null)
+                        {
+                            DisplayCustomMessageInValidationSummary("Some Error occured while finalizing DB for iOS.");
+                            return;
+                        }
+                        topath = producedAppPath + appName.ToLower() + "\\update\\ios\\DBVER\\";
+                        // Create a version of DB zip files inside a Directory with all the Databases when generated.
+                        fin.StoreNewDBtoHistory(appName, appID, "ios", DbVersion, topath);
+
+
+                        Log.InfoLog(mapPathError, "============================================== FINISHED WITH SUCCESS - PUBLISH TO PRODUCTION FOR " + appName + " ==============================================", appName);
+
                         // print Success Message...
-                        ClientScript.RegisterStartupScript(this.GetType(), "SUCCESS", "alert('SUCCESS! " + appName + " is up to Production, ready to download.');", true);
-                        // maybe add a DB record for this deployment.
+                        ClientScript.RegisterStartupScript(this.GetType(), "SUCCESS", "alert('Successfully deployed " + appName + " to Production, please download from open wi-fi to confirm.');", true);
+
                     }
                     else
                     {
-
-                        ClientScript.RegisterStartupScript(this.GetType(), "Error!", "alert('ERROR ! " + res + "');", true);
-                        Response.Write("<span class='ErrorGeneral'>Some Error occured: " + res + " </span>");
+                        DisplayCustomMessageInValidationSummary("Some Error occured: "+res);
+                        return;
                     }
                 }
-
             }
             else
-                Response.Write("<span class='ErrorGeneral'>Some Error occured, nothing deployed!</span>");
+                DisplayCustomMessageInValidationSummary("Some Error occured, nothing deployed to Production, try again.");
 
+           
+            // Refresh screen with new data.
+            FetchAppDetailsProduction(appID, appName);
         }
 
         private string UploadToProduction(string appName, int appID)
@@ -308,7 +322,7 @@ namespace GGApps
                                 Int32.TryParse(x.DB_Version, out dbverStag);
                                 Int32.TryParse(y.DB_Version, out dbverProd);
 
-                                if (dbverStag >= dbverProd)
+                                if (dbverStag > dbverProd)
                                 {
                                     if (y.Device == "android") android = true;
                                     if (y.Device == "ios")  ios = true;

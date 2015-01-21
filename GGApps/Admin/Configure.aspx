@@ -75,7 +75,7 @@
             <h4>Configuration.txt</h4>
             <asp:TextBox runat="server" TextMode="multiline" Columns="200" Rows="20" Width="100%"  ID="ConfigurationTxt" ></asp:TextBox>
 
-            <asp:Button runat="server" ID="SaveAll" Text="Save All Changes" OnClick="SaveAll_Click" OnClientClick="return confirm('Are you sure you want SAVE all changes?')" />
+            <asp:Button runat="server" ID="SaveAll" Text="Save Changes" OnClick="SaveAll_Click" OnClientClick="return confirm('Are you sure you want SAVE all changes?')" />
         </div>
 
     </asp:Panel>

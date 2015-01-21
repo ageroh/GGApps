@@ -19,12 +19,12 @@ namespace GGApps
             mapPathError = mPathError;
             
             // always check for changes
-            Initialize();
+            InitializeBundles();
         }
 
 
 
-        public static void Initialize()
+        public static void InitializeBundles()
         {
             // check if new app is created, and add a record on GGAppsBundle
             CheckAppsBundleList();

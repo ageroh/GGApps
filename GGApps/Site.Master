@@ -31,6 +31,10 @@
             ShowProgress();
         });
 
+        $('BtnPublishApp').on("click", function () {
+            ShowProgress();
+        });
+
         $(document).ready(function() {
             /* Open Entity Page from ADM.GREEKGUIDE ! */
             $(".reportDivClass").find(".popAdm").on('click', function () {

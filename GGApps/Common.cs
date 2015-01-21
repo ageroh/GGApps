@@ -317,36 +317,37 @@ namespace GGApps
 
         }
 
+        // NOT USED
 
-        public DataTable GetAllAppBundles()
-        {
+//        public DataTable GetAllAppBundles()
+//        {
 
-            try
-            {
-                if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
-                {
-                    SqlConnection con = new SqlConnection(rootWebConfig.AppSettings.Settings["GG_Reporting"].Value.ToString());
-                    SqlCommand cmd = new SqlCommand(@"select *
-                                                        from GGAppsBundleDetails
-                                                        inner join GGAppsBundle
-                                                        on GGAppsBundle.GGAppsBundleID = GGAppsBundleDetails.GGAppsBundleID", con);
+//            try
+//            {
+//                if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
+//                {
+//                    SqlConnection con = new SqlConnection(rootWebConfig.AppSettings.Settings["GG_Reporting"].Value.ToString());
+//                    SqlCommand cmd = new SqlCommand(@"select *
+//                                                        from GGAppsBundleDetails
+//                                                        inner join GGAppsBundle
+//                                                        on GGAppsBundle.GGAppsBundleID = GGAppsBundleDetails.GGAppsBundleID", con);
 
-                    SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adp.Fill(dt);
+//                    SqlDataAdapter adp = new SqlDataAdapter(cmd);
+//                    DataTable dt = new DataTable();
+//                    adp.Fill(dt);
 
-                    return dt;
+//                    return dt;
 
-                }
-            }
-            catch (Exception e)
-            {
-                HttpContext.Current.Session["hErrors"] = true;
-                Log.ErrorLog(mapPathError, e.Message, "generic", "");
-            }
-            return null;
+//                }
+//            }
+//            catch (Exception e)
+//            {
+//                HttpContext.Current.Session["hErrors"] = true;
+//                Log.ErrorLog(mapPathError, e.Message, "generic", "");
+//            }
+//            return null;
 
-        }
+//        }
 
 
 
@@ -575,15 +576,13 @@ namespace GGApps
 
         public void Initialize()
         {
+#if !DEBUG
+
             if (! CheckAccount())
             {
-                //string user = HttpContext.Current.User.Identity.Name;
-                //System.Web.UI.ScriptManager.RegisterClientScriptBlock(this, this.GetType()
-                //            , "Warning!"
-                //            , "alert('" + user.Substring(user.IndexOf("\\")+1)  + ", you are not authorized to view this page!'); ", true);
-                
                 Response.Redirect("~/");
             }
+#endif
         }
 
         // Implement this as for multiple account users.

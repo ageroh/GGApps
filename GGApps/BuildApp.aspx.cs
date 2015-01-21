@@ -157,7 +157,7 @@ namespace GGApps
                                         ClearGeneratedDB(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
 
 
-                                        var result11 = await RunAsyncCommandBatch(ct, appID, appName, "11_commit_to_git.bat " + appName, actualWorkDir, "Commit changes to SVN", mapPathError, Log);
+                                       // var result11 = await RunAsyncCommandBatch(ct, appID, appName, "11_commit_to_git.bat " + appName, actualWorkDir, "Commit changes to SVN", mapPathError, Log);
 
 
                                         Log.InfoLog(mapPathError, appName + " Produced Successfully over Staging Content.", appName);
@@ -225,7 +225,7 @@ namespace GGApps
             Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
             {
-#if !DEBUG
+
                 var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", mapPathError, Log);
 
                     if (!result3.IsCancellationRequested && !HasErrors)
@@ -254,7 +254,7 @@ namespace GGApps
 
                             if (!result4.IsCancellationRequested && !HasErrors)
                             {
-
+#if !DEBUG
                                 var result5 = await RunAsyncCommandBatch(ct, appID, appName, "5_get_images.bat " + appName, actualWorkDir
                                                                                             , "Transform All Images running Python", mapPathError, Log);
 
@@ -282,7 +282,7 @@ namespace GGApps
                                         if (CreateSQLiteDBs.CreateBundleDBAndFiles(appName) < 0)
                                             HasErrors = true;
                                          
-#if !DEBUG
+
                                         // upload fb-images to production suncronusly. or remove it from here.
                                         result7 = ExecuteStep7(appID, appName, Server.MapPath("~/"), Log, mapPathError);
                                         if (result7 == null)
@@ -298,17 +298,16 @@ namespace GGApps
                                             HasErrors = true;
                                         else
                                         {
-#endif
+
                                           // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
                                            // its not supported from ANDROID APK.
                                            if (IncreaseDBMinorVersion(appID, appName) == null)
                                                 HasErrors = true;
                                            // ;
-#if !DEBUG
+
 
                                         }
-#endif
-     
+
 
                                         if (!HasErrors)
                                         {
@@ -324,7 +323,7 @@ namespace GGApps
                                         }
 
 
-
+#if !DEBUG
                                         // LOG THIS
                                         // Send email to QA - Nadia - Galufos Team (for versions file)
                                         if (!result9.IsCancellationRequested && !HasErrors)
@@ -361,7 +360,7 @@ namespace GGApps
 
                                                     ClearGeneratedDB(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
 
-                                                    var result11 = await RunAsyncCommandBatch(ct, appID, appName, "11_commit_to_git.bat " + appName, actualWorkDir, "Commit changes to SVN", mapPathError, Log);
+                                                 //   var result11 = await RunAsyncCommandBatch(ct, appID, appName, "11_commit_to_git.bat " + appName, actualWorkDir, "Commit changes to SVN", mapPathError, Log);
 
                                                         
                                                     Log.InfoLog(mapPathError, appName + " Produced Successfully over Staging Content.", appName);
@@ -372,10 +371,12 @@ namespace GGApps
                                                 }
                                             }
                                         }
-#if !DEBUG  
+#endif
+ 
                                     }
                                 }
                             }
+#if !DEBUG
                         }
                     }
 
@@ -413,7 +414,8 @@ namespace GGApps
                         return;
                     }
 #endif
-              }
+
+            }
 
             );
 

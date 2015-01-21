@@ -28,7 +28,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/13/2015 15:47:27</publishTime>
     </File>
     <File Include="Admin/Configure.aspx">
-      <publishTime>01/20/2015 13:34:16</publishTime>
+      <publishTime>01/21/2015 09:39:24</publishTime>
     </File>
     <File Include="Admin/HomePage.aspx">
       <publishTime>01/13/2015 16:01:27</publishTime>
@@ -37,7 +37,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/13/2015 16:01:16</publishTime>
     </File>
     <File Include="Admin/Publish.aspx">
-      <publishTime>01/16/2015 16:50:24</publishTime>
+      <publishTime>01/21/2015 11:51:13</publishTime>
+    </File>
+    <File Include="Batch/10_create_zip.bat">
+      <publishTime>01/08/2015 11:29:09</publishTime>
+    </File>
+    <File Include="Batch/11_commit_to_git.bat">
+      <publishTime>01/20/2015 16:47:39</publishTime>
     </File>
     <File Include="Batch/260">
       <publishTime>12/05/2014 17:30:29</publishTime>
@@ -163,7 +169,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/16/2014 15:45:43</publishTime>
     </File>
     <File Include="bin/GGApps.dll">
-      <publishTime>01/20/2015 14:14:15</publishTime>
+      <publishTime>01/21/2015 15:34:09</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.FriendlyUrls.dll">
       <publishTime>12/03/2014 14:40:59</publishTime>
@@ -235,7 +241,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/15/2015 14:32:49</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>01/16/2015 12:57:06</publishTime>
+      <publishTime>01/21/2015 10:34:10</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>12/01/2014 10:02:21</publishTime>
@@ -466,7 +472,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/01/2014 10:02:21</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>01/20/2015 13:00:15</publishTime>
+      <publishTime>01/20/2015 16:18:04</publishTime>
     </File>
     <File Include="README_PRODUCTION.txt">
       <publishTime>12/12/2014 18:15:15</publishTime>
@@ -550,7 +556,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/01/2014 10:02:21</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>01/20/2015 12:34:36</publishTime>
+      <publishTime>01/21/2015 09:54:37</publishTime>
     </File>
     <File Include="Site.Mobile.Master">
       <publishTime>12/01/2014 10:02:21</publishTime>
@@ -583,7 +589,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/01/2014 10:02:21</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/20/2015 14:09:57</publishTime>
+      <publishTime>01/21/2015 10:55:00</publishTime>
     </File>
     <File Include="Web.sitemap">
       <publishTime>01/20/2015 11:52:31</publishTime>

@@ -107,6 +107,8 @@ namespace GGApps
             // save files from TextAreas
             SaveVersionsConfigurationFiles((int)Session["appID"], (string)Session["appName"], DDEnvironment.SelectedItem.Value, DDListDevice.SelectedItem.Value);
 
+            // Refresh data
+            FetchVersionsConfigurationFiles((int)Session["appID"], (string)Session["appName"], DDEnvironment.SelectedItem.Value, DDListDevice.SelectedItem.Value);
         }
 
         private object SaveVersionsConfigurationFiles(int appID, string appName, string Environment, string mobileDevice)

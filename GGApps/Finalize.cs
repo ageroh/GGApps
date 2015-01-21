@@ -121,6 +121,43 @@ namespace GGApps
         }
 
 
+        public JObject GetConfigurationFileProduction(string appName, int appID, string mobileDevice, out string configVersion)
+        {
+            configVersion = "";
+            try
+            {
+                // always from production 
+                byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(GetCofigureFile(mobileDevice, appName, appID, "Production", "configuration.txt"));
+
+                // read JSON directly from a file
+                using (var file = new MemoryStream(byteArray))
+                {
+                    file.Position = 0;
+                    var sr = new StreamReader(file);
+
+                    using (JsonTextReader reader = new JsonTextReader(sr))
+                    {
+                        JObject o2 = (JObject)JToken.ReadFrom(reader);
+                        JToken jconfigVersion;
+                        o2.TryGetValue("configuration_version", out jconfigVersion);
+                        if (jconfigVersion != null)
+                        {
+                            configVersion = jconfigVersion.Value<string>();
+                            return o2;
+                        }
+                    }
+                }
+                return null;
+            }
+            catch (Exception e)
+            {
+                Log.ErrorLog(mapPathError, "Some exception occured in GetConfigurationFileProduction(), "+ e.Message, appName);
+                return null;
+            }
+            
+        }
+
+        
 
 
 
@@ -597,44 +634,44 @@ namespace GGApps
         }
 
 
-        /// <summary>
-        /// Get all App Versions bundles produced for Specific App only
-        /// </summary>
-        /// <returns></returns>
-        public DataTable GetAllAppBundles(int appID, string mapPathError)
-        {
-            try
-            {
-                if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
-                {
-                    using (SqlConnection con = new SqlConnection(rootWebConfig.AppSettings.Settings["GG_Reporting"].Value.ToString()))
-                    {
-                        using (SqlCommand cmd = new SqlCommand("usp_get_AllAppBundles", con))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.Add("@appID", SqlDbType.Int).Value = appID;
+        ///// <summary>
+        ///// Get all App Versions bundles produced for Specific App only
+        ///// </summary>
+        ///// <returns></returns>
+        //public DataTable GetAllAppBundles(int appID, string mapPathError)
+        //{
+        //    try
+        //    {
+        //        if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
+        //        {
+        //            using (SqlConnection con = new SqlConnection(rootWebConfig.AppSettings.Settings["GG_Reporting"].Value.ToString()))
+        //            {
+        //                using (SqlCommand cmd = new SqlCommand("usp_get_AllAppBundles", con))
+        //                {
+        //                    cmd.CommandType = CommandType.StoredProcedure;
+        //                    cmd.Parameters.Add("@appID", SqlDbType.Int).Value = appID;
                     
-                            con.Open();
+        //                    con.Open();
                             
-                            SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                            DataTable dt = new DataTable();
-                            adp.Fill(dt);
+        //                    SqlDataAdapter adp = new SqlDataAdapter(cmd);
+        //                    DataTable dt = new DataTable();
+        //                    adp.Fill(dt);
 
-                            return dt;
+        //                    return dt;
 
-                        }
-                    }
+        //                }
+        //            }
                     
-                }
-            }
-            catch (Exception e)
-            {
-                Log.ErrorLog(mapPathError, e.Message, "generic", "");
-                return null;
-            }
-            return null;
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Log.ErrorLog(mapPathError, e.Message, "generic", "");
+        //        return null;
+        //    }
+        //    return null;
 
-        }
+        //}
 
 
 
@@ -665,7 +702,6 @@ namespace GGApps
                         // get DB Version File, DB Version, App version, configVersion.
                         JObject dbVerJSON = GetVersionsFile(mobileDevice, out DBVersionNumber, out appVersionNumber, out fileConfigVersionNumber, dirInfo.Name.ToLower());
 
-
                         if (fileConfigVersionNumber != configVersionNumber)   // conflict to Configuration files!
                         {
                             Log.ErrorLog(mapPathError, "Conflict on configuration.txt and versions.txt -> Configuration_Version. Resolved by keeping configuration.txt.\n\t\t\t -> versions.txt:(" + configVersionNumber + ") " +
@@ -675,16 +711,13 @@ namespace GGApps
 
                         if (dt != null)
                         {
-
                             if (dt.Rows.Count > 0)
                             {
                                 //dirInfo.Name.ToLower()
 
-
                                 var results = from dsx in dt.AsEnumerable()
                                               where dsx.Field<string>("appName").ToLower().Trim() == dirInfo.Name.ToLower().Trim()
                                               select dsx;
-
 
                                 if (UpdateAppBundle(mobileDevice, ((string)results.CopyToDataTable().Rows[0][1]).ToLower(), ((int)results.CopyToDataTable().Rows[0][0]), appVersionNumber, configVersionNumber, DBVersionNumber, configVerJSON, dbVerJSON) == null)
                                     return null;
@@ -703,6 +736,53 @@ namespace GGApps
 
             return 0;
         }
+
+
+
+        /// <summary>
+        /// Add a new version either DB, App, Config to GGAppsBundleDetails in order to keep tracking of history changes.
+        /// Data is collected from Production env.
+        /// </summary>
+        /// <param name="appID"></param>
+        /// <param name="appName"></param>
+        /// <param name="mobileDevice"></param>
+        /// <returns></returns>
+        internal string AddProductionVerAdmin(int appID, string appName, string mobileDevice)
+        {
+            try
+            {
+                //when found create a record on DB, if its not already craeted.
+                string configVersionNumber;
+                string DBVersionNumber;
+                string appVersionNumber;
+                string fileConfigVersionNumber;
+
+                // get Configuration File and Version
+                JObject configVerJSON = GetConfigurationFileProduction(appName, appID, mobileDevice, out configVersionNumber);
+
+                // get DB Version File, DB Version, App version, configVersion.
+                JObject dbVerJSON = GetVersionsFileProduction(mobileDevice, out DBVersionNumber, out appVersionNumber, out fileConfigVersionNumber, appName);
+
+                if (fileConfigVersionNumber != configVersionNumber)   // conflict to Configuration files!
+                {
+                    Log.ErrorLog(mapPathError, "Conflict on configuration.txt and versions.txt -> Configuration_Version. Resolved by keeping configuration.txt.\n\t\t\t -> versions.txt:(" + configVersionNumber + ") " +
+                                                "\n\t\t\t -> configuration.txt:(" + fileConfigVersionNumber + ") ", "generic");
+                    configVersionNumber = fileConfigVersionNumber;
+                }
+
+                if (UpdateAppBundle(mobileDevice, appName, appID, appVersionNumber, configVersionNumber, DBVersionNumber, configVerJSON, dbVerJSON) == null)
+                    return null;
+
+                return DBVersionNumber;
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorLog(mapPathError, "Exception on  AddProductionVerAdmin when initializing Backoffice DB." + ex.Message, "generic");
+                return null;
+            }
+
+        }
+
 
 
         public static string UpdateAppBundle(string mobileDevice, string appName, int appID, string versionNumber, string ConfiguratioNumber, string DBVersionNumber, JObject ConfigurationJSON, JObject VersionJSON)
@@ -749,6 +829,42 @@ namespace GGApps
 
         }
 
+
+
+
+        internal object StoreNewDBtoHistory(string appName, int appID, string mobileDevice, string dbVersion, string toHistoryPath)
+        {
+            // store DB zip files to DBVER folder under update / appname / dbver / <ver_number> 
+            try
+            {
+
+                // copy existing DB to path update / appname / dbver / <ver_number> 
+                if (!Directory.Exists(toHistoryPath + dbVersion))
+                {
+                    Directory.CreateDirectory(toHistoryPath + dbVersion);
+                }
+
+                if (File.Exists(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentEN.db"))
+                    File.Copy(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentEN.db",
+                              toHistoryPath + dbVersion + "\\ContentEN.db");
+
+                if (File.Exists(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentGR.db"))
+                    File.Copy(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentGR.db",
+                        toHistoryPath + dbVersion + "\\ContentGR.db");
+
+
+                if (File.Exists(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentRU.db"))
+                    File.Copy(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentRU.db",
+                        toHistoryPath + dbVersion + "\\ContentRU.db");
+
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorLog(mapPathError, "Some exception occured in StoreNedDBtoHistory()", appName);
+                return null;
+            }
+            return 0;
+        }
 
 
     }

@@ -25,7 +25,7 @@
         <asp:ImageButton runat="server" ID="refersbtn" ImageUrl="~/Content/img/refreshDD.png" BorderStyle="None" BackColor="Transparent" OnClick="refreshDD_Click" style="width:26px; margin: 5px;"/>
         
 
-        <h3>Just Produced</h3>
+        <h3>Just Produced(Staging)</h3>
         <div style="width:960px;">
             <asp:ListView ID="latestVersions" runat="server"  ItemPlaceholderID="itemPlaceHolder1">
                 <LayoutTemplate>
@@ -134,7 +134,8 @@
         <asp:Button runat="server" Text="Publish App to Production" ID="BtnPublishApp" ClientIDMode="Static" Enabled="false" OnClick="BtnPublishApp_Click" CssClass="InputDisabledCustom"/>
         <asp:Button runat="server" Text="Undo Publish" ID="undoPublish" Enabled="false" CssClass="InputDisabledCustom"/>
 
-        <asp:CustomValidator runat="server" id="cusCustom" onservervalidate="cusCustom_ServerValidate" errormessage="Custom Error Message!" />
+        <asp:Label CssClass="ErrorGeneral" runat="server"  ID="custValidation" Text="" Visible="false"></asp:Label>
+        
 
     </asp:Panel>
 </asp:Content>
