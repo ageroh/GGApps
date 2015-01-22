@@ -31,7 +31,7 @@
                 <LayoutTemplate>
                     <table cellpadding="2" cellspacing="0" runat="server" border="1" class="latestVersions" style="width: 100%; height: 100px; border: dashed 2px #04AFEF; background-color: #B0E2F5; table-layout:fixed;">
                         <tr style="background-color: #E5E5FE">
-                            <th style="width:50px;">Select</th>
+                            <th style="width:50px;">What To Publish</th>
                             <th>Mobile Device</th>
                             <th>Database Version</th>
                             <th>Application Version</th>

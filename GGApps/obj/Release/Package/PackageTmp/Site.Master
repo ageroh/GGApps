@@ -49,10 +49,24 @@
 
             $("#BtnPublishApp").click(
                 function () {
-                    if (confirm('Are you sure you want to publish to Production this Application?')) {
-                        return true;
-                    } else {
+                    var doUpdate = 0;
+
+                    $(".latestVersions").find("input:checkbox").each(function() {
+                        if (!$(this).prop('checked')) {
+                            doUpdate++;
+                        }
+                    });
+
+                    if (doUpdate == 2) {
+                        alert("You must select at least one Mobile Device to Publish or both!");
                         return false;
+                    }
+                    else {
+                        if (confirm('Are you sure you want to publish to Production this Application?')) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
                 });
 
