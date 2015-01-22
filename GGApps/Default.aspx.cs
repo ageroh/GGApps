@@ -88,7 +88,7 @@ namespace GGApps
 
 
 
-            if (!String.IsNullOrEmpty(ddStart.SelectedValue))
+            if ( ddStart.SelectedIndex > 0 )
             {
                 Int32 appID = Int32.Parse(ddStart.SelectedValue);
                 String appName = ddStart.SelectedItem.ToString();
