@@ -21,6 +21,5 @@ C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\EntityF
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\EntityFramework.SqlServer.xml
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Newtonsoft.Json.xml
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Microsoft.AspNet.FriendlyUrls.xml
-C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.csprojResolveAssemblyReference.cache
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.dll
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.pdb

@@ -225,7 +225,7 @@ namespace GGApps
             Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
             {
-
+#if !DEBUG
                 var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", mapPathError, Log);
 
                     if (!result3.IsCancellationRequested && !HasErrors)
@@ -254,7 +254,7 @@ namespace GGApps
 
                             if (!result4.IsCancellationRequested && !HasErrors)
                             {
-#if !DEBUG
+
                                 var result5 = await RunAsyncCommandBatch(ct, appID, appName, "5_get_images.bat " + appName, actualWorkDir
                                                                                             , "Transform All Images running Python", mapPathError, Log);
 
@@ -274,7 +274,7 @@ namespace GGApps
 
                                     if (result6 != null && !HasErrors)
                                     {
-#endif
+
                                         object result7 = null, result8 = null;
                                         CancellationToken result9, result10;
 
@@ -298,23 +298,24 @@ namespace GGApps
                                             HasErrors = true;
                                         else
                                         {
-
+#endif
                                           // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
                                            // its not supported from ANDROID APK.
                                            if (IncreaseDBMinorVersion(appID, appName) == null)
                                                 HasErrors = true;
                                            // ;
-
+#if !DEBUG
 
                                         }
 
-
                                         if (!HasErrors)
                                         {
+#endif
                                             if (UpdateVersionsFile(appID, appName) == null)
                                             {
                                                 HasErrors = true;
                                             }
+#if !DEBUG
                                             else
                                             {
                                                 result9 = await RunAsyncCommandBatch(ct, appID, appName, "9_copy_img_databases.bat " + appName + " " + DateTime.Now.ToString("yyyyMMdd"), actualWorkDir
@@ -323,7 +324,7 @@ namespace GGApps
                                         }
 
 
-#if !DEBUG
+
                                         // LOG THIS
                                         // Send email to QA - Nadia - Galufos Team (for versions file)
                                         if (!result9.IsCancellationRequested && !HasErrors)
@@ -371,12 +372,12 @@ namespace GGApps
                                                 }
                                             }
                                         }
-#endif
+
  
                                     }
                                 }
                             }
-#if !DEBUG
+
                         }
                     }
 
@@ -413,8 +414,8 @@ namespace GGApps
                         Session["FinishedProcessing"] = true;
                         return;
                     }
-#endif
 
+#endif
             }
 
             );

@@ -100,7 +100,7 @@ namespace GGApps
                 for (int j = 0; j < dt.Columns.Count; j++)
                 {
                     if (dt.Columns[j].ColumnName.ToLower() == "id")
-                        html += "<td><a href='' class='popAdm'>" + dt.Rows[i][j].ToString() + "</a></td>";
+                        html += "<td><a href='#' class='popAdm'>" + dt.Rows[i][j].ToString() + "</a></td>";
                     else
                     {
                         // truncate text if too long!

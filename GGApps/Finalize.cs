@@ -46,7 +46,6 @@ namespace GGApps
 
             try
             {
-
                 JObject nObject;
                 fileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\" + typeOfConfigfile;
 
@@ -62,8 +61,12 @@ namespace GGApps
                     }
                 }
 
+                if(File.Exists(fileName))
+                    File.Delete(fileName);
+
                 using (Stream stream = File.OpenWrite(fileName))
                 {
+                    stream.Flush();
                     using (var streamWriter = new StreamWriter(stream))
                     {
                         using (var writer = new JsonTextWriter(streamWriter))
@@ -80,7 +83,6 @@ namespace GGApps
                 return false;
             }
             return true;
-
         }
 
 
