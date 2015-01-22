@@ -37,8 +37,9 @@
 
         $(document).ready(function() {
             /* Open Entity Page from ADM.GREEKGUIDE ! */
-            $(".reportDivClass").find(".popAdm").on('click', function () {
+            $(".reportDivClass").find(".popAdm").on('click', function (event) {
                 DoOpenEntity(parseInt($(this).text().trim()));
+                return false;
             });
         });
 
