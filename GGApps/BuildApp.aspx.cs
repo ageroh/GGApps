@@ -102,6 +102,8 @@ namespace GGApps
                             if (CreateSQLiteDBs.CreateBundleDBAndFiles(appName) < 0)
                                 HasErrors = true;
 
+#if !DEBUG
+
                             if (!HasErrors )
                             {
                                 // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
@@ -168,11 +170,12 @@ namespace GGApps
                                     }
                                 }
                             }
+#endif
                         }
                     }
                 }
 
-
+#if !DEBUG
                 // Send failure email if execution was interupted / or other error occured!!
                 if (HasErrors)
                 {
@@ -203,6 +206,7 @@ namespace GGApps
                     Session["FinishedProcessing"] = true;
                     return;
                 }
+#endif
               }
             );
 
@@ -225,7 +229,7 @@ namespace GGApps
             Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
             {
-#if !DEBUG
+
                 var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", mapPathError, Log);
 
                     if (!result3.IsCancellationRequested && !HasErrors)
@@ -282,7 +286,7 @@ namespace GGApps
                                         if (CreateSQLiteDBs.CreateBundleDBAndFiles(appName) < 0)
                                             HasErrors = true;
                                          
-
+#if !DEBUG
                                         // upload fb-images to production suncronusly. or remove it from here.
                                         result7 = ExecuteStep7(appID, appName, Server.MapPath("~/"), Log, mapPathError);
                                         if (result7 == null)
@@ -298,24 +302,24 @@ namespace GGApps
                                             HasErrors = true;
                                         else
                                         {
-#endif
+
                                           // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
                                            // its not supported from ANDROID APK.
                                            if (IncreaseDBMinorVersion(appID, appName) == null)
                                                 HasErrors = true;
                                            // ;
-#if !DEBUG
+
 
                                         }
 
                                         if (!HasErrors)
                                         {
-#endif
+
                                             if (UpdateVersionsFile(appID, appName) == null)
                                             {
                                                 HasErrors = true;
                                             }
-#if !DEBUG
+
                                             else
                                             {
                                                 result9 = await RunAsyncCommandBatch(ct, appID, appName, "9_copy_img_databases.bat " + appName + " " + DateTime.Now.ToString("yyyyMMdd"), actualWorkDir
@@ -373,7 +377,7 @@ namespace GGApps
                                             }
                                         }
 
- 
+#endif
                                     }
                                 }
                             }
@@ -381,7 +385,7 @@ namespace GGApps
                         }
                     }
 
-
+#if !DEBUG
                     // Send failure email if execution was interupted / or other error occured!!
                     if (HasErrors)
                     {
@@ -542,29 +546,36 @@ namespace GGApps
         /// <returns></returns>
         private object UpdateVersionsFile(int appID, string appName)
         {
-            /* Pending while APK is not ready for testing this.*/
-            
-            Finalize fin = new Finalize(appName, appID);
-            string dbver;
+            try
+            {
+                /* Pending while APK is not ready for testing this.*/
+                Log.InfoLog(mapPathError, "Started> Update Versions.txt", appName);
 
-            Log.InfoLog(mapPathError, "Started> Update Versions.txt", appName);
-            
-            // Set Versions file for IOS only for one Lang
-            dbver = fin.InitializeSQLiteVersionFromDB(appID, appName, 1, "ios");
-            if (!fin.SetVerionsFileProperty("db_version", dbver, appName, appID, "ios", 1, "versions.txt") )
+                Finalize fin = new Finalize(appName, appID);
+                string dbver;
+
+                // Set Versions file for IOS only for one Lang
+                dbver = fin.InitializeSQLiteVersionFromDB(appID, appName, 1, "ios");
+                if (!fin.SetVerionsFileProperty("db_version", dbver, appName, appID, "ios", 1, "versions.txt"))
+                    return null;
+
+                // Set Versions file for ANDROID
+                dbver = fin.InitializeSQLiteVersionFromDB(appID, appName, 1, "android");
+                if (!fin.SetVerionsFileProperty("db_version", dbver, appName, appID, "android", 1, "versions.txt"))
+                    return null;
+
+                // also Set configuraion version taken from Configuration.txt doc.!!
+
+                Log.InfoLog(mapPathError, "Finished> Update Versions.txt to " + dbver, appName);
+
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorLog(mapPathError, "Some exception occured in UpdateVersionsFile(), ", ex.Message, appName);
                 return null;
-
-            // Set Versions file for ANDROID
-            dbver = fin.InitializeSQLiteVersionFromDB(appID, appName, 1, "android");
-            if (!fin.SetVerionsFileProperty("db_version", dbver, appName, appID, "android", 1, "versions.txt"))
-                return null;
-
-            // also Set configuraion version taken from Configuration.txt doc.!!
-
-            Log.InfoLog(mapPathError, "Finished> Update Versions.txt to " + dbver, appName);
-            
-
-            return 0;
+            }
         }
 
 
@@ -579,40 +590,48 @@ namespace GGApps
         /// <returns></returns>
         private object ExecuteStep8(int appID, string appName)
         {
-            double totalBytesUploaded = 0;
-
-            if (rootWebConfig.AppSettings.Settings["ProducedAppPath"] != null)
+            try
             {
-                string ProducedAppPath = rootWebConfig.AppSettings.Settings["ProducedAppPath"].Value;
-                Log.InfoLog(mapPathError, ":> Start Create-upload Entity_text to  FTP", appName);
+                double totalBytesUploaded = 0;
 
-                if (GenerateEntityText(appName, appID, ProducedAppPath + "\\" + appName + "\\config\\", "entity_text.txt") == null)
+                if (rootWebConfig.AppSettings.Settings["ProducedAppPath"] != null)
                 {
-                    Log.ErrorLog(mapPathError, ":> Error: in genaration of Entity_Text", appName);
-                    return null;
-                }
+                    string ProducedAppPath = rootWebConfig.AppSettings.Settings["ProducedAppPath"].Value;
+                    Log.InfoLog(mapPathError, ":> Start Create-upload Entity_text to  FTP", appName);
 
-                if (File.Exists(ProducedAppPath + "\\" + appName + "\\config\\entity_text.txt"))
-                    totalBytesUploaded = UploadFileRemote(appName, ProducedAppPath + "\\" + appName + "\\config\\entity_text.txt", appName.ToLower() + "/config/entity_text.txt");
-                else
-                {
-                    Log.ErrorLog(mapPathError, ":> Error: Entity_text.txt not found locally!", appName);
-                    return null;
-                }
+                    if (GenerateEntityText(appName, appID, ProducedAppPath + "\\" + appName + "\\config\\", "entity_text.txt") == null)
+                    {
+                        Log.ErrorLog(mapPathError, ":> Error: in genaration of Entity_Text", appName);
+                        return null;
+                    }
+
+                    if (File.Exists(ProducedAppPath + "\\" + appName + "\\config\\entity_text.txt"))
+                        totalBytesUploaded = UploadFileRemote(appName, ProducedAppPath + "\\" + appName + "\\config\\entity_text.txt", appName.ToLower() + "/config/entity_text.txt");
+                    else
+                    {
+                        Log.ErrorLog(mapPathError, ":> Error: Entity_text.txt not found locally!", appName);
+                        return null;
+                    }
 
 
-                if (totalBytesUploaded <= 0)
-                {
-                    Log.ErrorLog(mapPathError, ":>Error: Entity_text.txt too small or Zero size.", appName);
-                    return null;
+                    if (totalBytesUploaded <= 0)
+                    {
+                        Log.ErrorLog(mapPathError, ":>Error: Entity_text.txt too small or Zero size.", appName);
+                        return null;
+                    }
+                    else
+                    {
+                        Log.InfoLog(mapPathError, ":> Success finish Upload Entity_text.txt to FTP", appName);
+                        return totalBytesUploaded;
+                    }
                 }
-                else
-                {
-                    Log.InfoLog(mapPathError, ":> Success finish Upload Entity_text.txt to FTP", appName);
-                    return totalBytesUploaded;
-                }
+                return null;
             }
-            return null;
+            catch (Exception e)
+            { 
+                Log.ErrorLog(mapPathError, "Some exception occurred in ExecuteStep8(), "+ e.Message, appName);
+                return null;
+            }
         }
 
 

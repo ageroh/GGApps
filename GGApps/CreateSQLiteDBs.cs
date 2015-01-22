@@ -263,7 +263,12 @@ namespace GGApps
                     // copy temp DB to real path -- this is only needed for mode = 1
                     if (mode == 1)
                         File.Copy(tempLocalDBfile, localDBfile, true);
-
+                    else
+                    {
+                        if (langID == "EL")
+                            langID = "GR";
+                        File.Copy(tempLocalDBfile, outputPhotosPath + "Content" + langID + ".db", true);
+                    }
                     if (File.Exists(tempLocalDBfile))
                         File.Delete(tempLocalDBfile);
 
