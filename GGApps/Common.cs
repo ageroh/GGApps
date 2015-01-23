@@ -40,8 +40,7 @@ namespace GGApps
         //}
 
         public static CreateLogFiles Log = new CreateLogFiles();
-
-
+        
         public class AppVersionDetail
         {
             public string Environment;
