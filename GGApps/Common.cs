@@ -28,18 +28,10 @@ namespace GGApps
         public static string mapPathError = HostingEnvironment.MapPath("~/Logs") + "\\Log_";
         
         public static string producedAppPath = rootWebConfig.AppSettings.Settings["ProducedAppPath"].Value.ToString();
-
-        public static bool HasErrors = false;
-        //{
-        //    get {
-        //        if (Session["hErrors"] == null)
-        //            return false;
-        //        return (bool)Session["hErrors"];
-        //    }
-        //    set { Session["hErrors"] = value; }
-        //}
-
+        
+        public static bool HasErrors = false;                       // MAKE THIS A SESSION VARIABLE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public static CreateLogFiles Log = new CreateLogFiles();
+
         
         public class AppVersionDetail
         {
@@ -316,38 +308,6 @@ namespace GGApps
 
         }
 
-        // NOT USED
-
-//        public DataTable GetAllAppBundles()
-//        {
-
-//            try
-//            {
-//                if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
-//                {
-//                    SqlConnection con = new SqlConnection(rootWebConfig.AppSettings.Settings["GG_Reporting"].Value.ToString());
-//                    SqlCommand cmd = new SqlCommand(@"select *
-//                                                        from GGAppsBundleDetails
-//                                                        inner join GGAppsBundle
-//                                                        on GGAppsBundle.GGAppsBundleID = GGAppsBundleDetails.GGAppsBundleID", con);
-
-//                    SqlDataAdapter adp = new SqlDataAdapter(cmd);
-//                    DataTable dt = new DataTable();
-//                    adp.Fill(dt);
-
-//                    return dt;
-
-//                }
-//            }
-//            catch (Exception e)
-//            {
-//                HttpContext.Current.Session["hErrors"] = true;
-//                Log.ErrorLog(mapPathError, e.Message, "generic", "");
-//            }
-//            return null;
-
-//        }
-
 
 
 
@@ -372,6 +332,59 @@ namespace GGApps
         }
 
 
+        /// <summary>
+        /// Check if Versions.txt exists on Staging
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="appID"></param>
+        /// <param name="mobileDevice"></param>
+        /// <returns></returns>
+        public bool CheckVersionsFile(string appName, string mobileDevice)
+        {
+            var fileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\versions.txt";
+            if (!File.Exists(fileName))
+            {
+                return false;
+            }
+
+            return true;
+
+        }
+
+
+        /// <summary>
+        /// Checks if versions.txt exists in Production.
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="mobileDevice"></param>
+        /// <returns></returns>
+        public bool CheckVersionsFileProduction( string appName, string mobileDevice)
+        {
+            string remotefilename = appName.ToLower() + "//update//" + mobileDevice + "//versions.txt";
+
+            FTP ftpClient = null;
+            if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
+            {
+                var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
+                if (ftpConStr.Length == 3)
+                {
+                    ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
+                }
+            }
+
+            if (ftpClient != null)
+            {
+                if (ftpClient.getFileCreatedDateTime(remotefilename) != null)                       
+                {
+                    return true;                // file exists and has a creation datetime!
+                }
+            }
+
+            return false;
+
+        }
+
+
 
         /// <summary>
         /// Read Properties from JSON Version file "versions.txt", and store in OUT params, for specific mobileDevice and App.
@@ -393,13 +406,16 @@ namespace GGApps
             // Check if file exists on expcted location.
             if (!File.Exists(fileName))
             {
+                // DONT CREATE A VERSION FILE HERE ?
+
+
                 // if configuration file does not exists, then create a default, and keep a LOG!
-                if (CreateVersionsFile(fileName) != null)
-                {
-                    Log.ErrorLog(mapPathError, " Versions file did not found in the expected location but created: " + fileName, "generic");
-                }
-                else
-                    return null;
+                //if (CreateVersionsFile(fileName) != null)
+                //{
+                //    Log.ErrorLog(mapPathError, " Versions file did not found in the expected location but created: " + fileName, "generic");
+                //}
+                //else
+                //    return null;
             }
             try
             {
@@ -707,6 +723,7 @@ namespace GGApps
 
 
 
+
         public JObject GetVersionsFileProduction(string mobileDevice, out string dbVersion, out string appVersion, out string configVersion, string appName)
         {
             dbVersion = null;           // something is wrong !
@@ -835,6 +852,56 @@ namespace GGApps
             }
 
         }
+
+
+
+        protected bool PutOnLineProduction(string appName, string mobileDevice, string environment)
+        {
+            if (RenameFileRemote(appName, appName.ToLower() + "/update/" + mobileDevice + "/versions_OFFLINE.txt", "versions.txt") > 0)
+                return true;
+
+            return false;
+        }
+
+        protected bool PutOffLineProduction(string appName, string mobileDevice, string environment)
+        {
+            if (RenameFileRemote(appName, appName.ToLower() + "/update/" + mobileDevice + "/versions.txt", "versions_OFFLINE.txt") > 0)
+                return true;
+            
+            return false;
+
+        }
+
+        protected bool PutOnLine(string appName, string mobileDevice, string environment)
+        {
+            var fileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\versions.txt";
+            var fileNameOffLine = producedAppPath + appName + "\\update\\" + mobileDevice + "\\versions_OFFLINE.txt";
+
+            if (File.Exists(fileNameOffLine))
+            {
+                File.Move(fileNameOffLine, fileName); // move old OFFLINE versions to versions.txt.
+            }
+            else
+                return false;
+
+            return true;
+        }
+
+        protected bool PutOffLine(string appName, string mobileDevice, string environment)
+        {
+            var fileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\versions.txt";
+            var fileNameOffLine = producedAppPath + appName + "\\update\\" + mobileDevice + "\\versions_OFFLINE.txt";
+
+            if (File.Exists(fileName))
+            {
+                File.Move(fileName, fileNameOffLine); // move old OFFLINE versions to versions.txt.
+            }
+            else
+                return false;
+
+            return true;
+        }
+
 
 
 

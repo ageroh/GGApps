@@ -92,6 +92,7 @@ namespace GGApps
             prodAndDB.Text = dbVersion;
             prodAndAV.Text = appVersion;
             prodAndCV.Text = configVersion;
+            prodAndName.Text = appName;
             StagProdAppVersions.Add(new AppVersionDetail("production", "android", dbVersion, appVersion, configVersion, appName, appID));
 
             GetVersionsFile("android", out dbVersion, out appVersion, out configVersion, appName);
@@ -99,6 +100,7 @@ namespace GGApps
             stagAndDB.Text = dbVersion;
             stagAndAV.Text = appVersion;
             stagAndCV.Text = configVersion;
+            stagAndName.Text = appName;
             StagProdAppVersions.Add(new AppVersionDetail("staging", "android", dbVersion, appVersion, configVersion, appName, appID));
 
             
@@ -107,6 +109,7 @@ namespace GGApps
             prodIosDB.Text = dbVersion;
             prodIosAV.Text = appVersion;
             prodIosCV.Text = configVersion;
+            prodIosName.Text = appName;
             StagProdAppVersions.Add(new AppVersionDetail("production", "ios", dbVersion, appVersion, configVersion, appName, appID));
 
             GetVersionsFile("ios", out dbVersion, out appVersion, out configVersion, appName);
@@ -114,8 +117,37 @@ namespace GGApps
             stagIosDB.Text = dbVersion;
             stagIosAV.Text = appVersion;
             stagIosCV.Text = configVersion;
+            stagIosName.Text = appName;
             StagProdAppVersions.Add(new AppVersionDetail("staging", "ios", dbVersion, appVersion, configVersion, appName, appID));
 
+            InitOnOffLineApps(appName);
+
+        }
+
+        private void InitOnOffLineApps(string appName)
+        {
+            // show either online or offline buttons.
+            InitLiveControl(stagAndLIVEonoff, CheckVersionsFile(appName, "android"));
+            InitLiveControl(stagIosLIVEonoff, CheckVersionsFile(appName, "ios"));
+            InitLiveControl(prodAndLIVEEonoff, CheckVersionsFileProduction(appName, "android"));
+            InitLiveControl(prodIosLIVEonoff, CheckVersionsFileProduction(appName, "ios"));
+        }
+
+        private void InitLiveControl(Button onoffbtn, bool status)
+        {
+            if (status)
+            {
+                onoffbtn.BackColor = System.Drawing.Color.Green;
+                onoffbtn.Text = "On-Line";
+            }
+            else
+            {
+                onoffbtn.BackColor = System.Drawing.Color.Red;
+                onoffbtn.Text = "Off-Line";
+            }
+
+            onoffbtn.Visible = true;
+            onoffbtn.Enabled = true;
         }
 
 
@@ -148,7 +180,8 @@ namespace GGApps
             int appID = -1;
             Int32.TryParse(SelectApp.SelectedItem.Value, out appID);
 
-            
+
+            // Select mobile devices to Publish to Production. 
             foreach (ListViewDataItem item in latestVersions.Items)
             {
                 var chk = item.FindControl("chkSelected") as CheckBox;
@@ -383,6 +416,62 @@ namespace GGApps
 
             FetchAppDetailsProduction(appID, appName);
         }
+
+        protected void stagAndLIVEonoff_Click(object sender, EventArgs e)
+        {
+            int appID = -1;
+            Int32.TryParse(SelectApp.SelectedItem.Value, out appID);
+            ToggleOnLine_OffLine(appID, SelectApp.SelectedItem.Text, "android", "staging");
+        }
+
+        protected void prodAndLIVEEonoff_Click(object sender, EventArgs e)
+        {
+            int appID = -1;
+            Int32.TryParse(SelectApp.SelectedItem.Value, out appID);
+            ToggleOnLine_OffLine(appID,SelectApp.SelectedItem.Text, "android", "production");
+        }
+
+        protected void stagIosLIVEonoff_Click(object sender, EventArgs e)
+        {
+            int appID = -1;
+            Int32.TryParse(SelectApp.SelectedItem.Value, out appID);
+            ToggleOnLine_OffLine(appID, SelectApp.SelectedItem.Text, "ios", "staging");
+        }
+
+        protected void prodIosLIVEonoff_Click(object sender, EventArgs e)
+        {
+            int appID = -1;
+            Int32.TryParse(SelectApp.SelectedItem.Value, out appID);
+            ToggleOnLine_OffLine(appID,SelectApp.SelectedItem.Text, "ios", "production");
+        }
+
+
+        private void ToggleOnLine_OffLine(int appID, string appName, string mobileDevice, string environment)
+        {
+
+            if (environment == "staging")
+            { 
+              if( CheckVersionsFile(appName, mobileDevice) )    
+                  PutOffLine(appName, mobileDevice, environment);   // put offline!
+              else
+                  PutOnLine(appName, mobileDevice, environment);    // put online!
+            }
+
+            if (environment == "production")
+            { 
+                if( CheckVersionsFileProduction(appName, mobileDevice) )    
+                  PutOffLineProduction(appName, mobileDevice, environment);   // put offline!
+              else
+                  PutOnLineProduction(appName, mobileDevice, environment);    // put online!
+            }
+
+            InitOnOffLineApps(appName);
+            FetchAppDetailsProduction(appID, appName);
+        }
+
+
+
+
 
     }
 }

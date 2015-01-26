@@ -51,7 +51,7 @@
                 function () {
                     var doUpdate = 0;
 
-                    $(".latestVersions").find("input:checkbox").each(function() {
+                    $(".latestVersions").find("td:nth-child(1) input:checkbox").each(function () {
                         if (!$(this).prop('checked')) {
                             doUpdate++;
                         }

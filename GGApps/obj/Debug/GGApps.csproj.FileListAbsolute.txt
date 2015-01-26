@@ -23,3 +23,4 @@ C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Newtons
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Debug\GGApps.dll
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Debug\GGApps.pdb
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Debug\GGApps.csprojResolveAssemblyReference.cache

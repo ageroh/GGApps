@@ -1,10 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Publish.aspx.cs" Inherits="GGApps.Publish" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+<script type="text/javascript">
+
+    function PutOffLine() {
+
+    }
+
+    function PutOnLine() {
+
+    }
+
+
+</script>
     <div class="sub">
         <ul id="menu">
             <li><a href="Configure.aspx">Configure</a></li>
@@ -85,10 +98,11 @@
 
         <asp:Table ID="androidVerTable" runat="server" Width="100%" CssClass="latestVersions">
             <asp:TableHeaderRow>
-                <asp:TableHeaderCell runat="server" ColumnSpan="4">Android</asp:TableHeaderCell>
+                <asp:TableHeaderCell runat="server" ColumnSpan="5">Android</asp:TableHeaderCell>
             </asp:TableHeaderRow>
             <asp:TableHeaderRow>
                 <asp:TableHeaderCell Wrap="true" Text="Environment"></asp:TableHeaderCell>
+                <asp:TableHeaderCell Wrap="true" Text="Location"></asp:TableHeaderCell>
                 <asp:TableHeaderCell Wrap="true" Text="Database Version"></asp:TableHeaderCell>
                 <asp:TableHeaderCell Wrap="true" Text="Application Version"></asp:TableHeaderCell>
                 <asp:TableHeaderCell Wrap="true" Text="Configuration Version"></asp:TableHeaderCell>
@@ -96,25 +110,35 @@
 
             <asp:TableRow>
                 <asp:TableCell ID="TableCell4" Text="Staging"></asp:TableCell>
+                <asp:TableCell ID="stagAndName"></asp:TableCell>
                 <asp:TableCell ID="stagAndDB"></asp:TableCell>
                 <asp:TableCell ID="stagAndAV"></asp:TableCell>
                 <asp:TableCell ID="stagAndCV"></asp:TableCell>
+                <asp:TableCell ID="stagAndLIVE" CssClass="onoffApp">
+                   <asp:Button id="stagAndLIVEonoff" runat="server" CssClass="online" Text="On-Line" BackColor="Green" ForeColor="White" Enabled="false" Visible="false" OnClick="stagAndLIVEonoff_Click"/>
+                   
+                </asp:TableCell>
             </asp:TableRow>
 
             <asp:TableRow>
                 <asp:TableCell ID="TableCell5" Text="Production"></asp:TableCell>
+                <asp:TableCell ID="prodAndName"></asp:TableCell>
                 <asp:TableCell ID="prodAndDB"></asp:TableCell>
                 <asp:TableCell ID="prodAndAV"></asp:TableCell>
                 <asp:TableCell ID="prodAndCV"></asp:TableCell>
+                <asp:TableCell ID="prodAndLIVE" CssClass="onoffApp">
+                   <asp:Button id="prodAndLIVEEonoff" runat="server" CssClass="online" Text="On-Line" BackColor="Green" ForeColor="White" Enabled="false" Visible="false" OnClick="prodAndLIVEEonoff_Click"/>
+                </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
 
         <asp:Table ID="iosVerTable" runat="server" Width="100%" CssClass="latestVersions">
             <asp:TableHeaderRow>
-                <asp:TableHeaderCell ID="TableHeaderCell1" runat="server" ColumnSpan="4">iOS</asp:TableHeaderCell>
+                <asp:TableHeaderCell ID="TableHeaderCell1" runat="server" ColumnSpan="5">iOS</asp:TableHeaderCell>
             </asp:TableHeaderRow>
             <asp:TableHeaderRow>
                 <asp:TableHeaderCell Wrap="true" Text="Environment"></asp:TableHeaderCell>
+                <asp:TableHeaderCell Wrap="true" Text="Location"></asp:TableHeaderCell>
                 <asp:TableHeaderCell Wrap="true" Text="Database Version"></asp:TableHeaderCell>
                 <asp:TableHeaderCell Wrap="true" Text="Application Version"></asp:TableHeaderCell>
                 <asp:TableHeaderCell Wrap="true" Text="Configuration Version"></asp:TableHeaderCell>
@@ -122,16 +146,24 @@
 
             <asp:TableRow>
                 <asp:TableCell ID="TableCell2" Text="Staging"></asp:TableCell>
+                <asp:TableCell ID="stagIosName"></asp:TableCell>
                 <asp:TableCell ID="stagIosDB"></asp:TableCell>
                 <asp:TableCell ID="stagIosAV"></asp:TableCell>
                 <asp:TableCell ID="stagIosCV"></asp:TableCell>
+                <asp:TableCell ID="stagIosLIVE"  CssClass="onoffApp">
+                    <asp:Button id="stagIosLIVEonoff" runat="server" CssClass="online" Text="On-Line" BackColor="Green" ForeColor="White" Enabled="false" Visible="false" OnClick="stagIosLIVEonoff_Click"/>
+                </asp:TableCell>
             </asp:TableRow>
 
             <asp:TableRow>
                 <asp:TableCell ID="TableCell1" Text="Production"></asp:TableCell>
+                <asp:TableCell ID="prodIosName"></asp:TableCell>
                 <asp:TableCell ID="prodIosDB"></asp:TableCell>
                 <asp:TableCell ID="prodIosAV"></asp:TableCell>
                 <asp:TableCell ID="prodIosCV"></asp:TableCell>
+                <asp:TableCell ID="prodIosLIVE"  CssClass="onoffApp">
+                    <asp:Button id="prodIosLIVEonoff" runat="server" CssClass="online" Text="On-Line" BackColor="Green" ForeColor="White" Enabled="false" Visible="false" OnClick="prodIosLIVEonoff_Click"/>
+                </asp:TableCell>
             </asp:TableRow>
 
         </asp:Table>

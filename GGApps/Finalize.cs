@@ -833,10 +833,18 @@ namespace GGApps
 
 
 
-
+        /// <summary>
+        /// Store DB produced to history path, for other needs. Patch update and other needs.
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="appID"></param>
+        /// <param name="mobileDevice"></param>
+        /// <param name="dbVersion"></param>
+        /// <param name="toHistoryPath">Where to store in Staging</param>
+        /// <returns></returns>
         internal object StoreNewDBtoHistory(string appName, int appID, string mobileDevice, string dbVersion, string toHistoryPath)
         {
-            // store DB zip files to DBVER folder under update / appname / dbver / <ver_number> 
+            
             try
             {
 

@@ -67,6 +67,15 @@ namespace GGApps {
         protected global::System.Web.UI.WebControls.TableCell TableCell4;
         
         /// <summary>
+        /// stagAndName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell stagAndName;
+        
+        /// <summary>
         /// stagAndDB control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,24 @@ namespace GGApps {
         protected global::System.Web.UI.WebControls.TableCell stagAndCV;
         
         /// <summary>
+        /// stagAndLIVE control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell stagAndLIVE;
+        
+        /// <summary>
+        /// stagAndLIVEonoff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button stagAndLIVEonoff;
+        
+        /// <summary>
         /// TableCell5 control.
         /// </summary>
         /// <remarks>
@@ -101,6 +128,15 @@ namespace GGApps {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell TableCell5;
+        
+        /// <summary>
+        /// prodAndName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell prodAndName;
         
         /// <summary>
         /// prodAndDB control.
@@ -130,6 +166,24 @@ namespace GGApps {
         protected global::System.Web.UI.WebControls.TableCell prodAndCV;
         
         /// <summary>
+        /// prodAndLIVE control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell prodAndLIVE;
+        
+        /// <summary>
+        /// prodAndLIVEEonoff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button prodAndLIVEEonoff;
+        
+        /// <summary>
         /// iosVerTable control.
         /// </summary>
         /// <remarks>
@@ -155,6 +209,15 @@ namespace GGApps {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell TableCell2;
+        
+        /// <summary>
+        /// stagIosName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell stagIosName;
         
         /// <summary>
         /// stagIosDB control.
@@ -184,6 +247,24 @@ namespace GGApps {
         protected global::System.Web.UI.WebControls.TableCell stagIosCV;
         
         /// <summary>
+        /// stagIosLIVE control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell stagIosLIVE;
+        
+        /// <summary>
+        /// stagIosLIVEonoff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button stagIosLIVEonoff;
+        
+        /// <summary>
         /// TableCell1 control.
         /// </summary>
         /// <remarks>
@@ -191,6 +272,15 @@ namespace GGApps {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell TableCell1;
+        
+        /// <summary>
+        /// prodIosName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell prodIosName;
         
         /// <summary>
         /// prodIosDB control.
@@ -218,6 +308,24 @@ namespace GGApps {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell prodIosCV;
+        
+        /// <summary>
+        /// prodIosLIVE control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell prodIosLIVE;
+        
+        /// <summary>
+        /// prodIosLIVEonoff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button prodIosLIVEonoff;
         
         /// <summary>
         /// BtnPublishApp control.

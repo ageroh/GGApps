@@ -126,6 +126,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Admin.aspx" />
     <Content Include="Batch\DbAccess.dll" />
+    <Content Include="Batch\gg_version_scrap.py" />
     <Content Include="Content\img\refreshDD.png" />
     <Content Include="SQLScripts\db_create_entity.sql" />
     <Content Include="Batch\db_stats.sql" />
