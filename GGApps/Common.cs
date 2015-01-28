@@ -467,13 +467,13 @@ namespace GGApps
                         totalBytesUploaded += ftpClient.upload(localFile, remotePath + fi.Name, overwrite);
                     }
                 }
-                ftpClient = null;
-
+                
                 if (totalBytesUploaded > 10)
                     Log.InfoLog(mapPathError, "Finished with uploading files from " + localDir + " to "+remotePath+ " FTP, total Bytes uploaded: " + ftpClient.SizeSuffix(totalBytesUploaded), appName);
                 else
                     Log.ErrorLog(mapPathError, "Some error ocured while uploading files from " + localDir + " to " + remotePath + " FTP, total Bytes uploaded: " + ftpClient.SizeSuffix(totalBytesUploaded), appName);
 
+                ftpClient = null;
                 return totalBytesUploaded;
             }
             catch (Exception ex)
@@ -513,16 +513,16 @@ namespace GGApps
                     {
                         // create new dir.
                         if (ftpClient.createDirectory(remoteDirectory))
-                            return true;                                                        // new dir created successfully.
+                            return true;                                                          // new dir created successfully.
                         else
                             return false;
                     }
                     else
-                        return true;                                                            // dir already exists.
+                        return true;                                                             // dir already exists.
 
                 }
                 ftpClient = null;
-                return false;                                                                   // ftp connection problem!
+                return false;                                                                    // ftp connection problem!
             }
             catch (Exception ex)
             {
@@ -589,11 +589,11 @@ namespace GGApps
                     totalBytesUploaded += ftpClient.upload(localFilename, remotePath, overwrite);
 
                 }
-                ftpClient = null;
-
+                
                 if (totalBytesUploaded <= 0)
                     Log.ErrorLog(mapPathError, "Some error ocured while uploading file: " + localFilename + " to FTP, total Bytes uploaded: " + ftpClient.SizeSuffix(totalBytesUploaded), appName);
 
+                ftpClient = null;
                 return totalBytesUploaded;
             }
             catch (Exception ex)

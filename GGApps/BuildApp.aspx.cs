@@ -74,7 +74,7 @@ namespace GGApps
                 if (!result3.IsCancellationRequested && !HasErrors)
                 {
                     // move DB files generated to Android and Ios folder
-                    var res3_5 = MoveGeneratedDBtoPaths(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                    var res3_5 = MoveGeneratedDBtoPaths(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db");
                     if (res3_5 == null)
                         HasErrors = true;
 
@@ -235,7 +235,7 @@ namespace GGApps
                     if (!result3.IsCancellationRequested && !HasErrors)
                     {
                         // move DB files generated to Android and Ios folder
-                        var res3_5 = MoveGeneratedDBtoPaths(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db", mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt");
+                        var res3_5 = MoveGeneratedDBtoPaths(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db");
                         if (res3_5 == null)
                             HasErrors = true;
 
@@ -435,7 +435,7 @@ namespace GGApps
 
 
 
-        private object MoveGeneratedDBtoPaths(string appName, int appID, string path, string filenameHl1, string filenameHl2, string logPath)
+        private object MoveGeneratedDBtoPaths(string appName, int appID, string path, string filenameHl1, string filenameHl2)
         {
             try
             {
@@ -454,7 +454,7 @@ namespace GGApps
             }
             catch (Exception ex)
             {
-                Log.ErrorLog(logPath, "Exception in MoveGeneratedDBtoPaths(), " + ex.Message, appName);
+                Log.ErrorLog(mapPathError, "Exception in MoveGeneratedDBtoPaths(), " + ex.Message, appName);
                 return null;
             }
 
@@ -981,6 +981,8 @@ namespace GGApps
                 // add to next version !
                 //if (!CheckExternalAppConfigSettings(appID, appName))
                 //    return false;
+
+                BackOffice.CheckAppsBundleList();
 
             }
             catch (IOException e)

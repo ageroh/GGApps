@@ -590,8 +590,14 @@ namespace GGApps
                 // Do the work with DataTable
                 if (String.IsNullOrEmpty(db_Ver))
                 {
-                    Log.ErrorLog(mapPathError, "No App configuration found for " + appName, appName);
-                    return null;
+                    Log.InfoLog(mapPathError, "No App configuration found for " + appName, appName);
+
+                    // try build new bundle details record on DB !
+                    Finalize fin = new Finalize(appName, appID);
+                    db_Ver = fin.UpdateAppBundleDataTable(mobileVersion, appName, appID, true);                 // create a record in DB and return new DB_Version number (always 1 !)
+                    if (db_Ver == null)
+                        return null;
+                    fin = null;
                 }
 
                 return SetDBVersionForApp(db_Ver, mobileVersion, LangStr[dbLang]);
@@ -689,44 +695,8 @@ namespace GGApps
                 {
                     if (!dirInfo.Name.Contains("empty")) // leave out the empty directory
                     {
-                        // scan based to DataTable of all apps, all folders ...
-                        DataTable dt = GetAllAppTable();
+                        return UpdateAppBundleDataTable(mobileDevice, dirInfo.Name.ToLower());
 
-                        //when found create a record on DB, if its not already craeted.
-                        string configVersionNumber;
-                        string DBVersionNumber;
-                        string appVersionNumber;
-                        string fileConfigVersionNumber;
-
-                        // get Configuration File and Version
-                        JObject configVerJSON = GetConfigurationFile(mobileDevice, out configVersionNumber, dirInfo.Name.ToLower());
-
-                        // get DB Version File, DB Version, App version, configVersion.
-                        JObject dbVerJSON = GetVersionsFile(mobileDevice, out DBVersionNumber, out appVersionNumber, out fileConfigVersionNumber, dirInfo.Name.ToLower());
-
-                        if (fileConfigVersionNumber != configVersionNumber)   // conflict to Configuration files!
-                        {
-                            Log.ErrorLog(mapPathError, "Conflict on configuration.txt and versions.txt -> Configuration_Version. Resolved by keeping configuration.txt.\n\t\t\t -> versions.txt:(" + configVersionNumber + ") " +
-                                                        "\n\t\t\t -> configuration.txt:(" + fileConfigVersionNumber + ") ", "generic");
-                            configVersionNumber = fileConfigVersionNumber;
-                        }
-
-                        if (dt != null)
-                        {
-                            if (dt.Rows.Count > 0)
-                            {
-                                //dirInfo.Name.ToLower()
-
-                                var results = from dsx in dt.AsEnumerable()
-                                              where dsx.Field<string>("appName").ToLower().Trim() == dirInfo.Name.ToLower().Trim()
-                                              select dsx;
-
-                                if (UpdateAppBundle(mobileDevice, ((string)results.CopyToDataTable().Rows[0][1]).ToLower(), ((int)results.CopyToDataTable().Rows[0][0]), appVersionNumber, configVersionNumber, DBVersionNumber, configVerJSON, dbVerJSON) == null)
-                                    return null;
-
-                                return 0;
-                            }
-                        }
                     }
                 }
             }
@@ -737,6 +707,59 @@ namespace GGApps
             }
 
             return 0;
+        }
+
+        internal string UpdateAppBundleDataTable(string mobileDevice, string appName, int appID = 0, bool oneApp = false)
+        {
+            // scan based to DataTable of all apps, all folders ...
+            DataTable dt = GetAllAppTable();
+
+            //when found create a record on DB, if its not already craeted.
+            string configVersionNumber;
+            string DBVersionNumber;
+            string appVersionNumber;
+            string fileConfigVersionNumber;
+
+            // get Configuration File and Version
+            JObject configVerJSON = GetConfigurationFile(mobileDevice, out configVersionNumber, appName);
+
+            // get DB Version File, DB Version, App version, configVersion.
+            JObject dbVerJSON = GetVersionsFile(mobileDevice, out DBVersionNumber, out appVersionNumber, out fileConfigVersionNumber, appName);
+
+            if (fileConfigVersionNumber != configVersionNumber)   // conflict to Configuration files!
+            {
+                Log.ErrorLog(mapPathError, "Conflict on configuration.txt and versions.txt -> Configuration_Version. Resolved by keeping configuration.txt.\n\t\t\t -> versions.txt:(" + configVersionNumber + ") " +
+                                            "\n\t\t\t -> configuration.txt:(" + fileConfigVersionNumber + ") ", "generic");
+                configVersionNumber = fileConfigVersionNumber;
+            }
+
+            // Create Detailed Bundle record for a non existing new app.
+            if (oneApp && appID > 0)
+            {
+                if (UpdateAppBundle(mobileDevice, appName, appID, appVersionNumber, configVersionNumber, DBVersionNumber, configVerJSON, dbVerJSON) == null)
+                    return null;
+                return DBVersionNumber;
+            }
+
+
+            if (dt != null)
+            {
+                if (dt.Rows.Count > 0)
+                {
+                    //dirInfo.Name.ToLower()
+
+                    var results = from dsx in dt.AsEnumerable()
+                                  where dsx.Field<string>("appName").ToLower().Trim() == appName.Trim()
+                                  select dsx;
+
+                    if (UpdateAppBundle(mobileDevice, ((string)results.CopyToDataTable().Rows[0][1]).ToLower(), ((int)results.CopyToDataTable().Rows[0][0]), appVersionNumber, configVersionNumber, DBVersionNumber, configVerJSON, dbVerJSON) == null)
+                        return null;
+
+                    return DBVersionNumber;
+                }
+            }
+
+            return DBVersionNumber;
         }
 
 

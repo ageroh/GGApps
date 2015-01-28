@@ -400,9 +400,9 @@ namespace GGApps
                 ftpRequest = null;
                 /* Return the Directory Listing as a string Array by Parsing 'directoryRaw' with the Delimiter you Append (I use | in This Example) */
                 try { string[] directoryList = directoryRaw.Split("|".ToCharArray()); return directoryList; }
-                catch (Exception ex) { Log.ErrorLog(mapErrorPath, "No directory found on remote : " + directory + " , " + ex.Message, appName); return null; }
+                catch (Exception ex) { Log.InfoLog(mapErrorPath, "No directory found on remote : " + directory + " , " + ex.Message, appName); return null; }
             }
-            catch (Exception ex) { Log.ErrorLog(mapErrorPath, "Exception while fetching directory listing for: " + directory + " , " + ex.Message, appName); return null; }
+            catch (Exception ex) { Log.InfoLog(mapErrorPath, "Exception while fetching directory listing for: " + directory + " , " + ex.Message, appName); return null; }
             /* Return an Empty string Array if an Exception Occurs */
             return null;
         }

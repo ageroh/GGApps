@@ -13,27 +13,8 @@ namespace GGApps
 {
     public class BackOffice : Common
     {
-        public BackOffice(string MPath, string mPathError) 
-        {
-            mapPath = MPath;
-            mapPathError = mPathError;
-            
-            // always check for changes
-            InitializeBundles();
-        }
 
-
-
-        public static void InitializeBundles()
-        {
-            // check if new app is created, and add a record on GGAppsBundle
-            CheckAppsBundleList();
-
-            // check other concerns the Backoffice.
-        
-        }
-
-        private static void CheckAppsBundleList()
+        public static void CheckAppsBundleList()
         {
             try
             {
@@ -69,15 +50,17 @@ namespace GGApps
         /// <param name="path"></param>
         /// <param name="log"></param>
         /// <param name="filename"></param>
-        public void InitializeAdminDB()
+        public static object InitializeAdminDB()
         {
             Finalize fin = new Finalize();
 
             if (fin.InitializeDBFromFiles("ios") == null)
-                HasErrors = true;
+                return null;
 
             if( fin.InitializeDBFromFiles("android") == null)
-                HasErrors = true;
+                return null;
+
+            return 0;
         }
 
     }
