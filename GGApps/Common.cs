@@ -361,16 +361,8 @@ namespace GGApps
         public bool CheckVersionsFileProduction( string appName, string mobileDevice)
         {
             string remotefilename = appName.ToLower() + "//update//" + mobileDevice + "//versions.txt";
-
-            FTP ftpClient = null;
-            if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
-            {
-                var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
-                if (ftpConStr.Length == 3)
-                {
-                    ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
-                }
-            }
+            
+            FTP ftpClient = CreateFTPClientProduction(appName);
 
             if (ftpClient != null)
             {
@@ -463,16 +455,8 @@ namespace GGApps
             try
             {
                 Log.InfoLog(mapPathError, "Started uploading files to FTP", appName);
-                FTP ftpClient = null;
                 long totalBytesUploaded = 0;
-                if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
-                {
-                    var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
-                    if (ftpConStr.Length == 3)
-                    {
-                        ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
-                    }
-                }
+                FTP ftpClient = CreateFTPClientProduction(appName);
 
 
                 if (ftpClient != null)
@@ -486,9 +470,9 @@ namespace GGApps
                 ftpClient = null;
 
                 if (totalBytesUploaded > 10)
-                    Log.InfoLog(mapPathError, "Finished with uploading files from " + localDir + " to "+remotePath+ " FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
+                    Log.InfoLog(mapPathError, "Finished with uploading files from " + localDir + " to "+remotePath+ " FTP, total Bytes uploaded: " + ftpClient.SizeSuffix(totalBytesUploaded), appName);
                 else
-                    Log.ErrorLog(mapPathError, "Some error ocured while uploading files from " + localDir + " to " + remotePath + " FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
+                    Log.ErrorLog(mapPathError, "Some error ocured while uploading files from " + localDir + " to " + remotePath + " FTP, total Bytes uploaded: " + ftpClient.SizeSuffix(totalBytesUploaded), appName);
 
                 return totalBytesUploaded;
             }
@@ -517,19 +501,44 @@ namespace GGApps
 
 
 
+        public static bool CheckDirectoryAndCreateRemote(string appName, string remoteDirectory)
+        {
+            try
+            {
+                FTP ftpClient = CreateFTPClientProduction(appName);
+
+                if (ftpClient != null)
+                {
+                    if (ftpClient.directoryListSimple(remoteDirectory) == null)                   // directory does not exists so try to create it    
+                    {
+                        // create new dir.
+                        if (ftpClient.createDirectory(remoteDirectory))
+                            return true;                                                        // new dir created successfully.
+                        else
+                            return false;
+                    }
+                    else
+                        return true;                                                            // dir already exists.
+
+                }
+                ftpClient = null;
+                return false;                                                                   // ftp connection problem!
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorLog(mapPathError, "Some error ocured CheckFileAndCreateRemote(), Exception:  " + ex.Message, appName);
+                return false;
+            }
+
+        }
+
+
+
         public static double RenameFileRemote(string appName, string localFilename, string localFilenameNew)
         {
             try
             {
-                FTP ftpClient = null;
-                if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
-                {
-                    var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
-                    if (ftpConStr.Length == 3)
-                    {
-                        ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
-                    }
-                }
+                FTP ftpClient = CreateFTPClientProduction(appName);
 
                 if (ftpClient != null)
                 {
@@ -553,22 +562,27 @@ namespace GGApps
         
         }
 
+        private static FTP CreateFTPClientProduction(string appName)
+        {
+            FTP ftpClient = null;
+            if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
+            {
+                var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
+                if (ftpConStr.Length == 3)
+                {
+                    ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
+                }
+            }
+            return ftpClient;
+        }
+
 
         public static double UploadFileRemote(string appName, string localFilename, string remotePath, bool overwrite = true)
         {
             try
             {
-                FTP ftpClient = null;
+                FTP ftpClient = CreateFTPClientProduction(appName);
                 long totalBytesUploaded = 0;
-                if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
-                {
-                    var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
-                    if (ftpConStr.Length == 3)
-                    {
-                        ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
-                    }
-                }
-
 
                 if (ftpClient != null)
                 {
@@ -578,7 +592,7 @@ namespace GGApps
                 ftpClient = null;
 
                 if (totalBytesUploaded <= 0)
-                    Log.ErrorLog(mapPathError, "Some error ocured while uploading file: "+localFilename+" to FTP, total Bytes uploaded: " + FTP.SizeSuffix(totalBytesUploaded), appName);
+                    Log.ErrorLog(mapPathError, "Some error ocured while uploading file: " + localFilename + " to FTP, total Bytes uploaded: " + ftpClient.SizeSuffix(totalBytesUploaded), appName);
 
                 return totalBytesUploaded;
             }
@@ -699,16 +713,7 @@ namespace GGApps
         private object DownloadProductionFile(string appName, string remotefilename, string localFilename)
         {
             Log.InfoLog(mapPathError, appName + ": Try get Production File " + remotefilename + " via FTP", "generic");
-            FTP ftpClient = null;
-
-            if (rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"] != null)
-            {
-                var ftpConStr = rootWebConfig.AppSettings.Settings["FTP_Upload_ConStr"].Value.Split(new string[] { "|@@|" }, StringSplitOptions.None);
-                if (ftpConStr.Length == 3)
-                {
-                    ftpClient = new FTP(ftpConStr[0], ftpConStr[1], ftpConStr[2], mapPathError, appName);
-                }
-            }
+            FTP ftpClient = CreateFTPClientProduction(appName);
 
             //   try get file from production and check it.
             if (ftpClient.download(remotefilename, localFilename) <= 0)

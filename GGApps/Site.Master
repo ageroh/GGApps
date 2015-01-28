@@ -195,7 +195,7 @@
     <footer>
         <div class="content-wrapper">
             <div class="float-left">
-                <p>&copy; <%: DateTime.Now.Year %> - Prime Applications S.A.</p>
+                <p>&copy; <%: DateTime.Now.Year %> - GreekGuide.COM</p>
             </div>
         </div>
     </footer>

@@ -50,13 +50,14 @@ if exist  "%~dp0dbfiles\android\ContentRU.db" (
 )
 
 REM Else..
+if not exist  "%~dp0dbfiles\android\ContentRU.db" (
  if exist "%~dp0dbfiles\android\ContentEN.db"  (
    if exist "%~dp0dbfiles\android\ContentGR.db" (	
      if exist "%~dp0dbfiles\android\update.zip" del  "%~dp0dbfiles\android\update.zip"
      "C:\Program Files\7-Zip\7z.exe" a -tzip "%~dp0dbfiles\android\update.zip" "%~dp0dbfiles\android\ContentEN.db" "%~dp0dbfiles\android\ContentGR.db"
    )
  )
-
+)
 
 if exist "%~dp0dbfiles\android\update.zip" (
 
@@ -129,13 +130,14 @@ if exist  "%~dp0dbfiles\ios\ContentRU.db" (
 )
 
 REM Else..
+if not exist  "%~dp0dbfiles\ios\ContentRU.db" (
  if exist "%~dp0dbfiles\ios\ContentEN.db"  (
    if exist "%~dp0dbfiles\ios\ContentGR.db" (	
      if exist "%~dp0dbfiles\ios\update.zip" del  "%~dp0dbfiles\ios\update.zip"
      "C:\Program Files\7-Zip\7z.exe" a -tzip "%~dp0dbfiles\ios\update.zip" "%~dp0dbfiles\ios\ContentEN.db" "%~dp0dbfiles\ios\ContentGR.db"
    )
  )
-
+)
 
 if exist "%~dp0dbfiles\ios\update.zip" (
 

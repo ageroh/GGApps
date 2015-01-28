@@ -174,6 +174,7 @@ namespace GGApps
             return totalBytes;
         }
 
+
         /* Delete File */
         public void delete(string deleteFile)
         {
@@ -198,6 +199,7 @@ namespace GGApps
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
             return;
         }
+
 
         /* Rename File */
         public string rename(string currentFileNameAndPath, string newFileName)
@@ -236,30 +238,38 @@ namespace GGApps
             return currentFileNameAndPath;
         }
 
+
         /* Create a New Directory on the FTP Server */
-        public void createDirectory(string newDirectory)
+        public bool createDirectory(string newDirectory)
         {
             try
             {
                 /* Create an FTP Request */
                 ftpRequest = (FtpWebRequest)WebRequest.Create(host + "/" + newDirectory);
+                
                 /* Log in to the FTP Server with the User Name and Password Provided */
                 ftpRequest.Credentials = new NetworkCredential(user, pass);
+                
                 /* When in doubt, use these options */
                 ftpRequest.UseBinary = true;
                 ftpRequest.UsePassive = true;
                 ftpRequest.KeepAlive = true;
+                
                 /* Specify the Type of FTP Request */
                 ftpRequest.Method = WebRequestMethods.Ftp.MakeDirectory;
+                
                 /* Establish Return Communication with the FTP Server */
                 ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+                
                 /* Resource Cleanup */
                 ftpResponse.Close();
                 ftpRequest = null;
+                return true;
             }
-            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
-            return;
+            catch (Exception ex) { Log.ErrorLog(mapErrorPath, ex.Message, appName); return false; }
+            
         }
+        
 
         /* Get the Date/Time a File was Created */
         public string getFileCreatedDateTime(string fileName)
@@ -355,24 +365,33 @@ namespace GGApps
             {
                 /* Create an FTP Request */
                 ftpRequest = (FtpWebRequest)FtpWebRequest.Create(host + "/" + directory);
+
                 /* Log in to the FTP Server with the User Name and Password Provided */
                 ftpRequest.Credentials = new NetworkCredential(user, pass);
+                
                 /* When in doubt, use these options */
                 ftpRequest.UseBinary = true;
                 ftpRequest.UsePassive = true;
                 ftpRequest.KeepAlive = true;
+                
                 /* Specify the Type of FTP Request */
                 ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
+                
                 /* Establish Return Communication with the FTP Server */
                 ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+                
                 /* Establish Return Communication with the FTP Server */
                 ftpStream = ftpResponse.GetResponseStream();
+                
                 /* Get the FTP Server's Response Stream */
                 StreamReader ftpReader = new StreamReader(ftpStream);
+               
                 /* Store the Raw Response */
                 string directoryRaw = null;
+                
                 /* Read Each Line of the Response and Append a Pipe to Each Line for Easy Parsing */
                 try { while (ftpReader.Peek() != -1) { directoryRaw += ftpReader.ReadLine() + "|"; } }
+               
                 catch (Exception ex) { Console.WriteLine(ex.ToString()); }
                 /* Resource Cleanup */
                 ftpReader.Close();
@@ -381,11 +400,11 @@ namespace GGApps
                 ftpRequest = null;
                 /* Return the Directory Listing as a string Array by Parsing 'directoryRaw' with the Delimiter you Append (I use | in This Example) */
                 try { string[] directoryList = directoryRaw.Split("|".ToCharArray()); return directoryList; }
-                catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+                catch (Exception ex) { Log.ErrorLog(mapErrorPath, "No directory found on remote : " + directory + " , " + ex.Message, appName); return null; }
             }
-            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+            catch (Exception ex) { Log.ErrorLog(mapErrorPath, "Exception while fetching directory listing for: " + directory + " , " + ex.Message, appName); return null; }
             /* Return an Empty string Array if an Exception Occurs */
-            return new string[] { "" };
+            return null;
         }
 
         /* List Directory Contents in Detail (Name, Size, Created, etc.) */
@@ -430,7 +449,7 @@ namespace GGApps
 
 
         public static readonly string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
-        public static string SizeSuffix(Int64 value)
+        public string SizeSuffix(Int64 value)
         {
             if (value < 0) { return "-" + SizeSuffix(-value); }
             if (value == 0) { return "0.0 bytes"; }

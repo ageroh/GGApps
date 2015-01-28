@@ -231,7 +231,7 @@ namespace GGApps
             {
 
                 var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", mapPathError, Log);
-
+                
                     if (!result3.IsCancellationRequested && !HasErrors)
                     {
                         // move DB files generated to Android and Ios folder
@@ -244,9 +244,14 @@ namespace GGApps
                         {
                             var result3a = await RunAsyncCommandBatch(ct, appID, appName, "3a_fix_html_entities.bat " + appName, actualWorkDir
                                                                                         , "convert HTML ENTITIES", mapPathError, Log);
+
+                            if (!result3a.IsCancellationRequested && !HasErrors)
+                                HasErrors = false;
+                            else
+                                HasErrors = true;
                         }
 
-                        if (res3_5 != null)
+                        if (res3_5 != null && !HasErrors)
                         {
                             // Redirect result to temp file for APP with dateFormat
                             var result4 = await RunAsyncCommandBatch(ct, appID
@@ -605,6 +610,11 @@ namespace GGApps
                         return null;
                     }
 
+
+                    // Check if CONFIG exists on production, if not exists create it.
+                    if (!CheckDirectoryAndCreateRemote(appName, appName.ToLower() + "/config/"))
+                        return null;
+
                     if (File.Exists(ProducedAppPath + "\\" + appName + "\\config\\entity_text.txt"))
                         totalBytesUploaded = UploadFileRemote(appName, ProducedAppPath + "\\" + appName + "\\config\\entity_text.txt", appName.ToLower() + "/config/entity_text.txt");
                     else
@@ -658,6 +668,12 @@ namespace GGApps
                 // Upload Files Syncronously
 
                 Log.InfoLog(mapPathError, ":> Start Upload Images FB to FTP", appName);
+
+                // Check if fb-assets exists on production, if not exists create it.
+                if (!CheckDirectoryAndCreateRemote(appName, appName.ToLower() + "/fb-assets/"))
+                    return null;
+
+
                 totalBytesUploaded = UploadFilesRemote(appName, "C:\\temp\\images\\" + appName + "-fb\\", appName.ToLower() + "/fb-assets/");
                 if (totalBytesUploaded <= 0)
                 {
@@ -676,6 +692,11 @@ namespace GGApps
                 Log.ErrorLog(mapPathError, "Some Excepetion occured in ExecuteStep7(): " + ex.Message, appName);
                 return null;
             }
+        }
+
+        private void CheckFb_AssetsProduction(string p)
+        {
+            throw new NotImplementedException();
         }
 
 

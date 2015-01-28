@@ -862,3 +862,13 @@ tr.pager td {
     /*color: red;*/
     opacity:0.5;
 }
+
+.onoffApp {
+    width : 15%;
+    padding: 2px;
+    border-width: 0px !important;
+    border-color: transparent;
+    border-style: none;
+    background-color: rgb(239, 238, 239);
+    font-weight:bold;
+}

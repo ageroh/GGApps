@@ -92,7 +92,7 @@ namespace GGApps
                     SQLiteCommand sqCommand = new SQLiteCommand();
                     sqCommand.Connection = con;
                     SQLiteTransaction myTrans;
-                    string tmpfile="";
+                    string tmpfile = "";
 
                     // Start a local transaction 
                     myTrans = con.BeginTransaction(System.Data.IsolationLevel.Serializable);
@@ -127,7 +127,7 @@ namespace GGApps
 
                         }
                         myTrans.Commit();
-                        Log.InfoLog(mapPathError, "Completed successfuelly", appName);
+                        Log.InfoLog(mapPathError, "Completed successfully", appName);
                     }
                     catch (Exception e)
                     {
