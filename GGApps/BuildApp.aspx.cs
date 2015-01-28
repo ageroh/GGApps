@@ -230,6 +230,8 @@ namespace GGApps
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
             {
 
+#if !DEBUG
+
                 var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", mapPathError, Log);
                 
                     if (!result3.IsCancellationRequested && !HasErrors)
@@ -263,10 +265,11 @@ namespace GGApps
 
                             if (!result4.IsCancellationRequested && !HasErrors)
                             {
+#endif
 
                                 var result5 = await RunAsyncCommandBatch(ct, appID, appName, "5_get_images.bat " + appName, actualWorkDir
                                                                                             , "Transform All Images running Python", mapPathError, Log);
-
+#if !DEBUG
                                 if (!result5.IsCancellationRequested && !HasErrors)
                                 {
 
@@ -291,7 +294,7 @@ namespace GGApps
                                         if (CreateSQLiteDBs.CreateBundleDBAndFiles(appName) < 0)
                                             HasErrors = true;
                                          
-#if !DEBUG
+
                                         // upload fb-images to production suncronusly. or remove it from here.
                                         result7 = ExecuteStep7(appID, appName, Server.MapPath("~/"), Log, mapPathError);
                                         if (result7 == null)
@@ -382,15 +385,16 @@ namespace GGApps
                                             }
                                         }
 
-#endif
+
                                     }
                                 }
+
                             }
 
                         }
                     }
 
-#if !DEBUG
+
                     // Send failure email if execution was interupted / or other error occured!!
                     if (HasErrors)
                     {
@@ -909,7 +913,7 @@ namespace GGApps
                 procStartInfo.WorkingDirectory = actualWorkDir;
                 procStartInfo.RedirectStandardOutput = redirectOut;
                 procStartInfo.UseShellExecute = false;
-                procStartInfo.CreateNoWindow = false;
+                procStartInfo.CreateNoWindow = true;
                 procStartInfo.LoadUserProfile = false;
                 procStartInfo.RedirectStandardError = true;
 
@@ -919,10 +923,13 @@ namespace GGApps
                 Process proc = new Process();
 
                 proc.StartInfo = procStartInfo;
+                proc.ErrorDataReceived += new DataReceivedEventHandler(NetErrorDataHandler);
 
 
                 log.InfoLog(mapPath, "Started:> " + ExplainCmd + " for APP: " + appName, appName);
                 proc.Start();
+                proc.BeginErrorReadLine();
+
 
                 // instead of p.WaitForExit(), do
                 StringBuilder q = new StringBuilder();
@@ -938,6 +945,7 @@ namespace GGApps
 
                 }
 
+                
                 proc.WaitForExit();
 
                 log.InfoLog(mapPath, "Finished:> " + ExplainCmd + " for APP: " + appName, appName);
@@ -951,6 +959,21 @@ namespace GGApps
             }
 
             return ct;//q.ToString();
+        }
+
+
+
+        private static void NetErrorDataHandler(object sendingProcess, DataReceivedEventArgs errLine)
+        {
+            // Write the error text to the file if there is something 
+            
+            // to write and an error file has been specified. 
+            if (errLine != null && sendingProcess != null)
+                if (!String.IsNullOrEmpty(errLine.Data))
+                {
+                    if (!ContainsUnicodeCharacter(errLine.Data.ToString()))
+                        Log.ErrorLog(mapPathError, "Error while executing Process: " + ((Process)sendingProcess).Id + " Details: " + errLine.Data, "generic");
+                }
         }
 
 
