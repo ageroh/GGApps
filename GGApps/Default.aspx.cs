@@ -233,9 +233,9 @@ namespace GGApps
         /// 2nd Step of Process
         /// Run all SQL queries against DB and show results on screen and log.
         /// </summary>
-        /// <param name="id">The ID of the App</param>
-        /// <param name="name">The name of the App</param>
-        public String RunReportTestsForProducedDBs(int id,  string name)
+        /// <param name="appID">The ID of the App</param>
+        /// <param name="appName">The name of the App</param>
+        public String RunReportTestsForProducedDBs(int appID,  string appName)
         { 
             string path = MapPath("SQLScripts/");
             //Literal txtEditor = (Literal)LoginViewImportant.FindControl("txtEditor1");
@@ -244,56 +244,64 @@ namespace GGApps
 
             // Test 1 - entities without location 
             sb.AppendLine("<h3>Check 1 - Entities Without Location</h3>\n");
-            Log.InfoLog(mapPathError, "Exporting Report stage 1", name, "");
-            sb.AppendLine(executeSQLScript(id, name, 0, path + "db_test_2_1_entities_without_location.sql", "ContentDB_165"));
+            Log.InfoLog(mapPathError, "Exporting Report stage 1", appName, "");
+            sb.AppendLine(executeSQLScript(appID, appName, 0, path + "db_test_2_1_entities_without_location.sql", "ContentDB_165"));
     
             //Test 1a - entities in multiple locations 
             sb.AppendLine("<h3>Check 1a - Entities In Multiple Locations</h3>\n");
-            Log.InfoLog(mapPathError, "Exporting Report stage 2_1a", name, "");
-            sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_1a_entities_in_multiple_locations.sql")) ;
+            Log.InfoLog(mapPathError, "Exporting Report stage 2_1a", appName, "");
+            sb.AppendLine(executeSQLScript(appID, appName, 2, path + "db_test_2_1a_entities_in_multiple_locations.sql")) ;
 
             // DONT FORGET CHECK FOR RUSSIAN !
 
             // Test 2 - entities connected to non leaves 
             sb.AppendLine("<h3>Check 2 - Entities Connected To Non Leaves</h3>\n");
-            Log.InfoLog(mapPathError, "Exporting Report stage 2", name, "");
-            sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_2_entities_connected_to_non_leaves.sql"));
+            Log.InfoLog(mapPathError, "Exporting Report stage 2", appName, "");
+            sb.AppendLine(executeSQLScript(appID, appName, 2, path + "db_test_2_2_entities_connected_to_non_leaves.sql"));
 
             //Test 3 - entities without category 
             sb.AppendLine("<h3>Check 3 - Entities Without Category</h3>\n");
-            Log.InfoLog(mapPathError, "Exporting Report stage 3", name, "");
-            sb.AppendLine(executeSQLScript( id, name, 2, path + "db_test_2_3_entities_without_category.sql"));
+            Log.InfoLog(mapPathError, "Exporting Report stage 3", appName, "");
+            sb.AppendLine(executeSQLScript( appID, appName, 2, path + "db_test_2_3_entities_without_category.sql"));
 
             // Test 4a - entities with invalid characters (GR) 
             sb.AppendLine("<h3>Check 4a - Entities With Invalid Characters (GR)</h3>\n");
-            Log.InfoLog(mapPathError, "Exporting Report stage 4a", name, "");
-            sb.AppendLine(executeSQLScript( id, name, 1, path + "db_test_2_4_entities_with_invalid_characters.sql"));
+            Log.InfoLog(mapPathError, "Exporting Report stage 4a", appName, "");
+            sb.AppendLine(executeSQLScript( appID, appName, 1, path + "db_test_2_4_entities_with_invalid_characters.sql"));
 
             // Test 4b - entities with invalid characters (EN) 
             sb.AppendLine("<h3>Check 4b - Entities With Invalid Characters (EN)</h3>\n");
-            Log.InfoLog(mapPathError, "Exporting Report stage 4b", name, User.Identity.Name);
-            sb.AppendLine(executeSQLScript( id, name, 2, path + "db_test_2_4_entities_with_invalid_characters.sql"));
+            Log.InfoLog(mapPathError, "Exporting Report stage 4b", appName, User.Identity.Name);
+            sb.AppendLine(executeSQLScript( appID, appName, 2, path + "db_test_2_4_entities_with_invalid_characters.sql"));
             
+            // Include russian if needed.
+            if (CheckThreeLanguages(appID))
+            {
+                sb.AppendLine("<h3>Check 4c - Entities With Invalid Characters (RU)</h3>\n");
+                Log.InfoLog(mapPathError, "Exporting Report stage 4c", appName, User.Identity.Name);
+                sb.AppendLine(executeSQLScript(appID, appName, 4, path + "db_test_2_4_entities_with_invalid_characters_RU.sql"));
+            }
+
             // Test 5 - entities with greek characters in english 
             sb.AppendLine("<h3>Check 5 - Entities With Greek Characters In English</h3>\n");
-            Log.InfoLog(mapPathError, "Exporting Report stage 5", name, User.Identity.Name);
-            sb.AppendLine(executeSQLScript(id, name, 2, path + "db_test_2_5_entities_with_greek_characters_in_english.sql"));
+            Log.InfoLog(mapPathError, "Exporting Report stage 5", appName, User.Identity.Name);
+            sb.AppendLine(executeSQLScript(appID, appName, 2, path + "db_test_2_5_entities_with_greek_characters_in_english.sql"));
 
 
             // Save report to File
             string filepath;
-            if (!File.Exists(actualWorkDir + "reports\\" + name + "_report_" + DateTime.Now.ToString("yyyyMMdd") + ".html"))
+            if (!File.Exists(actualWorkDir + "reports\\" + appName + "_report_" + DateTime.Now.ToString("yyyyMMdd") + ".html"))
             {
-                filepath = actualWorkDir + "reports\\" + name + "_report_" + DateTime.Now.ToString("yyyyMMdd") + ".html";
+                filepath = actualWorkDir + "reports\\" + appName + "_report_" + DateTime.Now.ToString("yyyyMMdd") + ".html";
 
                 File.WriteAllText(filepath , sb.ToString(), Encoding.UTF8);
             }
             else {
-                filepath = actualWorkDir + "reports\\" + name + "_report_" + DateTime.Now.ToString("yyyyMMdd") + "_" + (timesExec++).ToString() + ".html";
+                filepath = actualWorkDir + "reports\\" + appName + "_report_" + DateTime.Now.ToString("yyyyMMdd") + "_" + (timesExec++).ToString() + ".html";
                 File.WriteAllText(filepath, sb.ToString(), Encoding.UTF8);
             }
 
-            Log.InfoLog(mapPathError, "Report for App: " + name + " Succesfully Generated and saved to:" + filepath, name, User.Identity.Name);
+            Log.InfoLog(mapPathError, "Report for App: " + appName + " Succesfully Generated and saved to:" + filepath, appName, User.Identity.Name);
 
 
             return sb.ToString();

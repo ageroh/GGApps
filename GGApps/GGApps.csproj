@@ -128,6 +128,7 @@
     <Content Include="Batch\DbAccess.dll" />
     <Content Include="Batch\gg_version_scrap.py" />
     <Content Include="Content\img\refreshDD.png" />
+    <Content Include="SQLScripts\db_test_2_4_entities_with_invalid_characters_RU.sql" />
     <Content Include="SQLScripts\db_create_entity.sql" />
     <Content Include="Batch\db_stats.sql" />
     <Content Include="Batch\gg_fix_html_entities.py" />

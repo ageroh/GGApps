@@ -159,11 +159,11 @@ goto end
 
 :usage
 @echo Usage: %0 ^<location_name^> ^<db date in YYYMMDD^>
-exit /B 1
+exit /B 2
 
 :success
 echo Process Completed Successfully!
 exit /B 
 :end
-exit /B 
+exit /B 2
 

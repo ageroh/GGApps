@@ -73,20 +73,29 @@ namespace GGApps
 
                 if (!result3.IsCancellationRequested && !HasErrors)
                 {
+
+                    if (CheckThreeLanguages(appID) && !HasErrors)
+                    {
+                        var result3a = await RunAsyncCommandBatch(ct, appID, appName, "3a_fix_html_entities.bat " + appName, actualWorkDir
+                                                                                    , "convert HTML ENTITIES", mapPathError, Log);
+
+                        if (!result3a.IsCancellationRequested && !HasErrors)
+                            HasErrors = false;
+                        else
+                            HasErrors = true;
+                    }
+
+
                     // move DB files generated to Android and Ios folder
                     var res3_5 = MoveGeneratedDBtoPaths(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db");
                     if (res3_5 == null)
                         HasErrors = true;
+                        
 
 
-                    if (CheckThreeLanguages(appID))
+                    if (res3_5 != null && !HasErrors)
                     {
-                        var result3a = await RunAsyncCommandBatch(ct, appID, appName, "3a_fix_html_entities.bat " + appName, actualWorkDir
-                                                                                    , "convert HTML ENTITIES", mapPathError, Log);
-                    }
 
-                    if (res3_5 != null)
-                    {
                         // Redirect result to temp file for APP with dateFormat
                         var result4 = await RunAsyncCommandBatch(ct, appID
                                                                     , appName
@@ -120,7 +129,7 @@ namespace GGApps
                                 else
                                 {
                                     /* Call the Bat that moves only DB files without images */
-                                    result9 = await RunAsyncCommandBatch(ct, appID, appName, "9b_copy_img_databases.bat " + appName + " " + DateTime.Now.ToString("yyyyMMdd"), actualWorkDir
+                                    result9 = await RunAsyncCommandBatch(ct, appID, appName, "9b_copy_img_databases.bat  " + appName + "  " + DateTime.Now.ToString("yyyyMMdd"), actualWorkDir
                                                                                                         , "Copy files from Local to Server", mapPathError, Log);
                                 }
                             }
@@ -236,13 +245,8 @@ namespace GGApps
                 
                     if (!result3.IsCancellationRequested && !HasErrors)
                     {
-                        // move DB files generated to Android and Ios folder
-                        var res3_5 = MoveGeneratedDBtoPaths(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db");
-                        if (res3_5 == null)
-                            HasErrors = true;
 
-
-                        if (CheckThreeLanguages(appID))
+                        if (CheckThreeLanguages(appID) && !HasErrors)
                         {
                             var result3a = await RunAsyncCommandBatch(ct, appID, appName, "3a_fix_html_entities.bat " + appName, actualWorkDir
                                                                                         , "convert HTML ENTITIES", mapPathError, Log);
@@ -252,6 +256,14 @@ namespace GGApps
                             else
                                 HasErrors = true;
                         }
+
+
+                        // move DB files generated to Android and Ios folder
+                        var res3_5 = MoveGeneratedDBtoPaths(appName, appID, mapPath + "Batch\\dbfiles\\", "GreekGuide_" + appName, DateTime.Now.ToString("yyyyMMdd") + ".db");
+                        if (res3_5 == null)
+                            HasErrors = true;
+                        
+
 
                         if (res3_5 != null && !HasErrors)
                         {
@@ -962,9 +974,9 @@ namespace GGApps
         }
 
 
-
         private static void NetErrorDataHandler(object sendingProcess, DataReceivedEventArgs errLine)
         {
+
             // Write the error text to the file if there is something 
             
             // to write and an error file has been specified. 
@@ -975,7 +987,6 @@ namespace GGApps
                         Log.ErrorLog(mapPathError, "Error while executing Process: " + ((Process)sendingProcess).Id + " Details: " + errLine.Data, "generic");
                 }
         }
-
 
 
         /// <summary>

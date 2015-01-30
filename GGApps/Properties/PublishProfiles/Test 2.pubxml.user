@@ -70,10 +70,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/10/2014 09:12:56</publishTime>
     </File>
     <File Include="Batch/9b_copy_databases.bat">
-      <publishTime>01/27/2015 16:20:20</publishTime>
+      <publishTime>01/30/2015 14:54:38</publishTime>
     </File>
     <File Include="Batch/9_copy_img_databases.bat">
-      <publishTime>01/27/2015 16:25:34</publishTime>
+      <publishTime>01/30/2015 14:54:50</publishTime>
     </File>
     <File Include="Batch/DbAccess.dll">
       <publishTime>08/26/2013 17:15:38</publishTime>
@@ -172,7 +172,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/16/2014 15:45:43</publishTime>
     </File>
     <File Include="bin/GGApps.dll">
-      <publishTime>01/28/2015 19:02:14</publishTime>
+      <publishTime>01/30/2015 15:04:39</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.FriendlyUrls.dll">
       <publishTime>12/03/2014 14:40:59</publishTime>
@@ -585,6 +585,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="SQLScripts/db_test_2_4_entities_with_invalid_characters.sql">
       <publishTime>12/09/2014 19:26:06</publishTime>
     </File>
+    <File Include="SQLScripts/db_test_2_4_entities_with_invalid_characters_RU.sql">
+      <publishTime>01/30/2015 13:39:59</publishTime>
+    </File>
     <File Include="SQLScripts/db_test_2_5_entities_with_greek_characters_in_english.sql">
       <publishTime>01/07/2015 13:42:54</publishTime>
     </File>
@@ -592,7 +595,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/01/2014 10:02:21</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/28/2015 19:02:23</publishTime>
+      <publishTime>01/30/2015 15:04:44</publishTime>
     </File>
     <File Include="Web.sitemap">
       <publishTime>01/20/2015 11:52:31</publishTime>
