@@ -978,13 +978,13 @@ namespace GGApps
         {
 
             // Write the error text to the file if there is something 
-            
+            string realErrorData = errLine.Data;
             // to write and an error file has been specified. 
             if (errLine != null && sendingProcess != null)
                 if (!String.IsNullOrEmpty(errLine.Data))
                 {
                     if (!ContainsUnicodeCharacter(errLine.Data.ToString()))
-                        Log.ErrorLog(mapPathError, "Error while executing Process: " + ((Process)sendingProcess).Id + " Details: " + errLine.Data, "generic");
+                        Log.ErrorLog(mapPathError, "Error while executing Process: " + ((Process)sendingProcess).Id + " Details: " + errLine.Data + " \n\t\t DETAILS: " + realErrorData, "generic");
                 }
         }
 
