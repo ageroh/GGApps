@@ -69,6 +69,14 @@ namespace GGApps
             Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
             {
+                //SendMail To All Teams
+                await SendMailToUsers(appName
+                                        , GetEmailList("AllTeams")
+                                        , null
+                                        , EmailTemplate("Start", appName, startProcessing)
+                                        , "GG App-update Started for: " + appName
+                                        , mapPathError, Log);
+
                 var result3 = await RunAsyncCommandBatch(ct, appID, appName, "3_convert_db.bat " + appName, actualWorkDir, "convert SQL Db to SQLLite", mapPathError, Log);
 
                 if (!result3.IsCancellationRequested && !HasErrors)
@@ -152,7 +160,7 @@ namespace GGApps
                                         await SendMailToUsers(appName
                                                                 , GetEmailList("AllTeams")
                                                                 , _listAttachments
-                                                                , EmailTemplate("Success", appName, startProcessing), "GG App produced for " + appName + " >Success!"
+                                                                , EmailTemplate("Success", appName, startProcessing), "&#10004; GG App produced for " + appName + " >Success!"
                                                                 , mapPathError, Log);
 
                                         //Send Always email with Log info for currnet execution to ME.
@@ -160,8 +168,8 @@ namespace GGApps
                                         await SendMailToUsers(appName
                                                                 , GetEmailList("ErrorTeam")
                                                                 , _listAttachments
-                                                                , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
-                                                                , "GG App produced for " + appName + " >Success!"
+                                                                , EmailTemplate("Info", appName, startProcessing, "http://app-update.greekguide.com/GGApps/Logs/Log_" + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
+                                                                , "&#10004; GG App produced for " + appName + " >Success!"
                                                                 , mapPathError, Log
                                                                 );
 
@@ -202,7 +210,7 @@ namespace GGApps
                     await SendMailToUsers(appName
                                             , GetEmailList("ErrorTeam")
                                             , _listAttachments
-                                            , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
+                                            , EmailTemplate("Info", appName, startProcessing, "http://app-update.greekguide.com/GGApps/Logs/Log_" + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
                                             , "GG App produced for " + appName + " >Failed!"
                                             , mapPathError, Log
                                             );
@@ -235,9 +243,18 @@ namespace GGApps
             string startProcessing = DateTime.Now.ToString("HH:mm - ddd d MMM yyyy");
 
 
+
+
             Session["FinishedProcessing"] = false;
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
             {
+                //SendMail To All Teams
+                await SendMailToUsers(appName
+                                        , GetEmailList("AllTeams")
+                                        , null
+                                        , EmailTemplate("Start", appName, startProcessing)
+                                        , "GG App-update Started for: " + appName
+                                        , mapPathError, Log);
 
 #if !DEBUG
 
@@ -370,7 +387,7 @@ namespace GGApps
                                                                             , GetEmailList("AllTeams")
                                                                             , _listAttachments
                                                                             , EmailTemplate("Success", appName, startProcessing)
-                                                                            , "GG App produced for " + appName + " >Success!"
+                                                                            , "&#10004; GG App produced for " + appName + " >Success!"
                                                                             , mapPathError, Log);
 
                                                     //Send Always email with Log info for currnet execution to ME.
@@ -378,8 +395,8 @@ namespace GGApps
                                                     await SendMailToUsers(appName
                                                                             , GetEmailList("ErrorTeam")
                                                                             , _listAttachments
-                                                                            , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
-                                                                            , "GG App produced for " + appName + " >Success!"
+                                                                            , EmailTemplate("Info", appName, startProcessing, "http://app-update.greekguide.com/GGApps/Logs/Log_" + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
+                                                                            , "&#10004; GG App produced for " + appName + " >Success!"
                                                                             , mapPathError, Log
                                                                             );
 
@@ -427,7 +444,7 @@ namespace GGApps
                         await SendMailToUsers(appName
                                                 , GetEmailList("ErrorTeam")
                                                 , _listAttachments
-                                                , EmailTemplate("Info", appName, startProcessing, mapPathError + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
+                                                , EmailTemplate("Info", appName, startProcessing, "http://app-update.greekguide.com/GGApps/Logs/Log_" + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
                                                 , "GG App produced for " + appName + " >Failed!"
                                                 , mapPathError, Log
                                                 );
@@ -1183,6 +1200,12 @@ namespace GGApps
                     if (File.Exists(Server.MapPath("EmailTemplates//EmailTemplateInfo.html")))
                     {
                         str = File.ReadAllText(Server.MapPath("EmailTemplates//EmailTemplateInfo.html"), Encoding.UTF8);
+                    }
+                    break;
+                case "Start":
+                    if (File.Exists(Server.MapPath("EmailTemplates//EmailTemplateStart.html")))
+                    {
+                        str = File.ReadAllText(Server.MapPath("EmailTemplates//EmailTemplateStart.html"), Encoding.UTF8);
                     }
                     break;
                 default: break;
