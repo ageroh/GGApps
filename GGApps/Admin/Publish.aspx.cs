@@ -207,6 +207,7 @@ namespace GGApps
             foreach (string mobileDevice in mobileDevicesToPublish) 
             {
                 Log.InfoLog(mapPathError, "============================================== STARTED PUBLISH TO PRODUCTION FOR " + appName + " for " + mobileDevice + " ==============================================", appName);
+               
                 // if is ok must staging_db_version = production_db_version + 1 foreach app. on Staging
                 if (!RefreshVersionFileStaging(appID, appName, mobileDevice))
                 {
@@ -214,6 +215,7 @@ namespace GGApps
                     return;
                 }
 
+                // take off_line the app in production.
                 if (RenameFileRemote(appName, appName.ToLower() + "/update/" + mobileDevice + "/versions.txt", "versions_" + DateTime.Now.ToString("yyyyMMdd_hhmm") + ".txt") > 0)
                 {
 
@@ -222,7 +224,6 @@ namespace GGApps
 
                     if (res == null)
                     {
-
                         DisplayCustomMessageInValidationSummary("Some Error occured while Uploading Files to Production");
                         return;
                     }
@@ -243,7 +244,7 @@ namespace GGApps
                         fin.StoreNewDBtoHistory(appName, appID, mobileDevice, DbVersion, topath);
 
                         // Reset versions and configuration files of staging ?  or get in case of update data only for Admin DB...
-                        // ?
+                        
 
                         Log.InfoLog(mapPathError, "============================================== FINISHED WITH SUCCESS - PUBLISH TO PRODUCTION FOR " + appName + " for " + mobileDevice + " ==============================================", appName);
 
@@ -275,7 +276,14 @@ namespace GGApps
 
 
 
-
+        /// <summary>
+        /// Upload new App, for a Mobile Device to production. Upload images, configuration.txt and last versions.txt from staging.
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="appID"></param>
+        /// <param name="mobileDevice"></param>
+        /// <param name="isAppUpdate"></param>
+        /// <returns></returns>
         private string UploadToProduction(string appName, int appID, string mobileDevice, bool isAppUpdate = false)
         {
 
@@ -296,7 +304,7 @@ namespace GGApps
                     }
                     catch (Exception e)
                     {
-                        Log.ErrorLog(mapPathError, "Failed to upload Configurations.txt file to production for " + mobileDevice + ", " + e.Message, "generic");
+                        Log.ErrorLogAdmin(mapPathError, "Failed to upload Configurations.txt file to production for " + mobileDevice + ", " + e.Message, "generic");
                         return null;
                     }
 
@@ -321,7 +329,7 @@ namespace GGApps
         {
             Finalize fin = new Finalize(appName, appID);
             string dbver;
-            string appVersion = "", configVersion = "";
+            string appVersion = "", configVersion = "", appVersionReal = "";
             int newdbVersion=0;
 
             if (StagProdAppVersions == null)
@@ -344,10 +352,34 @@ namespace GGApps
                 if (!fin.SetVerionsFileProperty("db_version", newdbVersion.ToString(), appName, appID, mobileDevice, 1, "versions.txt"))
                     return false;
 
+                // set also the property for App Version taken from taken from Python script.
+                int rlver = fin.GetRealAppVersion(appName, appID, mobileDevice, out appVersionReal);
+                if (rlver == 1)
+                {
+                    if (appVersionReal != appVersion)
+                    {
+                        Log.InfoLog(mapPathError, "App Version had changed for " + mobileDevice, appName);
+                    }
+                    if (!fin.SetVerionsFileProperty("app_version", appVersionReal, appName, appID, mobileDevice, 1, "versions.txt"))
+                        return false;
+                }
+                else if (rlver == -1)
+                {
+                    Log.ErrorLogAdmin(mapPathError, "Error occured in GetRealAppVersion writing for " + mobileDevice + " in DB  " + appName, appName);
+                    return false;
+                }
+                else 
+                {
+                    // error message to check update for Python script. 
+                    DisplayCustomMessageInValidationSummary("Please check the automatic Application Versioning process(python), nothing deployed to Production for: " + mobileDevice + ", contact Admins!");
+                    return false;
+                }
+
+
                 // Add a row to Admin DB for history reasons, to create e new MAJOR number.
                 if (fin.AddDBversionAdmin(appName, appID, dbver, newdbVersion.ToString(), mobileDevice, "EN", newdbVersion) == null)
                 {
-                    Log.ErrorLog(mapPathError, "Error occured in AddDBversionAdmin writing for " + mobileDevice + " in DB  " + appName, appName);
+                    Log.ErrorLogAdmin(mapPathError, "Error occured in AddDBversionAdmin writing for " + mobileDevice + " in DB  " + appName, appName);
                     return false;
                 }
             }

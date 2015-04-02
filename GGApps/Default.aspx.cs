@@ -179,7 +179,7 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                Log.ErrorLog(mapPathError, e.Message +" Stack Trace:"  + e.StackTrace, name, "");
+                Log.ErrorLogAdmin(mapPathError, e.Message + " Stack Trace:" + e.StackTrace, name, "");
             }
         }
 
@@ -221,7 +221,7 @@ namespace GGApps
             }
             catch (SqlException ex)
             {
-                Log.ErrorLog(mapPathError, "Refresh_DB_inner for " + name + " lang:" + langID + " Exception:" + ex.Message, name);
+                Log.ErrorLogAdmin(mapPathError, "Refresh_DB_inner for " + name + " lang:" + langID + " Exception:" + ex.Message, name);
             }
             
             return sb;
@@ -322,7 +322,7 @@ namespace GGApps
             catch (Exception ex)
             {
                 HasErrors = true;   //??
-                //Log.ErrorLog(mapPathError, "myConnection_InfoMessage: " + ex.Message, Session["appName"].ToString(), "");
+                //Log.ErrorLogAdmin(mapPathError, "myConnection_InfoMessage: " + ex.Message, Session["appName"].ToString(), "");
             }
 
         }

@@ -37,7 +37,7 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                Log.ErrorLog(mapPathError, "some exception occured on CheckAppsBundleList(), ", e.Message, "generic");
+                Log.ErrorLogAdmin(mapPathError, "some exception occured on CheckAppsBundleList(), ", e.Message, "generic");
             }
         }
 

@@ -13,8 +13,9 @@ def get_ios_app_versions():
 		ios_app_name = ios_app_page.find("h1").text().split(' ')[0].lower()
 		if len(ios_app_name) == 0:
 			continue
-		ios_app_version_raw =  ios_app_page.find("div#left-stack > div.lockup > ul.list > li")[3].text()
-		ios_app_version = re.findall(r'\d\.\d\.?\d?', ios_app_version_raw)[0]
+		#ios_app_version_raw =  ios_app_page.find("div#left-stack > div.lockup > ul.list > li")[3].text()
+		#ios_app_version = re.findall(r'\d\.\d\.?\d?', ios_app_version_raw)[0]
+		ios_app_version = ios_app_page.find("span[itemprop=softwareVersion]").text()
 		ret.append((ios_app_name, ios_app_version))
 
 	return ret

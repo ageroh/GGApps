@@ -83,8 +83,8 @@ namespace GGApps
                 }
                 catch (Exception ex)
                 {
-                    Log.ErrorLog(mapErrorPath, "Error while downloading file " + localFile + ": " + ex.Message, appName);
-                    return -1;
+                    Log.ErrorLogAdmin(mapErrorPath, "Error while downloading file " + localFile + ": " + ex.Message, appName);
+                    totalBytes = -1;
                 }
                 
                 /* Resource Cleanup */
@@ -95,7 +95,7 @@ namespace GGApps
             }
             catch (Exception ex)
             {
-                Log.ErrorLog(mapErrorPath, "Error in download()" + ex.Message, appName);
+                Log.ErrorLogAdmin(mapErrorPath, "Error in download()" + ex.Message, appName);
                 return -1;
             }
             return totalBytes;
@@ -143,7 +143,7 @@ namespace GGApps
                         ftpStream.Write(byteBuffer, 0, bytesSent);
                         bytesSent = localFileStream.Read(byteBuffer, 0, bufferSize);
                     }
-                    if( localFileStream != null)
+                    if (localFileStream != null)
                         totalBytes += localFileStream.Length;
 
                     // Log the file upload 
@@ -151,12 +151,14 @@ namespace GGApps
                 }
                 catch (Exception ex)
                 {
-                    Log.ErrorLog(mapErrorPath, "Error while uploading file " + localFile + ": " + ex.Message, appName); 
+                    Log.ErrorLogAdmin(mapErrorPath, "Error while uploading file " + localFile + ": " + ex.Message, appName);
+                    totalBytes = -1;
                 }
                 /* Resource Cleanup */
                 localFileStream.Close();
                 ftpStream.Close();
                 ftpRequest = null;
+                
             }
             catch (Exception ex) 
             {
@@ -167,7 +169,7 @@ namespace GGApps
                 }
                 else
                 {
-                    Log.ErrorLog(mapErrorPath, "Error while initialize and upload file " + localFile + ": " + ex.Message, appName);
+                    Log.ErrorLogAdmin(mapErrorPath, "Error while initialize and upload file " + localFile + ": " + ex.Message, appName);
                     return -1; 
                 }
             }
@@ -266,7 +268,7 @@ namespace GGApps
                 ftpRequest = null;
                 return true;
             }
-            catch (Exception ex) { Log.ErrorLog(mapErrorPath, ex.Message, appName); return false; }
+            catch (Exception ex) { Log.ErrorLogAdmin(mapErrorPath, ex.Message, appName); return false; }
             
         }
         

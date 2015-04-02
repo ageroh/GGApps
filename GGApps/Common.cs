@@ -30,6 +30,7 @@ namespace GGApps
         public static string producedAppPath = rootWebConfig.AppSettings.Settings["ProducedAppPath"].Value.ToString();
         
         public static bool HasErrors = false;                       // MAKE THIS A SESSION VARIABLE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        public static bool LogErrorAdmin = false;                       
         public static CreateLogFiles Log = new CreateLogFiles();
 
         
@@ -181,7 +182,7 @@ namespace GGApps
         }
 
         /// <summary>
-        /// Executes a query that stores results in a file.
+        /// Generate Entity.txt mainly, could be used to create other file to disk.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="name"></param>
@@ -236,7 +237,15 @@ namespace GGApps
 
 
 
-
+        /// <summary>
+        /// Generate report for an App
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="langID"></param>
+        /// <param name="sqlFile"></param>
+        /// <param name="dbName"></param>
+        /// <returns></returns>
         public String executeSQLScript(int id, string name, int langID, string sqlFile, string dbName = null)
         {
             try
@@ -274,7 +283,7 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                Log.ErrorLog(mapPathError, "executeSQLScript for " + name + " lang:" + langID + " Exception:" + e.Message, name);
+                Log.ErrorLogAdmin(mapPathError, "executeSQLScript for " + name + " lang:" + langID + " Exception:" + e.Message, name);
                 return "<span class='error'>Error!</span>";
             }
 
@@ -302,7 +311,7 @@ namespace GGApps
             catch (Exception e)
             {
                 HttpContext.Current.Session["hErrors"] = true;
-                Log.ErrorLog(mapPathError, e.Message, "generic", "");
+                Log.ErrorLogAdmin(mapPathError, e.Message, "generic", "");
             }
             return null;
 
@@ -438,8 +447,8 @@ namespace GGApps
                 }
             }
             catch (Exception e)
-            { 
-                Log.ErrorLog(mapPathError, appName + ": Some Exception occured in GetVersionsFile(), " + e.Message, "generic");
+            {
+                Log.ErrorLogAdmin(mapPathError, appName + ": Some Exception occured in GetVersionsFile(), " + e.Message, "generic");
                 return null;
             }
 
@@ -467,18 +476,21 @@ namespace GGApps
                         totalBytesUploaded += ftpClient.upload(localFile, remotePath + fi.Name, overwrite);
                     }
                 }
-                
+
                 if (totalBytesUploaded > 10)
-                    Log.InfoLog(mapPathError, "Finished with uploading files from " + localDir + " to "+remotePath+ " FTP, total Bytes uploaded: " + ftpClient.SizeSuffix(totalBytesUploaded), appName);
+                    Log.InfoLog(mapPathError, "Finished with uploading files from " + localDir + " to " + remotePath + " FTP, total Bytes uploaded: " + ftpClient.SizeSuffix(totalBytesUploaded), appName);
                 else
-                    Log.ErrorLog(mapPathError, "Some error ocured while uploading files from " + localDir + " to " + remotePath + " FTP, total Bytes uploaded: " + ftpClient.SizeSuffix(totalBytesUploaded), appName);
+                {
+                    Log.ErrorLogAdmin(mapPathError, "Some error ocured while uploading files from " + localDir + " to " + remotePath + " FTP, total Bytes uploaded: " + ftpClient.SizeSuffix(totalBytesUploaded), appName);
+                    return 0;
+                }
 
                 ftpClient = null;
                 return totalBytesUploaded;
             }
             catch (Exception ex)
             {
-                Log.ErrorLog(mapPathError, "Some error ocured while uploading files from " + localDir + " to " + remotePath + " FTP, Exception:  " + ex.Message, appName);
+                Log.ErrorLogAdmin(mapPathError, "Some error ocured while uploading files from " + localDir + " to " + remotePath + " FTP, Exception:  " + ex.Message, appName);
                 return 0;
             }
         }
@@ -556,7 +568,7 @@ namespace GGApps
             }
             catch (Exception ex)
             {
-                Log.ErrorLog(mapPathError, "Some error ocured while uploading files to FTP, Exception:  " + ex.Message, appName);
+                Log.ErrorLogAdmin(mapPathError, "Some error ocured while uploading files to FTP, Exception:  " + ex.Message, appName);
                 return -1;
             }
         
@@ -591,14 +603,14 @@ namespace GGApps
                 }
                 
                 if (totalBytesUploaded <= 0)
-                    Log.ErrorLog(mapPathError, "Some error ocured while uploading file: " + localFilename + " to FTP, total Bytes uploaded: " + ftpClient.SizeSuffix(totalBytesUploaded), appName);
+                    Log.ErrorLogAdmin(mapPathError, "Some error ocured while uploading file: " + localFilename + " to FTP, total Bytes uploaded: " + ftpClient.SizeSuffix(totalBytesUploaded), appName);
 
                 ftpClient = null;
                 return totalBytesUploaded;
             }
             catch (Exception ex)
             {
-                Log.ErrorLog(mapPathError, "Some error ocured while uploading files to FTP, Exception:  " + ex.Message, appName);
+                Log.ErrorLogAdmin(mapPathError, "Some error ocured while uploading files to FTP, Exception:  " + ex.Message, appName);
                 return -1;
             }
         }
@@ -611,7 +623,13 @@ namespace GGApps
             {
                 Response.Redirect("~/");
             }
+            else
+                Response.Redirect("~/Admin/Publish.aspx");
+#else
+            //if (Request.Url != "/Admin/Publish.aspx") 
+            //    Response.Redirect("~/Admin/Publish.aspx");
 #endif
+
         }
 
         // Implement this as for multiple account users.
@@ -666,7 +684,7 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                Log.ErrorLog(mapPathError, appName + ": Some Exception occured in GetData(), " + e.Message, "generic");
+                Log.ErrorLogAdmin(mapPathError, appName + ": Some Exception occured in GetData(), " + e.Message, "generic");
                 return null;
             }
             return null;
@@ -719,7 +737,7 @@ namespace GGApps
             if (ftpClient.download(remotefilename, localFilename) <= 0)
             {
                 // Check if file exists on expcted location.
-                Log.ErrorLog(mapPathError, appName + ": File did not found in PRODUCTION: " + remotefilename, "generic");
+                Log.ErrorLogAdmin(mapPathError, appName + ": File did not found in PRODUCTION: " + remotefilename, "generic");
                 return null;
             }
             Log.InfoLog(mapPathError, appName + ": Successfully", "generic");
@@ -800,7 +818,7 @@ namespace GGApps
             }
             catch (Exception je)
             {
-                Log.ErrorLog(mapPathError, appName + ": not valid json for " + fileName + ", " + je.Message, "generic");
+                Log.ErrorLogAdmin(mapPathError, appName + ": not valid json for " + fileName + ", " + je.Message, "generic");
                 return "Not A Valid JSON file.";
             }
             
@@ -830,7 +848,7 @@ namespace GGApps
                     }
                     catch (Exception e)
                     {
-                        Log.ErrorLog(mapPathError, appName + ": Some Critical Exception occured when try to save file: " + setFileName + ", " + appName + ", " + mobileDevice + ", " + Environment + "  , " + e.Message, "generic");
+                        Log.ErrorLogAdmin(mapPathError, appName + ": Some Critical Exception occured when try to save file: " + setFileName + ", " + appName + ", " + mobileDevice + ", " + Environment + "  , " + e.Message, "generic");
                         return null;
                     }
                 }
@@ -850,7 +868,7 @@ namespace GGApps
                 } 
                 catch(Exception e) 
                 {
-                    Log.ErrorLog(mapPathError, appName + ": Some Critical Exceprion occured when try to save file: " + setFileName + ", " + appName + ", " + mobileDevice + ", " + Environment + "  , " + e.Message, "generic"); 
+                    Log.ErrorLogAdmin(mapPathError, appName + ": Some Critical Exceprion occured when try to save file: " + setFileName + ", " + appName + ", " + mobileDevice + ", " + Environment + "  , " + e.Message, "generic"); 
                     return null;
                 }
                 

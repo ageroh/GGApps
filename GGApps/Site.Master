@@ -180,7 +180,7 @@
                 <nav>
                     <ul id="menu">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/Admin.aspx">Admin</a></li>
+                        <li><a runat="server" href="~/Admin/Publish.aspx">Admin</a></li>
                     </ul>
                 </nav>
             </div>

@@ -79,7 +79,7 @@ namespace GGApps
             }
             catch (Exception ex)
             {
-                Log.ErrorLog(mapPathError, "JSON> Setting property " + property + " with value: " + value + " on file " + fileName + " failed! , " + ex.Message, appName);
+                Log.ErrorLogAdmin(mapPathError, "JSON> Setting property " + property + " with value: " + value + " on file " + fileName + " failed! , " + ex.Message, appName);
                 return false;
             }
             return true;
@@ -153,7 +153,7 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                Log.ErrorLog(mapPathError, "Some exception occured in GetConfigurationFileProduction(), "+ e.Message, appName);
+                Log.ErrorLogAdmin(mapPathError, "Some exception occured in GetConfigurationFileProduction(), " + e.Message, appName);
                 return null;
             }
             
@@ -216,7 +216,7 @@ namespace GGApps
 
                         if (String.IsNullOrEmpty(curVerStr))
                         {
-                            Log.ErrorLog(mapPathError, "No DB version for SQL Lite for " + dbLang + " of " + this.appName, this.appName);
+                            Log.ErrorLogAdmin(mapPathError, "No DB version for SQL Lite for " + dbLang + " of " + this.appName, this.appName);
                             return null;
                         }
 
@@ -246,7 +246,7 @@ namespace GGApps
 
                         if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang) == null)
                         {
-                            Log.ErrorLog(logPath, "Error occured in AddDBversionAdmin DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
+                            Log.ErrorLogAdmin(logPath, "Error occured in AddDBversionAdmin DB ver numbers, for " + dbLang + " of " + this.appName, this.appName);
                             return null;
                         }
 
@@ -260,7 +260,7 @@ namespace GGApps
             }
             catch (Exception ex)
             {
-                Log.ErrorLog(mapPathError, "Some exception occured on UpdateSQLiteUserVersion: " + ex.Message, appName);
+                Log.ErrorLogAdmin(mapPathError, "Some exception occured on UpdateSQLiteUserVersion: " + ex.Message, appName);
                 return null;
             }
 
@@ -276,6 +276,7 @@ namespace GGApps
         /// <param name="mobileDevice"></param>
         /// <param name="addVersion"></param>
         /// <returns></returns>
+        /*
         public object UpdateSQLiteUserVersion(string dbLang , string mobileDevice, int addVersion = 1)
         {
 
@@ -317,15 +318,15 @@ namespace GGApps
                                 minor++;
                                 newVersionStr = setVerFromMajorMinor(major, minor);
 
-                                /*
-                                 * resolve BUG to Android APK first.
+                                
+                               //  * resolve BUG to Android APK first.
 
-                                con.Open();
-                                cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
-                                cmd.ExecuteNonQuery();
-                                con.Close();
+                               // con.Open();
+                               // cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
+                               // cmd.ExecuteNonQuery();
+                               // con.Close();
                                  
-                                 */
+                                 
                                 
                                 //add new version as record to DB
                                 if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang)==null)
@@ -343,15 +344,14 @@ namespace GGApps
                                 Int32.TryParse(curVerStr, out major);
                                 newVersionStr = setVerFromMajorMinor(major, 1);
 
-                               /*
-                                * resolve BUG to Android APK first.
+                              // resolve BUG to Android APK first.
 
-                                con.Open();
-                                cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
-                                cmd.ExecuteNonQuery();
-                                con.Close();
+                              //  con.Open();
+                              //  cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
+                              //  cmd.ExecuteNonQuery();
+                              //  con.Close();
                                 
-                                */
+                                
 
                                 if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang) == null)
                                 {
@@ -385,14 +385,13 @@ namespace GGApps
 
                                 newVersionStr = major.ToString();
                                 
-                                /*
-                                 * resolve BUG to Android APK first.
+                                // resolve BUG to Android APK first.
 
-                                cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
-                                con.Open();
-                                cmd.ExecuteNonQuery();
-                                con.Close();
-                                */
+                                //cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
+                                //con.Open();
+                                //cmd.ExecuteNonQuery();
+                                //con.Close();
+                                
 
                                 if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang, MAJOR) == null)
                                 {
@@ -408,14 +407,13 @@ namespace GGApps
                                 curVersion = curVersion + addVersion;       // add plus one to existing version file.
                                 newVersionStr = curVersion.ToString();
                                 
-                                /*
-                                * resolve BUG to Android APK first.
+                                //resolve BUG to Android APK first.
 
-                                con.Open();
-                                cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
-                                cmd.ExecuteNonQuery();
-                                con.Close();
-                                */
+                                //con.Open();
+                                //cmd.CommandText = "PRAGMA USER_VERSION = " + newVersionStr + " ;";
+                                //cmd.ExecuteNonQuery();
+                                //con.Close();
+                                
 
                                 if (AddDBversionAdmin(appName, appID, curVerStr, newVersionStr, mobileDevice, dbLang, MAJOR) == null)
                                 {
@@ -438,6 +436,7 @@ namespace GGApps
             }
 
         }
+        */
 
         /// <summary>
         /// Set new DB version to Admin, given App, Lang, and Mobile Device.
@@ -484,7 +483,8 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                Log.ErrorLog(mapPathError, "Some excepetion occured in AddDBversionAdmin " + e.Message, appName);
+                Log.ErrorLogAdmin(mapPathError, "Some excepetion occured in AddDBversionAdmin " + e.Message, appName);
+                return null;
             }
 
             return null;
@@ -635,7 +635,7 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                Log.ErrorLog(mapPathError, "Failed to initialize DB Version on SQLite DB for Lang:" + langID + " for " + mobiledevice + " Exception: " + e.Message, appName);
+                Log.ErrorLogAdmin(mapPathError, "Failed to initialize DB Version on SQLite DB for Lang:" + langID + " for " + mobiledevice + " Exception: " + e.Message, appName);
                 return "0";
             }
 
@@ -702,7 +702,7 @@ namespace GGApps
             }
             catch (Exception ex)
             {
-                Log.ErrorLog(mapPathError, "Exception on  InitializeDBFromFiles when initializing Backoffice DB." + ex.Message, "generic");
+                Log.ErrorLogAdmin(mapPathError, "Exception on  InitializeDBFromFiles when initializing Backoffice DB." + ex.Message, "generic");
                 return null;
             }
 
@@ -728,7 +728,7 @@ namespace GGApps
 
             if (fileConfigVersionNumber != configVersionNumber)   // conflict to Configuration files!
             {
-                Log.ErrorLog(mapPathError, "Conflict on configuration.txt and versions.txt -> Configuration_Version. Resolved by keeping configuration.txt.\n\t\t\t -> versions.txt:(" + configVersionNumber + ") " +
+                Log.ErrorLogAdmin(mapPathError, "Conflict on configuration.txt and versions.txt -> Configuration_Version. Resolved by keeping configuration.txt.\n\t\t\t -> versions.txt:(" + configVersionNumber + ") " +
                                             "\n\t\t\t -> configuration.txt:(" + fileConfigVersionNumber + ") ", "generic");
                 configVersionNumber = fileConfigVersionNumber;
             }
@@ -790,7 +790,7 @@ namespace GGApps
 
                 if (fileConfigVersionNumber != configVersionNumber)   // conflict to Configuration files!
                 {
-                    Log.ErrorLog(mapPathError, "Conflict on configuration.txt and versions.txt -> Configuration_Version. Resolved by keeping configuration.txt.\n\t\t\t -> versions.txt:(" + configVersionNumber + ") " +
+                    Log.ErrorLogAdmin(mapPathError, "Conflict on configuration.txt and versions.txt -> Configuration_Version. Resolved by keeping configuration.txt.\n\t\t\t -> versions.txt:(" + configVersionNumber + ") " +
                                                 "\n\t\t\t -> configuration.txt:(" + fileConfigVersionNumber + ") ", "generic");
                     configVersionNumber = fileConfigVersionNumber;
                 }
@@ -802,7 +802,7 @@ namespace GGApps
             }
             catch (Exception ex)
             {
-                Log.ErrorLog(mapPathError, "Exception on  AddProductionVerAdmin when initializing Backoffice DB." + ex.Message, "generic");
+                Log.ErrorLogAdmin(mapPathError, "Exception on  AddProductionVerAdmin when initializing Backoffice DB." + ex.Message, "generic");
                 return null;
             }
 
@@ -847,7 +847,7 @@ namespace GGApps
             }
             catch (Exception e)
             {
-                Log.ErrorLog(mapPathError, "Exception thrown UpdateAppBundle: " + e.Message, "generic");
+                Log.ErrorLogAdmin(mapPathError, "Exception thrown UpdateAppBundle: " + e.Message, "generic");
                 return null;
             }
             
@@ -893,10 +893,87 @@ namespace GGApps
             }
             catch (Exception ex)
             {
-                Log.ErrorLog(mapPathError, "Some exception occured in StoreNedDBtoHistory()", appName);
+                Log.ErrorLogAdmin(mapPathError, "Some exception occured in StoreNedDBtoHistory()", appName);
                 return null;
             }
             return 0;
+        }
+
+
+        // get the real app version produced from python script stored in 
+        internal int GetRealAppVersion(string appName, int appID, string mobileDevice, out string appVersionReal)
+        {
+            string query = "select * from GGAppsVersions where AppName = '" + appName.ToLower() + "' and UPPER(AppPlatform) = '"+mobileDevice.ToUpper()+"' ";
+            string q2 = "update GGAppsVersions set HasChanged = 0 where GGAppsVersionsID = ";
+            int id = -1;
+            appVersionReal = null;
+
+            if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
+            {
+                using (SqlConnection con = new SqlConnection(rootWebConfig.AppSettings.Settings["GG_Reporting"].Value.ToString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        con.Open();
+                        using (SqlDataReader resultSet = cmd.ExecuteReader())
+                        {
+                            if (resultSet.HasRows)
+                            {
+                                while (resultSet.Read())
+                                {
+                                    DateTime dt;
+                                    DateTime.TryParse(resultSet["LastCheckDate"].ToString(), out dt);
+                                    if( dt != null)
+                                    {
+                                        // is lastly checked successfully from python
+                                        if (dt >= DateTime.Now.AddHours(-2)) //&& (int)resultSet["HasChanged"] == 1)
+                                        {
+                                            appVersionReal = resultSet["AppVersion"].ToString();        // this is the real version.
+                                            id = Convert.ToInt32(resultSet["GGAppsVersionsID"]);
+
+                                        }
+                                        // oops, check python script for errors!!!
+                                        else
+                                        {
+                                            return 0; 
+                                        }
+                                    }
+
+                                    // GGAppsVersionsID	AppName	AppVersion	AppPlatform	HasChanged	LastModifiedDate	LastCheckDate
+
+                                }
+                                Log.InfoLog(mapPathError, "Finished reading query for images", appName);
+                            }
+                            else
+                            {
+                                Log.ErrorLog(mapPathError, "Some error occured while reading sql lite db for bundled images.", appName);
+                                return -1;
+                            }
+                        }
+                        con.Close();
+                    }
+
+                    // update db entry
+                    if (appVersionReal != null)
+                    {
+                        if (id >= 0)
+                            q2 += id;
+                        else
+                            return -1;
+
+                        con.Open();
+                        using (SqlCommand cmd = new SqlCommand(q2, con))
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        con.Close();
+                        return 1;
+                    }
+                    
+                }
+            }
+
+            return -1;
         }
 
 
