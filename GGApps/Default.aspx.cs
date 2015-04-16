@@ -22,20 +22,18 @@ namespace GGApps
             
             if (!Page.IsPostBack)
             {
-                //if (User.Identity.IsAuthenticated)
-                //{
-                    DropDownList ddStart = (DropDownList)LoginViewImportant.FindControl("ddStart");
+                if (CheckAccount() == 0)
+                    Response.Redirect("~/ContentValidation.aspx");
 
-                    ddStart.DataSource = GetAllAppTable();
-                    ddStart.DataTextField = "appName";
-                    ddStart.DataValueField = "id";
+                DropDownList ddStart = (DropDownList)LoginViewImportant.FindControl("ddStart");
+
+                ddStart.DataSource = GetAllAppTable();
+                ddStart.DataTextField = "appName";
+                ddStart.DataValueField = "id";
                     
-                    ddStart.DataBind();
-                    ddStart.Items.Insert(0, new ListItem(" - Select Application - ", "-1"));
-                    ddStart.SelectedIndex = 0;
-                    
-               // }
-            
+                ddStart.DataBind();
+                ddStart.Items.Insert(0, new ListItem(" - Select Application - ", "-1"));
+                ddStart.SelectedIndex = 0;
             }
         }
 

@@ -7,11 +7,15 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using Renci.SshNet.Channels;
+using Renci.SshNet;
 
 namespace GGApps
 {
     public partial class Publish : Common
     {
+        public static string[] CommitCommandsDesc = { "commit", "rollback", "tryCommit", "rollbackLastPublish" };
+        public enum CommitCommands : long { commit = 0, rollback, tryCommit, rollbackLastPublish };
 
         public static List<AppVersionDetail> StagProdAppVersions = new List<AppVersionDetail>();
 
@@ -167,7 +171,32 @@ namespace GGApps
             custValidation.Visible = false;
         }
 
+        public string SSHConnectExecute(string cmdInput, string appName)
+        {
+            // setup the correct connection for GIT server!
+            var PasswordConnection = new PasswordAuthenticationMethod("ageroh", "123");
+            var KeyboardInteractive = new KeyboardInteractiveAuthenticationMethod("ageroh");
+            string myData = null;
 
+            var connectionInfo = new ConnectionInfo("10.168.200.117", 22, "ageroh", PasswordConnection, KeyboardInteractive);
+
+            try
+            {
+                using (SshClient ssh = new SshClient(connectionInfo))
+                {
+                    ssh.Connect();
+                    var command = ssh.RunCommand(cmdInput);
+                    myData = command.Result;
+                    ssh.Disconnect();
+                }
+            }
+            catch (Exception e) 
+            {
+                Log.ErrorLogAdmin(mapPathError, "SSH connection-command error : " + e.Message, appName);
+            }
+
+            return myData;
+        }
 
 
         protected void BtnPublishApp_Click(object sender, EventArgs e)
@@ -194,7 +223,13 @@ namespace GGApps
 
             Session["mobileDevicesPublish"] = mobileDevicesToPublish;
 
+                      
+    #if DEBUG
+            Log.InfoLog(mapPathError, "this is a SHH connection test and run: " + SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.commit], appName), appName);
+    #endif
 
+
+#if !DEBUG  
             Log.InfoLog(mapPathError, "Check if staging and production are valid for a publish.", appName);
             string mobDev = "";
             if (!CheckStagingProductionDBVersions(appName, appID, StagProdAppVersions, mobileDevicesToPublish, out mobDev))
@@ -203,6 +238,8 @@ namespace GGApps
                 return;
             }
 
+            // check return message.
+            SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.tryCommit], appName);
 
             foreach (string mobileDevice in mobileDevicesToPublish) 
             {
@@ -212,6 +249,7 @@ namespace GGApps
                 if (!RefreshVersionFileStaging(appID, appName, mobileDevice))
                 {
                     DisplayCustomMessageInValidationSummary("Error, while deploying " + appName + " to Production for " + mobileDevice + ". Nothing Deployed to Production.");
+                    SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.rollback], appName);
                     return;
                 }
 
@@ -225,6 +263,7 @@ namespace GGApps
                     if (res == null)
                     {
                         DisplayCustomMessageInValidationSummary("Some Error occured while Uploading Files to Production");
+                        SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.rollback], appName);
                         return;
                     }
                     else if (res == "success")
@@ -236,6 +275,7 @@ namespace GGApps
                         if ((DbVersion = fin.AddProductionVerAdmin(appID, appName, mobileDevice)) == null)
                         {
                             DisplayCustomMessageInValidationSummary("Some Error occured while finalizing DB for " + mobileDevice);
+                            SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.rollback], appName);
                             return;
                         }
                         string topath = producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\DBVER\\";
@@ -244,8 +284,9 @@ namespace GGApps
                         fin.StoreNewDBtoHistory(appName, appID, mobileDevice, DbVersion, topath);
 
                         // Reset versions and configuration files of staging ?  or get in case of update data only for Admin DB...
-                        
-
+                        // ?
+                        undoPublish.Enabled = true;
+                      
                         Log.InfoLog(mapPathError, "============================================== FINISHED WITH SUCCESS - PUBLISH TO PRODUCTION FOR " + appName + " for " + mobileDevice + " ==============================================", appName);
 
                         // print Success Message...
@@ -255,23 +296,27 @@ namespace GGApps
                     else
                     {
                         DisplayCustomMessageInValidationSummary("Some Error occured: " + res);
+                        SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.rollback], appName);
                         return;
                     }
                 }
                 else
                 {
                     DisplayCustomMessageInValidationSummary("Some Error occured, nothing deployed to Production for: " + mobileDevice + ", try again ");
+                    SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.rollback], appName);
                     return;
                 }
             
             }
 
+            SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.commit], appName);
 
             // Refresh screen with new data.
             FetchAppDetailsProduction(appID, appName);
 
             // clear session variable
             Session["mobileDevicesPublish"] = null;
+#endif
         }
 
 
@@ -499,6 +544,14 @@ namespace GGApps
 
             InitOnOffLineApps(appName);
             FetchAppDetailsProduction(appID, appName);
+        }
+
+        protected void undoPublish_Click(object sender, EventArgs e)
+        {
+            SSHConnectExecute( CommitCommandsDesc[(int)CommitCommands.rollbackLastPublish], Session["appName"].ToString() );
+
+            DisplayCustomMessageInValidationSummary("Not implemented yet!");
+            undoPublish.Enabled = false;
         }
 
 

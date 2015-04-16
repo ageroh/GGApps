@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RefreshVersionsFiles.ServiceReference2;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +12,17 @@ namespace RefreshVersionsFiles
     {
         static void Main(string[] args)
         {
+            //
+            GGSeviceClient client = new GGSeviceClient();
+
+            // call the one and only webservice method to populate 
+            client.DoWork();
+
+            // Always close the client.
+            client.Close();
+
             // force repetedtly to update Versions file from Production
         }
-
-        // read all versions.txt
-
-        // read all rows of table
-
-        // update when needed
-
-        // log it
-
 
     }
 }

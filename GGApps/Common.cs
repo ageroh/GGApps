@@ -10,6 +10,12 @@ using System.Data.SqlClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+using System.Threading;
+using System.Threading.Tasks;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Net;
+
 
 namespace GGApps
 {
@@ -598,11 +604,15 @@ namespace GGApps
 
                 if (ftpClient != null)
                 {
-                    totalBytesUploaded += ftpClient.upload(localFilename, remotePath, overwrite);
-
+                    if (File.Exists(localFilename))
+                        totalBytesUploaded += ftpClient.upload(localFilename, remotePath, overwrite);
+                    else {
+                        ftpClient = null;
+                        return totalBytesUploaded;
+                    }
                 }
                 
-                if (totalBytesUploaded <= 0)
+                if ( totalBytesUploaded <= 0 )
                     Log.ErrorLogAdmin(mapPathError, "Some error ocured while uploading file: " + localFilename + " to FTP, total Bytes uploaded: " + ftpClient.SizeSuffix(totalBytesUploaded), appName);
 
                 ftpClient = null;
@@ -619,9 +629,13 @@ namespace GGApps
         {
 #if !DEBUG
 
-            if (! CheckAccount())
+            if ( CheckAccount() < 0) 
             {
                 Response.Redirect("~/");
+            }
+            else if (CheckAccount() == 0)
+            {
+                Response.Redirect("~/ContentValidation.aspx");
             }
             else
                 Response.Redirect("~/Admin/Publish.aspx");
@@ -632,16 +646,18 @@ namespace GGApps
 
         }
 
-        // Implement this as for multiple account users.
-        public bool CheckAccount()
+        // not so safe... ... but..
+        public int CheckAccount()
         {
             if( HttpContext.Current.User.Identity != null)
                 if( User.Identity.IsAuthenticated){
                     string user = HttpContext.Current.User.Identity.Name;
                     if( rootWebConfig.AppSettings.Settings["authorized"].Value.Contains( user.Substring(user.IndexOf("\\")+1) ) )
-                        return true;
+                        return 1;
+                    if (rootWebConfig.AppSettings.Settings["ContentValidation"].Value.Contains(user.Substring(user.IndexOf("\\") + 1)))
+                        return 0;
                 }
-            return false;
+            return -1;
         }
 
 
@@ -753,7 +769,7 @@ namespace GGApps
             configVersion = null;       // when return should ALWAYS have values..
             appVersion = null;          // when return should ALWAYS have values..
 
-            string localFilename = actualWorkDir + "\\reports\\tempVersions.txt";
+            string localFilename = actualWorkDir + "\\reports\\tempVersions_" + System.Guid.NewGuid().ToString() +".txt";
             string remotefilename = appName.ToLower() + "//update//" + mobileDevice + "//versions.txt";
 
             if (DownloadProductionFile(appName, remotefilename, localFilename) == null)
@@ -933,6 +949,187 @@ namespace GGApps
             return input.Any(c => c > MaxAnsiCode);
         }
 
+        
+        /// <summary>
+        /// Send Email to Users
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <param name="team"></param>
+        /// <param name="attachmentFilenames"></param>
+        /// <param name="emailBody"></param>
+        /// <param name="emailSubject"></param>
+        /// <returns></returns>
+        public async Task SendMailToUsers(string appName, List<string> team, List<string> attachmentFilenames, string emailBody, string emailSubject, string mapPath, CreateLogFiles log)
+        {
+
+            using (var message = new MailMessage())
+            {
+                message.From = new MailAddress("noreply@greekguide.com");
+                message.Subject = emailSubject;
+                message.Body = emailBody;
+                message.IsBodyHtml = true;
+
+                // Build Receipents List
+                foreach (String recStr in team)
+                {
+                    message.To.Add(new MailAddress(recStr));
+                }
+
+                try
+                {
+                    // ADD FILE ATTACHEMENTS IF THEY EXIST
+                    foreach (string attachmentFilename in attachmentFilenames)
+                    {
+                        if (attachmentFilename != null)
+                        {
+                            Attachment attachment = new Attachment(attachmentFilename, MediaTypeNames.Application.Octet);
+                            ContentDisposition disposition = attachment.ContentDisposition;
+                            disposition.CreationDate = File.GetCreationTime(attachmentFilename);
+                            disposition.ModificationDate = File.GetLastWriteTime(attachmentFilename);
+                            disposition.ReadDate = File.GetLastAccessTime(attachmentFilename);
+                            disposition.FileName = Path.GetFileName(attachmentFilename);
+                            disposition.Size = new FileInfo(attachmentFilename).Length;
+                            disposition.DispositionType = DispositionTypeNames.Attachment;
+                            message.Attachments.Add(attachment);
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    // FileAttachements not found for App! for this date.
+                    log.InfoLog(mapPath, "Exception thrown while trying to collect attachment files: " + ex.Message, appName);
+                }
+
+                try
+                {
+                    string GenericEmailUserName = "", GenericEmailPswd = "", sSmtpClient = "";
+                    if (rootWebConfig.AppSettings.Settings["GenericEmailUserName"] != null)
+                    {
+                        GenericEmailUserName = rootWebConfig.AppSettings.Settings["GenericEmailUserName"].Value;
+                    }
+
+                    if (rootWebConfig.AppSettings.Settings["GenericEmailPswd"] != null)
+                    {
+                        GenericEmailPswd = rootWebConfig.AppSettings.Settings["GenericEmailPswd"].Value;
+                    }
+
+                    if (rootWebConfig.AppSettings.Settings["SmtpClient"] != null)
+                    {
+                        sSmtpClient = rootWebConfig.AppSettings.Settings["SmtpClient"].Value;
+                    }
+
+
+
+                    // Finaly send email ..
+                    var smtp = new SmtpClient
+                    {
+                        Host = sSmtpClient,
+                        Port = 25,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new System.Net.NetworkCredential(GenericEmailUserName, GenericEmailPswd)
+                    };
+
+                    smtp.SendCompleted += smtp_SendCompleted;
+                    await smtp.SendMailAsync(message);
+
+                }
+                catch (SmtpException sE)
+                {
+                    log.InfoLog(mapPath, "Exception while sending notification email! " + sE.Message, appName);
+                }
+            }
+
+        }
+
+
+        // Verify that email had been sent.
+        void smtp_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            if (!e.Cancelled)
+            {
+                Log.InfoLog(mapPathError, "e-Mails sent completed.", Session["appName"].ToString());
+            }
+        }
+
+
+        /// <summary>
+        /// Get the email list from web.config file
+        /// </summary>
+        /// <param name="team"></param>
+        /// <returns></returns>
+        public List<string> GetEmailList(string team)
+        {
+            List<string> mailList = new List<string>();
+
+
+            if (rootWebConfig.AppSettings.Settings[team] != null)
+            {
+                string teamMembers = rootWebConfig.AppSettings.Settings[team].Value;
+                mailList = teamMembers.Split('|').ToList<string>();
+
+                return mailList;
+            }
+
+            return null;
+
+        }
+
+
+
+        public string EmailTemplate(string kind, string appName, string startProcessing, string LogErrorRealPath = null)
+        {
+            String str = String.Empty;
+
+            switch (kind)
+            {
+                case "Success":
+                    if (File.Exists(Server.MapPath("EmailTemplates//EmailTemplateSuccess.html")))
+                    {
+                        str = File.ReadAllText(Server.MapPath("EmailTemplates//EmailTemplateSuccess.html"), Encoding.UTF8);
+                    }
+                    break;
+                case "Failure":
+                    if (File.Exists(Server.MapPath("EmailTemplates//EmailTemplateFailure.html")))
+                    {
+                        str = File.ReadAllText(Server.MapPath("EmailTemplates//EmailTemplateFailure.html"), Encoding.UTF8);
+                    }
+                    break;
+                case "Info":
+                    if (File.Exists(Server.MapPath("EmailTemplates//EmailTemplateInfo.html")))
+                    {
+                        str = File.ReadAllText(Server.MapPath("EmailTemplates//EmailTemplateInfo.html"), Encoding.UTF8);
+                    }
+                    break;
+                case "Start":
+                    if (File.Exists(Server.MapPath("EmailTemplates//EmailTemplateStart.html")))
+                    {
+                        str = File.ReadAllText(Server.MapPath("EmailTemplates//EmailTemplateStart.html"), Encoding.UTF8);
+                    }
+                    break;
+                case "InitAdmin":
+                    if (File.Exists(Path.Combine(HttpRuntime.AppDomainAppPath, "EmailTemplates//EmailTemplateInitAdmin.html")))
+                    {
+                        str = File.ReadAllText(Path.Combine(HttpRuntime.AppDomainAppPath, "EmailTemplates//EmailTemplateInitAdmin.html"), Encoding.UTF8);
+                    }
+                    break;
+                default: break;
+            }
+
+            if (!String.IsNullOrWhiteSpace(str))
+            {
+                str = str.Replace("{1}", startProcessing);
+                str = str.Replace("{2}", appName);
+                if (LogErrorRealPath != null)
+                    str = str.Replace("{3}", LogErrorRealPath);
+
+                return str;
+            }
+
+            return "<html></html>";
+        }
 
 
     }

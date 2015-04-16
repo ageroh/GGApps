@@ -6,18 +6,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-<script type="text/javascript">
-
-    function PutOffLine() {
-
-    }
-
-    function PutOnLine() {
-
-    }
-
-
-</script>
     <div class="sub">
         <ul id="menu">
             <li><a href="Configure.aspx">Configure</a></li>
@@ -62,7 +50,7 @@
                             <asp:CheckBox ID="chkSelected" runat="server" />
                         </td>
                         <td>
-                            <asp:CheckBox ID="chkSelectedAppUpdate" runat="server" />
+                            <asp:CheckBox ID="chkSelectedAppUpdate" Enabled="false"  runat="server" />
                         </td>
                         <td>
                             <asp:TextBox ID="txtmobileDevice" Text='<%#Eval("mobileDevice") %>' Enabled="false" Font-Bold="true" runat="server"></asp:TextBox>
@@ -169,7 +157,7 @@
         </asp:Table>
 
         <asp:Button runat="server" Text="Publish App to Production" ID="BtnPublishApp" ClientIDMode="Static" Enabled="false" OnClick="BtnPublishApp_Click" CssClass="InputDisabledCustom" />
-        <asp:Button runat="server" Text="Undo Publish" ID="undoPublish" Enabled="false" CssClass="InputDisabledCustom" />
+        <asp:Button runat="server" Text="Undo Publish" ID="undoPublish" Enabled="false" CssClass="InputDisabledCustom" OnClick="undoPublish_Click" />
 
         <asp:Label CssClass="ErrorGeneral" runat="server" ID="custValidation" Text="" Visible="false"></asp:Label>
 

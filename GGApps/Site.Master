@@ -181,6 +181,7 @@
                     <ul id="menu">
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/Admin/Publish.aspx">Admin</a></li>
+                        <li><a id="A1" runat="server" href="~/ContentValidation.aspx">Content</a></li>
                     </ul>
                 </nav>
             </div>
