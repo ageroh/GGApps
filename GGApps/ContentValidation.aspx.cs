@@ -12,29 +12,94 @@ namespace GGApps
 {
     public partial class ContentValidation : Common
     {
+        #region PROPERTIES - SESSIONS 
         // contains all EntityIDs from DB.
-        public DataTable FetchEntitiesValidationCacheOrDB(int appID, string lang, string timeperiod)
+        public DataTable FetchEntitiesValidationCacheOrDB(int appID, string lang, string timeperiod, bool clearCache=false)
         {
-            // if selected index is change then clear cache..
+            DataTable dataTable;
+            if (clearCache)
+                HttpContext.Current.Cache.Remove("DTEntitiesToValidate");
 
-            DataTable dataTable = HttpContext.Current.Cache["DTEntitiesToValidate"] as DataTable;
-            if (dataTable == null)
+            // if selected index is change then clear cache..
+            if (ddDestination == appID)
             {
+                dataTable = HttpContext.Current.Cache["DTEntitiesToValidate"] as DataTable;
+                if (dataTable == null)
+                {
+                    dataTable = GetAllEntitiesDB(appID, lang, timeperiod);
+                    HttpContext.Current.Cache["DTEntitiesToValidate"] = dataTable;
+                }
+            }
+            else
+            {
+                ddDestination = appID;
                 dataTable = GetAllEntitiesDB(appID, lang, timeperiod);
                 HttpContext.Current.Cache["DTEntitiesToValidate"] = dataTable;
             }
             return dataTable;
         }
 
-
-
-        public int ddDestination 
-        { 
-            get; 
-            set; 
+        public int ddDestination
+        {
+            get
+            {
+                if (Session["ddDestination"] == null)
+                { 
+                    DropDownList ddDest = (DropDownList)LoginViewImportant.FindControl("ddStart");
+                    Session["ddDestination"] = Int32.Parse(ddDest.SelectedValue);
+                }
+                return (int)Session["ddDestination"];
+            }
+            set {
+                Session["ddDestination"] = value;
+            }
         }
 
-        public static string lastEntityShown = "-1";
+        public int currentEntityID
+        {
+            get
+            {
+                if (Session["currentEntityID"] == null)
+                    return -1;
+                return (int)Session["currentEntityID"];
+            }
+            set
+            {
+                Session["currentEntityID"] = value;
+            }
+        }
+
+        public string lastEntityShown
+        {
+            get
+            {
+                return (string)Session["lastEntityShown"];
+            }
+            set
+            {
+                Session["lastEntityShown"] = value;
+            }
+        }
+        #endregion
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!Page.IsPostBack)
+            {
+                lastEntityShown = "-1";
+                DropDownList ddStart = (DropDownList)LoginViewImportant.FindControl("ddStart");
+
+                ddStart.DataSource = GetAllAppTable();
+                ddStart.DataTextField = "appName";
+                ddStart.DataValueField = "id";
+
+                ddStart.DataBind();
+                ddStart.Items.Insert(0, new ListItem(" - Select Application - ", "-1"));
+                ddStart.SelectedIndex = 0;
+
+            }
+        }
+
 
         private DataTable GetAllEntitiesDB(int appID, string lang, string timeperiod)
         {
@@ -60,35 +125,18 @@ namespace GGApps
             return null;
         }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!Page.IsPostBack)
-            {
-                DropDownList ddStart = (DropDownList)LoginViewImportant.FindControl("ddStart");
-
-                ddStart.DataSource = GetAllAppTable();
-                ddStart.DataTextField = "appName";
-                ddStart.DataValueField = "id";
-
-                ddStart.DataBind();
-                ddStart.Items.Insert(0, new ListItem(" - Select Application - ", "-1"));
-                ddStart.SelectedIndex = 0;
-
-
-            }
-        }
 
         protected void GetNextEntity_Click(object sender, EventArgs e)
         { 
-           // check it in DB
-           // insert record in hisotry table ! 
-            
             DropDownList ddDest = (DropDownList)LoginViewImportant.FindControl("ddStart");
             DropDownList ddTP = (DropDownList)LoginViewImportant.FindControl("ddTimePeriod");
             DropDownList ddLA = (DropDownList)LoginViewImportant.FindControl("ddLang");
 
             if (ddDest.SelectedIndex > 0)
             {
+                // add a record to db for user Robot, that the entity is Valid and its content is ok.
+                CheckEntity(currentEntityID, ddLA.SelectedValue, ddTP.SelectedValue);
+                
                 // fetch next record.
                 string entID = FetchNextEntityID(FetchEntitiesValidationCacheOrDB(Int32.Parse(ddDest.SelectedValue), ddLA.SelectedValue, ddTP.SelectedValue));
                 if (entID != null && entID != "finished")
@@ -97,16 +145,23 @@ namespace GGApps
                 }
                 else
                 {
-                    RefreshBtn.Visible = true; 
+                    RestartBtn.Visible = true; 
                     GetNextEntity.Visible = false;
+                    editEntiBtn.Visible = false;
+                    refreshEntityBtn.Visible = false;
                 }
             }
         }
 
+        protected void refreshEntityBtn_Click(object sender, EventArgs e)
+        { 
+            // refresh the current entity 
+            FetchRecord(currentEntityID);
+        }
 
+ 
         protected void Goload_Click(object sender, EventArgs e)
         { 
-            //                GetNextEntity 
             DropDownList ddStart = (DropDownList)LoginViewImportant.FindControl("ddStart");
             DropDownList ddTP = (DropDownList)LoginViewImportant.FindControl("ddTimePeriod");
             DropDownList ddLA = (DropDownList)LoginViewImportant.FindControl("ddLang");
@@ -119,13 +174,11 @@ namespace GGApps
                 String appName = ddStart.SelectedItem.ToString();
 
                 // run query to fetch entities from selected destination, language and period, in a session table
-                FetchEntitiesValidationCacheOrDB(appID, ddLA.SelectedValue, ddTP.SelectedValue);
+                FetchEntitiesValidationCacheOrDB(appID, ddLA.SelectedValue, ddTP.SelectedValue, true);
 
                 // load content (title, description, editorial, tip) of the first one
                 FetchRecord();
-
-                // enable OK button
-                GetNextEntity.Visible = true;
+                
             }
 
         }
@@ -143,19 +196,35 @@ namespace GGApps
 
                 if (dt != null)
                 {
+                    
+
                     if (dt.Rows.Count > 0)
                     {
+                        destLangTimeTable.Visible = false;
+                        AllValidated.Visible = false;
+
                         if (entityID == 0)
                         {
                             int firstentityId = Convert.ToInt32(dt.Rows[0]["EntityID"]);
                             lastEntityShown = firstentityId.ToString();
+                            currentEntityID = firstentityId;
                             DrawEntity(firstentityId, ddLA.SelectedValue, ddTP.SelectedValue);
 
                         }
                         else
                         {
+                            currentEntityID = entityID;
                             DrawEntity(entityID, ddLA.SelectedValue, ddTP.SelectedValue);
                         }
+                    }
+                    else
+                    {
+                        GetNextEntity.Visible = false;
+                        editEntiBtn.Visible = false;
+                        refreshEntityBtn.Visible = false;
+                        destLangTimeTable.Visible = false;
+                        AllValidated.Text = "All Entities for " + ddDest.SelectedItem.Text + " in " + ddLA.SelectedItem.Text + " of the last " + ddTP.SelectedItem.Text + ", are succesfully validated recently!";
+                        AllValidated.Visible = true;
                     }
                 }
             }
@@ -199,10 +268,27 @@ namespace GGApps
                                 {
                                     // The important part:
                                     writer.RenderBeginTag(HtmlTextWriterTag.Div); // Begin #1
-                                    writer.Write("<h1>" + vTitle + "</h1><hr>");
-                                    writer.Write("<h2>Body</h2><hr><span>" + vBody + "</span>");
-                                    writer.Write("<h2>Editorial</h2><hr><span>" + vEditorial + "</span>");
-                                    writer.Write("<h2>Useful Tips</h2><hr><span>" + vTips + "</span>");
+
+                                    if (!String.IsNullOrEmpty(vTitle))
+                                    {
+                                        writer.Write("<h1>" + vTitle + "</h1>");
+                                        writer.Write("<span>" + vBody + "</span>");
+                                        if (!String.IsNullOrEmpty(vEditorial))
+                                            writer.Write("<h3>Editorial</h3><span>" + vEditorial + "</span>");
+                                        if (!String.IsNullOrEmpty(vTips))
+                                            writer.Write("<h3>Useful Tips</h3><span>" + vTips + "</span>");
+                                        GetNextEntity.Visible = true;
+                                        editEntiBtn.Visible = true;
+                                        refreshEntityBtn.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        writer.Write("<h2>Please check your previous selection, you should maybe change language..</h2>");
+                                        GetNextEntity.Visible = false;
+                                        editEntiBtn.Visible = false;
+                                        refreshEntityBtn.Visible = false;
+                                    }
+
                                     writer.RenderEndTag();
 
                                     Control div = LoginViewImportant.FindControl("entityPlaceHolder");
@@ -277,6 +363,35 @@ namespace GGApps
 
             return null;
         }
+
+        protected void ddLang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           /* if (currentEntityID == -1)
+                return;
+
+            DropDownList ddDest = (DropDownList)LoginViewImportant.FindControl("ddStart");
+            DropDownList ddTP = (DropDownList)LoginViewImportant.FindControl("ddTimePeriod");
+            DropDownList rdLang = sender as DropDownList;
+
+            DrawEntity(currentEntityID, rdLang.SelectedValue, ddTP.SelectedValue);
+            * */
+        }
+
+        protected void ddStart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ClearAll()
+        { 
+            // clear cache
+            // clear sessions
+            // disable btns.
+
+        }
+
+
+
 
     }
 }

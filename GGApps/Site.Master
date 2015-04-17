@@ -41,6 +41,14 @@
                 DoOpenEntity(parseInt($(this).text().trim()));
                 return false;
             });
+
+            // for content Validation only: ContentValidation.aspx
+            $(".reportDivClass").find(".popAdm").on('click', function (event) {
+                DoOpenEntity(parseInt($(this).text().trim()));
+                return false;
+            });
+
+
         });
 
 
@@ -181,7 +189,7 @@
                     <ul id="menu">
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/Admin/Publish.aspx">Admin</a></li>
-                        <li><a id="A1" runat="server" href="~/ContentValidation.aspx">Content</a></li>
+                        <%--<li><a id="A1" runat="server" href="~/ContentValidation.aspx">Content</a></li>--%>
                     </ul>
                 </nav>
             </div>

@@ -1,0 +1,213 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="GGApps.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title><%: Page.Title %> - GG Update</title>
+    <asp:PlaceHolder runat="server">     
+          <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>  
+    <webopt:BundleReference runat="server" Path="~/Content/css" /> 
+    <link href="~/favicon.ico?v=1" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        function ShowProgress() {
+            setTimeout(function () {
+                var modal = $('<div />');
+                modal.addClass("modal");
+                $('body').append(modal);
+                //var loading = $(".loading");
+                //loading.show();
+                //loading.css({ top: top, left: left });
+            }, 200);
+        }
+
+        $('form').live("submit", function () {
+            ShowProgress();
+        });
+
+        $('BtnPublishApp').on("click", function () {
+            ShowProgress();
+        });
+
+        $(document).ready(function() {
+            /* Open Entity Page from ADM.GREEKGUIDE ! */
+            $(".reportDivClass").find(".popAdm").on('click', function (event) {
+                DoOpenEntity(parseInt($(this).text().trim()));
+                return false;
+            });
+
+            // for content Validation only: ContentValidation.aspx
+            $(".reportDivClass").find(".popAdm").on('click', function (event) {
+                DoOpenEntity(parseInt($(this).text().trim()));
+                return false;
+            });
+
+
+        });
+
+
+        // validations for Buttons 
+        $(document).on('ready', function () {
+
+            $("#BtnPublishApp").click(
+                function () {
+                    var doUpdate = 0;
+
+                    $(".latestVersions").find("td:nth-child(1) input:checkbox").each(function () {
+                        if (!$(this).prop('checked')) {
+                            doUpdate++;
+                        }
+                    });
+
+                    if (doUpdate == 2) {
+                        alert("You must select at least one Mobile Device to Publish or both!");
+                        return false;
+                    }
+                    else {
+                        if (confirm('Are you sure you want to publish to Production this Application?')) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                });
+
+
+        });
+
+
+        // For GREEK GUIDE ADMIN
+        function DoOpenEntity(iEntityID) {
+            if (iEntityID > 0) {
+                //frmMain.openEnt.value = iEntityID;
+                wndOpenPopUp('http://adm.greekguide.com/ent/ent_open.asp?entEntityID=' + iEntityID, 'entity_' + iEntityID, 'L');
+            }
+            else {
+                //frmMain.openEnt.value = '';
+                alert('Please type a valid number.');
+                //frmMain.openEnt.focus();
+            }
+        }
+
+        function wndOpenPopUp(sURL, sName, sWidth) {
+            var iWidth = 1010;
+            var iHeight = window.screen.availHeight - 70;
+            if (sWidth != 'L') {
+                if (sWidth == 'XL') {
+                    iWidth = 1040;
+                    iHeight = 760;
+                } else if (sWidth == 'R') {
+                    iWidth = 1000;
+                    iHeight = 560;
+                } else if (sWidth == 'M') {
+                    iWidth = 700;
+                    iHeight = 550;
+                } else if (sWidth == 'F') {
+                    iWidth = 700;
+                    iHeight = 300;
+                } else if (sWidth == 'P') {
+                    iWidth = 700;
+                    iHeight = 680;
+                } else if (sWidth == 'XS') {
+                    iWidth = 450;
+                    iHeight = 280;
+                } else if (sWidth == 'C') {
+                    iWidth = 800;
+                    iHeight = 500;
+                } else {
+                    iWidth = 500;
+                    iHeight = 380;
+                }
+            }
+            var iLeft = (((window.screen.availWidth - iWidth) / 2));
+            var iTop = 1;
+            if (iTop < 5) {
+                iTop = 1;
+            }
+            if (iLeft < 30) {
+                iLeft = 1;
+            }
+            window.open(sURL, "", 'top=' + iTop + ', left=' + iLeft + ', width=' + iWidth + ', height=' + iHeight + ', location=no, address=no, scrollbars=yes, resizable=yes, status=no');
+        }
+    </script>
+
+
+    <form runat="server">
+    <asp:ScriptManager runat="server">
+        <Scripts>
+            <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=272931&clcid=0x409 --%>
+            <%--Framework Scripts--%>
+            
+            <asp:ScriptReference Name="MsAjaxBundle" />
+            <asp:ScriptReference Name="jquery" />
+            <asp:ScriptReference Name="jquery.ui.combined" />
+            <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+            <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+            <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+            <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+            <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+            <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+            <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+            <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+            <asp:ScriptReference Name="WebFormsBundle" />
+            <%--Site Scripts--%>
+
+        </Scripts>
+    </asp:ScriptManager>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">
+                    <a runat="server" href="~/">GREEKGUIDE.COM In-App Update</a>
+                </p>
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul>
+                                
+                                <%--<li><a id="loginLink" runat="server" href="~/Account/Login">Log in</a></li>--%>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <p>
+                                Hello, <a runat="server" class="username" href="" title="Manage your account">
+                                    <asp:LoginName runat="server" CssClass="username" /></a>!
+                                <asp:LoginStatus runat="server" LogoutText="Log off" OnLoggedOut="Unnamed_LoggedOut"/>
+                            </p>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </section>
+                <nav>
+                    <ul id="menu">
+                        <li><a runat="server" href="~/">Home</a></li>
+                        <li><a runat="server" href="~/Admin/Publish.aspx">Admin</a></li>
+                        <%--<li><a id="A1" runat="server" href="~/ContentValidation.aspx">Content</a></li>--%>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+        <section class="content-wrapper main-content clear-fix">
+            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; <%: DateTime.Now.Year %> - GreekGuide.COM</p>
+            </div>
+        </div>
+    </footer>
+    </form>
+</body>
+</html>

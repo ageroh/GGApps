@@ -305,6 +305,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\_references.js" />
+    <Content Include="Validation.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -407,6 +408,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Validation.Master.cs">
+      <DependentUpon>Validation.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Validation.Master.designer.cs">
+      <DependentUpon>Validation.Master</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

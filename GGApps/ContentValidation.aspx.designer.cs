@@ -22,6 +22,15 @@ namespace GGApps {
         protected global::System.Web.UI.WebControls.Panel LoginViewImportant;
         
         /// <summary>
+        /// destLangTimeTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable destLangTimeTable;
+        
+        /// <summary>
         /// ddStart control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,24 @@ namespace GGApps {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl entityPlaceHolder;
         
         /// <summary>
+        /// editEntiBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor editEntiBtn;
+        
+        /// <summary>
+        /// refreshEntityBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton refreshEntityBtn;
+        
+        /// <summary>
         /// GetNextEntity control.
         /// </summary>
         /// <remarks>
@@ -76,12 +103,21 @@ namespace GGApps {
         protected global::System.Web.UI.WebControls.Button GetNextEntity;
         
         /// <summary>
-        /// RefreshBtn control.
+        /// RestartBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button RefreshBtn;
+        protected global::System.Web.UI.WebControls.Button RestartBtn;
+        
+        /// <summary>
+        /// AllValidated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal AllValidated;
     }
 }
