@@ -1,0 +1,5 @@
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGMultiService\bin\GGMultiService.dll
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGMultiService\bin\GGMultiService.pdb
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGMultiService\obj\Release\GGMultiService.csprojResolveAssemblyReference.cache
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGMultiService\obj\Release\GGMultiService.dll
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGMultiService\obj\Release\GGMultiService.pdb
