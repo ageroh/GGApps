@@ -13,6 +13,9 @@ namespace GGApps
     public partial class ContentValidation : Common
     {
         #region PROPERTIES - SESSIONS 
+
+        public enum Checking { Start = 0, Finish = 1 };
+
         // contains all EntityIDs from DB.
         public DataTable FetchEntitiesValidationCacheOrDB(int appID, string lang, string timeperiod, bool clearCache=false)
         {
@@ -26,14 +29,14 @@ namespace GGApps
                 dataTable = HttpContext.Current.Cache["DTEntitiesToValidate"] as DataTable;
                 if (dataTable == null)
                 {
-                    dataTable = GetAllEntitiesDB(appID, lang, timeperiod);
+                    dataTable = GetAllEntitiesDB(appID, lang, timeperiod, GetUserID());
                     HttpContext.Current.Cache["DTEntitiesToValidate"] = dataTable;
                 }
             }
             else
             {
                 ddDestination = appID;
-                dataTable = GetAllEntitiesDB(appID, lang, timeperiod);
+                dataTable = GetAllEntitiesDB(appID, lang, timeperiod, GetUserID());
                 HttpContext.Current.Cache["DTEntitiesToValidate"] = dataTable;
             }
             return dataTable;
@@ -84,6 +87,7 @@ namespace GGApps
 
         protected void Page_Load(object sender, EventArgs e)
         {
+         
             if (!Page.IsPostBack)
             {
                 lastEntityShown = "-1";
@@ -101,7 +105,7 @@ namespace GGApps
         }
 
 
-        private DataTable GetAllEntitiesDB(int appID, string lang, string timeperiod)
+        private DataTable GetAllEntitiesDB(int appID, string lang, string timeperiod, int userID)
         {
             DataTable dt = new DataTable();
 
@@ -114,6 +118,7 @@ namespace GGApps
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add("@appID", SqlDbType.Int).Value = appID;
                         cmd.Parameters.Add("@lang", SqlDbType.NVarChar).Value = lang;
+                        cmd.Parameters.Add("@userID", SqlDbType.Int).Value = userID;
                         cmd.Parameters.Add("@timeperiod", SqlDbType.NVarChar).Value = timeperiod;
                         con.Open();
                         SqlDataAdapter adp = new SqlDataAdapter(cmd);
@@ -125,33 +130,85 @@ namespace GGApps
             return null;
         }
 
+        protected void continueBtn_Click(object sender, EventArgs e)
+        {
+            goNextTbl.Visible = false;
+            this.GetNextEntity.Visible = true;
+            this.editEntiBtn.Visible = true;
+            this.refreshEntityBtn.Visible = true;
+            GetNextEntityCon();
+        }
+
+
+        protected void stopProcBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ContentValidation.aspx");
+        }
+
+
 
         protected void GetNextEntity_Click(object sender, EventArgs e)
-        { 
+        {
             DropDownList ddDest = (DropDownList)LoginViewImportant.FindControl("ddStart");
             DropDownList ddTP = (DropDownList)LoginViewImportant.FindControl("ddTimePeriod");
             DropDownList ddLA = (DropDownList)LoginViewImportant.FindControl("ddLang");
 
+            int userID = GetUserID();
+
             if (ddDest.SelectedIndex > 0)
             {
                 // add a record to db for user Robot, that the entity is Valid and its content is ok.
-                CheckEntity(currentEntityID, ddLA.SelectedValue, ddTP.SelectedValue);
-                
+                CheckEntity(currentEntityID, ddLA.SelectedValue, ddTP.SelectedValue, (int)Checking.Finish, userID);
+            }
+            
+            this.goNextTbl.Visible = true;
+            this.GetNextEntity.Visible = false;
+            this.editEntiBtn.Visible = false;
+            this.refreshEntityBtn.Visible = false;
+
+        }
+
+        private int GetUserID()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                string user = HttpContext.Current.User.Identity.Name;
+                if( ! String.IsNullOrEmpty(user) )
+                    if (user.Contains("ggOmaira") )
+                        return 32;   // 32	omaira
+                    if(user.Contains("ggdemo"))
+                        return 38;  // demouser
+            }
+            return -1;
+        }
+
+        public void GetNextEntityCon()
+        {
+            DropDownList ddDest = (DropDownList)LoginViewImportant.FindControl("ddStart");
+            DropDownList ddTP = (DropDownList)LoginViewImportant.FindControl("ddTimePeriod");
+            DropDownList ddLA = (DropDownList)LoginViewImportant.FindControl("ddLang");
+            goNextTbl.Visible = false;
+
+            if (ddDest.SelectedIndex > 0)
+            {
+            
                 // fetch next record.
                 string entID = FetchNextEntityID(FetchEntitiesValidationCacheOrDB(Int32.Parse(ddDest.SelectedValue), ddLA.SelectedValue, ddTP.SelectedValue));
                 if (entID != null && entID != "finished")
                 {
+                    // if next record really exists
                     FetchRecord(Int32.Parse(entID));
                 }
                 else
                 {
-                    RestartBtn.Visible = true; 
+                    RestartBtn.Visible = true;
                     GetNextEntity.Visible = false;
                     editEntiBtn.Visible = false;
                     refreshEntityBtn.Visible = false;
                 }
             }
         }
+
 
         protected void refreshEntityBtn_Click(object sender, EventArgs e)
         { 
@@ -208,13 +265,13 @@ namespace GGApps
                             int firstentityId = Convert.ToInt32(dt.Rows[0]["EntityID"]);
                             lastEntityShown = firstentityId.ToString();
                             currentEntityID = firstentityId;
-                            DrawEntity(firstentityId, ddLA.SelectedValue, ddTP.SelectedValue);
+                            DrawEntity(firstentityId, ddLA.SelectedValue, ddTP.SelectedValue, GetUserID());
 
                         }
                         else
                         {
                             currentEntityID = entityID;
-                            DrawEntity(entityID, ddLA.SelectedValue, ddTP.SelectedValue);
+                            DrawEntity(entityID, ddLA.SelectedValue, ddTP.SelectedValue, GetUserID());
                         }
                     }
                     else
@@ -231,7 +288,7 @@ namespace GGApps
 
         }
 
-        private void DrawEntity(int entityID, string lang, string timePeriod)
+        private void DrawEntity(int entityID, string lang, string timePeriod, int userID)
         {
 
             if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
@@ -280,6 +337,9 @@ namespace GGApps
                                         GetNextEntity.Visible = true;
                                         editEntiBtn.Visible = true;
                                         refreshEntityBtn.Visible = true;
+
+                                        // Start counting on the begging of checking of one entity!
+                                        CheckEntity(entityID, lang, timePeriod, (int)Checking.Start, userID);
                                     }
                                     else
                                     {
@@ -309,7 +369,7 @@ namespace GGApps
             }
         }
 
-        private void CheckEntity(int entityID, string lang, string timePeriod)
+        private void CheckEntity(int entityID, string lang, string timePeriod, int startend, int userID)
         { 
             
             if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
@@ -323,6 +383,10 @@ namespace GGApps
                         cmd.Parameters.Add("@entityID", SqlDbType.Int).Value = entityID;
                         cmd.Parameters.Add("@lang", SqlDbType.NVarChar).Value = lang;
                         cmd.Parameters.Add("@timeperiod", SqlDbType.NVarChar).Value = timePeriod;
+                        cmd.Parameters.Add("@userID", SqlDbType.Int).Value = userID;
+                        cmd.Parameters.Add("@Checking", SqlDbType.Int).Value = startend;
+
+
                         con.Open();
                         string res = (string)cmd.ExecuteScalar();
                         
@@ -349,6 +413,9 @@ namespace GGApps
                         {
                             return "finished";
                         }
+
+                        if (lastEntityShown == null)
+                            Response.Redirect("~/ContentValidation.aspx", true);
 
                         if (dr["EntityID"].ToString() == lastEntityShown.ToString())
                         {

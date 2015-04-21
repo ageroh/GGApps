@@ -1,0 +1,5 @@
+cd /var/www/greekguide/hydra/config
+lcd "C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\Batch"
+option confirm off 
+put  entity_text.txt
+exit

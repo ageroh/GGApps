@@ -137,6 +137,7 @@
     <Content Include="Content\img\refreshDD.png" />
     <Content Include="EmailTemplates\EmailTemplateInitAdmin.html" />
     <Content Include="EmailTemplates\EmailTemplateStart.html" />
+    <Content Include="ErrorPage.aspx" />
     <Content Include="GGSevice.svc" />
     <Content Include="SQLScripts\db_test_2_4_entities_with_invalid_characters_RU.sql" />
     <Content Include="SQLScripts\db_create_entity.sql" />
@@ -368,6 +369,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Finalize.cs">
       <SubType>ASPXCodeBehind</SubType>
