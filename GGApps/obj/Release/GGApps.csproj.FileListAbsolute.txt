@@ -25,4 +25,3 @@ C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.pdb
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Renci.SshNet.dll
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Renci.SshNet.xml
-C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.csprojResolveAssemblyReference.cache

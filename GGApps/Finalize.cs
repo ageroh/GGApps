@@ -68,12 +68,16 @@ namespace GGApps
             if (dbVerJSON == null)
                 return null;
 
+            /*
+             * Dont update Config Version from Configuration.txt yet.
+             * 
             if( configVerJSON != null )
                 if (fileConfigVersionNumber != configVersionNumber)   // conflict to Configuration files!
                 {
                     fileConfigVersionNumber = configVersionNumber;
                     needsUpdate = true;
                 }
+             * */
 
             if (realAppVersion != appVersionNumber)
                 needsUpdate = true;
@@ -985,7 +989,7 @@ namespace GGApps
             { 
                 // first check if results are really valid , puthon script is executing with no errors..
                 DateTime.TryParse(dr["LastCheckDate"].ToString(), out dt);
-                if (dt == DateTime.MinValue || dt < DateTime.Now.AddHours(-2)) 
+                if (dt == DateTime.MinValue || dt < DateTime.Now.AddHours(-12)) 
                 {
                     // send email to Admins to check for Python errors !
                     SendMailToUsers("generic"
@@ -1003,21 +1007,53 @@ namespace GGApps
                     return false;
                 }
 
-                // Destination	catCategoryId	GGAppsVersionsID	AppName	AppVersion	AppPlatform	HasChanged	LastModifiedDate	        LastCheckDate
-                // Athens	    3	            1	                athens	3.0	        iOS	        1	        2015-03-13 12:50:56.623	    2015-04-03 10:51:23.617
-                if (UpdateVerionsProductionLive(dr["AppVersion"].ToString()
-                                                , dr["Destination"].ToString().ToLower()
-                                                , Int32.Parse(dr["catCategoryId"].ToString())
-                                                , dr["AppPlatform"].ToString().ToLower()) == null)
+
+                if (dr["HasChanged"].ToString() == "True")
                 {
-                    Log.ErrorLogAdmin(mapPathError, "Some Error Occured while batch update App Versions - Config Versions for all Destinations!", "generic");
-                    return false;
+                    // Destination	catCategoryId	GGAppsVersionsID	AppName	AppVersion	AppPlatform	HasChanged	LastModifiedDate	        LastCheckDate
+                    // Athens	    3	            1	                athens	3.0	        iOS	        1	        2015-03-13 12:50:56.623	    2015-04-03 10:51:23.617
+                    if (UpdateVerionsProductionLive(dr["AppVersion"].ToString()
+                                                    , dr["Destination"].ToString().ToLower()
+                                                    , Int32.Parse(dr["catCategoryId"].ToString())
+                                                    , dr["AppPlatform"].ToString().ToLower()) == null)
+                    {
+                        Log.ErrorLogAdmin(mapPathError, "Some Error Occured while batch update App Versions - Config Versions for all Destinations!", "generic");
+                        return false;
+                    }
+
+                    if (UpdateAppVersion(Convert.ToInt32(dr["GGAppsVersionsID"])) < 0)
+                        return false;
                 }
             }
            
             return true;
         }
 
+         // id = Convert.ToInt32(resultSet["GGAppsVersionsID"]);
+        internal int UpdateAppVersion(int GGAppsVersionsID)
+        {
+            string q2 = "update GGAppsVersions set HasChanged = 0 where GGAppsVersionsID = ";
+
+            if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
+            {
+                using (SqlConnection con = new SqlConnection(rootWebConfig.AppSettings.Settings["GG_Reporting"].Value.ToString()))
+                {
+                    if (GGAppsVersionsID >= 0)
+                        q2 += GGAppsVersionsID;
+                    else
+                        return -1;
+
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(q2, con))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
+                    return 1;
+                }
+            }
+            return -1;
+        }
         
         // get the real app version produced from python script stored in 
         internal int GetRealAppVersion(string appName, int appID, string mobileDevice, out string appVersionReal)
@@ -1045,7 +1081,7 @@ namespace GGApps
                                     if( dt != null)
                                     {
                                         // is lastly checked successfully from python
-                                        if (dt >= DateTime.Now.AddHours(-2)) //&& (int)resultSet["HasChanged"] == 1)
+                                        if (dt >= DateTime.Now.AddHours(-12)) //&& (int)resultSet["HasChanged"] == 1)
                                         {
                                             appVersionReal = resultSet["AppVersion"].ToString();        // this is the real version.
                                             id = Convert.ToInt32(resultSet["GGAppsVersionsID"]);
