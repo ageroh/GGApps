@@ -59,11 +59,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Service References\ServiceReference2\GGSevice.wsdl" />
-    <None Include="Service References\ServiceReference2\GGSevice.xsd">
+    <None Include="Service References\ServiceReference2\GGService.wsdl" />
+    <None Include="Service References\ServiceReference2\GGService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference2\GGSevice1.wsdl" />
+    <None Include="Service References\ServiceReference2\GGService1.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -72,7 +72,7 @@
     <WCFMetadataStorage Include="Service References\ServiceReference2\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference2\GGSevice.disco" />
+    <None Include="Service References\ServiceReference2\GGService.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceReference2\configuration91.svcinfo" />

@@ -22,6 +22,7 @@ namespace GGApps
             
             if (!Page.IsPostBack)
             {
+
                 if (CheckAccount() == 0)
                     Response.Redirect("~/ContentValidation.aspx");
 

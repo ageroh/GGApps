@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bbb32631-acd9-47fe-9539-d81c64029a2c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6f1bccb6-3073-40cf-9354-5a73efb26ca1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,13 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8090/GGSevice.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8090/GGService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="GGSevice.wsdl" MetadataType="Wsdl" ID="4f0e58c4-1cf9-4a77-8b5e-e7725e6b834b" SourceId="1" SourceUrl="http://localhost:8090/GGSevice.svc?wsdl=wsdl0" />
-    <MetadataFile FileName="GGSevice.xsd" MetadataType="Schema" ID="c610c374-bdd2-48e0-9538-a6461f3eabff" SourceId="1" SourceUrl="http://localhost:8090/GGSevice.svc?xsd=xsd0" />
-    <MetadataFile FileName="GGSevice1.wsdl" MetadataType="Wsdl" ID="7b8e4991-2145-4fdf-ac46-d4d3e0ca118b" SourceId="1" SourceUrl="http://localhost:8090/GGSevice.svc?wsdl" />
-    <MetadataFile FileName="GGSevice.disco" MetadataType="Disco" ID="231fed25-44ab-4f06-9193-fa227be77061" SourceId="1" SourceUrl="http://localhost:8090/GGSevice.svc?disco" />
+    <MetadataFile FileName="GGService.disco" MetadataType="Disco" ID="614144b8-6bb5-4076-b00d-1dd3e9d5f9f4" SourceId="1" SourceUrl="http://localhost:8090/GGService.svc?disco" />
+    <MetadataFile FileName="GGService.wsdl" MetadataType="Wsdl" ID="4e2d5f3e-2e40-4fc9-a8c9-8b805abe1648" SourceId="1" SourceUrl="http://localhost:8090/GGService.svc?wsdl" />
+    <MetadataFile FileName="GGService.xsd" MetadataType="Schema" ID="9a063193-78dd-4c58-9a97-59be7cf5d21c" SourceId="1" SourceUrl="http://localhost:8090/GGService.svc?xsd=xsd0" />
+    <MetadataFile FileName="GGService1.wsdl" MetadataType="Wsdl" ID="749518a1-b9d1-4f83-b987-289bf2444557" SourceId="1" SourceUrl="http://localhost:8090/GGService.svc?wsdl=wsdl0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

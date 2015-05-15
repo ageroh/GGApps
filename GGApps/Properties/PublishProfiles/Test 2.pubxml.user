@@ -37,7 +37,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/13/2015 16:01:16</publishTime>
     </File>
     <File Include="Admin/Publish.aspx">
-      <publishTime>04/14/2015 15:29:28</publishTime>
+      <publishTime>05/15/2015 15:42:20</publishTime>
+    </File>
+    <File Include="ajax.html">
+      <publishTime>05/15/2015 09:46:00</publishTime>
     </File>
     <File Include="Batch/10_create_zip.bat">
       <publishTime>01/08/2015 11:29:09</publishTime>
@@ -109,7 +112,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/23/2014 10:18:28</publishTime>
     </File>
     <File Include="Batch/SQLiteConverter.exe.config">
-      <publishTime>01/28/2015 11:42:07</publishTime>
+      <publishTime>05/13/2015 15:41:10</publishTime>
     </File>
     <File Include="Batch/System.Data.SQLite.dll">
       <publishTime>07/26/2009 17:26:24</publishTime>
@@ -172,7 +175,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/16/2014 15:45:43</publishTime>
     </File>
     <File Include="bin/GGApps.dll">
-      <publishTime>04/20/2015 17:59:29</publishTime>
+      <publishTime>05/15/2015 15:53:47</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.FriendlyUrls.dll">
       <publishTime>12/03/2014 14:40:59</publishTime>
@@ -247,7 +250,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/15/2015 14:32:49</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>01/26/2015 15:55:36</publishTime>
+      <publishTime>05/14/2015 15:40:03</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>12/01/2014 10:02:21</publishTime>
@@ -414,6 +417,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="ContentValidation.aspx">
       <publishTime>04/20/2015 14:36:09</publishTime>
     </File>
+    <File Include="create new app for GG in-app update.sql">
+      <publishTime>05/12/2015 14:06:27</publishTime>
+    </File>
     <File Include="Default.aspx">
       <publishTime>01/20/2015 10:51:05</publishTime>
     </File>
@@ -439,13 +445,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/01/2014 10:02:21</publishTime>
     </File>
     <File Include="ExternalApp/SQLiteConverter.exe.config">
-      <publishTime>01/28/2015 11:41:32</publishTime>
+      <publishTime>05/13/2015 15:41:16</publishTime>
     </File>
     <File Include="ExternalApp/System.Data.SQLite.dll">
       <publishTime>12/01/2014 10:02:21</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>02/27/2015 14:29:23</publishTime>
+    </File>
+    <File Include="GGService.svc">
+      <publishTime>05/14/2015 17:34:35</publishTime>
     </File>
     <File Include="GGSevice.svc">
       <publishTime>04/03/2015 10:05:41</publishTime>
@@ -576,6 +585,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/WebForms/WebUIValidation.js">
       <publishTime>12/01/2014 10:02:21</publishTime>
     </File>
+    <File Include="Service.aspx">
+      <publishTime>05/15/2015 09:46:00</publishTime>
+    </File>
     <File Include="Site.Master">
       <publishTime>04/17/2015 12:27:46</publishTime>
     </File>
@@ -616,7 +628,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/01/2014 10:02:21</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/20/2015 17:59:36</publishTime>
+      <publishTime>05/15/2015 12:06:39</publishTime>
     </File>
     <File Include="Web.sitemap">
       <publishTime>01/20/2015 11:52:31</publishTime>

@@ -58,6 +58,8 @@ namespace GGApps
             }
         }
 
+
+
         public int currentEntityID
         {
             get
@@ -90,6 +92,8 @@ namespace GGApps
          
             if (!Page.IsPostBack)
             {
+                ClearSessionSelected();     // ??
+
                 lastEntityShown = "-1";
                 DropDownList ddStart = (DropDownList)LoginViewImportant.FindControl("ddStart");
 
@@ -142,23 +146,20 @@ namespace GGApps
 
         protected void stopProcBtn_Click(object sender, EventArgs e)
         {
+            ClearSessionSelected();
             Response.Redirect("~/ContentValidation.aspx");
         }
 
 
 
         protected void GetNextEntity_Click(object sender, EventArgs e)
-        {
-            DropDownList ddDest = (DropDownList)LoginViewImportant.FindControl("ddStart");
-            DropDownList ddTP = (DropDownList)LoginViewImportant.FindControl("ddTimePeriod");
-            DropDownList ddLA = (DropDownList)LoginViewImportant.FindControl("ddLang");
-
+        {   
             int userID = GetUserID();
 
-            if (ddDest.SelectedIndex > 0)
+            if ( (int)Session["ddDestSelected"] > 0)
             {
                 // add a record to db for user Robot, that the entity is Valid and its content is ok.
-                CheckEntity(currentEntityID, ddLA.SelectedValue, ddTP.SelectedValue, (int)Checking.Finish, userID);
+                CheckEntity(currentEntityID, Session["ddLASelected"].ToString(), Session["ddTPSelected"].ToString(), (int)Checking.Finish, userID);
             }
             
             this.goNextTbl.Visible = true;
@@ -184,16 +185,13 @@ namespace GGApps
 
         public void GetNextEntityCon()
         {
-            DropDownList ddDest = (DropDownList)LoginViewImportant.FindControl("ddStart");
-            DropDownList ddTP = (DropDownList)LoginViewImportant.FindControl("ddTimePeriod");
-            DropDownList ddLA = (DropDownList)LoginViewImportant.FindControl("ddLang");
             goNextTbl.Visible = false;
 
-            if (ddDest.SelectedIndex > 0)
+            if ( (int)Session["ddDestSelected"] > 0)
             {
             
                 // fetch next record.
-                string entID = FetchNextEntityID(FetchEntitiesValidationCacheOrDB(Int32.Parse(ddDest.SelectedValue), ddLA.SelectedValue, ddTP.SelectedValue));
+                string entID = FetchNextEntityID(FetchEntitiesValidationCacheOrDB( (int)Session["ddDestSelected"], Session["ddLASelected"].ToString(),  Session["ddTPSelected"].ToString()));
                 if (entID != null && entID != "finished")
                 {
                     // if next record really exists
@@ -201,6 +199,7 @@ namespace GGApps
                 }
                 else
                 {
+                    ClearSessionSelected();
                     RestartBtn.Visible = true;
                     GetNextEntity.Visible = false;
                     editEntiBtn.Visible = false;
@@ -216,20 +215,32 @@ namespace GGApps
             FetchRecord(currentEntityID);
         }
 
- 
+        protected void ClearSessionSelected()
+        {
+            Session["ddDestSelected"] = null;
+            Session["ddLASelected"] = null;
+            Session["ddTPSelected"] = null;
+            Session["appName"] = null;
+        }
+
+
         protected void Goload_Click(object sender, EventArgs e)
         { 
             DropDownList ddStart = (DropDownList)LoginViewImportant.FindControl("ddStart");
             DropDownList ddTP = (DropDownList)LoginViewImportant.FindControl("ddTimePeriod");
             DropDownList ddLA = (DropDownList)LoginViewImportant.FindControl("ddLang");
 
+            Session["ddDestSelected"] = Int32.Parse(ddStart.SelectedValue);
+            Session["ddLASelected"] = ddLA.SelectedValue;
+            Session["ddTPSelected"] = ddTP.SelectedValue;
+            Session["appName"] = ddStart.SelectedItem.ToString();
+
             String strRet = "";
             // if destination is not null
             if (ddStart.SelectedIndex > 0)
             {
                 Int32 appID = Int32.Parse(ddStart.SelectedValue);
-                String appName = ddStart.SelectedItem.ToString();
-
+               
                 // run query to fetch entities from selected destination, language and period, in a session table
                 FetchEntitiesValidationCacheOrDB(appID, ddLA.SelectedValue, ddTP.SelectedValue, true);
 
@@ -243,13 +254,10 @@ namespace GGApps
 
         protected void FetchRecord(int entityID = 0)
         {
-            DropDownList ddDest = (DropDownList)LoginViewImportant.FindControl("ddStart");
-            DropDownList ddTP = (DropDownList)LoginViewImportant.FindControl("ddTimePeriod");
-            DropDownList ddLA = (DropDownList)LoginViewImportant.FindControl("ddLang");
 
-            if (ddDest.SelectedIndex > 0)
+            if ( (int)Session["ddDestSelected"] > 0)
             {
-                DataTable dt = FetchEntitiesValidationCacheOrDB(Int32.Parse(ddDest.SelectedValue), ddLA.SelectedValue, ddTP.SelectedValue);
+                DataTable dt = FetchEntitiesValidationCacheOrDB((int)Session["ddDestSelected"], Session["ddLASelected"].ToString(), Session["ddTPSelected"].ToString() );
 
                 if (dt != null)
                 {
@@ -265,13 +273,13 @@ namespace GGApps
                             int firstentityId = Convert.ToInt32(dt.Rows[0]["EntityID"]);
                             lastEntityShown = firstentityId.ToString();
                             currentEntityID = firstentityId;
-                            DrawEntity(firstentityId, ddLA.SelectedValue, ddTP.SelectedValue, GetUserID());
+                            DrawEntity(firstentityId, Session["ddLASelected"].ToString() , Session["ddTPSelected"].ToString(), GetUserID());
 
                         }
                         else
                         {
                             currentEntityID = entityID;
-                            DrawEntity(entityID, ddLA.SelectedValue, ddTP.SelectedValue, GetUserID());
+                            DrawEntity(entityID, Session["ddLASelected"].ToString(), Session["ddTPSelected"].ToString(), GetUserID());
                         }
                     }
                     else
@@ -280,7 +288,7 @@ namespace GGApps
                         editEntiBtn.Visible = false;
                         refreshEntityBtn.Visible = false;
                         destLangTimeTable.Visible = false;
-                        AllValidated.Text = "All Entities for " + ddDest.SelectedItem.Text + " in " + ddLA.SelectedItem.Text + " of the last " + ddTP.SelectedItem.Text + ", are succesfully validated recently!";
+                        AllValidated.Text = "All Entities for " + Session["appName"]  + " in " + Session["ddLASelected"].ToString()  + " of the last " + Session["ddTPSelected"].ToString()  + ", are succesfully validated recently!";
                         AllValidated.Visible = true;
                     }
                 }
@@ -449,13 +457,6 @@ namespace GGApps
 
         }
 
-        private void ClearAll()
-        { 
-            // clear cache
-            // clear sessions
-            // disable btns.
-
-        }
 
 
 

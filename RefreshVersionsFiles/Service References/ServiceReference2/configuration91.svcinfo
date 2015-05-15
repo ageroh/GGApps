@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="vMx74+9cZyVy8w/FXUHkDz16mXU=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="3e25Xd0evDnN6x2d1gJBnsjHq3s=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="wsHttpBinding" name="MetadataExchangeHttpBinding_IGGSevice">
+    <bindingConfiguration bindingType="wsHttpBinding" name="MetadataExchangeHttpBinding_IGGService1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>MetadataExchangeHttpBinding_IGGSevice</serializedValue>
+          <serializedValue>MetadataExchangeHttpBinding_IGGService1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -127,10 +127,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="MetadataExchangeHttpBinding_IGGSevice" contract="ServiceReference2.IGGSevice" bindingType="wsHttpBinding" address="http://localhost:8090/GGSevice.svc/mex" bindingConfiguration="MetadataExchangeHttpBinding_IGGSevice">
+    <endpoint name="MetadataExchangeHttpBinding_IGGService1" contract="ServiceReference2.IGGService" bindingType="wsHttpBinding" address="http://localhost:8090/GGService.svc/mex" bindingConfiguration="MetadataExchangeHttpBinding_IGGService1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8090/GGSevice.svc/mex</serializedValue>
+          <serializedValue>http://localhost:8090/GGService.svc/mex</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -139,10 +139,10 @@
           <serializedValue>wsHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>MetadataExchangeHttpBinding_IGGSevice</serializedValue>
+          <serializedValue>MetadataExchangeHttpBinding_IGGService1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ServiceReference2.IGGSevice</serializedValue>
+          <serializedValue>ServiceReference2.IGGService</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -202,7 +202,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>MetadataExchangeHttpBinding_IGGSevice</serializedValue>
+          <serializedValue>MetadataExchangeHttpBinding_IGGService1</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

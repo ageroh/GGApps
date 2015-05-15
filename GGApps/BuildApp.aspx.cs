@@ -284,7 +284,7 @@ namespace GGApps
 
                         if (res3_5 != null && !HasErrors)
                         {
-                            // Redirect result to temp file for APP with dateFormat
+                            // result to temp file for APP with dateFormat
                             var result4 = await RunAsyncCommandBatch(ct, appID
                                                                         , appName
                                                                         , "4_db_stats.bat " + appID.ToString() + "  reports/" + appName + "_db_stats_" + DateTime.Now.ToString("yyyyMMdd") + ".txt"

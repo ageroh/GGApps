@@ -12,8 +12,8 @@ namespace RefreshVersionsFiles
     {
         static void Main(string[] args)
         {
-            //
-            GGSeviceClient client = new GGSeviceClient();
+          //
+            GGServiceClient client = new GGServiceClient();
 
             // call the one and only webservice method to populate 
             client.DoWork();

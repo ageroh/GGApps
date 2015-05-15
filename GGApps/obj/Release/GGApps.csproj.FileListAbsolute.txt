@@ -11,6 +11,7 @@ C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Microso
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Microsoft.ScriptManager.WebForms.dll
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Newtonsoft.Json.dll
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Renci.SshNet.dll
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\System.Data.SQLite.dll
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\System.Data.SQLite.EF6.dll
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\System.Data.SQLite.Linq.dll
@@ -20,8 +21,8 @@ C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\WebGrea
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\EntityFramework.xml
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\EntityFramework.SqlServer.xml
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Newtonsoft.Json.xml
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Renci.SshNet.xml
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.dll
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.pdb
-C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Renci.SshNet.dll
-C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\bin\Renci.SshNet.xml
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\GGApps\obj\Release\GGApps.csprojResolveAssemblyReference.cache

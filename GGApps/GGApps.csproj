@@ -131,14 +131,17 @@
   <ItemGroup>
     <Content Include="Account\Login.aspx" />
     <Content Include="Admin.aspx" />
+    <Content Include="ajax.html" />
     <Content Include="Batch\DbAccess.dll" />
     <Content Include="Batch\gg_version_scrap.py" />
     <Content Include="ContentValidation.aspx" />
     <Content Include="Content\img\refreshDD.png" />
+    <Content Include="create new app for GG in-app update.sql" />
     <Content Include="EmailTemplates\EmailTemplateInitAdmin.html" />
     <Content Include="EmailTemplates\EmailTemplateStart.html" />
     <Content Include="ErrorPage.aspx" />
-    <Content Include="GGSevice.svc" />
+    <Content Include="GGService.svc" />
+    <Content Include="Service.aspx" />
     <Content Include="SQLScripts\db_test_2_4_entities_with_invalid_characters_RU.sql" />
     <Content Include="SQLScripts\db_create_entity.sql" />
     <Content Include="Batch\db_stats.sql" />
@@ -381,8 +384,8 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ftp.cs" />
-    <Compile Include="GGSevice.svc.cs">
-      <DependentUpon>GGSevice.svc</DependentUpon>
+    <Compile Include="GGService.svc.cs">
+      <DependentUpon>GGService.svc</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -409,6 +412,10 @@
     </Compile>
     <Compile Include="Admin\Publish.aspx.designer.cs">
       <DependentUpon>Publish.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service.aspx.cs">
+      <DependentUpon>Service.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

@@ -12,40 +12,40 @@ namespace RefreshVersionsFiles.ServiceReference2 {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2.IGGSevice")]
-    public interface IGGSevice {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2.IGGService")]
+    public interface IGGService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGGSevice/DoWork", ReplyAction="http://tempuri.org/IGGSevice/DoWorkResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGGService/DoWork", ReplyAction="http://tempuri.org/IGGService/DoWorkResponse")]
         void DoWork();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGGSevice/DoWork", ReplyAction="http://tempuri.org/IGGSevice/DoWorkResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGGService/DoWork", ReplyAction="http://tempuri.org/IGGService/DoWorkResponse")]
         System.Threading.Tasks.Task DoWorkAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IGGSeviceChannel : RefreshVersionsFiles.ServiceReference2.IGGSevice, System.ServiceModel.IClientChannel {
+    public interface IGGServiceChannel : RefreshVersionsFiles.ServiceReference2.IGGService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GGSeviceClient : System.ServiceModel.ClientBase<RefreshVersionsFiles.ServiceReference2.IGGSevice>, RefreshVersionsFiles.ServiceReference2.IGGSevice {
+    public partial class GGServiceClient : System.ServiceModel.ClientBase<RefreshVersionsFiles.ServiceReference2.IGGService>, RefreshVersionsFiles.ServiceReference2.IGGService {
         
-        public GGSeviceClient() {
+        public GGServiceClient() {
         }
         
-        public GGSeviceClient(string endpointConfigurationName) : 
+        public GGServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public GGSeviceClient(string endpointConfigurationName, string remoteAddress) : 
+        public GGServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public GGSeviceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public GGServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public GGSeviceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public GGServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         

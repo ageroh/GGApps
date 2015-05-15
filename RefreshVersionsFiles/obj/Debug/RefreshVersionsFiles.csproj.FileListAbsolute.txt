@@ -1,8 +1,8 @@
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\RefreshVersionsFiles\bin\Debug\RefreshVersionsFiles.exe.config
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\RefreshVersionsFiles\bin\Debug\RefreshVersionsFiles.exe
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\RefreshVersionsFiles\bin\Debug\RefreshVersionsFiles.pdb
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\RefreshVersionsFiles\bin\Debug\Renci.SshNet.dll
+C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\RefreshVersionsFiles\bin\Debug\Renci.SshNet.xml
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\RefreshVersionsFiles\obj\Debug\RefreshVersionsFiles.exe
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\RefreshVersionsFiles\obj\Debug\RefreshVersionsFiles.pdb
 C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\RefreshVersionsFiles\obj\Debug\RefreshVersionsFiles.csprojResolveAssemblyReference.cache
-C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\RefreshVersionsFiles\bin\Debug\Renci.SshNet.dll
-C:\Users\Argiris\Documents\Visual Studio 2012\Projects\GGApps\RefreshVersionsFiles\bin\Debug\Renci.SshNet.xml

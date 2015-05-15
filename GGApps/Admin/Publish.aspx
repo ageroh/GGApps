@@ -16,7 +16,27 @@
     </div>
 
     <asp:Panel ID="LoginViewImportant" CssClass="LoginViewImportant" runat="server">
+        <script type="text/javascript">
+            
+            
+            function getPublishStatus() {
+                var options = {};
+                options.cache = false;
+                options.url = "Admin/Publish.aspx/GetStatus";
+                options.type = "POST";
+                options.data = statusPub;
+                options.dataType = "json";
+                options.contentType = "application/json; charset=utf-8",
+                options.success = function (data) {
+                    $("#msg").html("<h2>Status : " + data.d + "</h2> ");
+                    if (!data.d) {
+                        getPublishStatus();
+                    }
+                };
+                $.ajax(options);
+            }
 
+        </script>
 
 
         <h3>Select application to Publish</h3>
@@ -160,6 +180,17 @@
         <asp:Button runat="server" Text="Undo Publish" ID="undoPublish" Enabled="false" CssClass="InputDisabledCustom" OnClick="undoPublish_Click" />
 
         <asp:Label CssClass="ErrorGeneral" runat="server" ID="custValidation" Text="" Visible="false"></asp:Label>
+
+
+        
+        <div id="openModal" class="modalDialogSuccess">
+	        <div>
+		        <a href="#close" title="Close" class="closeSuccess">X</a>
+		        <h2>Successfull Publish!</h2>
+		        <div id="txtMessageModal" runat="server">
+		        </div>
+	        </div>
+        </div>
 
 
     </asp:Panel>

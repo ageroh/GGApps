@@ -305,7 +305,7 @@ namespace GGApps
                 if (rootWebConfig.AppSettings.Settings["ContentAbilityGG"] != null)
                 {
                     SqlConnection con = new SqlConnection(rootWebConfig.AppSettings.Settings["ContentAbilityGG"].Value.ToString());
-                    SqlCommand cmd = new SqlCommand("select catCategoryId as id , catName as appName from category  where catParentID = 2", con);
+                    SqlCommand cmd = new SqlCommand("select catCategoryId as id , catName as appName from category  where catParentID = 2 order by catName ", con);
                     SqlDataAdapter adp = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adp.Fill(dt);
@@ -627,21 +627,26 @@ namespace GGApps
 
         public void Initialize()
         {
-#if !DEBUG
 
-            if ( CheckAccount() < 0) 
+            int check = CheckAccount();
+            
+#if DEBUG
+            if (Request.Url.AbsolutePath != "/Admin/Publish.aspx")
+                Response.Redirect("~/Admin/Publish.aspx");
+#else
+            if ( check < 0) 
             {
                 Response.Redirect("~/");
             }
-            else if (CheckAccount() == 0)
+            else if (check == 0)
             {
                 Response.Redirect("~/ContentValidation.aspx");
             }
-            else
-                Response.Redirect("~/Admin/Publish.aspx");
-#else
-            //if (Request.Url != "/Admin/Publish.aspx") 
-            //    Response.Redirect("~/Admin/Publish.aspx");
+            else if (check == 1)   // Administrator - GGAppAdmin
+            {
+                if( ! Request.Url.AbsolutePath.Contains("/Admin/Publish.aspx") )
+                    Response.Redirect("~/Admin/Publish.aspx");
+            }
 #endif
 
         }
@@ -650,7 +655,8 @@ namespace GGApps
         public int CheckAccount()
         {
             if( HttpContext.Current.User.Identity != null)
-                if( User.Identity.IsAuthenticated){
+                if( User.Identity.IsAuthenticated)
+                {
                     string user = HttpContext.Current.User.Identity.Name;
                     if( rootWebConfig.AppSettings.Settings["authorized"].Value.Contains( user.Substring(user.IndexOf("\\")+1) ) )
                         return 1;
