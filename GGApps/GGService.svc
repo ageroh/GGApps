@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="GGApps.GGService" CodeBehind="GGService.svc.cs" %>
