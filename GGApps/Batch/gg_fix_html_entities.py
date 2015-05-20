@@ -52,8 +52,8 @@ with con:
         cur.execute(u_sql, (cat_parent_name, cat_name, cat_id, cat_parent_id))
         
 
-    sql="select entEntityID, TITLE_S, SHORT_DESCRIPTION_T, BODY_T, OPENING_HOURS_S, PRICE_S, USEFUL_TIPS_T, ADDRESS_S, ent_hidden_BodyRaw, EDITORIAL_T from Entity"
-    u_sql="update Entity set TITLE_S=?, SHORT_DESCRIPTION_T=?, BODY_T=?, OPENING_HOURS_S=?, PRICE_S=?, USEFUL_TIPS_T=?, ADDRESS_S=?, ent_hidden_BodyRaw=?, EDITORIAL_T=? where ententityid=?"
+    sql="select entEntityID, TITLE_S, SHORT_DESCRIPTION_T, BODY_T, OPENING_HOURS_S, PRICE_S, USEFUL_TIPS_T, ADDRESS_S, ent_hidden_BodyRaw, EDITORIAL_T, READMORE_ALIAS_S, SEEMORE_ALIAS_S, VIDEO_TITLE_S, LOCALITY_S from Entity"
+    u_sql="update Entity set TITLE_S=?, SHORT_DESCRIPTION_T=?, BODY_T=?, OPENING_HOURS_S=?, PRICE_S=?, USEFUL_TIPS_T=?, ADDRESS_S=?, ent_hidden_BodyRaw=?, EDITORIAL_T=?, READMORE_ALIAS_S=?, SEEMORE_ALIAS_S=?, VIDEO_TITLE_S=?, LOCALITY_S=? where ententityid=?"
 
     cur=con.cursor()
     cur.execute(sql)
@@ -71,10 +71,14 @@ with con:
         ADDRESS_S=H2U(r[7]) if r[7] is not None  else None
         ent_hidden_BodyRaw=H2U(r[8]) if r[8] is not None  else None
         EDITORIAL_T=H2U(r[9]) if r[9] is not None  else None
+        READMORE_ALIAS_S=H2U(r[10]) if r[10] is not None  else None
+        SEEMORE_ALIAS_S=H2U(r[11]) if r[11] is not None  else None
+        VIDEO_TITLE_S=H2U(r[12]) if r[12] is not None  else None
+        LOCALITY_S=H2U(r[13]) if r[13] is not None  else None
 
-        cur.execute(u_sql, (TITLE_S, SHORT_DESCRIPTION_T, BODY_T, OPENING_HOURS_S, PRICE_S, USEFUL_TIPS_T, ADDRESS_S, ent_hidden_BodyRaw, EDITORIAL_T, entEntityID))
+        cur.execute(u_sql, (TITLE_S, SHORT_DESCRIPTION_T, BODY_T, OPENING_HOURS_S, PRICE_S, USEFUL_TIPS_T, ADDRESS_S, ent_hidden_BodyRaw, EDITORIAL_T, READMORE_ALIAS_S, SEEMORE_ALIAS_S, VIDEO_TITLE_S, LOCALITY_S, entEntityID))
 
-    u_sql="update Entity set TITLE_S=replace(TITLE_S,'&amp;','&'), SHORT_DESCRIPTION_T=replace(SHORT_DESCRIPTION_T,'&amp;','&'), BODY_T=replace(BODY_T,'&amp;','&'), OPENING_HOURS_S=replace(OPENING_HOURS_S,'&amp;','&'), PRICE_S=replace(PRICE_S,'&amp;','&'), USEFUL_TIPS_T=replace(USEFUL_TIPS_T,'&amp;','&'), ADDRESS_S=replace(ADDRESS_S,'&amp;','&'), EDITORIAL_T=replace(EDITORIAL_T,'&amp;','&')"
+    u_sql="update Entity set TITLE_S=replace(TITLE_S,'&amp;','&'), SHORT_DESCRIPTION_T=replace(SHORT_DESCRIPTION_T,'&amp;','&'), BODY_T=replace(BODY_T,'&amp;','&'), OPENING_HOURS_S=replace(OPENING_HOURS_S,'&amp;','&'), PRICE_S=replace(PRICE_S,'&amp;','&'), USEFUL_TIPS_T=replace(USEFUL_TIPS_T,'&amp;','&'), ADDRESS_S=replace(ADDRESS_S,'&amp;','&'), EDITORIAL_T=replace(EDITORIAL_T,'&amp;','&'), READMORE_ALIAS_S=replace(READMORE_ALIAS_S,'&amp;','&'), SEEMORE_ALIAS_S=replace(SEEMORE_ALIAS_S,'&amp;','&'), VIDEO_TITLE_S=replace(VIDEO_TITLE_S,'&amp;','&'), LOCALITY_S=replace(LOCALITY_S,'&amp;','&')"
     cur.execute(u_sql)
         
     sql="SELECT fltFilterID, fltName, fltShortName FROM Filter"
