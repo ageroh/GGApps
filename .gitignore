@@ -1,5 +1,10 @@
 /GGApps/Batch/Reports/*
 /GGApps/Batch/dbfiles/*
 /GGApps/Logs/*
-
+/GGApps/obj/*
+/GGApps/bin/*
+/GGMultiService/bin/*
+/GGMultiService/obj/*
+/RefreshVersionsFiles/bin/*
+/RefreshVersionsFiles/obj/*
 
