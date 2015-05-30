@@ -13,23 +13,24 @@ using Renci.SshNet;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Hosting;
+using Ionic;
 
-//using System.Data;
-//using System.Collections.Generic;
-//using System.Diagnostics.Tracing;
-//using System.Diagnostics;
-//using System.Text;
-//using System.IO;
-//using System.Xml;
 
 namespace GGApps
 {
     public partial class Publish : Common
     {
-        public static string[] CommitCommandsDesc = { "commit", "rollback", "tryCommit", "rollbackLastPublish" };
-        public enum CommitCommands : long { commit = 0, rollback, tryCommit, rollbackLastPublish };
+        public static string[] SSHCommandsDesc = { 
+                                                      "commit"
+                                                    , "rollback"
+                                                    , "tryCommit"
+                                                    , "rollbackLastPublish"
+                                                     };
+
+        public enum SSHCommands : long { commit = 0, rollback, tryCommit, rollbackLastPublish };
 
         public static List<AppVersionDetail> StagProdAppVersions = new List<AppVersionDetail>();
+        public static string ToPublishZipDir = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -280,7 +281,7 @@ namespace GGApps
 
                       
     #if DEBUG
-            Log.InfoLog(mapPathError, "this is a SHH connection test and run: " + SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.commit], appName), appName);
+            Log.InfoLog(mapPathError, "this is a SHH connection test and run: " + SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.commit], appName), appName);
     #endif
 
 
@@ -295,9 +296,10 @@ namespace GGApps
             }
 
             // check return message.
-#if DEBUG 
-            SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.tryCommit], appName);
-#endif
+            //#if DEBUG 
+            //            SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.tryCommit], appName);
+            //#endif
+
             string mobSuccess = "";
             int [] GGAppsPublishID = new int[2];
             int ipGG = 0;
@@ -329,7 +331,7 @@ namespace GGApps
                             // update long poll record for publish FAILED!
                             Session["mobileDevicesPublish"] = null;
     #if DEBUG
-                            SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.rollback], appName);
+                            SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
     #endif
                         }
 
@@ -341,17 +343,17 @@ namespace GGApps
                             // update long poll record for publish FAILED!
                             Session["mobileDevicesPublish"] = null;
         #if DEBUG 
-                            SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.rollback], appName);
+                            SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
         #endif
                             return;
                         }
 
-                        // take off_line the app in production.
-                        if (RenameFileRemote(appName, appName.ToLower() + "/update/" + mobileDevice + "/versions.txt", "versions_" + DateTime.Now.ToString("yyyyMMdd_hhmm") + ".txt") > 0)
+                        // take off_line the app in production. - for publishing
+                        if (RenameFileRemote(appName, appName.ToLower() + "/update/" + mobileDevice + "/versions.txt", "versions_before_publish.txt") > 0)
                         {
 
                             // This does the Real UPLOAD !
-                            string res = UploadToProduction(appName, appID, mobileDevice);
+                            string res = UploadToProduction(GGAppsPublishID[ipGG], appName, appID, mobileDevice);
 
                             if (res == null)
                             {
@@ -361,7 +363,7 @@ namespace GGApps
                                 // update long poll record for publish FAILED!
                                 Session["mobileDevicesPublish"] = null;
         #if DEBUG 
-                                SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.rollback], appName);
+                                SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
         #endif
                                 return;
                             }
@@ -379,7 +381,7 @@ namespace GGApps
                                     // update long poll record for publish FAILED!
                                     Session["mobileDevicesPublish"] = null;
         #if DEBUG
-                                    SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.rollback], appName);
+                                    SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
         #endif
                                     return;
                                 }
@@ -416,7 +418,7 @@ namespace GGApps
                                 Session["mobileDevicesPublish"] = null;
 
         #if DEBUG
-                                SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.rollback], appName);
+                                SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
         #endif
                                 return;
                             }
@@ -429,7 +431,7 @@ namespace GGApps
                             // update long poll record for publish FAILED!
                             Session["mobileDevicesPublish"] = null;
         #if DEBUG
-                            SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.rollback], appName);
+                            SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
         #endif
                             return;
                         }
@@ -437,7 +439,7 @@ namespace GGApps
             });
 
     #if DEBUG
-                SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.commit], appName);
+                SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.commit], appName);
     #endif
 
             // clear session variable
@@ -642,7 +644,97 @@ namespace GGApps
 
 
 
+        private string UploadToProduction(int GGAppsPublishID, string appName, int appID, string mobileDevice, string appVersion, string db_version, string config_version, bool isAppUpdate = false)
+        {
+            Finalize fin = new Finalize();
 
+            // create filename of zipped
+            string filenameToPublish = appName + "-"
+                                        + mobileDevice + "-"
+                                        + DateTime.Now.ToString("yyyyMMddHHmmss")
+                                        + "-v" + appVersion.Replace(".", "_").ToString()
+                                        + "-d" + db_version
+                                        + "-c" + config_version
+                                        + ".zip" 
+                                        ;
+            if( Session["filenameToPublish_" + mobileDevice.ToLower()] != null )
+                Session["filenameToPublish_" + mobileDevice.ToLower()] = null;
+
+            Session.Add("filenameToPublish_" + mobileDevice.ToLower(), filenameToPublish);
+            
+            //athens-ios-20150529143300-v2_4_5-d21-c3.zip
+
+            // zip file under vm location
+            try
+            {
+                using (var zip = new Ionic.Zip.ZipFile())
+                {
+                    zip.AddDirectory(producedAppPath + appName + "\\update\\" + mobileDevice + "\\", mobileDevice);
+                    zip.Save(ToPublishZipDir + filenameToPublish);
+                }
+            }
+            catch (Exception e)
+            {
+                Log.ErrorLogAdmin(mapPathError, "Failed to Zip file " + filenameToPublish + " for Publish", "generic");
+                return null;
+            }
+
+            // Do the upload to Production FTP.
+            if (UploadFileRemote(appName, ToPublishZipDir + Session["filenameToPublish_" + mobileDevice.ToLower()].ToString()
+                                    , appName.ToLower() + "//update//" + filenameToPublish
+                                    , true) >= 0)     // upload ok for Bundle device app
+            { 
+            
+
+                // Unizp through ssh the .zip file to correct destination.
+                if (SSHConnectExecute(String.Format(unzipFileSSHcmd, filenameToPublish, "www_var_gg_app_device-new")
+                        , appName) == null)
+                    return "unziped failed to Production";
+
+                // replace <device>-old -> new
+                if (SSHConnectExecute(String.Format(replaceDeviceOldSSHcmd, filenameToPublish, "www_var_gg_app_device-new")
+                                    , appName) == null)
+                    return "replace <device> with <device>-new failed.";
+
+                if( RenameFileRemote(appName, "versions_before_publish.txt", "versions.txt") <= 0)
+                    return "failed to rename Versions.txt while Publishing";
+
+
+                /* DB_VERSION prepare for UNDO */
+                string dbver, appVertmp, configVersion; 
+                int newdbVersion;
+                if (GetVersionsFileProduction(mobileDevice + "-old", out dbver, out appVertmp, out configVersion, appName) != null)
+                {
+                    Int32.TryParse(dbver, out newdbVersion);
+                    // add + 1 to production db_version.
+                    newdbVersion++;
+
+                    string nVersionTXT = "{  \"app_version\": \"" + appVertmp + "\",   \"config_version\": \"" + configVersion + "\",   \"db_version\": \"" + newdbVersion + "\" }";
+
+                    // upload to server
+                    string res = SaveConfigureFile(mobileDevice + "-old", appName, appID, "Production", "versions.txt", nVersionTXT);
+                    if (res == null)
+                        return "error while update db_version for <device>-old.";    // error
+
+                }
+                else
+                    return "failed to get <device>-old versions.txt";
+
+
+                /*
+
+                Κάνουμε DEL το /app/update/app-device-timestamp-appversion-db-version-configurationversion.zip
+ */
+                /*if (SSHConnectExecute(String.Format(replaceDeviceOldSSHcmd, filenameToPublish, "www_var_gg_app_device-new")
+                                    , appName) == null)
+                    return "replace <device> with <device>-new failed.";
+                */
+            }
+                            
+
+        }
+
+        // NOT USED
         /// <summary>
         /// Upload new App, for a Mobile Device to production. Upload images, configuration.txt and last versions.txt from staging.
         /// </summary>
@@ -651,6 +743,7 @@ namespace GGApps
         /// <param name="mobileDevice"></param>
         /// <param name="isAppUpdate"></param>
         /// <returns></returns>
+        /*
         private string UploadToProduction(string appName, int appID, string mobileDevice, bool isAppUpdate = false)
         {
 
@@ -689,7 +782,7 @@ namespace GGApps
                 return "Could not upload files : " + appName + "\\update\\" + mobileDevice + "\\images\\ to production.";
                 
         }
-
+        */
 
 
         private string RefreshVersionFileStaging(int appID, string appName, string mobileDevice)
@@ -716,7 +809,7 @@ namespace GGApps
                 // add + 1 to production db_version.
                 newdbVersion++;                         
 
-                // Set Versions file for IOS only for one Lang
+                // Set Versions file for device only for one Lang
                 if (!fin.SetVerionsFileProperty("db_version", newdbVersion.ToString(), appName, appID, mobileDevice, 1, "versions.txt"))
                     return retError;
 
@@ -874,7 +967,7 @@ namespace GGApps
         protected void undoPublish_Click(object sender, EventArgs e)
         {
 #if DEBUG
-            SSHConnectExecute( CommitCommandsDesc[(int)CommitCommands.rollbackLastPublish], Session["appName"].ToString() );
+            SSHConnectExecute( SSHCommandsDesc[(int)SSHCommands.rollbackLastPublish], Session["appName"].ToString() );
 #endif
             DisplayCustomMessageInValidationSummary("Not implemented yet!");
             undoPublish.Enabled = false;

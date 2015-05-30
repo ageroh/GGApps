@@ -34,7 +34,10 @@ namespace GGApps
         public static string mapPathError = HostingEnvironment.MapPath("~/Logs") + "\\Log_";
         
         public static string producedAppPath = rootWebConfig.AppSettings.Settings["ProducedAppPath"].Value.ToString();
-        
+        public static string ToPublishZipDir = rootWebConfig.AppSettings.Settings["ToPublishZipDir"].Value.ToString();
+        public static string unzipFileSSHcmd = rootWebConfig.AppSettings.Settings["unzipFileSSHcmd"].Value.ToString();
+        public static string replaceDeviceOldSSHcmd = rootWebConfig.AppSettings.Settings["unzipFileSSHcmd"].Value.ToString();
+
         public static bool HasErrors = false;                       // MAKE THIS A SESSION VARIABLE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public static bool LogErrorAdmin = false;                       
         public static CreateLogFiles Log = new CreateLogFiles();
@@ -625,6 +628,9 @@ namespace GGApps
             }
         }
 
+
+
+
         public void Initialize()
         {
 
@@ -844,8 +850,8 @@ namespace GGApps
                 return "Not A Valid JSON file.";
             }
             
-
-            string localFilename = actualWorkDir + "\\reports\\getTempfilename.txt";
+                        
+            string localFilename = actualWorkDir + "\\reports\\tempVersions_" + System.Guid.NewGuid().ToString() + ".txt";
             string setFileName;
 
             // Clear previous file.
