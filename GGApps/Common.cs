@@ -553,7 +553,33 @@ namespace GGApps
 
         }
 
+        public static double DeleteFileRemote(string appName, string filenameToPublishFullPath)
+        {
+            try
+            {
+                FTP ftpClient = CreateFTPClientProduction(appName);
 
+                if (ftpClient != null)
+                {
+                    if (ftpClient.getFileCreatedDateTime(filenameToPublishFullPath) != null)                       // Cunrrent file does not exits contact admin !
+                    {
+                        if (ftpClient.delete(filenameToPublishFullPath) < 0)
+                            return -1;
+                    }
+                    else
+                        return 1;
+                }
+                ftpClient = null;
+
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorLogAdmin(mapPathError, "Some error ocured while uploading files to FTP, Exception:  " + ex.Message, appName);
+                return -1;
+            }
+        
+        }
 
         public static double RenameFileRemote(string appName, string localFilename, string localFilenameNew)
         {

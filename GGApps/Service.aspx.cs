@@ -25,7 +25,6 @@ public partial class Service : System.Web.UI.Page
             System.Threading.Thread.Sleep(500);
         }
 
-        // Yes I know we'll never get here, it's just hard not to include it!
-        Response.End();
+
     }
 }

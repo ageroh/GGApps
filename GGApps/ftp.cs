@@ -178,7 +178,7 @@ namespace GGApps
 
 
         /* Delete File */
-        public void delete(string deleteFile)
+        public int delete(string deleteFile)
         {
             try
             {
@@ -198,8 +198,11 @@ namespace GGApps
                 ftpResponse.Close();
                 ftpRequest = null;
             }
-            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
-            return;
+            catch (Exception ex) {
+                Log.InfoLog(mapErrorPath, "Error while delete file in production: " + deleteFile + " Exeption: " + ex.Message, appName);
+                return -1;
+            }
+            return 1;
         }
 
 
@@ -405,8 +408,7 @@ namespace GGApps
                 catch (Exception ex) { Log.InfoLog(mapErrorPath, "No directory found on remote : " + directory + " , " + ex.Message, appName); return null; }
             }
             catch (Exception ex) { Log.InfoLog(mapErrorPath, "Exception while fetching directory listing for: " + directory + " , " + ex.Message, appName); return null; }
-            /* Return an Empty string Array if an Exception Occurs */
-            return null;
+
         }
 
         /* List Directory Contents in Detail (Name, Size, Created, etc.) */

@@ -32,6 +32,24 @@ namespace GGApps
         public static List<AppVersionDetail> StagProdAppVersions = new List<AppVersionDetail>();
         public static string ToPublishZipDir = "";
 
+
+        public class MobileDevice
+        {
+
+            public string name { get; set; }
+            public string app_Version { get; set; }
+            public int db_version { get; set; }
+            public string config_version { get; set; }
+
+            public MobileDevice(string device, string aV, int db, string cV)
+            {
+                this.name = device;
+                this.app_Version = aV;
+                this.db_version = db;
+                this.config_version = cV;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -251,7 +269,7 @@ namespace GGApps
         protected void BtnPublishApp_Click(object sender, EventArgs e)
         {
             // Check  DB version of staging-production
-            List<string> mobileDevicesToPublish = new List<string>();
+            List<MobileDevice> mobileDevicesToPublish = new List<MobileDevice>();
             mobileDevicesToPublish.Clear();
 
             string appName = SelectApp.SelectedItem.Text;
@@ -266,7 +284,11 @@ namespace GGApps
                 if (chk != null && chk.Checked == true)
                 {
                     var value = item.FindControl("txtmobileDevice") as TextBox;
-                    mobileDevicesToPublish.Add(value.Text);
+                    mobileDevicesToPublish.Add(new MobileDevice(
+                                                              value.Text
+                                                            , getAppVer(StagProdAppVersions, value.Text)
+                                                            , getDBVer(StagProdAppVersions, value.Text)
+                                                            , getConfigVer(StagProdAppVersions, value.Text) ) );
                 }
             }
 
@@ -305,11 +327,11 @@ namespace GGApps
             int ipGG = 0;
             
 
-            // Will to try to publish for the below specified applications.
-            foreach (string mobileDevice in mobileDevicesToPublish) 
+            // try to publish for the below specified applications.
+            foreach (var mobileDevice in mobileDevicesToPublish) 
             {
                 // Create a record in DB to long poll publish !
-                GGAppsPublishID[ipGG] = StartPublishDBAdmin(appID, appName, mobileDevice, getAppVer(StagProdAppVersions, mobileDevice), getDBVer(StagProdAppVersions, mobileDevice), getConfigVer(StagProdAppVersions, mobileDevice));
+                GGAppsPublishID[ipGG] = StartPublishDBAdmin(appID, appName, mobileDevice.name, mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version);
                 ipGG++;
             }
             ipGG = 0;
@@ -317,43 +339,43 @@ namespace GGApps
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
             {
 
-                foreach (string mobileDevice in mobileDevicesToPublish)
+                foreach (var mobileDevice in mobileDevicesToPublish)
                 {    
              
-                        Log.InfoLog(mapPathError, "============================================== STARTED PUBLISH TO PRODUCTION FOR " + appName + " for " + mobileDevice + " ==============================================", appName);
+                        Log.InfoLog(mapPathError, "============================================== STARTED PUBLISH TO PRODUCTION FOR " + appName + " for " + mobileDevice.name + " ==============================================", appName);
                         string errv ;
 
 
                         if (GGAppsPublishID[ipGG] == -1)
                         {
-                            FinishPublish(GGAppsPublishID[ipGG], "Could not start publishing app for " + mobileDevice + ", please contact Admin!", -1);
+                            FinishPublish(GGAppsPublishID[ipGG], "Could not start publishing app for " + mobileDevice.name + ", please contact Admin!", -1);
 
                             // update long poll record for publish FAILED!
                             Session["mobileDevicesPublish"] = null;
-    #if DEBUG
-                            SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
-    #endif
+    //#if DEBUG
+    //                        SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
+    //#endif
                         }
 
                         // if is ok must staging_db_version = production_db_version + 1 foreach app. on Staging
-                        if ( (errv = RefreshVersionFileStaging(appID, appName, mobileDevice)) != "OK" )
+                        if ( (errv = RefreshVersionFileStaging(appID, appName, mobileDevice.name)) != "OK" )
                         {
-                            FinishPublish(GGAppsPublishID[ipGG], errv + ", while deploying " + appName + " to Production for " + mobileDevice + ". Nothing Deployed to Production.", -1);
+                            FinishPublish(GGAppsPublishID[ipGG], errv + ", while deploying " + appName + " to Production for " + mobileDevice.name + ". Nothing Deployed to Production.", -1);
 
                             // update long poll record for publish FAILED!
                             Session["mobileDevicesPublish"] = null;
-        #if DEBUG 
-                            SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
-        #endif
+        //#if DEBUG 
+        //                    SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
+        //#endif
                             return;
                         }
 
                         // take off_line the app in production. - for publishing
-                        if (RenameFileRemote(appName, appName.ToLower() + "/update/" + mobileDevice + "/versions.txt", "versions_before_publish.txt") > 0)
+                        if (RenameFileRemote(appName, appName.ToLower() + "/update/" + mobileDevice.name + "/versions.txt", "versions_before_publish.txt") > 0)
                         {
 
                             // This does the Real UPLOAD !
-                            string res = UploadToProduction(GGAppsPublishID[ipGG], appName, appID, mobileDevice);
+                            string res = UploadToProduction(GGAppsPublishID[ipGG], appName, appID, mobileDevice.name, mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version);
 
                             if (res == null)
                             {
@@ -373,10 +395,10 @@ namespace GGApps
                                 Finalize fin = new Finalize();
                                 string DbVersion = "";
 
-                                if ((DbVersion = fin.AddProductionVerAdmin(appID, appName, mobileDevice)) == null)
+                                if ((DbVersion = fin.AddProductionVerAdmin(appID, appName, mobileDevice.name)) == null)
                                 {
                                     //DisplayCustomMessageInValidationSummary("Some Error occured while finalizing DB for " + mobileDevice);
-                                    FinishPublish(GGAppsPublishID[ipGG], "Some Error occured while finalizing DB for " + mobileDevice, -1);
+                                    FinishPublish(GGAppsPublishID[ipGG], "Some Error occured while finalizing DB for " + mobileDevice.name, -1);
 
                                     // update long poll record for publish FAILED!
                                     Session["mobileDevicesPublish"] = null;
@@ -385,10 +407,10 @@ namespace GGApps
         #endif
                                     return;
                                 }
-                                string topath = producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\DBVER\\";
+                                string topath = producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice.name + "\\DBVER\\";
                         
                                 // Create a version of DB zip files inside a Directory with all the Databases when generated.
-                                fin.StoreNewDBtoHistory(appName, appID, mobileDevice, DbVersion, topath);
+                                fin.StoreNewDBtoHistory(appName, appID, mobileDevice.name, DbVersion, topath);
 
                                 // Reset versions and configuration files of staging ?  or get in case of update data only for Admin DB...
                                 // NOT IMPLEMENTED YET!
@@ -402,7 +424,7 @@ namespace GGApps
                                 //DisplayCustomMessageInValidationSummary("Successfully deployed <b>" + appName + "</b> for <i>" + mobileDevice + "</i> to Production, please download app from an open wi-fi to confirm.", true);
 
                                 // update long poll record for publish
-                                FinishPublish(GGAppsPublishID[ipGG], "Successfully deployed <b>" + appName + "</b> for <i>" + mobileDevice + "</i> to Production, please download app from an open wi-fi to confirm." + mobileDevice, 1);
+                                FinishPublish(GGAppsPublishID[ipGG], "Successfully deployed <b>" + appName + "</b> for <i>" + mobileDevice.name + "</i> to Production, please download app from an open wi-fi to confirm." + mobileDevice, 1);
 
                                 // show Modal at the end with result message..
                                 //ClientScript.RegisterStartupScript(this.GetType(), "SUCCESS", "window.location.hash = 'openModal';", true);
@@ -426,7 +448,7 @@ namespace GGApps
                         else
                         {
                             //DisplayCustomMessageInValidationSummary("Cannot rename file remote, nothing deployed to Production for: " + mobileDevice + ", try again ");
-                            FinishPublish(GGAppsPublishID[ipGG], "Cannot rename file remote, nothing deployed to Production for: " + mobileDevice + ", try again ", -1);
+                            FinishPublish(GGAppsPublishID[ipGG], "Cannot rename file remote, nothing deployed to Production for: " + mobileDevice.name + ", try again ", -1);
 
                             // update long poll record for publish FAILED!
                             Session["mobileDevicesPublish"] = null;
@@ -644,7 +666,7 @@ namespace GGApps
 
 
 
-        private string UploadToProduction(int GGAppsPublishID, string appName, int appID, string mobileDevice, string appVersion, string db_version, string config_version, bool isAppUpdate = false)
+        private string UploadToProduction(int GGAppsPublishID, string appName, int appID, string mobileDevice, string appVersion, int db_version, string config_version, bool isAppUpdate = false)
         {
             Finalize fin = new Finalize();
 
@@ -700,7 +722,7 @@ namespace GGApps
                     return "failed to rename Versions.txt while Publishing";
 
 
-                /* DB_VERSION prepare for UNDO */
+                /* DB_VERSION prepare for UNDO, +2  */
                 string dbver, appVertmp, configVersion; 
                 int newdbVersion;
                 if (GetVersionsFileProduction(mobileDevice + "-old", out dbver, out appVertmp, out configVersion, appName) != null)
@@ -721,68 +743,20 @@ namespace GGApps
                     return "failed to get <device>-old versions.txt";
 
 
-                /*
+                // Delete temp zip filename to publish from production.
+                if( DeleteFileRemote(appName, filenameToPublish) < 0 )
+                    return "failed to delete zip file from production.";
 
-                Κάνουμε DEL το /app/update/app-device-timestamp-appversion-db-version-configurationversion.zip
- */
-                /*if (SSHConnectExecute(String.Format(replaceDeviceOldSSHcmd, filenameToPublish, "www_var_gg_app_device-new")
-                                    , appName) == null)
-                    return "replace <device> with <device>-new failed.";
-                */
+                return "success";
             }
-                            
+
+            return null;
 
         }
 
-        // NOT USED
-        /// <summary>
-        /// Upload new App, for a Mobile Device to production. Upload images, configuration.txt and last versions.txt from staging.
-        /// </summary>
-        /// <param name="appName"></param>
-        /// <param name="appID"></param>
-        /// <param name="mobileDevice"></param>
-        /// <param name="isAppUpdate"></param>
-        /// <returns></returns>
-        /*
-        private string UploadToProduction(string appName, int appID, string mobileDevice, bool isAppUpdate = false)
-        {
 
-            if (UploadFilesRemote(appName, producedAppPath + appName + "\\update\\" + mobileDevice + "\\images\\", appName.ToLower() + "//update//" + mobileDevice + "//images//", true) >= 0)   // upload succeed for device
-            {
-                if (isAppUpdate)
-                {
-                    Log.InfoLog(mapPathError, "App Update for selected Application " + appName + " on " + mobileDevice + ", Successfully moved all /IMAGES files to Production!", appName);
-                    return "success";
-                }
 
-                if (UploadFileRemote(appName, producedAppPath + appName + "\\update\\" + mobileDevice + "\\update.zip", appName.ToLower() + "//update//" + mobileDevice + "//update.zip", true) >= 0)     // upload ok for update.zip
-                {
-                    // upload configurations.txt if exists
-                    try
-                    {
-                        UploadFileRemote(appName, producedAppPath + appName + "\\update\\" + mobileDevice + "\\configuration.txt", appName.ToLower() + "//update//" + mobileDevice + "//configuration.txt");
-                    }
-                    catch (Exception e)
-                    {
-                        Log.ErrorLogAdmin(mapPathError, "Failed to upload Configurations.txt file to production for " + mobileDevice + ", " + e.Message, "generic");
-                        return null;
-                    }
 
-                    // upload Staging Versions.txt for both apps - make app raelly live and ready to be downloaded !
-                    if (UploadFileRemote(appName, producedAppPath + appName + "\\update\\" + mobileDevice + "\\versions.txt", appName.ToLower() + "//update//" + mobileDevice + "//versions.txt") >= 1)
-                        return "success";
-                    else
-                        return "Could not upload file : " + appName + "\\update\\" + mobileDevice + "\\versions.txt to production.";
-
-                }
-                else
-                    return "Could not upload file : " + appName + "\\update\\" + mobileDevice + "\\update.zip to production.";
-            }
-            else
-                return "Could not upload files : " + appName + "\\update\\" + mobileDevice + "\\images\\ to production.";
-                
-        }
-        */
 
 
         private string RefreshVersionFileStaging(int appID, string appName, string mobileDevice)
@@ -855,13 +829,12 @@ namespace GGApps
 
 
 
-        private bool CheckStagingProductionDBVersions(string appName, int appID, List<AppVersionDetail> StagProdAppVersions, List<string> mobileDevicesSelected, out string mobDev)
+        private bool CheckStagingProductionDBVersions(string appName, int appID, List<AppVersionDetail> StagProdAppVersions, List<MobileDevice> mobileDevicesSelected, out string mobDev)
         {
             mobDev = "";
-            foreach (string mD in mobileDevicesSelected)
+            foreach (var mD in mobileDevicesSelected)
             {
-                mobDev = mD;
-                if (!CheckStagingProductionDBVersionsDevice(appName, appID, StagProdAppVersions, mD))
+                if (!CheckStagingProductionDBVersionsDevice(appName, appID, StagProdAppVersions, mD.name))
                     return false;
             }
 
@@ -966,9 +939,9 @@ namespace GGApps
 
         protected void undoPublish_Click(object sender, EventArgs e)
         {
-#if DEBUG
-            SSHConnectExecute( SSHCommandsDesc[(int)SSHCommands.rollbackLastPublish], Session["appName"].ToString() );
-#endif
+//#if DEBUG
+//            SSHConnectExecute( SSHCommandsDesc[(int)SSHCommands.rollbackLastPublish], Session["appName"].ToString() );
+//#endif
             DisplayCustomMessageInValidationSummary("Not implemented yet!");
             undoPublish.Enabled = false;
         }
@@ -979,3 +952,54 @@ namespace GGApps
 
     }
 }
+
+
+// NOT USED
+/// <summary>
+/// Upload new App, for a Mobile Device to production. Upload images, configuration.txt and last versions.txt from staging.
+/// </summary>
+/// <param name="appName"></param>
+/// <param name="appID"></param>
+/// <param name="mobileDevice"></param>
+/// <param name="isAppUpdate"></param>
+/// <returns></returns>
+/*
+private string UploadToProduction(string appName, int appID, string mobileDevice, bool isAppUpdate = false)
+{
+
+    if (UploadFilesRemote(appName, producedAppPath + appName + "\\update\\" + mobileDevice + "\\images\\", appName.ToLower() + "//update//" + mobileDevice + "//images//", true) >= 0)   // upload succeed for device
+    {
+        if (isAppUpdate)
+        {
+            Log.InfoLog(mapPathError, "App Update for selected Application " + appName + " on " + mobileDevice + ", Successfully moved all /IMAGES files to Production!", appName);
+            return "success";
+        }
+
+        if (UploadFileRemote(appName, producedAppPath + appName + "\\update\\" + mobileDevice + "\\update.zip", appName.ToLower() + "//update//" + mobileDevice + "//update.zip", true) >= 0)     // upload ok for update.zip
+        {
+            // upload configurations.txt if exists
+            try
+            {
+                UploadFileRemote(appName, producedAppPath + appName + "\\update\\" + mobileDevice + "\\configuration.txt", appName.ToLower() + "//update//" + mobileDevice + "//configuration.txt");
+            }
+            catch (Exception e)
+            {
+                Log.ErrorLogAdmin(mapPathError, "Failed to upload Configurations.txt file to production for " + mobileDevice + ", " + e.Message, "generic");
+                return null;
+            }
+
+            // upload Staging Versions.txt for both apps - make app raelly live and ready to be downloaded !
+            if (UploadFileRemote(appName, producedAppPath + appName + "\\update\\" + mobileDevice + "\\versions.txt", appName.ToLower() + "//update//" + mobileDevice + "//versions.txt") >= 1)
+                return "success";
+            else
+                return "Could not upload file : " + appName + "\\update\\" + mobileDevice + "\\versions.txt to production.";
+
+        }
+        else
+            return "Could not upload file : " + appName + "\\update\\" + mobileDevice + "\\update.zip to production.";
+    }
+    else
+        return "Could not upload files : " + appName + "\\update\\" + mobileDevice + "\\images\\ to production.";
+                
+}
+*/
