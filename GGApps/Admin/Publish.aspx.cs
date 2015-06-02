@@ -28,10 +28,8 @@ namespace GGApps
                                                      };
 
         public enum SSHCommands : long { commit = 0, rollback, tryCommit, rollbackLastPublish };
-
         public static List<AppVersionDetail> StagProdAppVersions = new List<AppVersionDetail>();
-        public static string ToPublishZipDir = "";
-
+       
 
         public class MobileDevice
         {
@@ -59,6 +57,7 @@ namespace GGApps
                 Initialize();
 
                 InitializeAppDD();
+                
             }
         }
 
@@ -108,12 +107,32 @@ namespace GGApps
             {
                 BtnPublishApp.CssClass = null;
                 BtnPublishApp.Enabled = true;
+                CheckUndoAvailable(appID, appName);
             }
             else
             {
                 BtnPublishApp.CssClass = "InputDisabledCustom";
                 BtnPublishApp.Enabled = false;
             }
+        }
+
+        private void CheckUndoAvailable(int appID, string appName)
+        {
+            // check for ios and android
+            if ( CheckIfOldExistsProduction("ios-old", appName.ToLower()) || CheckIfOldExistsProduction("ios-old", appName.ToLower())) 
+            { 
+                undoPublish.CssClass = null;
+                undoPublish.Enabled = true;
+            }
+            else{
+                undoPublish.CssClass = "InputDisabledCustom";
+                undoPublish.Enabled = false;
+            }
+        }
+
+        private bool CheckIfOldExistsProduction(string deviceFolder, string appName)
+        {
+            return false;
         }
 
 
@@ -217,9 +236,6 @@ namespace GGApps
 
         public string SSHConnectExecute(string cmdInput, string appName)
         {
-            // NOT YET COMPLETED, NEEDS TO PRODUCE THE CORRECT COMMIT, ROLLBACK COMMANDS etc..
-            return "";
-
             // setup the correct connection for GIT server!
             string gitUserFTP = "";
             string gitPassFTP="";
@@ -286,9 +302,9 @@ namespace GGApps
                     var value = item.FindControl("txtmobileDevice") as TextBox;
                     mobileDevicesToPublish.Add(new MobileDevice(
                                                               value.Text
-                                                            , getAppVer(StagProdAppVersions, value.Text)
-                                                            , getDBVer(StagProdAppVersions, value.Text)
-                                                            , getConfigVer(StagProdAppVersions, value.Text) ) );
+                                                            , getAppVer(StagProdAppVersions, value.Text, "production")
+                                                            , getDBVer(StagProdAppVersions, value.Text, "production")
+                                                            , getConfigVer(StagProdAppVersions, value.Text, "production")));
                 }
             }
 
@@ -301,13 +317,6 @@ namespace GGApps
 
             Session["mobileDevicesPublish"] = mobileDevicesToPublish;
 
-                      
-    #if DEBUG
-            Log.InfoLog(mapPathError, "this is a SHH connection test and run: " + SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.commit], appName), appName);
-    #endif
-
-
- 
             Log.InfoLog(mapPathError, "Check if staging and production are valid for a publish.", appName);
             string mobDev = "";
             if (!CheckStagingProductionDBVersions(appName, appID, StagProdAppVersions, mobileDevicesToPublish, out mobDev))
@@ -317,28 +326,22 @@ namespace GGApps
                 return;
             }
 
-            // check return message.
-            //#if DEBUG 
-            //            SSHConnectExecute(CommitCommandsDesc[(int)CommitCommands.tryCommit], appName);
-            //#endif
-
             string mobSuccess = "";
             int [] GGAppsPublishID = new int[2];
-            int ipGG = 0;
+            int ipGG1 = 0;
             
 
             // try to publish for the below specified applications.
             foreach (var mobileDevice in mobileDevicesToPublish) 
             {
                 // Create a record in DB to long poll publish !
-                GGAppsPublishID[ipGG] = StartPublishDBAdmin(appID, appName, mobileDevice.name, mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version);
-                ipGG++;
+                GGAppsPublishID[ipGG1] = StartPublishDBAdmin(appID, appName, mobileDevice.name, mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version);
+                ipGG1++;
             }
-            ipGG = 0;
-
+            
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
             {
-
+                int ipGG = 0;
                 foreach (var mobileDevice in mobileDevicesToPublish)
                 {    
              
@@ -352,9 +355,7 @@ namespace GGApps
 
                             // update long poll record for publish FAILED!
                             Session["mobileDevicesPublish"] = null;
-    //#if DEBUG
-    //                        SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
-    //#endif
+                            return;
                         }
 
                         // if is ok must staging_db_version = production_db_version + 1 foreach app. on Staging
@@ -364,9 +365,6 @@ namespace GGApps
 
                             // update long poll record for publish FAILED!
                             Session["mobileDevicesPublish"] = null;
-        //#if DEBUG 
-        //                    SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
-        //#endif
                             return;
                         }
 
@@ -375,7 +373,7 @@ namespace GGApps
                         {
 
                             // This does the Real UPLOAD !
-                            string res = UploadToProduction(GGAppsPublishID[ipGG], appName, appID, mobileDevice.name, mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version);
+                            string res = UploadToProduction(GGAppsPublishID[ipGG], appName.ToLower(), appID, mobileDevice.name, mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version);
 
                             if (res == null)
                             {
@@ -384,9 +382,6 @@ namespace GGApps
 
                                 // update long poll record for publish FAILED!
                                 Session["mobileDevicesPublish"] = null;
-        #if DEBUG 
-                                SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
-        #endif
                                 return;
                             }
                             else if (res == "success")
@@ -402,9 +397,6 @@ namespace GGApps
 
                                     // update long poll record for publish FAILED!
                                     Session["mobileDevicesPublish"] = null;
-        #if DEBUG
-                                    SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
-        #endif
                                     return;
                                 }
                                 string topath = producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice.name + "\\DBVER\\";
@@ -412,19 +404,13 @@ namespace GGApps
                                 // Create a version of DB zip files inside a Directory with all the Databases when generated.
                                 fin.StoreNewDBtoHistory(appName, appID, mobileDevice.name, DbVersion, topath);
 
-                                // Reset versions and configuration files of staging ?  or get in case of update data only for Admin DB...
-                                // NOT IMPLEMENTED YET!
-                                //
-                                //undoPublish.Enabled = true;
-                                //
-
-                                Log.InfoLog(mapPathError, "============================================== FINISHED WITH SUCCESS - PUBLISH TO PRODUCTION FOR " + appName + " for " + mobileDevice + " ==============================================", appName);
+                                Log.InfoLog(mapPathError, "============================================== FINISHED WITH SUCCESS - PUBLISH TO PRODUCTION FOR " + appName + " for " + mobileDevice.name + " ==============================================", appName);
 
                                 // write message to DIV.
                                 //DisplayCustomMessageInValidationSummary("Successfully deployed <b>" + appName + "</b> for <i>" + mobileDevice + "</i> to Production, please download app from an open wi-fi to confirm.", true);
 
                                 // update long poll record for publish
-                                FinishPublish(GGAppsPublishID[ipGG], "Successfully deployed <b>" + appName + "</b> for <i>" + mobileDevice.name + "</i> to Production, please download app from an open wi-fi to confirm." + mobileDevice, 1);
+                                FinishPublish(GGAppsPublishID[ipGG], "Successfully deployed <b>" + appName + "</b> for <i>" + mobileDevice.name + "</i> to Production, please download app from an open wi-fi to confirm." + mobileDevice.name, 1);
 
                                 // show Modal at the end with result message..
                                 //ClientScript.RegisterStartupScript(this.GetType(), "SUCCESS", "window.location.hash = 'openModal';", true);
@@ -439,9 +425,6 @@ namespace GGApps
                                 // update long poll record for publish FAILED!
                                 Session["mobileDevicesPublish"] = null;
 
-        #if DEBUG
-                                SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
-        #endif
                                 return;
                             }
                         }
@@ -452,28 +435,33 @@ namespace GGApps
 
                             // update long poll record for publish FAILED!
                             Session["mobileDevicesPublish"] = null;
-        #if DEBUG
-                            SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.rollback], appName);
-        #endif
                             return;
                         }
                 }
+                ipGG++;
             });
 
-    #if DEBUG
-                SSHConnectExecute(SSHCommandsDesc[(int)SSHCommands.commit], appName);
-    #endif
+
 
             // clear session variable
             Session["mobileDevicesPublish"] = null;
 
             // not good code..
-            if( ipGG > 1 )
+            if (mobileDevicesToPublish.Count == 2)
                 // open Modal for polling, DB here.
-                ClientScript.RegisterStartupScript(this.GetType(), "INFO", "var statusPub = '{'statusPubData':['" + appID + "', '" + appName + "', '" + GGAppsPublishID[0] + "', '" + GGAppsPublishID[1] + "'  ]}'; getPublishStatus();", true);
-            else if( ipGG > 0 )
-                ClientScript.RegisterStartupScript(this.GetType(), "INFO", "var statusPub = '{'statusPubData':['" + appID + "', '" + appName + "', '" + GGAppsPublishID[0] + "' ]}'; getPublishStatus();", true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "myFuncStatus",
+                                    " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '" + GGAppsPublishID[1] + "' }); getPublishStatus();", true);
+            else if (mobileDevicesToPublish.Count == 1)
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "myFuncStatus",
+                                      " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '-1' }); getPublishStatus();", true);
+                 
 
+            else
+            {
+                Session["mobileDevicesPublish"] = null;
+                //unexpected error
+
+            }
 
 
            
@@ -553,38 +541,35 @@ namespace GGApps
         }
 
 
-
         [System.Web.Services.WebMethod]
-        public bool GetStatus(string[] statusPubData)
+        [System.Web.Script.Services.ScriptMethod]
+        public static bool GetStatus(string appid, string appName, string publID1, string publID2)
         {
-            int appId = 0;
-            string appName = "";
-            int publID1 = -1;
-            int publID2 = -1;
+            int _appID = -1;
+            int _publID1 = -1;
+            int _publID2 = -1;
+
+            Int32.TryParse(appid, out _appID);
+            Int32.TryParse(publID1, out _publID1);
+            Int32.TryParse(publID2, out _publID2);
+
+
             bool doneAll = false;
 
-            if (statusPubData.Length == 3)
+            if (_publID2 == -1 && _publID1 > 0)
             {
-                appId = Int32.Parse(statusPubData[0]);
-                appName = statusPubData[1];
-                publID1 = Int32.Parse(statusPubData[2]);
-
-                int ck1 = CheckPublIsReady(publID1);
+               
+                int ck1 = CheckPublIsReady(_publID1);
                 if (ck1 == 1)
                     // -- 1: done, 0: working -1: failed
                     doneAll = true;
                 
 
             }
-            else if (statusPubData.Length == 4)
-            {
-                appId = Int32.Parse(statusPubData[0]);
-                appName = statusPubData[1];
-                publID1 = Int32.Parse(statusPubData[2]);
-                publID2 = Int32.Parse(statusPubData[3]);
-
-                int ck1 = CheckPublIsReady(publID1);
-                int ck2 = CheckPublIsReady(publID2);
+            else if (_publID2 > 0)
+            {   
+                int ck1 = CheckPublIsReady(_publID1);
+                int ck2 = CheckPublIsReady(_publID2);
                 if (ck1 == 1 && ck2 == 1)
                     doneAll = true;
                 // -- 1: done, 0: working -1: failed
@@ -593,8 +578,7 @@ namespace GGApps
 
             if (doneAll)
             {
-                // make a refresh to screen ?
-                FetchAppDetailsProduction(appId, appName);
+                // make a refresh to screen client side!
                 return doneAll;
             }
 
@@ -602,7 +586,7 @@ namespace GGApps
 
         }
 
-        private int CheckPublIsReady(int publID1)
+        private static int CheckPublIsReady(int publID1)
         {
             int res = -1;
             if (rootWebConfig.AppSettings.Settings["GG_Reporting"] != null)
@@ -628,11 +612,11 @@ namespace GGApps
 
 
 
-        private string getAppVer(List<AppVersionDetail> StagProdAppVersions, string mobileDevice)
+        private string getAppVer(List<AppVersionDetail> StagProdAppVersions, string mobileDevice, string kind)
         {
             foreach (AppVersionDetail appdet in StagProdAppVersions)
             {
-                if (appdet.Device == mobileDevice && appdet.Environment == "Staging")
+                if (appdet.Device == mobileDevice && appdet.Environment == kind)
                 {
                     return appdet.App_Version;
                 }
@@ -640,11 +624,12 @@ namespace GGApps
             return null;
         }
 
-        private string getConfigVer(List<AppVersionDetail> StagProdAppVersions, string mobileDevice)
+        private string getConfigVer(List<AppVersionDetail> StagProdAppVersions, string mobileDevice, string kind)
         {
+            
             foreach (AppVersionDetail appdet in StagProdAppVersions)
             {
-                if (appdet.Device == mobileDevice && appdet.Environment == "Staging")
+                if (appdet.Device == mobileDevice && appdet.Environment == kind)
                 {
                     return appdet.Config_Version;
                 }
@@ -652,11 +637,11 @@ namespace GGApps
             return null;
         }
 
-        private int getDBVer(List<AppVersionDetail> StagProdAppVersions, string mobileDevice)
+        private int getDBVer(List<AppVersionDetail> StagProdAppVersions, string mobileDevice, string kind)
         {
             foreach (AppVersionDetail appdet in StagProdAppVersions)
             {
-                if (appdet.Device == mobileDevice && appdet.Environment == "Production")
+                if (appdet.Device == mobileDevice && appdet.Environment == kind)
                 {
                     return Int32.Parse(appdet.DB_Version) + 1;  // real prod new version.
                 }
@@ -679,10 +664,10 @@ namespace GGApps
                                         + "-c" + config_version
                                         + ".zip" 
                                         ;
-            if( Session["filenameToPublish_" + mobileDevice.ToLower()] != null )
-                Session["filenameToPublish_" + mobileDevice.ToLower()] = null;
+            if( Session["filenameToPublish_" + mobileDevice] != null )
+                Session["filenameToPublish_" + mobileDevice] = null;
 
-            Session.Add("filenameToPublish_" + mobileDevice.ToLower(), filenameToPublish);
+            Session.Add("filenameToPublish_" + mobileDevice, filenameToPublish);
             
             //athens-ios-20150529143300-v2_4_5-d21-c3.zip
 
@@ -691,7 +676,9 @@ namespace GGApps
             {
                 using (var zip = new Ionic.Zip.ZipFile())
                 {
-                    zip.AddDirectory(producedAppPath + appName + "\\update\\" + mobileDevice + "\\", mobileDevice);
+                    zip.AddDirectory(producedAppPath + appName + "\\update\\" + mobileDevice + "\\","");
+                    if (System.IO.File.Exists(ToPublishZipDir + filenameToPublish))
+                        System.IO.File.Delete(ToPublishZipDir + filenameToPublish);
                     zip.Save(ToPublishZipDir + filenameToPublish);
                 }
             }
@@ -702,19 +689,22 @@ namespace GGApps
             }
 
             // Do the upload to Production FTP.
-            if (UploadFileRemote(appName, ToPublishZipDir + Session["filenameToPublish_" + mobileDevice.ToLower()].ToString()
+            if (UploadFileRemote(appName, ToPublishZipDir + Session["filenameToPublish_" + mobileDevice].ToString()
                                     , appName.ToLower() + "//update//" + filenameToPublish
                                     , true) >= 0)     // upload ok for Bundle device app
             { 
             
 
                 // Unizp through ssh the .zip file to correct destination.
-                if (SSHConnectExecute(String.Format(unzipFileSSHcmd, filenameToPublish, "www_var_gg_app_device-new")
+                //unzip {0} -d {1}-new
+                if (SSHConnectExecute(String.Format(unzipFileSSHcmd, appName + "/update/" + filenameToPublish, appName + "/update/" + mobileDevice)
                         , appName) == null)
                     return "unziped failed to Production";
 
+
                 // replace <device>-old -> new
-                if (SSHConnectExecute(String.Format(replaceDeviceOldSSHcmd, filenameToPublish, "www_var_gg_app_device-new")
+                // rm -rf {0}-old &amp;&amp; mv {0} {0}-old &amp;&amp; mv {0}-new {0};
+                if (SSHConnectExecute(String.Format(replaceDeviceOldSSHcmd, appName + "/update/" + mobileDevice)
                                     , appName) == null)
                     return "replace <device> with <device>-new failed.";
 
@@ -725,11 +715,10 @@ namespace GGApps
                 /* DB_VERSION prepare for UNDO, +2  */
                 string dbver, appVertmp, configVersion; 
                 int newdbVersion;
-                if (GetVersionsFileProduction(mobileDevice + "-old", out dbver, out appVertmp, out configVersion, appName) != null)
+                if (GetVersionsFileProduction(mobileDevice + "-old", out dbver, out appVertmp, out configVersion, appName, "versions_before_publish.txt") != null)
                 {
                     Int32.TryParse(dbver, out newdbVersion);
-                    // add + 1 to production db_version.
-                    newdbVersion++;
+                    newdbVersion = newdbVersion + 2;
 
                     string nVersionTXT = "{  \"app_version\": \"" + appVertmp + "\",   \"config_version\": \"" + configVersion + "\",   \"db_version\": \"" + newdbVersion + "\" }";
 
@@ -744,7 +733,7 @@ namespace GGApps
 
 
                 // Delete temp zip filename to publish from production.
-                if( DeleteFileRemote(appName, filenameToPublish) < 0 )
+                if (DeleteFileRemote(appName, appName + "/update/" + filenameToPublish) < 0)
                     return "failed to delete zip file from production.";
 
                 return "success";
@@ -939,11 +928,21 @@ namespace GGApps
 
         protected void undoPublish_Click(object sender, EventArgs e)
         {
-//#if DEBUG
-//            SSHConnectExecute( SSHCommandsDesc[(int)SSHCommands.rollbackLastPublish], Session["appName"].ToString() );
-//#endif
-            DisplayCustomMessageInValidationSummary("Not implemented yet!");
-            undoPublish.Enabled = false;
+            // if is visible then undo is possible.
+            DropDownList SelectApp = (DropDownList)LoginViewImportant.FindControl("SelectApp");
+            if (SelectApp.SelectedIndex > 0)
+            {
+                Int32 appID = Int32.Parse(SelectApp.SelectedValue);
+                String appName = SelectApp.SelectedItem.ToString();
+
+                DisplayCustomMessageInValidationSummary( UndoPublishProduction(appID, appName) );
+            }
+        }
+
+
+        private string UndoPublishProduction(int appID, string appName)
+        {
+            return "not implemented yet";    
         }
 
 

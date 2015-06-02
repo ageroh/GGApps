@@ -16,6 +16,8 @@
 </head>
 <body>
     <script type="text/javascript">
+        var statusPub = "";
+
         function ShowProgress() {
             setTimeout(function () {
                 var modal = $('<div />');
@@ -49,11 +51,7 @@
             });
 
 
-        });
-
-
-        // validations for Buttons 
-        $(document).on('ready', function () {
+            // validations for Buttons 
 
             $("#BtnPublishApp").click(
                 function () {

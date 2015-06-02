@@ -36,7 +36,7 @@ namespace GGApps
         public static string producedAppPath = rootWebConfig.AppSettings.Settings["ProducedAppPath"].Value.ToString();
         public static string ToPublishZipDir = rootWebConfig.AppSettings.Settings["ToPublishZipDir"].Value.ToString();
         public static string unzipFileSSHcmd = rootWebConfig.AppSettings.Settings["unzipFileSSHcmd"].Value.ToString();
-        public static string replaceDeviceOldSSHcmd = rootWebConfig.AppSettings.Settings["unzipFileSSHcmd"].Value.ToString();
+        public static string replaceDeviceOldSSHcmd = rootWebConfig.AppSettings.Settings["replaceDeviceOldSSHcmd"].Value.ToString();
 
         public static bool HasErrors = false;                       // MAKE THIS A SESSION VARIABLE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public static bool LogErrorAdmin = false;                       
@@ -801,14 +801,18 @@ namespace GGApps
 
 
 
-        public JObject GetVersionsFileProduction(string mobileDevice, out string dbVersion, out string appVersion, out string configVersion, string appName)
+        public JObject GetVersionsFileProduction(string mobileDevice, out string dbVersion, out string appVersion, out string configVersion, string appName, string versionPublish = null)
         {
             dbVersion = null;           // something is wrong !
             configVersion = null;       // when return should ALWAYS have values..
             appVersion = null;          // when return should ALWAYS have values..
+            string versFilename = "versions.txt";
+            if (versionPublish != null)
+                versFilename = versionPublish;
+
 
             string localFilename = actualWorkDir + "\\reports\\tempVersions_" + System.Guid.NewGuid().ToString() +".txt";
-            string remotefilename = appName.ToLower() + "//update//" + mobileDevice + "//versions.txt";
+            string remotefilename = appName.ToLower() + "//update//" + mobileDevice + "//" + versFilename;
 
             if (DownloadProductionFile(appName, remotefilename, localFilename) == null)
                 return null;

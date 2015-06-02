@@ -6,6 +6,29 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript">
+        function getPublishStatus() {
+            var options = {};
+            options.cache = false;
+            options.url = "Admin/Publish.aspx/GetStatus";
+            options.type = "POST";
+            options.data = statusPub;
+            options.dataType = "json";
+            options.contentType = "application/json; charset=utf-8",
+            options.error = function (err) {
+                console.log(err);
+            };
+            options.success = function (data) {
+                console.log(data);
+                $("#msg").html("<h2>Status : " + data.d + "</h2> ");
+                if (!data.d) {
+                    getPublishStatus();
+                }
+            };
+
+            $.ajax(options);
+        }
+    </script>
     <div class="sub">
         <ul id="menu">
             <li><a href="Configure.aspx">Configure</a></li>
@@ -16,29 +39,6 @@
     </div>
 
     <asp:Panel ID="LoginViewImportant" CssClass="LoginViewImportant" runat="server">
-        <script type="text/javascript">
-            
-            
-            function getPublishStatus() {
-                var options = {};
-                options.cache = false;
-                options.url = "Admin/Publish.aspx/GetStatus";
-                options.type = "POST";
-                options.data = statusPub;
-                options.dataType = "json";
-                options.contentType = "application/json; charset=utf-8",
-                options.success = function (data) {
-                    $("#msg").html("<h2>Status : " + data.d + "</h2> ");
-                    if (!data.d) {
-                        getPublishStatus();
-                    }
-                };
-                $.ajax(options);
-            }
-
-        </script>
-
-
         <h3>Select application to Publish</h3>
         <span>*All previous updates must have finished!</span>
 
