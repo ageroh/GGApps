@@ -3,7 +3,9 @@
 if [%1]==[] goto usage
 if [%2]==[] goto usage
 
+DEL /Q/F C:\GGAppContent\%1\update\android\images
 ROBOCOPY  C:\temp\images\%1  C:\GGAppContent\%1\update\android\images /IS
+DEL /Q/F C:\GGAppContent\%1\update\ios\images
 ROBOCOPY  C:\temp\images\%1  C:\GGAppContent\%1\update\ios\images /IS
 
 
