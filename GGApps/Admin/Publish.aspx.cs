@@ -229,6 +229,7 @@ namespace GGApps
         private void ClearCustomMessageValidationSummary()
         {
             txtMessageModal.InnerHtml = "";
+            txtInfoPublishing.InnerHtml = "";
             custValidation.Text = String.Empty;
             custValidation.Enabled = false;
             custValidation.Visible = false;
@@ -336,6 +337,10 @@ namespace GGApps
             {
                 // Create a record in DB to long poll publish !
                 GGAppsPublishID[ipGG1] = StartPublishDBAdmin(appID, appName, mobileDevice.name, mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version);
+
+                // print out what to publish.
+                txtInfoPublishing.InnerHtml += String.Format("Destination: <b>{0}</b> for <i>{1}</i> Details( V:{2}, D:{3}. C:{4} ) <br/>", appName, mobileDevice.name.ToUpper(), mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version ) ;
+
                 ipGG1++;
             }
             
@@ -450,10 +455,10 @@ namespace GGApps
             if (mobileDevicesToPublish.Count == 2)
                 // open Modal for polling, DB here.
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "myFuncStatus",
-                                    " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '" + GGAppsPublishID[1] + "' }); getPublishStatus();", true);
+                                    " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '" + GGAppsPublishID[1] + "' }); openModalPublish(); refreshIntervalId = setInterval(getPublishStatus, 5000); ", true);
             else if (mobileDevicesToPublish.Count == 1)
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "myFuncStatus",
-                                      " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '-1' }); getPublishStatus();", true);
+                                      " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '-1' }); openModalPublish(); refreshIntervalId = setInterval(getPublishStatus, 5000); ", true);
                  
 
             else

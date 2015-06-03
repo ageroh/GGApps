@@ -7,7 +7,10 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
+        var refreshIntervalId;
+
         function getPublishStatus() {
+
             var options = {};
             options.cache = false;
             options.url = "Admin/Publish.aspx/GetStatus";
@@ -17,17 +20,35 @@
             options.contentType = "application/json; charset=utf-8",
             options.error = function (err) {
                 console.log(err);
+                // close modal
+                alert(err);
+                clearInterval(refreshIntervalId);
+                closePublishModal();
             };
             options.success = function (data) {
                 console.log(data);
-                $("#msg").html("<h2>Status : " + data.d + "</h2> ");
-                if (!data.d) {
-                    getPublishStatus();
+                if (data.d) {
+                    // process finsied, show results.
+                    $('#txtInfoPublishing').text(data.d);
+                    clearInterval(refreshIntervalId);
+                    closePublishModal();
                 }
             };
 
             $.ajax(options);
         }
+
+
+        function closePublishModal() {
+            window.location.href = window.location.href + "#close";
+        }
+
+        function openModalPublish() {
+            window.location.href = window.location.href + "#modalDialogPublish";
+        }
+
+
+
     </script>
     <div class="sub">
         <ul id="menu">
@@ -192,6 +213,15 @@
 	        </div>
         </div>
 
+        
+        <div id="modalDialogPublish" class="modalDialogPublish">
+	        <div>
+		        <a href="#close" title="Close" class="closeSuccess" style="display:none;">X</a>
+                <img src="../Content/img/spiffygif_76x76.gif"/>
+		        <h2>Publishing...statnd still!</h2>
+	            <div id="txtInfoPublishing" runat="server"></div>
+	        </div>
+        </div>
 
     </asp:Panel>
 </asp:Content>

@@ -139,6 +139,7 @@
     <Content Include="Batch\gg_version_scrap.py" />
     <Content Include="ContentValidation.aspx" />
     <Content Include="Content\img\refreshDD.png" />
+    <Content Include="Content\img\spiffygif_76x76.gif" />
     <Content Include="create new app for GG in-app update.sql" />
     <Content Include="EmailTemplates\EmailTemplateInitAdmin.html" />
     <Content Include="EmailTemplates\EmailTemplateStart.html" />
