@@ -13,7 +13,7 @@
 
             var options = {};
             options.cache = false;
-            options.url = "Admin/Publish.aspx/GetStatus";
+            options.url = "Admin/Publish.aspx/GetPublishStatus";
             options.type = "POST";
             options.data = statusPub;
             options.dataType = "json";
@@ -29,9 +29,11 @@
                 console.log(data);
                 if (data.d) {
                     // process finsied, show results.
-                    $('#txtInfoPublishing').text(data.d);
                     clearInterval(refreshIntervalId);
-                    closePublishModal();
+                    $('.infoPublishing').text("Completed successfully!");
+                    $('.modalDialogPublish #loadingGifPub').hide();
+                    $('.modalDialogPublish .closeSuccess').show();
+                    //closePublishModal();
                 }
             };
 
@@ -217,9 +219,9 @@
         <div id="modalDialogPublish" class="modalDialogPublish">
 	        <div>
 		        <a href="#close" title="Close" class="closeSuccess" style="display:none;">X</a>
-                <img src="../Content/img/spiffygif_76x76.gif"/>
+                <img src="../Content/img/spiffygif_76x76.gif" id="loadingGifPub"/>
 		        <h2>Publishing...statnd still!</h2>
-	            <div id="txtInfoPublishing" runat="server"></div>
+	            <div id="txtInfoPublishing" class="infoPublishing" runat="server"></div>
 	        </div>
         </div>
 

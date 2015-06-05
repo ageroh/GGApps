@@ -96,7 +96,7 @@ namespace GGApps
             catch (Exception ex)
             {
                 Log.ErrorLogAdmin(mapErrorPath, "Error in download()" + ex.Message, appName);
-                return -1;
+                return -2;
             }
             return totalBytes;
         }

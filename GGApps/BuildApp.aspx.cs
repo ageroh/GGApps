@@ -323,6 +323,7 @@ namespace GGApps
                                          
 
                                         // upload fb-images to production suncronusly. or remove it from here.
+                                        /*
                                         result7 = ExecuteStep7(appID, appName, Server.MapPath("~/"), Log, mapPathError);
                                         if (result7 == null)
                                             HasErrors = true;
@@ -331,21 +332,20 @@ namespace GGApps
                                             // Do this Syncronously through create entity_text file and upload it to Production !?
                                             result8 = ExecuteStep8(appID, appName);
                                         }
-
+                                        */
                                         
-                                        if (result8 == null)
+                                        /*
+                                         * if (result8 == null)
                                             HasErrors = true;
                                         else
                                         {
-
+                                        */
                                           // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
                                            // its not supported from ANDROID APK.
                                            if (IncreaseDBMinorVersion(appID, appName) == null)
                                                 HasErrors = true;
-                                           // ;
-
-
-                                        }
+                                           
+                                        //}
 
                                         if (!HasErrors)
                                         {

@@ -306,6 +306,7 @@
     <Content Include="SQLScripts\db_test_2_3_entities_without_category.sql" />
     <Content Include="SQLScripts\db_test_2_4_entities_with_invalid_characters.sql" />
     <Content Include="SQLScripts\db_test_2_5_entities_with_greek_characters_in_english.sql" />
+    <Content Include="Status.aspx" />
     <Content Include="test_webmethod.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -428,6 +429,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Status.aspx.cs">
+      <DependentUpon>Status.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Status.aspx.designer.cs">
+      <DependentUpon>Status.aspx</DependentUpon>
     </Compile>
     <Compile Include="Validation.Master.cs">
       <DependentUpon>Validation.Master</DependentUpon>

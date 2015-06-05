@@ -11,7 +11,7 @@ TEST:
 		function getPublishStatus() {
             var options = {};
             options.cache = false;
-            options.url = "/Admin/Publish.aspx/GetStatus";
+            options.url = "/Status.aspx/GetStatus";
             options.type = "POST";
             options.data = JSON.stringify({ appid: "1", appName: "hydra", publID1: "1", publID2: "-1" });
             options.dataType = "json";

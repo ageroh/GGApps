@@ -581,6 +581,31 @@ namespace GGApps
         
         }
 
+        public static bool ExistsDirecotryRemote(string appName, string dir)
+        {
+            try
+            {
+                FTP ftpClient = CreateFTPClientProduction(appName);
+
+                if (ftpClient != null)
+                {
+                    if (ftpClient.directoryListSimple(dir) != null)                       // Cunrrent file does not exits contact admin !
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.ErrorLogAdmin(mapPathError, "Some error ocured while ExistsDirecotryRemote(), Exception:  " + ex.Message, appName);
+            }
+            return false;
+        }
+
         public static double RenameFileRemote(string appName, string localFilename, string localFilenameNew)
         {
             try
@@ -760,7 +785,7 @@ namespace GGApps
             {
                 getFileName = appName.ToLower() + "//update//" + mobileDevice + "//" + fileName;
 
-                if (DownloadProductionFile(appName, getFileName, localFilename) == null)
+                if (DownloadProductionFile(appName, getFileName, localFilename) < 0)
                     return null;
 
                 if (File.Exists(localFilename))
@@ -782,20 +807,24 @@ namespace GGApps
 
 
 
-        private object DownloadProductionFile(string appName, string remotefilename, string localFilename)
+        private long DownloadProductionFile(string appName, string remotefilename, string localFilename)
         {
             Log.InfoLog(mapPathError, appName + ": Try get Production File " + remotefilename + " via FTP", "generic");
             FTP ftpClient = CreateFTPClientProduction(appName);
 
-            //   try get file from production and check it.
-            if (ftpClient.download(remotefilename, localFilename) <= 0)
-            {
-                // Check if file exists on expcted location.
-                Log.ErrorLogAdmin(mapPathError, appName + ": File did not found in PRODUCTION: " + remotefilename, "generic");
-                return null;
+            try{
+                //   try get file from production and check it.
+                return ftpClient.download(remotefilename, localFilename); 
+    
             }
-            Log.InfoLog(mapPathError, appName + ": Successfully", "generic");
-            return 0;
+            catch(Exception ex)
+            {
+                Log.ErrorLogAdmin(mapPathError, appName + ": File did not found in PRODUCTION: " + remotefilename, "generic");
+                return -3;
+            }
+            finally{
+                ftpClient = null;
+            }
         }
 
 
@@ -814,7 +843,7 @@ namespace GGApps
             string localFilename = actualWorkDir + "\\reports\\tempVersions_" + System.Guid.NewGuid().ToString() +".txt";
             string remotefilename = appName.ToLower() + "//update//" + mobileDevice + "//" + versFilename;
 
-            if (DownloadProductionFile(appName, remotefilename, localFilename) == null)
+            if (DownloadProductionFile(appName, remotefilename, localFilename) < 0)
                 return null;
             
             JObject o2;
