@@ -14,7 +14,7 @@ namespace GGApps
     public class BackOffice : Common
     {
 
-        public static void CheckAppsBundleList()
+        public static int UpadteAppsBundleList()
         {
             try
             {
@@ -27,18 +27,19 @@ namespace GGApps
                             cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.Add("@appLanguages", SqlDbType.VarChar).Value = rootWebConfig.AppSettings.Settings["ThreeLanguages"].Value.ToString();
                             con.Open();
-                            string res = ((string)cmd.ExecuteScalar());
-
-                            // Log a message maybe or not
+                            int res =((int)cmd.ExecuteScalar());
+                            con.Close();
+                            return res;
                         }
                     }
-
                 }
             }
             catch (Exception e)
             {
                 Log.ErrorLogAdmin(mapPathError, "some exception occured on CheckAppsBundleList(), ", e.Message, "generic");
             }
+
+            return 0;
         }
 
 

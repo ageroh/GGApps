@@ -29,7 +29,7 @@ namespace GGApps
 
         public enum SSHCommands : long { commit = 0, rollback, tryCommit, rollbackLastPublish };
         public static List<AppVersionDetail> StagProdAppVersions = new List<AppVersionDetail>();
-       
+        public static List<MobileDevice> mobileDevicesToPublish = new List<MobileDevice>();
 
         public class MobileDevice
         {
@@ -119,7 +119,7 @@ namespace GGApps
         private void CheckUndoAvailable(int appID, string appName)
         {
             // check for ios and android
-            if ( CheckIfOldExistsProduction("ios-old", appName.ToLower()) || CheckIfOldExistsProduction("android-old", appName.ToLower())) 
+            if ( CheckIfFolderExistsProduction("ios-old", appName.ToLower()) || CheckIfFolderExistsProduction("android-old", appName.ToLower())) 
             { 
                 undoPublish.CssClass = null;
                 undoPublish.Enabled = true;
@@ -130,7 +130,7 @@ namespace GGApps
             }
         }
 
-        private bool CheckIfOldExistsProduction(string deviceFolder, string appName)
+        private bool CheckIfFolderExistsProduction(string deviceFolder, string appName)
         {
             return ExistsDirecotryRemote(appName, "//" + appName.ToLower() + "//update//" + deviceFolder.ToLower() + "//");
         }
@@ -142,11 +142,16 @@ namespace GGApps
             string dbVersion, appVersion, configVersion;
             StagProdAppVersions.Clear();
 
-            GetVersionsFileProduction("android", out dbVersion, out appVersion, out configVersion, appName);
-            
+            if (GetVersionsFileProduction("android", out dbVersion, out appVersion, out configVersion, appName) == null)
+                Session["PublishFirstandroid"] = true;
+            else
+                Session["PublishFirstandroid"] = false;
+
             prodAndDB.Text = dbVersion;
             prodAndAV.Text = appVersion;
             prodAndCV.Text = configVersion;
+            
+            
             prodAndName.Text = appName;
             StagProdAppVersions.Add(new AppVersionDetail("production", "android", dbVersion, appVersion, configVersion, appName, appID));
 
@@ -158,12 +163,15 @@ namespace GGApps
             stagAndName.Text = appName;
             StagProdAppVersions.Add(new AppVersionDetail("staging", "android", dbVersion, appVersion, configVersion, appName, appID));
 
-            
-            GetVersionsFileProduction("ios", out dbVersion, out appVersion, out configVersion, appName);
+
+            if (GetVersionsFileProduction("ios", out dbVersion, out appVersion, out configVersion, appName) == null)
+                Session["PublishFirstios"] = true;
+            else Session["PublishFirstios"] = false;
 
             prodIosDB.Text = dbVersion;
             prodIosAV.Text = appVersion;
             prodIosCV.Text = configVersion;
+        
             prodIosName.Text = appName;
             StagProdAppVersions.Add(new AppVersionDetail("production", "ios", dbVersion, appVersion, configVersion, appName, appID));
 
@@ -203,6 +211,7 @@ namespace GGApps
 
             onoffbtn.Visible = true;
             onoffbtn.Enabled = true;
+            
         }
 
 
@@ -286,12 +295,19 @@ namespace GGApps
         protected void BtnPublishApp_Click(object sender, EventArgs e)
         {
             // Check  DB version of staging-production
-            List<MobileDevice> mobileDevicesToPublish = new List<MobileDevice>();
+
             mobileDevicesToPublish.Clear();
 
             string appName = SelectApp.SelectedItem.Text;
             int appID = -1;
             Int32.TryParse(SelectApp.SelectedItem.Value, out appID);
+
+            if (Session["mobileDevicesPublish"] != null )
+            {
+                DisplayCustomMessageInValidationSummary("Please wait for previous publish to finish! Nothing Deployed to Production.");
+                return;
+            }
+
 
 
             // Select mobile devices to Publish to Production. 
@@ -301,6 +317,34 @@ namespace GGApps
                 if (chk != null && chk.Checked == true)
                 {
                     var value = item.FindControl("txtmobileDevice") as TextBox;
+
+                    if ((bool)Session["PublishFirst"+value.Text] )
+                    { 
+                        // really check that path not exists.
+                        if (!CheckIfFolderExistsProduction(value.Text, appName.ToLower()))
+                        {
+                            if (InitAppProductionFirst(value.Text, appName.ToLower()) < 0)
+                            {
+                                DisplayCustomMessageInValidationSummary("Some error occured while Initializing app to Publish, nothing changed to Produciton.");
+                                return;
+                            }
+                            else { 
+                                // new path  and versions.txt created to prod!
+                                foreach (var ver in StagProdAppVersions)
+                                {
+                                    if (ver.Device == value.Text && ver.Environment == "production")
+                                    {
+                                        ver.DB_Version = "1";
+                                        ver.App_Version = "2.1";
+                                        ver.Config_Version = "1";
+                                    }
+                                }
+                            }
+                        }
+                       
+                    }
+
+
                     mobileDevicesToPublish.Add(new MobileDevice(
                                                               value.Text
                                                             , getAppVer(StagProdAppVersions, value.Text, "production")
@@ -310,13 +354,27 @@ namespace GGApps
             }
 
 
-            if (Session["mobileDevicesPublish"] != null)
+
+
+            string mobSuccess = "";
+            int[] GGAppsPublishID = new int[2];
+            int ipGG1 = 0;
+
+
+            // try to publish for the below specified applications.
+            foreach (var mobileDevice in mobileDevicesToPublish)
             {
-                DisplayCustomMessageInValidationSummary("Please wait for previous publish to finish! Nothing Deployed to Production.");
-                return;
+                // Create a record in DB to long poll publish !
+                GGAppsPublishID[ipGG1] = StartPublishDBAdmin(appID, appName, mobileDevice.name, mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version);
+
+                // print out what to publish.
+                txtInfoPublishing.InnerHtml += String.Format("Destination: <b>{0}</b> for <i>{1}</i> Details( V:{2}, D:{3}. C:{4} ) <br/>", appName, mobileDevice.name.ToUpper(), mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version);
+                
+                ipGG1++;
             }
 
             Session["mobileDevicesPublish"] = mobileDevicesToPublish;
+            
 
             Log.InfoLog(mapPathError, "Check if staging and production are valid for a publish.", appName);
             string mobDev = "";
@@ -327,22 +385,17 @@ namespace GGApps
                 return;
             }
 
-            string mobSuccess = "";
-            int [] GGAppsPublishID = new int[2];
-            int ipGG1 = 0;
-            
 
-            // try to publish for the below specified applications.
-            foreach (var mobileDevice in mobileDevicesToPublish) 
-            {
-                // Create a record in DB to long poll publish !
-                GGAppsPublishID[ipGG1] = StartPublishDBAdmin(appID, appName, mobileDevice.name, mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version);
+            // not good code..
+            if (mobileDevicesToPublish.Count == 2)
+                // open Modal for polling, DB here.
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "myFuncStatus",
+                                    " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '" + GGAppsPublishID[1] + "' }); openModalPublish(); refreshIntervalId = setInterval(getPublishStatus, 5000); ", true);
+            else if (mobileDevicesToPublish.Count == 1)
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "myFuncStatus",
+                                      " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '-1' }); openModalPublish(); refreshIntervalId = setInterval(getPublishStatus, 5000); ", true);
+                 
 
-                // print out what to publish.
-                txtInfoPublishing.InnerHtml += String.Format("Destination: <b>{0}</b> for <i>{1}</i> Details( V:{2}, D:{3}. C:{4} ) <br/>", appName, mobileDevice.name.ToUpper(), mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version ) ;
-
-                ipGG1++;
-            }
             
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
             {
@@ -395,15 +448,18 @@ namespace GGApps
                                 Finalize fin = new Finalize();
                                 string DbVersion = "";
 
-                                if ((DbVersion = fin.AddProductionVerAdmin(appID, appName, mobileDevice.name)) == null)
-                                {
+                                //:ARG: add later an update to have db update with production.!! UpdateAppBundle(publish);.....
+
+                                
+                                //if ((DbVersion = fin.AddProductionVerAdmin(appID, appName, mobileDevice.name)) == null)
+                                //{
                                     //DisplayCustomMessageInValidationSummary("Some Error occured while finalizing DB for " + mobileDevice);
-                                    FinishPublish(GGAppsPublishID[ipGG], "Some Error occured while finalizing DB for " + mobileDevice.name, -1);
+                                //    FinishPublish(GGAppsPublishID[ipGG], "Some Error occured while finalizing DB for " + mobileDevice.name, -1);
 
                                     // update long poll record for publish FAILED!
-                                    Session["mobileDevicesPublish"] = null;
-                                    return;
-                                }
+                               //     Session["mobileDevicesPublish"] = null;
+                               //     return;
+                                //}
                                 string topath = producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice.name + "\\DBVER\\";
                         
                                 // Create a version of DB zip files inside a Directory with all the Databases when generated.
@@ -442,34 +498,26 @@ namespace GGApps
                             Session["mobileDevicesPublish"] = null;
                             return;
                         }
+
+                        ((List<MobileDevice>)Session["mobileDevicesPublish"]).RemoveAll(t => t.name == mobileDevice.name);
+                        ipGG++;
+
                 }
-                ipGG++;
+                Session["mobileDevicesPublish"] = null;
+
             });
 
+        }
 
-
-            // clear session variable
-            Session["mobileDevicesPublish"] = null;
-
-            // not good code..
-            if (mobileDevicesToPublish.Count == 2)
-                // open Modal for polling, DB here.
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "myFuncStatus",
-                                    " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '" + GGAppsPublishID[1] + "' }); openModalPublish(); refreshIntervalId = setInterval(getPublishStatus, 5000); ", true);
-            else if (mobileDevicesToPublish.Count == 1)
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "myFuncStatus",
-                                      " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '-1' }); openModalPublish(); refreshIntervalId = setInterval(getPublishStatus, 5000); ", true);
-                 
-
-            else
-            {
-                Session["mobileDevicesPublish"] = null;
-                //unexpected error
-
-            }
-
-
-           
+        private int InitAppProductionFirst(string mobileDevice, string appName)
+        {
+            // provide full path to create, versions.txt default content.
+            string res= SSHConnectExecute(String.Format( initFirstPublishSSHcmd
+                                                            , appName + "/update/" + mobileDevice
+                                                            ,  @"{  ""app_version"": ""2.1"",  ""config_version"": ""1"",  ""db_version"": ""1""}")
+                                                            , appName);
+            return (res=="")?1:-1;
+            
         }
 
         /// <summary>

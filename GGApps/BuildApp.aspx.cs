@@ -38,8 +38,7 @@ namespace GGApps
                     {
 
                         Log.ErrorLogAdmin(mapPathError, "Failed to Initialize In-App update for <span class='appName'>" + Session["appName"].ToString() + "</span>", Session["appName"].ToString());
-                        AddMessageToScreen("ExecutionMessages",
-                                            @"<h2>Failed to Initialize In-App update, <strong>please contact Admin!</strong></h2>", this.Page);
+                        AddMessageToScreen(@"<h2>Failed to Initialize In-App update, <strong>please contact Admin!</strong></h2>", this);
 
                     }
                     else
@@ -168,7 +167,7 @@ namespace GGApps
                                         await SendMailToUsers(appName
                                                                 , GetEmailList("ErrorTeam")
                                                                 , _listAttachments
-                                                                , EmailTemplate("Info", appName, startProcessing, "http://app-update.greekguide.com/GGApps/Logs/Log_" + DateTime.Now.ToString("yyyyMdd") + "_" + appName + ".txt")
+                                                                , EmailTemplate("Info", appName, startProcessing, "http://app-update.greekguide.com/GGApps/Logs/Log_" + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
                                                                 , " GG App produced for " + appName + " >Success!"
                                                                 , mapPathError, Log
                                                                 );
@@ -210,7 +209,7 @@ namespace GGApps
                     await SendMailToUsers(appName
                                             , GetEmailList("ErrorTeam")
                                             , _listAttachments
-                                            , EmailTemplate("Info", appName, startProcessing, "http://app-update.greekguide.com/GGApps/Logs/Log_" + DateTime.Now.ToString("yyyyMdd") + "_" + appName + ".txt")
+                                            , EmailTemplate("Info", appName, startProcessing, "http://app-update.greekguide.com/GGApps/Logs/Log_" + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
                                             , "GG App produced for " + appName + " >Failed!"
                                             , mapPathError, Log
                                             );
@@ -294,9 +293,14 @@ namespace GGApps
 
                             if (!result4.IsCancellationRequested && !HasErrors)
                             {
-
+#if !DEBUG
                                 var result5 = await RunAsyncCommandBatch(ct, appID, appName, "5_get_images.bat " + appName, actualWorkDir
                                                                                             , "Transform All Images running Python", mapPathError, Log);
+#else 
+                                var result5 = result4;
+#endif
+
+
                                 if (!result5.IsCancellationRequested && !HasErrors)
                                 {
 
@@ -394,7 +398,7 @@ namespace GGApps
                                                     await SendMailToUsers(appName
                                                                             , GetEmailList("ErrorTeam")
                                                                             , _listAttachments
-                                                                            , EmailTemplate("Info", appName, startProcessing, "http://app-update.greekguide.com/GGApps/Logs/Log_" + DateTime.Now.ToString("yyyyMdd") + "_" + appName + ".txt")
+                                                                            , EmailTemplate("Info", appName, startProcessing, "http://app-update.greekguide.com/GGApps/Logs/Log_" + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
                                                                             , " GG App produced for " + appName + " >Success!"
                                                                             , mapPathError, Log
                                                                             );
@@ -444,7 +448,7 @@ namespace GGApps
                         await SendMailToUsers(appName
                                                 , GetEmailList("ErrorTeam")
                                                 , _listAttachments
-                                                , EmailTemplate("Info", appName, startProcessing, "http://app-update.greekguide.com/GGApps/Logs/Log_" + DateTime.Now.ToString("yyyyMdd") + "_" + appName + ".txt")
+                                                , EmailTemplate("Info", appName, startProcessing, "http://app-update.greekguide.com/GGApps/Logs/Log_" + DateTime.Now.ToString("yyyyMMdd") + "_" + appName + ".txt")
                                                 , "GG App produced for " + appName + " >Failed!"
                                                 , mapPathError, Log
                                                 );
@@ -587,7 +591,6 @@ namespace GGApps
         {
             try
             {
-                /* Pending while APK is not ready for testing this.*/
                 Log.InfoLog(mapPathError, "Started> Update Versions.txt", appName);
 
                 Finalize fin = new Finalize(appName, appID);
@@ -595,12 +598,12 @@ namespace GGApps
 
                 // Set Versions file for IOS only for one Lang
                 dbver = fin.InitializeSQLiteVersionFromDB(appID, appName, 1, "ios");
-                if (!fin.SetVerionsFileProperty("db_version", dbver, appName, appID, "ios", 1, "versions.txt"))
+                if (!fin.SetVerionsFileProperty("db_version", dbver, appName.ToLower(), appID, "ios", 1, "versions.txt"))
                     return null;
 
                 // Set Versions file for ANDROID
                 dbver = fin.InitializeSQLiteVersionFromDB(appID, appName, 1, "android");
-                if (!fin.SetVerionsFileProperty("db_version", dbver, appName, appID, "android", 1, "versions.txt"))
+                if (!fin.SetVerionsFileProperty("db_version", dbver, appName.ToLower(), appID, "android", 1, "versions.txt"))
                     return null;
 
                 // also Set configuraion version taken from Configuration.txt doc.!!
@@ -728,20 +731,11 @@ namespace GGApps
             }
         }
 
-        private void CheckFb_AssetsProduction(string p)
-        {
-            throw new NotImplementedException();
-        }
 
-
-
-
+        // little refactor and remove fb-image search.
         private object ExecuteStep6(int appID, string appName, string actualWorkDir, CreateLogFiles Log, string logPath, string fileName)
         {
             StringBuilder sb = new StringBuilder();
-
-            // Start Log
-
             string path = actualWorkDir + "SQLScripts\\";
             sb.Length = 0;
             sb.Clear();
@@ -753,44 +747,11 @@ namespace GGApps
             {
                 // call SQL script to fetch data 
                 sb.AppendLine(executeSQLScript(appID, appName, 1, path + "db_number_of_images.sql"));
-            }
-            catch (Exception ex)
-            {
-                Log.ErrorLog(mapPathError, "ExecuteStep6 a." + ex.Message, appName);
-                return null;
-            }
 
-
-            sb.AppendLine("<br/>* ");
-            string path_from = "c:\\Temp\\Images\\" + appName;
-
-            try
-            {
-
-                sb.AppendLine("<br/>*** fb images in local dir (" + path_from + "-fb)");
                 sb.AppendLine("<br/>* ");
-                if (Directory.Exists(path_from + "-fb"))
-                {
-                    int cnt = Directory.GetFiles(path_from + "-fb").Length;
-                    sb.AppendLine("<br/>* " + cnt);
-                }
-                sb.AppendLine("<br/>* ");
-                sb.AppendLine("<br/>*** fb images in local dir (" + path_from + ")");
-                sb.AppendLine("<br/>* ");
-                if (Directory.Exists(path_from))
-                {
-                    int cnt = Directory.GetFiles(path_from).Length;
-                    sb.AppendLine("<br/>* " + cnt);
-                }
+                string path_from = "c:\\Temp\\Images\\" + appName;
 
-                //sb.AppendLine("<br/>* ");
-                //sb.AppendLine("<br/>*** fb images in remote dir (" + path_to + ")");
-                //sb.AppendLine("<br/>* ");
-                //if (Directory.Exists(path_to))
-                //{
-                //    int cnt = Directory.GetFiles(path_to).Length;
-                //    sb.AppendLine("<br/>* " + cnt);
-                //}
+                // :ARG: fb-images removed as a step from process
                 sb.AppendLine("<br/>* ");
                 File.WriteAllText(actualWorkDir + fileName, sb.ToString(), Encoding.UTF8);
 
@@ -801,9 +762,7 @@ namespace GGApps
                 return null;
             }
 
-
             return sb.ToString();
-
 
         }
 
@@ -815,29 +774,9 @@ namespace GGApps
         /// <param name="divID"></param>
         /// <param name="msg"></param>
         /// <param name="baseCtrl"></param>
-        private void AddMessageToScreen(string divID, string msg, Control baseCtrl)
+        private void AddMessageToScreen(string msg, Control ctrl)
         {
-            // Add to Div message for execution // Don't close window !!
-            StringWriter stringWriter = new StringWriter();
-
-            // Put HtmlTextWriter in using block because it needs to call Dispose.
-            using (HtmlTextWriter writer = new HtmlTextWriter(stringWriter))
-            {
-                // The important part:
-                writer.RenderBeginTag(HtmlTextWriterTag.Div); // Begin #1
-                writer.Write(msg);
-                writer.RenderEndTag();
-                Control ExecutionMessages = baseCtrl.FindControl(divID);
-                if (ExecutionMessages != null)
-                {
-                    LiteralControl ltCtrl = new LiteralControl();
-                    ltCtrl.Text = writer.InnerWriter.ToString();
-                    ExecutionMessages.Controls.Add(ltCtrl);
-
-                }
-
-            }
-
+            this.ExecutionMessages.InnerHtml = msg;
         }
 
         /// <summary>
@@ -874,8 +813,7 @@ namespace GGApps
                             Log.InfoLog(mapPathError, "================================= START EXECUTION: Batch Full, In-App UPDATE FOR:  " + Session["appName"].ToString().ToUpper() + "================================= ", Session["appName"].ToString());
                             BatchExecuteAllSteps((int)Session["appID"], Session["appName"].ToString());
                             ((Control)sender).Parent.FindControl("mainSubPanel").Visible = false;
-                            AddMessageToScreen("ExecutionMessages"
-                                               , "<h2>Batch process execution has started for <span class='appName'>" + Session["appName"].ToString() + "</span>. </h2>"
+                            AddMessageToScreen("<h2>Batch process execution has started for <span class='appName'>" + Session["appName"].ToString() + "</span>. </h2>"
                                                   + "<h3>You will be notified via e-mail upon completition.</h3>"
                                                   + "<strong>Thank You!</strong>", ((Control)sender).Parent);
                         }
@@ -884,15 +822,14 @@ namespace GGApps
                             Log.InfoLog(mapPathError, "================================= START EXECUTION: DB Only, In-App UPDATE FOR:  " + Session["appName"].ToString().ToUpper() + "================================= ", Session["appName"].ToString());
                             BatchExecuteDBExport((int)Session["appID"], Session["appName"].ToString());
                             ((Control)sender).Parent.FindControl("mainSubPanel").Visible = false;
-                            AddMessageToScreen("ExecutionMessages"
-                                               , "<h2>Batch process execution has started for <span class='appName'>" + Session["appName"].ToString() + "</span>. </h2>"
+                            AddMessageToScreen("<h2>Batch process execution has started for <span class='appName'>" + Session["appName"].ToString() + "</span>. </h2>"
                                                   + "<h3>You will be notified via e-mail upon completition.</h3>"
                                                   + "<strong>Thank You!</strong>", ((Control)sender).Parent);
                         }
                         //else if (cmdStr == "ImagesOnly")
                         //{
                         //    BatchExecuteAllSteps((int)Session["appID"], Session["appName"].ToString());
-                        //    AddMessageToScreen("ExecutionMessages"
+                        //    AddMessageToScreen(
                         //                       , "<h2>Batch process execution has begun for " + appName.ToString() + ". </h2>"
                         //                          + "<h3>Teams will be notified when execution is finished.</h3>"
                         //                          + "<strong>Thank You!</strong>");
@@ -900,8 +837,7 @@ namespace GGApps
                         else
                         {
 
-                            AddMessageToScreen("ExecutionMessages"
-                                       , "<h2>Please select what to process from above radio button.</h2>"
+                            AddMessageToScreen( "<h2>Please select what to process from above radio button.</h2>"
                                           + "<strong>Thank You!</strong>", ((Control)sender).Parent);
 
                         }
@@ -910,8 +846,7 @@ namespace GGApps
 
                     if (chkListActions.Count == 0)
                     {
-                        AddMessageToScreen("ExecutionMessages"
-                                          , "<h2>Please select what to process from above radio button.</h2>"
+                        AddMessageToScreen( "<h2>Please select what to process from above radio button.</h2>"
                                              + "<strong>Thank You!</strong>", ((Control)sender).Parent);
                     }
                 }
@@ -1018,23 +953,38 @@ namespace GGApps
 
             try
             {
+                Finalize fin = new Finalize();
+                
                 // Create directories under C:\temp\images if not exists, else create them
                 if (!Directory.Exists("C:\\temp\\images\\" + appName))
                 {
                     Directory.CreateDirectory("C:\\temp\\images\\" + appName);
                 }
 
-                if (!Directory.Exists("C:\\temp\\images\\" + appName + "-fb"))
-                {
-                    Directory.CreateDirectory("C:\\temp\\images\\" + appName + "-fb");
-                }
+
+                // Create app bundle if not exists
+                if (BackOffice.UpadteAppsBundleList() > 0)
+                    Log.InfoLog(mapPathError, "New app created in DB : " + appName, "generic");
+
+                
+                int ckAnd = fin.UpdateAppBundle("android", appName, appID, "2.1", "1", "1", null, null);
+                int ckIOS = fin.UpdateAppBundle("ios", appName, appID, "2.1", "1", "1", null, null);
+
+                if (ckAnd < 0 || ckIOS < 0)
+                    return false;
+
+                if (ckAnd == 0) // should create new folders to Staging 
+                    if(fin.CreateNewApp(appName.ToLower(), appID, "android")<0)
+                        return false;
+
+                if (ckIOS == 0) // should create new new folders to Staging 
+                    if (fin.CreateNewApp(appName.ToLower(), appID, "ios") < 0)
+                        return false;
 
 
                 // add to next version !
                 //if (!CheckExternalAppConfigSettings(appID, appName))
                 //    return false;
-
-                BackOffice.CheckAppsBundleList();
 
             }
             catch (IOException e)
@@ -1118,8 +1068,6 @@ namespace GGApps
         private XmlElement addMissingNode(int appID, string appName, int lang, XmlDocument xml)
         {
 
-            // name="Zakynthos" lang="el" db="ContentDB_165_Lan_1_Cat_369"/>
-
             //Create a new node.
             XmlElement elem = xml.CreateElement("DBSetting");
             XmlAttribute attr = xml.CreateAttribute("name");
@@ -1136,38 +1084,6 @@ namespace GGApps
 
             return elem;
         }
-
-
-        //private async Task<CancellationToken> addLogAsync(CancellationToken ct, int currentLogCount, string msg)
-        //{
-
-        //    try
-        //    {
-        //        for (int i = 0; i < 5; i++)
-        //        {
-        //            if (ct.IsCancellationRequested)
-        //            {
-        //                Trace.Write(string.Format("{0} - signaled cancellation : msg {1}", DateTime.Now.ToLongTimeString(), msg));
-        //                break;
-        //            }
-        //            Trace.Write(string.Format("{0} - msg:{1} - logcount:{2}",  DateTime.Now.Second.ToString(), msg, currentLogCount));
-
-        //            // "Simulate" this operation took a long time, but was able to run without
-        //            // blocking the calling thread (i.e., it's doing I/O operations which are async)
-        //            // We use Task.Delay rather than Thread.Sleep, because Task.Delay returns
-        //            // the thread immediately back to the thread-pool, whereas Thread.Sleep blocks it.
-        //            // Task.Delay is essentially the asynchronous version of Thread.Sleep:
-        //            await Task.Delay(2000, ct);
-        //        }
-        //    }
-        //    catch (TaskCanceledException tce)
-        //    {
-        //        Trace.Write("Caught TaskCanceledException - signaled cancellation " + tce.Message);
-        //    }
-        //    return ct;
-        //}
-
-
 
         #endregion
 

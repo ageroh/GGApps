@@ -21,7 +21,6 @@
             options.error = function (err) {
                 console.log(err);
                 // close modal
-                alert(err);
                 clearInterval(refreshIntervalId);
                 closePublishModal();
             };

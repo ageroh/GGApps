@@ -37,6 +37,8 @@ namespace GGApps
         public static string ToPublishZipDir = rootWebConfig.AppSettings.Settings["ToPublishZipDir"].Value.ToString();
         public static string unzipFileSSHcmd = rootWebConfig.AppSettings.Settings["unzipFileSSHcmd"].Value.ToString();
         public static string replaceDeviceOldSSHcmd = rootWebConfig.AppSettings.Settings["replaceDeviceOldSSHcmd"].Value.ToString();
+        public static string undoPublishSSHcmd = rootWebConfig.AppSettings.Settings["undoPublishSSHcmd"].Value.ToString();
+        public static string initFirstPublishSSHcmd = rootWebConfig.AppSettings.Settings["initFirstPublishSSHcmd"].Value.ToString();
 
         public static bool HasErrors = false;                       // MAKE THIS A SESSION VARIABLE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public static bool LogErrorAdmin = false;                       
@@ -333,7 +335,7 @@ namespace GGApps
         /// Create a default Versions file, if file not EXISTS!.
         /// </summary>
         /// <param name="filename"></param>
-        public static string CreateVersionsFile(string filename)
+        public static int CreateVersionsFile(string filename)
         {
             // Create configuration JSON default file 
             if (Directory.Exists(filename.Substring(0, filename.LastIndexOf("\\"))))
@@ -341,12 +343,16 @@ namespace GGApps
                 if (!File.Exists(filename))
                 {
                     File.WriteAllText(filename, @"{  ""app_version"": ""2.1"",  ""config_version"": ""1"",  ""db_version"": ""1""}", System.Text.Encoding.UTF8);
-                    return "created";
+                    Log.InfoLog(mapPathError, "New app added, file created : " + filename, "generic");
+                    return 1;
                 }
-                return "exists";
+                return 0;
             }
             else
-                return null;
+            {
+                Log.ErrorLogAdmin(mapPathError, "New app not added, path not found: " + filename, "generic");
+                return -1;
+            }
         }
 
 
@@ -844,7 +850,12 @@ namespace GGApps
             string remotefilename = appName.ToLower() + "//update//" + mobileDevice + "//" + versFilename;
 
             if (DownloadProductionFile(appName, remotefilename, localFilename) < 0)
+            {
+                dbVersion = "NaN";
+                configVersion = "NaN";
+                appVersion = "NaN";
                 return null;
+            }
             
             JObject o2;
             bool ok = false;
