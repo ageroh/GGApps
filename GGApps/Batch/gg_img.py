@@ -102,28 +102,11 @@ with open ("gg_img.sql", "r") as sqlfile:
 url_fmt=u'http://air.greekguide.com/cov/%s/%s_b.jpg'
 
 fname_fmt="c:/temp/Images/%s/entity_%d_%s_%d_%d.jpg"
-fname_fmt2="c:/temp/Images/%s-fb/entity_%d_%d_%d.jpg"
 
-#fname_fmt="c:/temp/Images/Athens/entity_%d_%s_%d_%d.jpg"
-#fname_fmt2="c:/temp/Images/Athens-fb/entity_%d_%d_%d.jpg"
-#fname_fmt="c:/temp/Images/Mykonos/entity_%d_%s_%d_%d.jpg"
-#fname_fmt2="c:/temp/Images/Mykonos-fb/entity_%d_%d_%d.jpg"
-#fname_fmt="c:/temp/Images/Santorini/entity_%d_%s_%d_%d.jpg"
-#fname_fmt2="c:/temp/Images/Santorini-fb/entity_%d_%d_%d.jpg"
-#fname_fmt="M:/GreekGuide/FilesHistory/Images/%s/v1.1/entity_%d_%s_%d_%d.jpg"
-#fname_fmt2="c:/%s/entity_%d_%d_%d.jpg"
-
-#img_fmts=[ [1280,720,'JPEG',35], [960,640,'JPEG',35], [720,480,'JPEG',35], [220,220,'JPEG',35] ]
-#img_fmts=[ [1280,720,'JPEG',45], [854,480,'JPEG',45], [720,480,'JPEG',45, 'C'], [720,480,'JPEG',45], [220,220,'JPEG',55] ]
-#img_fmts=[  [720,480,'JPEG',45,'C',854,480,'W'], [220,220,'JPEG',55,'C',392,220] ]
-#img_fmts=[  [640,426,'JPEG',35,'C',758,426,'W'], [220,220,'JPEG',45,'C',392,220]]
+#fname_fmt2="c:/temp/Images/%s-fb/entity_%d_%d_%d.jpg"
 #img_fmts=[ [640,426,'JPEG',35,'W'], [608,352,'JPEG',35,'W'], [220,220,'JPEG',55]]
 img_fmts=[ [[0,1,6,7,14],640,426,'JPEG',35,'W'], [[24],608,352,'JPEG',35,'W'], [[1,6,7,14],220,220,'JPEG',55]]
 #img_fmts=[  [640,426,'JPEG',35,'W']]
-#img_fmts=[ [1280,720,'JPEG',100] ]
-
-
-
 
 with con:
     cur=con.cursor()
@@ -166,7 +149,7 @@ with con:
                 image_ratio=float(size[0])/size[1]
                 
                 fname=fname_fmt % (city,id,new_path,size[0],size[1])
-                fname2=fname_fmt2 % (city,id,size[0],size[1])
+               # fname2=fname_fmt2 % (city,id,size[0],size[1])
 
 
                 if abs(original_ratio-image_ratio)<0.05:
@@ -189,8 +172,8 @@ with con:
 
                 img_r.save(fname,i[3], quality=i[4])
 
-                if (facebook_thumbs and size==(220,220)):
-                    img_r.save(fname2,i[3], quality=i[4])
+                #if (facebook_thumbs and size==(220,220)):
+                #    img_r.save(fname2,i[3], quality=i[4])
                     
 
                 if add_caption:

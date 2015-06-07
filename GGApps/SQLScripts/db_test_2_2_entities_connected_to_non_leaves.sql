@@ -13,7 +13,8 @@ from nonleaves n
 	INNER JOIN Filter_Entity FE 
 		ON FE.fieFilterID=n.fltFilterID 
 			and n.fltFilterID not 
-				in (3,55,51,137,174,175,180,208,233,253,260,258,259,296,306,307,327,315,314,316,359,369, 405 ,410 ,411 ,412 ,413, 499)
+				in (3,55,51,137,174,175,180,208,233,253,260,258,259,296,306,307,327,315,314,316,359,369, 405 ,410 ,411 ,412 , 499)
+			and n.fltFilterID not in (select distinct catCategoryId as id from ContentDB_165.dbo.category where catParentID = 2 )
 	INNER JOIN Entity E 
 		ON E.entEntityID=fe.fieEntityID	and e.entEntityTypeID>0 
 order by fltFilterID, ententityid

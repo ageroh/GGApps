@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Script.Services;
 
 namespace GGApps
 {
@@ -17,8 +18,7 @@ namespace GGApps
         }
 
 
-        [System.Web.Services.WebMethod]
-        [System.Web.Script.Services.ScriptMethod]
+        [System.Web.Services.WebMethod, System.Web.Script.Services.ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = false)]
         public static bool GetPublishStatus(string appid, string appName, string publID1, string publID2)
         {
             int _appID = -1;

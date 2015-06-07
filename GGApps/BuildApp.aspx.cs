@@ -18,11 +18,31 @@ using System.Net.Mail;
 using System.Net.Mime;
 using System.Net;
 using System.Data.SQLite;
+using System.Xml.XPath;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace GGApps
 {
     public partial class BuildApp : Common
     {
+        public class DBSettingEntry
+        {
+
+            public string lang { get; set; }
+            public string name { get; set; }
+            public string db { get; set; }
+            public bool isNew { get; set; }
+
+            public DBSettingEntry(string n, string l, string db, bool isNew )
+            {
+                this.lang = l;
+                this.db = db;
+                this.name = n;
+                this.isNew = isNew;
+            }
+
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,7 +58,7 @@ namespace GGApps
                     {
 
                         Log.ErrorLogAdmin(mapPathError, "Failed to Initialize In-App update for <span class='appName'>" + Session["appName"].ToString() + "</span>", Session["appName"].ToString());
-                        AddMessageToScreen(@"<h2>Failed to Initialize In-App update, <strong>please contact Admin!</strong></h2>", this);
+                        AddMessageToScreen(@"<h2>Failed to Initialize In-App update, <strong>please contact Admin!</strong></h2>", this, true);
 
                     }
                     else
@@ -118,7 +138,7 @@ namespace GGApps
                             if (CreateSQLiteDBs.CreateBundleDBAndFiles(appName) < 0)
                                 HasErrors = true;
 
-#if !DEBUG
+
 
                             if (!HasErrors )
                             {
@@ -186,12 +206,12 @@ namespace GGApps
                                     }
                                 }
                             }
-#endif
+
                         }
                     }
                 }
 
-#if !DEBUG
+
                 // Send failure email if execution was interupted / or other error occured!!
                 if (HasErrors)
                 {
@@ -222,7 +242,7 @@ namespace GGApps
                     Session["FinishedProcessing"] = true;
                     return;
                 }
-#endif
+
               }
             );
 
@@ -293,12 +313,9 @@ namespace GGApps
 
                             if (!result4.IsCancellationRequested && !HasErrors)
                             {
-#if !DEBUG
+
                                 var result5 = await RunAsyncCommandBatch(ct, appID, appName, "5_get_images.bat " + appName, actualWorkDir
                                                                                             , "Transform All Images running Python", mapPathError, Log);
-#else 
-                                var result5 = result4;
-#endif
 
 
                                 if (!result5.IsCancellationRequested && !HasErrors)
@@ -696,7 +713,7 @@ namespace GGApps
             return 1;
         }
 
-
+/*
         private object ExecuteStep7(int appID, string appName, string mapPath, CreateLogFiles Log, string logPath)
         {
             try
@@ -731,6 +748,7 @@ namespace GGApps
             }
         }
 
+ */ 
 
         // little refactor and remove fb-image search.
         private object ExecuteStep6(int appID, string appName, string actualWorkDir, CreateLogFiles Log, string logPath, string fileName)
@@ -749,7 +767,7 @@ namespace GGApps
                 sb.AppendLine(executeSQLScript(appID, appName, 1, path + "db_number_of_images.sql"));
 
                 sb.AppendLine("<br/>* ");
-                string path_from = "c:\\Temp\\Images\\" + appName;
+                string path_from = "c:\\temp\\images\\" + appName;
 
                 // :ARG: fb-images removed as a step from process
                 sb.AppendLine("<br/>* ");
@@ -774,8 +792,11 @@ namespace GGApps
         /// <param name="divID"></param>
         /// <param name="msg"></param>
         /// <param name="baseCtrl"></param>
-        private void AddMessageToScreen(string msg, Control ctrl)
+        private void AddMessageToScreen(string msg, Control ctrl, bool error = false)
         {
+            if(error)
+                this.mainSubPanel.Enabled = false;
+
             this.ExecutionMessages.InnerHtml = msg;
         }
 
@@ -981,10 +1002,9 @@ namespace GGApps
                     if (fin.CreateNewApp(appName.ToLower(), appID, "ios") < 0)
                         return false;
 
-
                 // add to next version !
-                //if (!CheckExternalAppConfigSettings(appID, appName))
-                //    return false;
+                if ( ! CheckExternalAppConfigSettings(appID, appName))
+                    return false;
 
             }
             catch (IOException e)
@@ -999,59 +1019,56 @@ namespace GGApps
 
 
 
-        #region NOT USED  - do for v.2
+      
         private bool CheckExternalAppConfigSettings(int appID, string appName)
         {
             try
             {
-                bool[] checkLangs = new bool[10];
-
+                List<DBSettingEntry> newEntryList = new List<DBSettingEntry>();
+                bool chkLang = (CheckThreeLanguages(appID));
                 //ExeConfigurationFileMap configMap = new System.Configuration.ExeConfigurationFileMap();
-                //configMap.ExeConfigFilename = Server.MapPath("ExternalApp/") + @"SQLiteConverter.exe.config";
                 //Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configMap, ConfigurationUserLevel.None);
 
                 XmlDocument xml = new XmlDocument();
-                xml.Load(Server.MapPath("ExternalApp/") + @"SQLiteConverter.exe.config");
+                xml.Load(Server.MapPath("Batch/") + @"SQLiteConverter.exe.config");
 
-                foreach (XmlNode node in xml.SelectNodes("configuration/DBConfigSection/DBSettings"))
+                var nodes = xml.SelectSingleNode("configuration/DBConfigSection/DBSettings");
+                XmlNodeList allNodes = nodes.ChildNodes;
+                
+                newEntryList.Add(new DBSettingEntry(appName, "el", "ContentDB_165_Lan_1_Cat_"+appID.ToString(), true));
+                newEntryList.Add(new DBSettingEntry(appName, "en", "ContentDB_165_Lan_2_Cat_" + appID.ToString(), true));
+                if (chkLang) newEntryList.Add(new DBSettingEntry(appName, "ru", "ContentDB_165_Lan_4_Cat_" + appID.ToString(), true));
+
+                foreach (XmlNode n in nodes.ChildNodes)
                 {
-                    //<DBSetting name="Zakynthos" lang="el" db="ContentDB_165_Lan_1_Cat_369"/>
-                    //<DBSetting name="Zakynthos" lang="en" db="ContentDB_165_Lan_2_Cat_369"/>      
-
-                    if (node.Attributes["name"] != null && node.Attributes["lang"] != null)
+                    if (n.Attributes["name"] != null && n.Attributes["lang"] != null && n.Attributes["db"] != null)
                     {
-                        if (node.Attributes["name"].ToString() == appName)
-                            if (node.Attributes["lang"].ToString() == "el")
-                                if (node.Attributes["db"].ToString() == "ContentDB_165_Lan_1_Cat_" + appID.ToString())
-                                    checkLangs[(int)Lang.el] = true;
 
-                        if (node.Attributes["name"].ToString() == appName)
-                            if (node.Attributes["lang"].ToString() == "en")
-                                if (node.Attributes["db"].ToString() == "ContentDB_165_Lan_2_Cat_" + appID.ToString())
-                                    checkLangs[(int)Lang.en] = true;
+                        if (n.Attributes["name"].Value == appName && n.Attributes["lang"].Value == "el" && n.Attributes["db"].Value == "ContentDB_165_Lan_1_Cat_" + appID.ToString())
+                            newEntryList.RemoveAll(x => x.name == appName && x.lang == "el");
 
-                        if (CheckThreeLanguages(appID))
-                            if (node.Attributes["name"].ToString() == appName)
-                                if (node.Attributes["lang"].ToString() == "ru")
-                                    if (node.Attributes["db"].ToString() == "ContentDB_165_Lan_4_Cat_" + appID.ToString())
-                                        checkLangs[(int)Lang.ru] = true;
+
+                            //newEntryList.Add(new DBSettingEntry(n.Attributes["name"].Value, n.Attributes["lang"].Value, n.Attributes["db"].Value, false));
+                
+                        if (n.Attributes["name"].Value == appName && n.Attributes["lang"].Value == "en" && n.Attributes["db"].Value == "ContentDB_165_Lan_2_Cat_" + appID.ToString())
+                            newEntryList.RemoveAll(x => x.name == appName && x.lang == "en");
+
+                        if (chkLang)
+                            if (n.Attributes["name"].Value == appName && n.Attributes["lang"].Value == "ru" && n.Attributes["db"].Value == "ContentDB_165_Lan_4_Cat_" + appID.ToString())
+                                newEntryList.RemoveAll(x => x.name == appName && x.lang == "ru");
+                                
                     }
 
                 }
 
 
-                // Append new nodes where necessary
-                for (int i = 0; i < checkLangs.Length; i++)
+                foreach (var e in newEntryList)
                 {
-                    if (checkLangs[i] != null)
-                    {
-                        xml.SelectSingleNode("configuration/DBConfigSection/DBSettings").AppendChild(addMissingNode(appID, appName, i, xml));
-                    }
-
+                    xml.SelectSingleNode("configuration/DBConfigSection/DBSettings").AppendChild(addMissingNode(appID, appName, e.lang, e.db, xml));
                 }
 
-
-                xml.Save(Server.MapPath("ExternalApp/") + @"SQLiteConverter.exe.config");
+                if(newEntryList.Count > 0)
+                    xml.Save(Server.MapPath("Batch/") + @"SQLiteConverter.exe.config");
 
 
                 return true;
@@ -1065,7 +1082,7 @@ namespace GGApps
 
 
 
-        private XmlElement addMissingNode(int appID, string appName, int lang, XmlDocument xml)
+        private XmlElement addMissingNode(int appID, string appName, string lang, string db, XmlDocument xml)
         {
 
             //Create a new node.
@@ -1075,17 +1092,16 @@ namespace GGApps
             elem.Attributes.Append(attr);
 
             attr = xml.CreateAttribute("lang");
-            attr.Value = LangStr[lang];
+            attr.Value = lang;
             elem.Attributes.Append(attr);
 
             attr = xml.CreateAttribute("db");
-            attr.Value = "ContentDB_165_Lan_" + lang.ToString() + "_Cat_" + appID.ToString();
+            attr.Value = db;
             elem.Attributes.Append(attr);
 
             return elem;
         }
 
-        #endregion
 
 
 

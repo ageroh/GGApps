@@ -13,7 +13,7 @@
 
             var options = {};
             options.cache = false;
-            options.url = "Admin/Publish.aspx/GetPublishStatus";
+            options.url = '<%= ResolveUrl("Status.aspx/GetPublishStatus") %>';
             options.type = "POST";
             options.data = statusPub;
             options.dataType = "json";

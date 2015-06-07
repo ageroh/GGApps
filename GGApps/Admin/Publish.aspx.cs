@@ -304,8 +304,15 @@ namespace GGApps
 
             if (Session["mobileDevicesPublish"] != null )
             {
-                DisplayCustomMessageInValidationSummary("Please wait for previous publish to finish! Nothing Deployed to Production.");
-                return;
+                if (((List<MobileDevice>)Session["mobileDevicesPublish"]).Count == 0)
+                {
+                    Session["mobileDevicesPublish"] = null;
+                }
+                else
+                {
+                    DisplayCustomMessageInValidationSummary("Please wait for previous publish to finish! Nothing Deployed to Production.");
+                    return;
+                }
             }
 
 

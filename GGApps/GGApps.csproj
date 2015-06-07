@@ -160,7 +160,6 @@
     <Content Include="Batch\watermark2.png" />
     <Content Include="Batch\watermark3.png" />
     <Content Include="Batch\watermark4.png" />
-    <Content Include="Batch\WinSCP.exe" />
     <Content Include="BuildApp.aspx" />
     <Content Include="Admin\Configure.aspx" />
     <Content Include="Content\img\720.GIF" />
@@ -222,8 +221,6 @@
     <Content Include="EmailTemplates\EmailTemplateInfo.html" />
     <Content Include="EmailTemplates\EmailTemplateFailure.html" />
     <Content Include="EmailTemplates\EmailTemplateSuccess.html" />
-    <Content Include="ExternalApp\SQLiteConverter.exe" />
-    <Content Include="ExternalApp\System.Data.SQLite.dll" />
     <Content Include="Admin\HomePage.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
@@ -244,24 +241,17 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="ExternalApp\SQLiteConverter.exe.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Batch\3a_fix_html_entities.bat" />
     <Content Include="Batch\3_convert_db.bat" />
     <Content Include="Batch\4_db_stats.bat" />
     <Content Include="Batch\5_get_images.bat" />
-    <Content Include="Batch\8_ftp_entity_text.bat" />
     <Content Include="Batch\9b_copy_databases.bat" />
     <Content Include="Batch\9_copy_img_databases.bat" />
     <Content Include="Batch\ftpcmd.dat" />
     <Content Include="Batch\SQLiteConverter.exe.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Batch\WinSCP.com" />
-    <Content Include="Batch\WinSCP.ini" />
     <Content Include="Batch\260" />
-    <Content Include="Batch\7_ftp_fb_img.bat" />
     <Content Include="Batch\11_commit_to_git.bat" />
     <Content Include="Batch\10_create_zip.bat" />
     <None Include="Properties\PublishProfiles\Production.pubxml">
@@ -307,7 +297,6 @@
     <Content Include="SQLScripts\db_test_2_4_entities_with_invalid_characters.sql" />
     <Content Include="SQLScripts\db_test_2_5_entities_with_greek_characters_in_english.sql" />
     <Content Include="Status.aspx" />
-    <Content Include="test_webmethod.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -17,7 +17,7 @@ namespace GGApps.Account
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
             if (!String.IsNullOrEmpty(returnUrl))
             {
-                Response.Redirect(Request.QueryString["ReturnUrl"]);
+                Response.Redirect(Request.QueryString["ReturnUrl"], true);
             }
         }
     }
