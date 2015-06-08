@@ -6,50 +6,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+
     <script type="text/javascript">
         var refreshIntervalId;
-
-        function getPublishStatus() {
-
-            var options = {};
-            options.cache = false;
-            options.url = '<%= ResolveUrl("Status.aspx/GetPublishStatus") %>';
-            options.type = "POST";
-            options.data = statusPub;
-            options.dataType = "json";
-            options.contentType = "application/json; charset=utf-8",
-            options.error = function (err) {
-                console.log(err);
-                // close modal
-                clearInterval(refreshIntervalId);
-                closePublishModal();
-            };
-            options.success = function (data) {
-                console.log(data);
-                if (data.d) {
-                    // process finsied, show results.
-                    clearInterval(refreshIntervalId);
-                    $('.infoPublishing').text("Completed successfully!");
-                    $('.modalDialogPublish #loadingGifPub').hide();
-                    $('.modalDialogPublish .closeSuccess').show();
-                    //closePublishModal();
-                }
-            };
-
-            $.ajax(options);
-        }
-
-
-        function closePublishModal() {
-            window.location.href = window.location.href + "#close";
-        }
-
-        function openModalPublish() {
-            window.location.href = window.location.href + "#modalDialogPublish";
-        }
-
-
-
     </script>
     <div class="sub">
         <ul id="menu">
@@ -199,7 +158,7 @@
         </asp:Table>
 
         <asp:Button runat="server" Text="Publish App to Production" ID="BtnPublishApp" ClientIDMode="Static" Enabled="false" OnClick="BtnPublishApp_Click" CssClass="InputDisabledCustom" />
-        <asp:Button runat="server" Text="Undo Publish" ID="undoPublish" Enabled="false" CssClass="InputDisabledCustom" OnClick="undoPublish_Click" />
+        <asp:Button runat="server" Text="Undo Publish" ID="undoPublishBtn" ClientIDMode="Static" Enabled="false" CssClass="InputDisabledCustom" OnClick="undoPublish_Click" />
 
         <asp:Label CssClass="ErrorGeneral" runat="server" ID="custValidation" Text="" Visible="false"></asp:Label>
 

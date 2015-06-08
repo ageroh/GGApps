@@ -53,9 +53,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Ionic.Zip">
-      <HintPath>..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -140,11 +137,11 @@
     <Content Include="ContentValidation.aspx" />
     <Content Include="Content\img\refreshDD.png" />
     <Content Include="Content\img\spiffygif_76x76.gif" />
-    <Content Include="create new app for GG in-app update.sql" />
     <Content Include="EmailTemplates\EmailTemplateInitAdmin.html" />
     <Content Include="EmailTemplates\EmailTemplateStart.html" />
     <Content Include="ErrorPage.aspx" />
     <Content Include="GGService.svc" />
+    <Content Include="PublishStatus.aspx" />
     <Content Include="Service.aspx" />
     <Content Include="SQLScripts\db_test_2_4_entities_with_invalid_characters_RU.sql" />
     <Content Include="SQLScripts\db_create_entity.sql" />
@@ -253,7 +250,7 @@
     </Content>
     <Content Include="Batch\260" />
     <Content Include="Batch\11_commit_to_git.bat" />
-    <Content Include="Batch\10_create_zip.bat" />
+    <Content Include="Batch\12_create_zip_publish.bat" />
     <None Include="Properties\PublishProfiles\Production.pubxml">
       <SubType>Designer</SubType>
     </None>
@@ -296,7 +293,6 @@
     <Content Include="SQLScripts\db_test_2_3_entities_without_category.sql" />
     <Content Include="SQLScripts\db_test_2_4_entities_with_invalid_characters.sql" />
     <Content Include="SQLScripts\db_test_2_5_entities_with_greek_characters_in_english.sql" />
-    <Content Include="Status.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -408,6 +404,13 @@
     <Compile Include="Admin\Publish.aspx.designer.cs">
       <DependentUpon>Publish.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PublishStatus.aspx.cs">
+      <DependentUpon>PublishStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PublishStatus.aspx.designer.cs">
+      <DependentUpon>PublishStatus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Service.aspx.cs">
       <DependentUpon>Service.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -418,13 +421,6 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Status.aspx.cs">
-      <DependentUpon>Status.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Status.aspx.designer.cs">
-      <DependentUpon>Status.aspx</DependentUpon>
     </Compile>
     <Compile Include="Validation.Master.cs">
       <DependentUpon>Validation.Master</DependentUpon>

@@ -37,7 +37,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/13/2015 16:01:16</publishTime>
     </File>
     <File Include="Admin/Publish.aspx">
-      <publishTime>06/07/2015 13:34:42</publishTime>
+      <publishTime>06/08/2015 08:41:43</publishTime>
     </File>
     <File Include="ajax.html">
       <publishTime>05/15/2015 09:46:00</publishTime>
@@ -47,6 +47,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Batch/11_commit_to_git.bat">
       <publishTime>01/20/2015 16:47:39</publishTime>
+    </File>
+    <File Include="Batch/12_create_zip_publish.bat">
+      <publishTime>06/07/2015 22:02:24</publishTime>
     </File>
     <File Include="Batch/260">
       <publishTime>12/05/2014 17:30:29</publishTime>
@@ -175,7 +178,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/16/2014 15:45:43</publishTime>
     </File>
     <File Include="bin/GGApps.dll">
-      <publishTime>06/07/2015 15:01:05</publishTime>
+      <publishTime>06/08/2015 09:10:13</publishTime>
     </File>
     <File Include="bin/Ionic.Zip.dll">
       <publishTime>06/01/2015 18:36:38</publishTime>
@@ -508,7 +511,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/01/2014 10:02:21</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>06/01/2015 18:36:38</publishTime>
+      <publishTime>06/07/2015 22:15:06</publishTime>
+    </File>
+    <File Include="PublishStatus.aspx">
+      <publishTime>06/08/2015 09:05:55</publishTime>
     </File>
     <File Include="README_PRODUCTION.txt">
       <publishTime>12/12/2014 18:15:15</publishTime>
@@ -595,7 +601,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/15/2015 09:46:00</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>06/01/2015 23:42:10</publishTime>
+      <publishTime>06/08/2015 00:33:22</publishTime>
     </File>
     <File Include="Site.Mobile.Master">
       <publishTime>12/01/2014 10:02:21</publishTime>
@@ -610,7 +616,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/09/2014 19:20:51</publishTime>
     </File>
     <File Include="SQLScripts/db_test_2_1_entities_without_location.sql">
-      <publishTime>12/09/2014 19:20:38</publishTime>
+      <publishTime>06/07/2015 15:15:54</publishTime>
     </File>
     <File Include="SQLScripts/db_test_2_2_entities_connected_to_non_leaves.sql">
       <publishTime>06/07/2015 14:51:48</publishTime>
@@ -640,7 +646,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/01/2014 10:02:21</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/07/2015 01:37:28</publishTime>
+      <publishTime>06/08/2015 09:06:38</publishTime>
     </File>
     <File Include="Web.sitemap">
       <publishTime>01/20/2015 11:52:31</publishTime>

@@ -33,9 +33,7 @@
             ShowProgress();
         });
 
-        $('BtnPublishApp').on("click", function () {
-            ShowProgress();
-        });
+
 
         $(document).ready(function() {
             /* Open Entity Page from ADM.GREEKGUIDE ! */
@@ -73,6 +71,18 @@
                         } else {
                             return false;
                         }
+                    }
+                });
+
+
+            $('#undoPublishBtn').click(
+                function () {
+                    var doUpdate = 0;
+
+                    if (confirm('Are you sure you want to UNDO LAST Published App for the selected Application?')) {
+                        return true;
+                    } else {
+                        return false;
                     }
                 });
 

@@ -13,7 +13,6 @@ using Renci.SshNet;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Hosting;
-using Ionic;
 
 
 namespace GGApps
@@ -45,6 +44,9 @@ namespace GGApps
                 this.app_Version = aV;
                 this.db_version = db;
                 this.config_version = cV;
+
+                if (db < 0)
+                    throw new Exception();
             }
         }
 
@@ -114,19 +116,22 @@ namespace GGApps
                 BtnPublishApp.CssClass = "InputDisabledCustom";
                 BtnPublishApp.Enabled = false;
             }
+
+            ClearCustomMessageValidationSummary();
+
         }
 
         private void CheckUndoAvailable(int appID, string appName)
         {
             // check for ios and android
             if ( CheckIfFolderExistsProduction("ios-old", appName.ToLower()) || CheckIfFolderExistsProduction("android-old", appName.ToLower())) 
-            { 
-                undoPublish.CssClass = null;
-                undoPublish.Enabled = true;
+            {
+                undoPublishBtn.CssClass = null;
+                undoPublishBtn.Enabled = true;
             }
             else{
-                undoPublish.CssClass = "InputDisabledCustom";
-                undoPublish.Enabled = false;
+                undoPublishBtn.CssClass = "InputDisabledCustom";
+                undoPublishBtn.Enabled = false;
             }
         }
 
@@ -271,13 +276,14 @@ namespace GGApps
             string myData = null;
 
             var connectionInfo = new ConnectionInfo(gitHostFTP, 22, gitUserFTP, PasswordConnection, KeyboardInteractive);
-
+            string errmsg = "";
             try
             {
                 using (SshClient ssh = new SshClient(connectionInfo))
                 {
                     ssh.Connect();
                     var command = ssh.RunCommand(cmdInput);
+                    errmsg = command.Error;
                     myData = command.Result;
                     ssh.Disconnect();
                 }
@@ -285,10 +291,14 @@ namespace GGApps
             catch (Exception e) 
             {
                 Log.ErrorLogAdmin(mapPathError, "SSH connection-command error : " + e.Message, appName);
-                return null;
+                return "unexpected error in SSH connection.";
             }
-
-            return myData;
+            if (!String.IsNullOrEmpty(errmsg))
+            {
+                Log.ErrorLogAdmin(mapPathError, "SSH connection-command error after execution : " + errmsg, appName);
+                return errmsg;
+            }
+            return "ok";
         }
 
 
@@ -315,52 +325,62 @@ namespace GGApps
                 }
             }
 
-
-
-            // Select mobile devices to Publish to Production. 
-            foreach (ListViewDataItem item in latestVersions.Items)
+            try
             {
-                var chk = item.FindControl("chkSelected") as CheckBox;
-                if (chk != null && chk.Checked == true)
-                {
-                    var value = item.FindControl("txtmobileDevice") as TextBox;
 
-                    if ((bool)Session["PublishFirst"+value.Text] )
-                    { 
-                        // really check that path not exists.
-                        if (!CheckIfFolderExistsProduction(value.Text, appName.ToLower()))
+                // Select mobile devices to Publish to Production. 
+                foreach (ListViewDataItem item in latestVersions.Items)
+                {
+                    var chk = item.FindControl("chkSelected") as CheckBox;
+                    if (chk != null && chk.Checked == true)
+                    {
+                        var value = item.FindControl("txtmobileDevice") as TextBox;
+
+                        if ((bool)Session["PublishFirst" + value.Text])
                         {
-                            if (InitAppProductionFirst(value.Text, appName.ToLower()) < 0)
+                            // really check that path not exists.
+                            if (!CheckIfFolderExistsProduction(value.Text, appName.ToLower()))
                             {
-                                DisplayCustomMessageInValidationSummary("Some error occured while Initializing app to Publish, nothing changed to Produciton.");
-                                return;
-                            }
-                            else { 
-                                // new path  and versions.txt created to prod!
-                                foreach (var ver in StagProdAppVersions)
+                                if (InitAppProductionFirst(value.Text, appName.ToLower()) < 0)
                                 {
-                                    if (ver.Device == value.Text && ver.Environment == "production")
+                                    DisplayCustomMessageInValidationSummary("Some error occured while Initializing app to Publish, nothing changed to Produciton.");
+                                    return;
+                                }
+                                else
+                                {
+                                    // new path  and versions.txt created to prod!
+                                    foreach (var ver in StagProdAppVersions)
                                     {
-                                        ver.DB_Version = "1";
-                                        ver.App_Version = "2.1";
-                                        ver.Config_Version = "1";
+                                        if (ver.Device == value.Text && ver.Environment == "production")
+                                        {
+                                            ver.DB_Version = "1";
+                                            ver.App_Version = "2.1";
+                                            ver.Config_Version = "1";
+                                        }
                                     }
                                 }
                             }
+
                         }
-                       
+
+
+                        mobileDevicesToPublish.Add(new MobileDevice(
+                                                                  value.Text
+                                                                , getAppVer(StagProdAppVersions, value.Text, "production")
+                                                                , getDBVer(StagProdAppVersions, value.Text, "production")
+                                                                , getConfigVer(StagProdAppVersions, value.Text, "production")));
                     }
-
-
-                    mobileDevicesToPublish.Add(new MobileDevice(
-                                                              value.Text
-                                                            , getAppVer(StagProdAppVersions, value.Text, "production")
-                                                            , getDBVer(StagProdAppVersions, value.Text, "production")
-                                                            , getConfigVer(StagProdAppVersions, value.Text, "production")));
                 }
+
             }
+            catch (Exception xxe)
+            {
+                Log.ErrorLogAdmin(mapPathError, "Some error occured, whilie init to Publish, " + appName + " ex: " + xxe.Message + xxe.InnerException, appName);
+                DisplayCustomMessageInValidationSummary("Some error occured, whilie init to Publish. Nothing Deployed to Production.");
+                Session["mobileDevicesPublish"] = null;
+                return;
 
-
+            }
 
 
             string mobSuccess = "";
@@ -393,15 +413,6 @@ namespace GGApps
             }
 
 
-            // not good code..
-            if (mobileDevicesToPublish.Count == 2)
-                // open Modal for polling, DB here.
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "myFuncStatus",
-                                    " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '" + GGAppsPublishID[1] + "' }); openModalPublish(); refreshIntervalId = setInterval(getPublishStatus, 5000); ", true);
-            else if (mobileDevicesToPublish.Count == 1)
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "myFuncStatus",
-                                      " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '-1' }); openModalPublish(); refreshIntervalId = setInterval(getPublishStatus, 5000); ", true);
-                 
 
             
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
@@ -470,9 +481,9 @@ namespace GGApps
                                 string topath = producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice.name + "\\DBVER\\";
                         
                                 // Create a version of DB zip files inside a Directory with all the Databases when generated.
-                                fin.StoreNewDBtoHistory(appName, appID, mobileDevice.name, DbVersion, topath);
+                                fin.StoreNewDBtoHistory(appName.ToLower(), appID, mobileDevice.name, DbVersion, topath);
 
-                                Log.InfoLog(mapPathError, "============================================== FINISHED WITH SUCCESS - PUBLISH TO PRODUCTION FOR " + appName + " for " + mobileDevice.name + " ==============================================", appName);
+                                Log.InfoLog(mapPathError, "============================================== FINISHED SUCCESSFULLY - PUBLISH TO PRODUCTION FOR " + appName + " for " + mobileDevice.name + " ==============================================", appName);
 
                                 // write message to DIV.
                                 //DisplayCustomMessageInValidationSummary("Successfully deployed <b>" + appName + "</b> for <i>" + mobileDevice + "</i> to Production, please download app from an open wi-fi to confirm.", true);
@@ -506,13 +517,32 @@ namespace GGApps
                             return;
                         }
 
-                        ((List<MobileDevice>)Session["mobileDevicesPublish"]).RemoveAll(t => t.name == mobileDevice.name);
+                        // ((List<MobileDevice>)Session["mobileDevicesPublish"]).RemoveAll(t => t.name == mobileDevice.name);
                         ipGG++;
 
                 }
                 Session["mobileDevicesPublish"] = null;
 
             });
+
+
+            // not good code..
+            //if (mobileDevicesToPublish.Count == 2)
+            //    // open Modal for polling, DB here.
+            //    Page.ClientScript.RegisterStartupScript(this.GetType(), "myFuncStatus",
+            //                        " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '" + GGAppsPublishID[1] + "' }); openModalPublish(); refreshIntervalId = setInterval(getPublishStatus, 5000); ", true);
+            //else if (mobileDevicesToPublish.Count == 1)
+            //    Page.ClientScript.RegisterStartupScript(this.GetType(), "myFuncStatus",
+            //                          " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '-1' }); openModalPublish(); refreshIntervalId = setInterval(getPublishStatus, 5000); ", true);
+     
+            //?
+            // do the redirect to Status.
+            Session["showInfoPublish"] = txtInfoPublishing.InnerHtml;
+            if (mobileDevicesToPublish.Count == 2)
+                Response.Redirect("~/PublishStatus.aspx?appID=" + appID + "&appName=" + appName.ToLower() + "&publID1=" + GGAppsPublishID[0] + "&publID2="+  GGAppsPublishID[1]);
+            else if (mobileDevicesToPublish.Count == 1)
+                Response.Redirect("~/PublishStatus.aspx?appID=" + appID + "&appName=" + appName.ToLower() + "&publID1=" + GGAppsPublishID[0] + "&publID2=-1");
+
 
         }
 
@@ -523,7 +553,7 @@ namespace GGApps
                                                             , appName + "/update/" + mobileDevice
                                                             ,  @"{  ""app_version"": ""2.1"",  ""config_version"": ""1"",  ""db_version"": ""1""}")
                                                             , appName);
-            return (res=="")?1:-1;
+            return (res=="ok")?1:-1;
             
         }
 
@@ -635,7 +665,12 @@ namespace GGApps
             {
                 if (appdet.Device == mobileDevice && appdet.Environment == kind)
                 {
-                    return Int32.Parse(appdet.DB_Version) + 1;  // real prod new version.
+                    try
+                    {
+                        return Int32.Parse(appdet.DB_Version) + 1;  // real prod new version.
+                    }
+                    catch(Exception )
+                    { return -1; }
                 }
             }
             return -1;
@@ -661,51 +696,47 @@ namespace GGApps
 
             Session.Add("filenameToPublish_" + mobileDevice, filenameToPublish);
             
-            //athens-ios-20150529143300-v2_4_5-d21-c3.zip
 
             // zip file under vm location
             try
             {
-                using (var zip = new Ionic.Zip.ZipFile())
-                {
-                    zip.AddDirectory(producedAppPath + appName + "\\update\\" + mobileDevice + "\\","");
-                    if (System.IO.File.Exists(ToPublishZipDir + filenameToPublish))
-                        System.IO.File.Delete(ToPublishZipDir + filenameToPublish);
-                    zip.Save(ToPublishZipDir + filenameToPublish);
-                }
+
+                // Create a zip with all files generated under /appName/update/ with name appName.zip.
+                var result10 = RunSyncCommandBatch(appID, appName, "12_create_zip_publish.bat "
+                                                                + ToPublishZipDir + filenameToPublish 
+                                                                + " "
+                                                                + producedAppPath + appName + "\\update\\" + mobileDevice + "\\*"
+                                                                , actualWorkDir, "Zip all files created under UPDATE to zip file for Mobile", mapPathError, Log);
+
             }
             catch (Exception e)
             {
                 Log.ErrorLogAdmin(mapPathError, "Failed to Zip file " + filenameToPublish + " for Publish", "generic");
-                return null;
             }
 
             // Do the upload to Production FTP.
             if (UploadFileRemote(appName, ToPublishZipDir + Session["filenameToPublish_" + mobileDevice].ToString()
                                     , appName.ToLower() + "//update//" + filenameToPublish
                                     , true) >= 0)     // upload ok for Bundle device app
-            { 
-            
+            {
+
 
                 // Unizp through ssh the .zip file to correct destination.
                 //unzip {0} -d {1}-new
-                if (SSHConnectExecute(String.Format(unzipFileSSHcmd, appName + "/update/" + filenameToPublish, appName + "/update/" + mobileDevice)
-                        , appName) == null)
+                if (SSHConnectExecute(String.Format(unzipFileSSHcmd, appName + "/update/" + filenameToPublish, appName + "/update/" + mobileDevice), appName) != "ok")
                     return "unziped failed to Production";
-
 
                 // replace <device>-old -> new
                 // rm -rf {0}-old &amp;&amp; mv {0} {0}-old &amp;&amp; mv {0}-new {0};
-                if (SSHConnectExecute(String.Format(replaceDeviceOldSSHcmd, appName + "/update/" + mobileDevice)
-                                    , appName) == null)
+                if (SSHConnectExecute(String.Format(replaceDeviceOldSSHcmd, appName + "/update/" + mobileDevice), appName) != "ok")
                     return "replace <device> with <device>-new failed.";
 
-                if( RenameFileRemote(appName, "versions_before_publish.txt", "versions.txt") <= 0)
+                if (RenameFileRemote(appName, "versions_before_publish.txt", "versions.txt") <= 0)
                     return "failed to rename Versions.txt while Publishing";
 
 
                 /* DB_VERSION prepare for UNDO, +2  */
-                string dbver, appVertmp, configVersion; 
+                string dbver, appVertmp, configVersion;
                 int newdbVersion;
                 if (GetVersionsFileProduction(mobileDevice + "-old", out dbver, out appVertmp, out configVersion, appName, "versions_before_publish.txt") != null)
                 {
@@ -733,6 +764,7 @@ namespace GGApps
 
             return null;
 
+           
         }
 
 
@@ -927,14 +959,38 @@ namespace GGApps
                 Int32 appID = Int32.Parse(SelectApp.SelectedValue);
                 String appName = SelectApp.SelectedItem.ToString();
 
-                DisplayCustomMessageInValidationSummary( UndoPublishProduction(appID, appName) );
+
+                string msg =  UndoPublishProduction(appID, appName.ToLower());
+
+
+                ClearCustomMessageValidationSummary();
+                FetchAppDetailsProduction(appID, appName);
+                CheckUndoAvailable(appID, appName);
+                DisplayCustomMessageInValidationSummary(msg);
+               
             }
         }
 
 
         private string UndoPublishProduction(int appID, string appName)
         {
-            return "not implemented yet";    
+            string msg1 = SSHConnectExecute(String.Format(undoPublishSSHcmd, appName + "/update/android"), appName);
+            if ( msg1 != "ok")
+            {
+                string msg = "Error occured while trying to Undo Last Publish for Android: " + appName + " msg: " + msg1;
+                Log.ErrorLogAdmin(mapPathError, msg, appName);
+                return msg;
+            }
+
+            msg1 = SSHConnectExecute(String.Format(undoPublishSSHcmd, appName + "/update/ios"), appName);
+            if(msg1 != "ok")
+            {
+                string msg = "Error occured while trying to Undo Last Publish for iOS: " + appName + " msg: " + msg1;
+                Log.ErrorLogAdmin(mapPathError, msg, appName);
+                return msg;
+            }
+
+            return "Successfully Undo Last Publish.";
         }
 
 

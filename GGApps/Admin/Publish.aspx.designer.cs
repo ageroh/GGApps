@@ -337,13 +337,13 @@ namespace GGApps {
         protected global::System.Web.UI.WebControls.Button BtnPublishApp;
         
         /// <summary>
-        /// undoPublish control.
+        /// undoPublishBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button undoPublish;
+        protected global::System.Web.UI.WebControls.Button undoPublishBtn;
         
         /// <summary>
         /// custValidation control.
