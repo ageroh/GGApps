@@ -29,6 +29,8 @@ namespace GGApps
         public enum SSHCommands : long { commit = 0, rollback, tryCommit, rollbackLastPublish };
         public static List<AppVersionDetail> StagProdAppVersions = new List<AppVersionDetail>();
         public static List<MobileDevice> mobileDevicesToPublish = new List<MobileDevice>();
+        public static string txtInfoPublishing = "";
+        public static string txtInfoPublishingHTML = "";
 
         public class MobileDevice
         {
@@ -243,7 +245,9 @@ namespace GGApps
         private void ClearCustomMessageValidationSummary()
         {
             txtMessageModal.InnerHtml = "";
-            txtInfoPublishing.InnerHtml = "";
+           // txtInfoPublishing.InnerHtml = "";
+            txtInfoPublishing = "";
+            txtInfoPublishingHTML = "";
             custValidation.Text = String.Empty;
             custValidation.Enabled = false;
             custValidation.Visible = false;
@@ -395,8 +399,9 @@ namespace GGApps
                 GGAppsPublishID[ipGG1] = StartPublishDBAdmin(appID, appName, mobileDevice.name, mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version);
 
                 // print out what to publish.
-                txtInfoPublishing.InnerHtml += String.Format("Destination: <b>{0}</b> for <i>{1}</i> Details( V:{2}, D:{3}. C:{4} ) <br/>", appName, mobileDevice.name.ToUpper(), mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version);
-                
+                txtInfoPublishingHTML += String.Format("Destination: <b>{0}</b> for <i>{1}</i> Details( V:{2}, D:{3}. C:{4} ) <br/>", appName, mobileDevice.name.ToUpper(), mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version);
+                txtInfoPublishing += String.Format("Destination: {0} for {1} Details( V:{2}, D:{3}. C:{4} ) \n", appName, mobileDevice.name.ToUpper(), mobileDevice.app_Version, mobileDevice.db_version, mobileDevice.config_version);
+
                 ipGG1++;
             }
 
@@ -537,11 +542,13 @@ namespace GGApps
      
             //?
             // do the redirect to Status.
-            Session["showInfoPublish"] = txtInfoPublishing.InnerHtml;
+            Session["showInfoPublish"] = txtInfoPublishing;
+            Session["showInfoPublishHTML"] = txtInfoPublishingHTML;
+
             if (mobileDevicesToPublish.Count == 2)
-                Response.Redirect("~/PublishStatus.aspx?appID=" + appID + "&appName=" + appName.ToLower() + "&publID1=" + GGAppsPublishID[0] + "&publID2="+  GGAppsPublishID[1]);
+                Response.Redirect("~/PublishStatus.aspx?appid=" + appID + "&appName=" + appName.ToLower() + "&publID1=" + GGAppsPublishID[0] + "&publID2="+  GGAppsPublishID[1]);
             else if (mobileDevicesToPublish.Count == 1)
-                Response.Redirect("~/PublishStatus.aspx?appID=" + appID + "&appName=" + appName.ToLower() + "&publID1=" + GGAppsPublishID[0] + "&publID2=-1");
+                Response.Redirect("~/PublishStatus.aspx?appid=" + appID + "&appName=" + appName.ToLower() + "&publID1=" + GGAppsPublishID[0] + "&publID2=-1");
 
 
         }

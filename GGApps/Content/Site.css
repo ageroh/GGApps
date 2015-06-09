@@ -994,3 +994,7 @@ tr.pager td {
 	}
 
 	.close:hover { background: #00d9ff; }
+
+#pubDetails {
+    font: larger;
+}

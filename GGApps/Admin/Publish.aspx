@@ -173,15 +173,5 @@
 	        </div>
         </div>
 
-        
-        <div id="modalDialogPublish" class="modalDialogPublish">
-	        <div>
-		        <a href="#close" title="Close" class="closeSuccess" style="display:none;">X</a>
-                <img src="../Content/img/spiffygif_76x76.gif" id="loadingGifPub"/>
-		        <h2>Publishing...statnd still!</h2>
-	            <div id="txtInfoPublishing" class="infoPublishing" runat="server"></div>
-	        </div>
-        </div>
-
     </asp:Panel>
 </asp:Content>
