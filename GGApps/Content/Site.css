@@ -998,3 +998,10 @@ tr.pager td {
 #pubDetails {
     font: larger;
 }
+
+#workingPub {
+    width:10px;
+    position:relative;
+    height:5px;
+    font-size:17px;
+}
