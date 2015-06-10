@@ -494,7 +494,7 @@ namespace GGApps
                                 //DisplayCustomMessageInValidationSummary("Successfully deployed <b>" + appName + "</b> for <i>" + mobileDevice + "</i> to Production, please download app from an open wi-fi to confirm.", true);
 
                                 // update long poll record for publish
-                                FinishPublish(GGAppsPublishID[ipGG], "Successfully deployed <b>" + appName + "</b> for <i>" + mobileDevice.name + "</i> to Production, please download app from an open wi-fi to confirm." + mobileDevice.name, 1);
+                                FinishPublish(GGAppsPublishID[ipGG], "Successfully deployed <b>" + appName + "</b> for <i>" + mobileDevice.name + "</i> to Production, please download app from an open wi-fi to confirm : " + mobileDevice.name, 1);
 
                                 // show Modal at the end with result message..
                                 //ClientScript.RegisterStartupScript(this.GetType(), "SUCCESS", "window.location.hash = 'openModal';", true);
