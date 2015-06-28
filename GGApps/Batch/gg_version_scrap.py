@@ -2,15 +2,22 @@ from htmldom import htmldom
 import re, pymssql, random
 
 def get_ios_app_versions():
-	ios_page = htmldom.HtmlDom("https://itunes.apple.com/gr/artist/travel-applications/id668571732").createDom()
-	ios_rows = ios_page.find("a.artwork-link")
-	ios_app_url_fmt = re.compile(r"https://itunes.apple.com/gr/app/[a-z\-]+-by-greekguide.com/.+")
-	ios_app_urls = [m.group(0) for m in (re.search(ios_app_url_fmt, r.attr('href')) for r in ios_rows) if m]
+	app_pages = (
+		"https://itunes.apple.com/gr/artist/travel-applications/id668571732?iPhoneSoftwarePage=1", 
+		"https://itunes.apple.com/gr/artist/travel-applications/id668571732?iPhoneSoftwarePage=2"
+	)
 	ret = []
+	ios_app_urls = []
+	
+	for app_page in app_pages:
+		ios_page = htmldom.HtmlDom(app_page).createDom()
+		ios_rows = ios_page.find("div[metrics-loc]").first().find("a.artwork-link")
+		ios_app_url_fmt = re.compile(r"https://itunes.apple.com/gr/app/.*greekguide\.com.*")
+		ios_app_urls = ios_app_urls + [m.group(0) for m in (re.search(ios_app_url_fmt, r.attr('href')) for r in ios_rows) if m]
 
-	for ios_app_url in ios_app_urls:
+	for ios_app_url in set(ios_app_urls):
 		ios_app_page =  htmldom.HtmlDom(ios_app_url+"&rand="+str(random.randint(1000, 9999))).createDom()
-		ios_app_name = ios_app_page.find("h1").text().split(' ')[0].lower()
+		ios_app_name = ios_app_page.find("h1").text().replace(" - ", "-").split(' ')[0].lower()
 		if len(ios_app_name) == 0:
 			continue
 		#ios_app_version_raw =  ios_app_page.find("div#left-stack > div.lockup > ul.list > li")[3].text()
