@@ -8,8 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefreshVersionsFiles", "Ref
 		{BEB14E72-67E4-410C-8F62-F45E188D7A8F} = {BEB14E72-67E4-410C-8F62-F45E188D7A8F}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GGMultiService", "GGMultiService\GGMultiService.csproj", "{D3EB590A-8AC1-47C0-BCD8-786F00E214C2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,12 +30,6 @@ Global
 		{29C6D06E-603C-4721-86D7-ADE7A1A8DDFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29C6D06E-603C-4721-86D7-ADE7A1A8DDFD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{29C6D06E-603C-4721-86D7-ADE7A1A8DDFD}.Release|x86.ActiveCfg = Release|Any CPU
-		{D3EB590A-8AC1-47C0-BCD8-786F00E214C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3EB590A-8AC1-47C0-BCD8-786F00E214C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3EB590A-8AC1-47C0-BCD8-786F00E214C2}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D3EB590A-8AC1-47C0-BCD8-786F00E214C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3EB590A-8AC1-47C0-BCD8-786F00E214C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3EB590A-8AC1-47C0-BCD8-786F00E214C2}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -694,10 +694,9 @@ namespace GGApps
 
             int check = CheckAccount();
             
-#if DEBUG
-            if (Request.Url.AbsolutePath != "/Admin/Publish.aspx")
-                Response.Redirect("~/Admin/Publish.aspx");
-#else
+  //          if (Request.Url.AbsolutePath != "/Admin/Publish.aspx")
+  //              Response.Redirect("~/Admin/Publish.aspx");
+
             if ( check < 0) 
             {
                 Response.Redirect("~/");
@@ -711,7 +710,7 @@ namespace GGApps
                 if( ! Request.Url.AbsolutePath.Contains("/Admin/Publish.aspx") )
                     Response.Redirect("~/Admin/Publish.aspx");
             }
-#endif
+
 
         }
 

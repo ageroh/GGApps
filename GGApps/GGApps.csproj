@@ -131,7 +131,6 @@
   <ItemGroup>
     <Content Include="Account\Login.aspx" />
     <Content Include="Admin.aspx" />
-    <Content Include="ajax.html" />
     <Content Include="Batch\DbAccess.dll" />
     <Content Include="Batch\gg_version_scrap.py" />
     <Content Include="ContentValidation.aspx" />
@@ -140,7 +139,6 @@
     <Content Include="EmailTemplates\EmailTemplateInitAdmin.html" />
     <Content Include="EmailTemplates\EmailTemplateStart.html" />
     <Content Include="ErrorPage.aspx" />
-    <Content Include="GGService.svc" />
     <Content Include="PublishStatus.aspx" />
     <Content Include="Service.aspx" />
     <Content Include="SQLScripts\db_test_2_4_entities_with_invalid_characters_RU.sql" />
@@ -375,9 +373,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ftp.cs" />
-    <Compile Include="GGService.svc.cs">
-      <DependentUpon>GGService.svc</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -395,7 +390,6 @@
     <Compile Include="Admin\Promo.aspx.designer.cs">
       <DependentUpon>Promo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="IGGSevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Admin\Publish.aspx.cs">
       <DependentUpon>Publish.aspx</DependentUpon>
@@ -460,7 +454,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>42636</DevelopmentServerPort>
+          <DevelopmentServerPort>40102</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:11876/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
