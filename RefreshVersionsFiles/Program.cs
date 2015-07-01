@@ -18,24 +18,34 @@ namespace RefreshVersionsFiles
     {
         //public static string cf = ConfigurationManager.AppSettings[""];
 
-        public static string actualWorkDir = "C:\\_temp\\";
+        public static string actualWorkDir = "C:\\temp\\";
 
         public static string producedAppPath = "C:\\GGAppContent\\";
 
        
         static void Main(string[] args)
         {
+            System.IO.StreamWriter sw = new System.IO.StreamWriter(actualWorkDir + "log.txt", true);
 
-            if (!UpdateVersionsFilesProduction())
-                Console.Error.WriteLine("Some error occured!");
+            sw.AutoFlush = true;
 
+            Console.SetOut(sw);
+            Console.WriteLine("Logging time :>> " + DateTime.Now.ToString("ddMMyyyy hh:mm:ss"));
+            Console.WriteLine();
+            bool updated;
+            if (!UpdateVersionsFilesProduction(out updated))
+                Console.WriteLine("Some error occured!");
+
+            if (!updated)
+                Console.WriteLine("Nothing updated. All ok.");
         }
 
 
 
-        public static bool UpdateVersionsFilesProduction()
+        public static bool UpdateVersionsFilesProduction(out bool updated)
         {
             DateTime dt;
+            updated = false;
             foreach (DataRow dr in GetAllAppsVersionsLive().Rows)
             {
                 // first check if results are really valid , puthon script is executing with no errors..
@@ -43,7 +53,7 @@ namespace RefreshVersionsFiles
                 if (dt == DateTime.MinValue || dt < DateTime.Now.AddHours(-48))
                 {
                     // send email to Admins to check for Python errors !
-                    Console.Error.WriteLine("Python app Versions is not synched!");
+                    Console.WriteLine("Python app Versions is not synched!");
                     return false;
                 }
 
@@ -57,12 +67,14 @@ namespace RefreshVersionsFiles
                                                     , Int32.Parse(dr["catCategoryId"].ToString())
                                                     , dr["AppPlatform"].ToString().ToLower()) == null)
                     {
-                        Console.Error.WriteLine("Some Error Occured while batch update App Versions - Config Versions for all Destinations!");
+                        Console.WriteLine("Some Error Occured while batch update App Versions - Config Versions for all Destinations!");
                         return false;
                     }
 
                     if (UpdateAppVersion(Convert.ToInt32(dr["GGAppsVersionsID"])) < 0)
                         return false;
+
+                    updated = true;
                 }
             }
 
@@ -99,7 +111,7 @@ namespace RefreshVersionsFiles
 
         public  static DataTable GetAllAppsVersionsLive()
         {
-            string query = "select * from dbo.uvw_Get_All_Apps inner join GGAppsVersions on LOWER(GGAppsVersions.AppName) = LOWER(uvw_Get_All_Apps.Destination) and isActive = 1 ";
+            string query = "select * from dbo.uvw_Get_All_Apps inner join GGAppsVersions on LOWER(GGAppsVersions.AppName) = LOWER(uvw_Get_All_Apps.Destination) and isActive = 1 order by Destination ";
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["GG_Reporting"].ToString()))
                 {
@@ -138,7 +150,7 @@ namespace RefreshVersionsFiles
             string nVersionTXT = "";
 
             // get Configuration File and Version
-            JObject configVerJSON = GetConfigurationFileProduction(appName, appId, mobileDevice, out configVersionNumber);
+            //JObject configVerJSON = GetConfigurationFileProduction(appName, appId, mobileDevice, out configVersionNumber);
 
             // get DB Version File, DB Version, App version, configVersion.
             JObject dbVerJSON = GetVersionsFileProduction(mobileDevice, out DBVersionNumber, out appVersionNumber, out fileConfigVersionNumber, appName);
@@ -223,7 +235,7 @@ namespace RefreshVersionsFiles
 
         protected static string GetCofigureFile(string mobileDevice, string appName, int appID, string Environment, string fileName)
         {
-            string localFilename = actualWorkDir + "\\reports\\getTempfilename.txt";
+            string localFilename = actualWorkDir + "\\getTempfilename.txt";
             string getFileName;
 
             // Clear previous file.
@@ -275,7 +287,7 @@ namespace RefreshVersionsFiles
             }
 
 
-            string localFilename = actualWorkDir + "\\reports\\tempVersions_" + System.Guid.NewGuid().ToString() + ".txt";
+            string localFilename = actualWorkDir + "\\tempVersions_" + System.Guid.NewGuid().ToString() + ".txt";
             string setFileName;
 
             // Clear previous file.
@@ -294,39 +306,28 @@ namespace RefreshVersionsFiles
                     try
                     {
                         if (UploadFileRemote(appName, localFilename, setFileName) <= 0)
+                        {
+                            File.Delete(localFilename);
                             return null;
+                        }
                         else
                             return fileName;
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine( appName + ": Some Critical Exception occured when try to save file: " + setFileName + ", " + appName + ", " + mobileDevice + ", " + Environment + "  , " + e.Message);
+                        Console.WriteLine(appName + ": Some Critical Exception occured when try to save file: " + setFileName + ", " + appName + ", " + mobileDevice + ", " + Environment + "  , " + e.Message);
+                        File.Delete(localFilename);
                         return null;
                     }
                 }
                 else
+                {
                     return "";
-            }
-            else
-            {
-                setFileName = producedAppPath + appName + "\\update\\" + mobileDevice + "\\" + fileName;
-
-                if (File.Exists(setFileName))
-                    File.Delete(setFileName);
-
-                try
-                {
-                    File.WriteAllText(setFileName, fileContents, Encoding.UTF8);
-                    return fileName;
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(appName + ": Some Critical Exceprion occured when try to save file: " + setFileName + ", " + appName + ", " + mobileDevice + ", " + Environment + "  , " + e.Message);
-                    return null;
-                }
-
             }
 
+            return "";
+           
         }
 
 
@@ -340,7 +341,7 @@ namespace RefreshVersionsFiles
                 versFilename = versionPublish;
 
 
-            string localFilename = actualWorkDir + "\\reports\\tempVersions_" + System.Guid.NewGuid().ToString() + ".txt";
+            string localFilename = actualWorkDir + "\\tempVersions_" + System.Guid.NewGuid().ToString() + ".txt";
             string remotefilename = appName.ToLower() + "//update//" + mobileDevice + "//" + versFilename;
 
             if (DownloadProductionFile(appName, remotefilename, localFilename) < 0)
@@ -377,10 +378,11 @@ namespace RefreshVersionsFiles
                 }
             }
 
+            if (File.Exists(localFilename))
+                File.Delete(localFilename);
+
             if (ok)
             {
-                if (File.Exists(localFilename))
-                    File.Delete(localFilename);
                 return o2;       // All good, app_version and db_version found.
             }
 
