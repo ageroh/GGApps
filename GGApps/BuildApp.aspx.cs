@@ -342,31 +342,9 @@ namespace GGApps
                                         if (CreateSQLiteDBs.CreateBundleDBAndFiles(appName) < 0)
                                             HasErrors = true;
                                          
+                                        if (IncreaseDBMinorVersion(appID, appName) == null)
+                                            HasErrors = true;
 
-                                        // upload fb-images to production suncronusly. or remove it from here.
-                                        /*
-                                        result7 = ExecuteStep7(appID, appName, Server.MapPath("~/"), Log, mapPathError);
-                                        if (result7 == null)
-                                            HasErrors = true;
-                                        else
-                                        {
-                                            // Do this Syncronously through create entity_text file and upload it to Production !?
-                                            result8 = ExecuteStep8(appID, appName);
-                                        }
-                                        */
-                                        
-                                        /*
-                                         * if (result8 == null)
-                                            HasErrors = true;
-                                        else
-                                        {
-                                        */
-                                          // Add a minor version number to DB, on DB file already produced to be tested, before zipped and moved to be downloaded and tested.
-                                           // its not supported from ANDROID APK.
-                                           if (IncreaseDBMinorVersion(appID, appName) == null)
-                                                HasErrors = true;
-                                           
-                                        //}
 
                                         if (!HasErrors)
                                         {
@@ -847,14 +825,6 @@ namespace GGApps
                                                   + "<h3>You will be notified via e-mail upon completition.</h3>"
                                                   + "<strong>Thank You!</strong>", ((Control)sender).Parent);
                         }
-                        //else if (cmdStr == "ImagesOnly")
-                        //{
-                        //    BatchExecuteAllSteps((int)Session["appID"], Session["appName"].ToString());
-                        //    AddMessageToScreen(
-                        //                       , "<h2>Batch process execution has begun for " + appName.ToString() + ". </h2>"
-                        //                          + "<h3>Teams will be notified when execution is finished.</h3>"
-                        //                          + "<strong>Thank You!</strong>");
-                        //}
                         else
                         {
 

@@ -109,6 +109,11 @@ namespace GGApps
                             tmpfile = filename;
 
                             //folder to extract photos px "/home/sth/Projects/ggandroid/Thessaloniki/res/drawable/"
+                            // remove previous folders if exists with old images.
+                            if (mode == 2 || mode == 3 || mode == 4)
+                                if (Directory.Exists(outputPhotosPath))
+                                    Directory.Delete(outputPhotosPath, true);
+
                             if (!Directory.Exists(outputPhotosPath))
                                 Directory.CreateDirectory(outputPhotosPath);
 
@@ -290,30 +295,6 @@ namespace GGApps
 
             return 1;   // all ok
 	    }
-
-//	private static void exportDB() {
-//
-//		File sd = Environment.getExternalStorageDirectory();
-//		File data = Environment.getDataDirectory();
-//		FileChannel source = null;
-//		FileChannel destination = null;
-//		String currentDBPath = "/data/" + "com.greekguide.apps.android.Athens" + "/databases/ContentGR.db";
-//		String backupDBPath = "ContentGR.db";
-//		File currentDB = new File(data, currentDBPath);
-//		File backupDB = new File(sd, backupDBPath);
-//		try {
-//			source = new FileInputStream(currentDB).getChannel();
-//			destination = new FileOutputStream(backupDB).getChannel();
-//			destination.transferFrom(source, 0, source.size());
-//			source.close();
-//			destination.close();
-//			Toast.makeText(this, "DB Exported!", Toast.LENGTH_LONG).show();
-//		}
-//		catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-     
 
     }
 }

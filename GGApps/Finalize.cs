@@ -590,22 +590,19 @@ namespace GGApps
                 }
 
                 if (File.Exists(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentEN.db"))
-                    File.Copy(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentEN.db",
-                              toHistoryPath + dbVersion + "\\ContentEN.db");
+                    File.Copy(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentEN.db", toHistoryPath + dbVersion + "\\ContentEN.db");
 
                 if (File.Exists(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentGR.db"))
-                    File.Copy(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentGR.db",
-                        toHistoryPath + dbVersion + "\\ContentGR.db");
+                    File.Copy(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentGR.db", toHistoryPath + dbVersion + "\\ContentGR.db");
 
 
                 if (File.Exists(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentRU.db"))
-                    File.Copy(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentRU.db",
-                        toHistoryPath + dbVersion + "\\ContentRU.db");
+                    File.Copy(producedAppPath + appName.ToLower() + "\\update\\" + mobileDevice + "\\ContentRU.db", toHistoryPath + dbVersion + "\\ContentRU.db");
 
             }
             catch (Exception ex)
             {
-                Log.ErrorLogAdmin(mapPathError, "Some exception occured in StoreNedDBtoHistory()", appName);
+                Log.ErrorLogAdmin(mapPathError, "Some exception occured in StoreNedDBtoHistory():"+ ex.Message, appName);
                 return null;
             }
             return 0;

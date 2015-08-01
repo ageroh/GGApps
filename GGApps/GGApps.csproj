@@ -140,7 +140,6 @@
     <Content Include="EmailTemplates\EmailTemplateStart.html" />
     <Content Include="ErrorPage.aspx" />
     <Content Include="PublishStatus.aspx" />
-    <Content Include="Service.aspx" />
     <Content Include="SQLScripts\db_test_2_4_entities_with_invalid_characters_RU.sql" />
     <Content Include="SQLScripts\db_create_entity.sql" />
     <Content Include="Batch\db_stats.sql" />
@@ -404,10 +403,6 @@
     </Compile>
     <Compile Include="PublishStatus.aspx.designer.cs">
       <DependentUpon>PublishStatus.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Service.aspx.cs">
-      <DependentUpon>Service.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

@@ -418,7 +418,6 @@ namespace GGApps
             }
 
 
-
             
             HostingEnvironment.QueueBackgroundWorkItem(async ct =>
             {
@@ -530,18 +529,6 @@ namespace GGApps
 
             });
 
-
-            // not good code..
-            //if (mobileDevicesToPublish.Count == 2)
-            //    // open Modal for polling, DB here.
-            //    Page.ClientScript.RegisterStartupScript(this.GetType(), "myFuncStatus",
-            //                        " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '" + GGAppsPublishID[1] + "' }); openModalPublish(); refreshIntervalId = setInterval(getPublishStatus, 5000); ", true);
-            //else if (mobileDevicesToPublish.Count == 1)
-            //    Page.ClientScript.RegisterStartupScript(this.GetType(), "myFuncStatus",
-            //                          " statusPub = JSON.stringify({ appid: '" + appID + "', appName: '" + appName.ToLower() + "' , publID1: '" + GGAppsPublishID[0] + "', publID2: '-1' }); openModalPublish(); refreshIntervalId = setInterval(getPublishStatus, 5000); ", true);
-     
-            //?
-            // do the redirect to Status.
             Session["showInfoPublish"] = txtInfoPublishing;
             Session["showInfoPublishHTML"] = txtInfoPublishingHTML;
 
