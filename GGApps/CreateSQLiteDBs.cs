@@ -70,6 +70,16 @@ namespace GGApps
          /// <param name="outputPhotosPath">Give the output path photos</param>
         public static int CreateBundledModeForDB(int i, string inputphotosPath, string outputPhotosPath, string appName) 
         {
+            // remove previous folders if exists with old images.
+            if (i == 2 || i == 3 || i == 4)
+            {
+                if (Directory.Exists(outputPhotosPath))
+                {
+                    Directory.Delete(outputPhotosPath, true);
+                    Directory.CreateDirectory(outputPhotosPath); 
+                }
+            }
+
             //GR
             if (createDBs(i, inputphotosPath, outputPhotosPath, "android", appName, "EL") >= 0)
                 //EN
@@ -107,12 +117,6 @@ namespace GGApps
                         {
                             long Size = 0;
                             tmpfile = filename;
-
-                            //folder to extract photos px "/home/sth/Projects/ggandroid/Thessaloniki/res/drawable/"
-                            // remove previous folders if exists with old images.
-                            if (mode == 2 || mode == 3 || mode == 4)
-                                if (Directory.Exists(outputPhotosPath))
-                                    Directory.Delete(outputPhotosPath, true);
 
                             if (!Directory.Exists(outputPhotosPath))
                                 Directory.CreateDirectory(outputPhotosPath);
